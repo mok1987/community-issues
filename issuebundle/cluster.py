@@ -17,7 +17,10 @@ import requests
 from .sources import SOURCES
 
 NAMES = {s.key: s.name for s in SOURCES}
-DEFAULT_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash-lite")
+BASE = "https://generativelanguage.googleapis.com/v1beta"
+# GEMINI_MODEL을 지정하지 않으면 키로 쓸 수 있는 모델 중 가장 새 Flash-Lite를 자동으로 고른다
+DEFAULT_MODEL = (os.environ.get("GEMINI_MODEL") or "").strip() or None
+_SKIP = ("preview", "exp", "tts", "image", "live", "audio", "embedding", "thinking")
 CATEGORIES = ["정치", "경제", "사회", "문화·연예", "스포츠", "IT·과학", "생활"]
 DEFAULT_CATEGORY = "생활"
 
@@ -60,8 +63,40 @@ JSON으로만 답하라:
 LLM = Callable[[str], str]
 
 
-def gemini_llm(api_key: str, model: str = DEFAULT_MODEL) -> LLM:
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+def _version(name: str) -> tuple:
+    return tuple(int(n) for n in re.findall(r"\d+", name.split("gemini-", 1)[-1])[:3])
+
+
+def pick_model(models: list[dict]) -> str | None:
+    """ListModels 결과에서 generateContent가 되는 가장 새 flash-lite(없으면 flash) 모델 이름."""
+    usable = [m["name"].split("/", 1)[-1] for m in models
+              if "generateContent" in m.get("supportedGenerationMethods", [])]
+    stable = [n for n in usable if n.startswith("gemini-") and not any(k in n for k in _SKIP)]
+    for family in ("flash-lite", "flash"):
+        names = [n for n in stable if n.endswith(family) or f"{family}-0" in n or n.endswith(f"{family}-latest")]
+        if family == "flash":
+            names = [n for n in names if "lite" not in n]
+        if names:
+            return max(names, key=_version)
+    return None
+
+
+def resolve_model(api_key: str) -> str:
+    if DEFAULT_MODEL:
+        return DEFAULT_MODEL
+    resp = requests.get(f"{BASE}/models", params={"pageSize": 1000}, timeout=30,
+                        headers={"x-goog-api-key": api_key})
+    resp.raise_for_status()
+    model = pick_model(resp.json().get("models", []))
+    if not model:
+        raise RuntimeError("쓸 수 있는 Gemini Flash 모델을 찾지 못함")
+    return model
+
+
+def gemini_llm(api_key: str, model: str | None = None) -> LLM:
+    model = model or resolve_model(api_key)
+    print(f"[모델] {model}")
+    url = f"{BASE}/models/{model}:generateContent"
 
     def call(prompt: str) -> str:
         body = {

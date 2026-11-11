@@ -224,3 +224,19 @@ def test_env_key_strips_newlines(monkeypatch):
     monkeypatch.setenv("YOUTUBE_API_KEY", "  \n")
     assert run.env_key("GEMINI_API_KEY") == "AQ.abc"
     assert run.env_key("YOUTUBE_API_KEY") is None
+
+
+def test_pick_model_prefers_newest_stable_flash_lite():
+    gen = ["generateContent"]
+    models = [
+        {"name": "models/gemini-2.5-flash", "supportedGenerationMethods": gen},
+        {"name": "models/gemini-3.1-flash-lite", "supportedGenerationMethods": gen},
+        {"name": "models/gemini-3.5-flash-lite", "supportedGenerationMethods": gen},
+        {"name": "models/gemini-3.8-flash-lite-preview", "supportedGenerationMethods": gen},
+        {"name": "models/gemini-4.0-flash-lite", "supportedGenerationMethods": ["embedContent"]},
+        {"name": "models/gemini-3.6-flash", "supportedGenerationMethods": gen},
+    ]
+    assert cluster.pick_model(models) == "gemini-3.5-flash-lite"
+    no_lite = [m for m in models if "lite" not in m["name"]]
+    assert cluster.pick_model(no_lite) == "gemini-3.6-flash"
+    assert cluster.pick_model([]) is None

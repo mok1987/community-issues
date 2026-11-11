@@ -8,7 +8,7 @@
 환경변수:
   GEMINI_API_KEY    Google AI Studio 무료 키 (없으면 단순 묶기, 쉬운 설명·반응 없음)
   YOUTUBE_API_KEY   YouTube Data API v3 키 (없으면 유튜브 제외)
-  GEMINI_MODEL      기본 gemini-2.5-flash-lite
+  GEMINI_MODEL      비워두면 쓸 수 있는 가장 새 Flash-Lite 모델을 자동 선택
 """
 
 from __future__ import annotations
@@ -94,7 +94,12 @@ def main() -> None:
     window = store.recent(posts)
     top_urls = {p.url for p in fresh if p.rank < TOP_N}
     gemini_key = env_key("GEMINI_API_KEY")
-    llm = None if (args.no_ai or not gemini_key) else cluster.gemini_llm(gemini_key)
+    llm = None
+    if gemini_key and not args.no_ai:
+        try:
+            llm = cluster.gemini_llm(gemini_key)
+        except Exception as e:  # noqa: BLE001 - 모델 조회 실패해도 페이지는 갱신
+            print(f"[경고] Gemini 모델 확인 실패: {e}")
 
     issues, top_meta, method = cluster.make_issues(window, llm, top_urls)
     print(f"[묶기] 최근 글 {len(window)}개 → 이슈 {len(issues)}개, "
