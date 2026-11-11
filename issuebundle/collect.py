@@ -20,6 +20,10 @@ DELAY_BETWEEN_SITES = 3  # 초. 사이트당 30분에 1번만 요청한다.
 
 _NOISE = re.compile(r"\s*[\[\(]\s*\d+\s*[\]\)]\s*$")  # 제목 끝 댓글 수 "[12]" "(12)"
 _SPACES = re.compile(r"\s+")
+_ONLY_COUNT = re.compile(r"^[\[\(]?[\d/,\s]+[\]\)]?$")     # "[6571/2]" 같은 댓글 수 링크
+# 제목 맨 앞의 [공지] [🚨필독🚨] 같은 머리말, 또는 '이용 안내' 류
+_NOTICE_WORDS = re.compile(r"^\W{0,4}(공지\s*[\]\)】:가]|필독(?=\W)|운영\s*원칙)|이용\s*안내|규칙\s*안내")
+_DROP_PARAMS = {"page", "t", "exception_mode", "list_num", "sort_type", "search_head", "listStyle", "category"}
 
 
 @dataclass
@@ -40,8 +44,21 @@ def clean_title(text: str) -> str:
 def normalize_url(href: str, base: str) -> str:
     absolute = urljoin(base, href)
     parts = urlsplit(absolute)
-    # 추적용 fragment 제거, 쿼리는 게시글 번호가 들어있을 수 있어 유지
-    return urlunsplit((parts.scheme, parts.netloc, parts.path, parts.query, ""))
+    # fragment와 목록용 파라미터(page 등)는 지우고, 글 번호(id, no 등)는 남긴다
+    query = "&".join(kv for kv in parts.query.split("&")
+                     if kv and kv.split("=", 1)[0] not in _DROP_PARAMS)
+    return urlunsplit((parts.scheme, parts.netloc, parts.path, query, ""))
+
+
+def is_notice(a) -> bool:
+    """공지 줄(tr/li) 안에 있는 링크인지 (class나 data-type에 notice가 들어간 줄)."""
+    for el in [a, *list(a.parents)[:4]]:
+        if el is not a and el.name not in ("tr", "li"):
+            continue
+        marks = " ".join(el.get("class", []) or []) + " " + str(el.get("data-type", ""))
+        if "notice" in marks.lower():
+            return True
+    return False
 
 
 def extract_posts(html: str, source: Source, limit: int = 50) -> list[Post]:
@@ -52,7 +69,7 @@ def extract_posts(html: str, source: Source, limit: int = 50) -> list[Post]:
     order: list[str] = []
     for a in soup.find_all("a", href=True):
         href = a["href"]
-        if not pattern.search(href):
+        if not pattern.search(href) or is_notice(a):
             continue
         url = normalize_url(href, source.list_url)
         title = clean_title(a.get_text(" "))
@@ -64,7 +81,7 @@ def extract_posts(html: str, source: Source, limit: int = 50) -> list[Post]:
     posts = []
     for url in order:
         title = best[url]
-        if len(title) < 4 or title.isdigit():
+        if len(title) < 4 or _ONLY_COUNT.match(title) or _NOTICE_WORDS.search(title):
             continue
         posts.append(Post(url=url, title=title, source=source.key, rank=len(posts)))
         if len(posts) >= limit:

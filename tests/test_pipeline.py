@@ -188,3 +188,39 @@ def test_reactions_gather_and_summarize_end_to_end():
     reactions.apply(issues, summaries)
     got = {c["key"]: c["reaction"] for c in issues[0]["communities"]}
     assert got == {"dcinside": "칭찬 일색", "fmkorea": ""}
+
+
+# ---------- 첫 실제 실행에서 나온 문제들 ----------
+
+DC = next(s for s in SOURCES if s.key == "dcinside")
+
+
+def test_notices_and_count_links_are_skipped():
+    html = """<div class="notice_wrap_outer"><table><tbody>
+      <tr class="ub-content us-post" data-type="icon_notice"><td><a href="/board/view/?id=dcbest&no=1">실시간베스트 갤러리 이용 안내</a></td></tr>
+      <tr class="ub-content us-post" data-type="icon_txt"><td>
+        <a href="/board/view/?id=dcbest&no=555&page=1">[박갤] 화재 현장 후기</a>
+        <a href="/board/view/?id=dcbest&no=555&t=cv&page=1">[6571/2]</a></td></tr>
+      <tr class="notice"><td><a href="/board/view/?id=dcbest&no=2">이벤트 당첨자 발표</a></td></tr>
+      <tr><td><a href="/board/view/?id=dcbest&no=777">[필독] 로그인 보안 강화</a></td></tr>
+      <tr><td><a href="/board/view/?id=dcbest&no=888">공지 없는 진짜 인기글 제목</a></td></tr>
+    </tbody></table></div>"""
+    posts = collect.extract_posts(html, DC)
+    assert [p.title for p in posts] == ["[박갤] 화재 현장 후기", "공지 없는 진짜 인기글 제목"]
+    assert posts[0].url == "https://gall.dcinside.com/board/view/?id=dcbest&no=555"
+
+
+def test_youtube_music_is_skipped():
+    data = {"items": [
+        {"id": "m", "snippet": {"title": "노래", "channelTitle": "가수 - Topic", "categoryId": "10"}, "statistics": {}},
+        {"id": "n", "snippet": {"title": "뉴스", "channelTitle": "방송", "categoryId": "25"}, "statistics": {}},
+    ]}
+    assert [p.url for p in youtube.parse_popular(data)] == ["https://www.youtube.com/watch?v=n"]
+
+
+def test_env_key_strips_newlines(monkeypatch):
+    import run
+    monkeypatch.setenv("GEMINI_API_KEY", "AQ.abc\n")
+    monkeypatch.setenv("YOUTUBE_API_KEY", "  \n")
+    assert run.env_key("GEMINI_API_KEY") == "AQ.abc"
+    assert run.env_key("YOUTUBE_API_KEY") is None

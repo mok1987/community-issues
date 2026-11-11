@@ -27,6 +27,12 @@ OUT_PATH = ROOT / "site" / "issues.json"
 TOP_N = 5
 
 
+def env_key(name: str) -> str | None:
+    """Secrets에 붙여넣을 때 섞여 들어간 줄바꿈·공백을 지운다."""
+    value = (os.environ.get(name) or "").strip()
+    return value or None
+
+
 def collect_everything(yt_key: str | None) -> tuple[list[collect.Post], dict[str, str]]:
     posts, status = collect.collect_all(enabled_sources("web"))
     if enabled_sources("youtube"):
@@ -39,7 +45,7 @@ def collect_everything(yt_key: str | None) -> tuple[list[collect.Post], dict[str
 
 
 def check() -> None:
-    posts, status = collect_everything(os.environ.get("YOUTUBE_API_KEY"))
+    posts, status = collect_everything(env_key("YOUTUBE_API_KEY"))
     for key, msg in status.items():
         print(f"\n== {key}: {msg}")
         for p in [p for p in posts if p.source == key][:5]:
@@ -73,7 +79,7 @@ def main() -> None:
     parser.add_argument("--no-ai", action="store_true")
     args = parser.parse_args()
 
-    yt_key = os.environ.get("YOUTUBE_API_KEY")
+    yt_key = env_key("YOUTUBE_API_KEY")
     if args.check:
         check()
         return
@@ -87,7 +93,7 @@ def main() -> None:
 
     window = store.recent(posts)
     top_urls = {p.url for p in fresh if p.rank < TOP_N}
-    gemini_key = os.environ.get("GEMINI_API_KEY")
+    gemini_key = env_key("GEMINI_API_KEY")
     llm = None if (args.no_ai or not gemini_key) else cluster.gemini_llm(gemini_key)
 
     issues, top_meta, method = cluster.make_issues(window, llm, top_urls)

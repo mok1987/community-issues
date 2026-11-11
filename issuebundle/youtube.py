@@ -12,6 +12,7 @@ import requests
 from .collect import Post
 
 API = "https://www.googleapis.com/youtube/v3"
+SKIP_CATEGORIES = {"10"}  # 10 = 음악. 뮤직비디오·음원은 '이슈'가 아니라서 뺀다
 TIMEOUT = 20
 
 
@@ -29,7 +30,7 @@ def parse_popular(data: dict) -> list[Post]:
     for item in data.get("items", []):
         snip, stats = item.get("snippet", {}), item.get("statistics", {})
         title = (snip.get("title") or "").strip()
-        if not title:
+        if not title or snip.get("categoryId") in SKIP_CATEGORIES:
             continue
         channel = (snip.get("channelTitle") or "").strip()
         posts.append(Post(
