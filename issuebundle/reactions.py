@@ -168,23 +168,33 @@ class CommentReader:
 
     def _get(self, url: str) -> requests.Response | None:
         if not self.robots.allowed(url):
+            print(f"[반응] robots.txt 금지라 건너뜀: {url}")
             return None
         time.sleep(DELAY)
         try:
             resp = self.session.get(url, timeout=TIMEOUT)
-        except requests.RequestException:
+        except requests.RequestException as e:
+            print(f"[반응] 요청 실패 {e.__class__.__name__}: {url}")
             return None
-        return resp if resp.status_code == 200 else None
+        if resp.status_code != 200:
+            print(f"[반응] HTTP {resp.status_code}: {url}")
+            return None
+        return resp
 
     def _post_json(self, url: str, data: dict, referer: str) -> dict | None:
         if not self.robots.allowed(url):
+            print(f"[반응] robots.txt 금지라 건너뜀: {url}")
             return None
         time.sleep(DELAY)
         try:
             resp = self.session.post(url, data=data, timeout=TIMEOUT,
                                      headers={"X-Requested-With": "XMLHttpRequest", "Referer": referer})
-            return resp.json() if resp.status_code == 200 else None
-        except (requests.RequestException, ValueError):
+            if resp.status_code != 200:
+                print(f"[반응] HTTP {resp.status_code}: {url}")
+                return None
+            return resp.json()
+        except (requests.RequestException, ValueError) as e:
+            print(f"[반응] 댓글 응답 해석 실패 {e.__class__.__name__}: {url}")
             return None
 
     def read(self, source: str, url: str) -> tuple[list[str], int | None]:
@@ -216,6 +226,7 @@ class CommentReader:
         esno = re.search(r"""name=["']e_s_n_o["'][^>]*value=["']([^"']*)""", html)
         gtype = re.search(r"""name=["']_GALLTYPE_["'][^>]*value=["']([^"']*)""", html)
         if not (gid and no and esno):
+            print(f"[반응] 디시 글 정보(id/no/e_s_n_o) 못 찾음: {url}")
             return [], None
         data = self._post_json("https://gall.dcinside.com/board/comment/", {
             "id": gid.group(1), "no": no.group(1), "cmt_id": gid.group(1), "cmt_no": no.group(1),
