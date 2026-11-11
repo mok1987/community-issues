@@ -226,7 +226,7 @@ def cluster_with_llm(posts: list[dict], llm: LLM, top_urls: set[str] | None = No
 
 
 def label_tops(posts: list[dict], llm: LLM) -> dict[str, dict]:
-    """TOP5 글마다 {url: {category, easy}}. 실패하면 빈 dict (화면은 원래 제목으로 대체)."""
+    """TOP10 글마다 {url: {category, easy}}. 실패하면 빈 dict (화면은 원래 제목으로 대체)."""
     if not posts:
         return {}
     idmap = {f"p{i + 1}": p for i, p in enumerate(posts)}
@@ -234,14 +234,14 @@ def label_tops(posts: list[dict], llm: LLM) -> dict[str, dict]:
     try:
         raw = parse_json(llm(TOP_PROMPT.format(lines=lines, categories=", ".join(CATEGORIES))))
     except Exception as e:  # noqa: BLE001
-        print(f"[경고] TOP5 쉬운 제목 실패: {e}")
+        print(f"[경고] TOP10 쉬운 제목 실패: {e}")
         return {}
     out = {}
     for pid, meta in raw.items():
         if pid in idmap and isinstance(meta, dict) and (meta.get("easy") or "").strip():
             out[idmap[pid]["url"]] = {"category": fix_category(meta.get("category")),
                                       "easy": meta["easy"].strip()[:60]}
-    print(f"[TOP5] 쉬운 제목 {len(out)}/{len(posts)}개")
+    print(f"[TOP10] 쉬운 제목 {len(out)}/{len(posts)}개")
     return out
 
 
