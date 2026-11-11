@@ -6,7 +6,7 @@
 import json
 from pathlib import Path
 
-from issuebundle import cluster, reactions, store
+from issuebundle import cluster, store
 from issuebundle.collect import Post
 from issuebundle.sources import SOURCES
 from run import build_tops
@@ -64,13 +64,6 @@ CLUSTER = {
     },
 }
 
-REACTIONS = {
-    "i0": {"dcinside": "지각 걱정과 공사 대응에 대한 불만이 많음",
-           "fmkorea": "대체 경로를 서로 알려주는 분위기",
-           "youtube": "현장이 생각보다 심각하다는 반응, 안전 걱정"},
-    "i1": {"youtube": "대출 이자 부담이 계속된다는 걱정이 많음"},
-}
-
 if __name__ == "__main__":
     now = store.now_iso()
     fresh = [Post(url=f"https://example.com/{i}", title=t, source=s, rank=r, comment_count=c)
@@ -81,7 +74,6 @@ if __name__ == "__main__":
         return json.dumps(data, ensure_ascii=False)
 
     issues, top_meta = cluster.cluster_with_llm(rows, fake_llm, {p.url for p in fresh})
-    reactions.apply(issues, REACTIONS)
     names = {s.key: s.name for s in SOURCES}
     out = {"updated_at": now, "method": "demo", "post_count": len(rows),
            "sources": [{"key": "demo", "name": "예시 데이터", "status": "실제 수집 전"}],

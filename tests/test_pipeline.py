@@ -122,7 +122,7 @@ def test_make_issues_falls_back_when_llm_fails():
 
 # ---------- 카테고리, TOP5, 유튜브, 댓글 반응 ----------
 
-from issuebundle import reactions, youtube
+from issuebundle import youtube
 from run import build_tops
 
 
@@ -170,32 +170,6 @@ def test_youtube_parsers():
     assert [p.title for p in posts] == ["뉴스 특보 — 방송사", "뮤비"]
     assert posts[0].comment_count == 120 and posts[1].comment_count is None
     assert posts[0].url == "https://www.youtube.com/watch?v=v1" and youtube.video_id(posts[0].url) == "v1"
-    comments = {"items": [{"snippet": {"topLevelComment": {"snippet": {"textOriginal": "걱정되네요"}}}}]}
-    assert youtube.parse_comments(comments) == ["걱정되네요"]
-
-
-def test_comment_text_reads_only_comment_area():
-    html = """<html><body><article>본문 내용이 아주 길게 있습니다 본문 본문 본문</article>
-      <div class="comment_list"><p>첫 댓글입니다 정말 공감해요</p><p>두번째 댓글은 반대 의견</p></div>
-      <script>var comment = 'x'</script></body></html>"""
-    text = reactions.comment_text(html)
-    assert "첫 댓글" in text and "두번째 댓글" in text and "본문" not in text
-    assert reactions.comment_text("<div>댓글 없음</div>") == ""
-
-
-def test_reactions_gather_and_summarize_end_to_end():
-    issues, _ = cluster.cluster_with_llm(_rows(), lambda _: json.dumps({"issues": [
-        {"headline": "손흥민", "summary": "", "why": "", "category": "스포츠",
-         "post_ids": ["p1", "p2"], "framing": {}, "unverified": False}]}))
-    page = '<div id="cmt_wrap">대단하다는 댓글이 정말 많음, 이번 경기 최고였다는 반응</div>'
-    texts, _ = reactions.gather(issues, None, fetch_html=lambda url: page)
-    assert set(texts["i0"]) == {"dcinside", "fmkorea"}
-    llm = lambda _: json.dumps({"i0": {"dcinside": "칭찬 일색", "theqoo": "없는 출처"}, "i9": {"x": "y"}})
-    summaries = reactions.summarize(texts, llm)
-    assert summaries == {"i0": {"dcinside": "칭찬 일색"}}
-    reactions.apply(issues, summaries)
-    got = {c["key"]: c["reaction"] for c in issues[0]["communities"]}
-    assert got == {"dcinside": "칭찬 일색", "fmkorea": ""}
 
 
 # ---------- 첫 실제 실행에서 나온 문제들 ----------
@@ -287,59 +261,3 @@ def test_daum_titles_drop_lede_and_press():
         "한-우크라 첫 외교장관 회담"]
 
 
-# ---------- 사이트별 댓글 파서 ----------
-
-def test_dc_comment_parser():
-    data = {"total_cnt": "336", "comments": [
-        {"memo": "<b>대단하다</b> 진짜", "del_yn": "N", "is_delete": "0", "name": "ㅇㅇ"},
-        {"memo": "삭제된 댓글", "del_yn": "Y", "is_delete": "1", "name": "ㅇㅇ"},
-        {"memo": "광고입니다", "del_yn": "N", "is_delete": "0", "name": "댓글돌이"}]}
-    assert reactions.parse_dc_comments(data) == (["대단하다 진짜"], 336)
-
-
-def test_theqoo_comment_parser_skips_member_only():
-    data = {"comment_list": [
-        {"ct": '<span class="commentWarningMessage">비회원은 작성한 지 1시간 이내의 댓글은 읽을 수 없습니다.</span>'},
-        {"ct": "<p>너무 안타깝다</p>"}]}
-    assert reactions.parse_theqoo_comments(data) == (["너무 안타깝다"], None)
-
-
-def test_ppomppu_inline_json_parser():
-    html = """<script> var initialCommentData = {"total_comment":26,"total_page":2,"comments":[
-      {"no":1,"depth":0,"memo":"<div>비싸네요</div>","name":"a"},
-      {"no":2,"depth":1,"name":"b","unknown_field":"이 가격이면 다른 차 사죠"}]}; var x = 1;</script>"""
-    assert reactions.parse_ppomppu_page(html) == (["비싸네요", "이 가격이면 다른 차 사죠"], 26)
-    assert reactions.parse_ppomppu_page("<html></html>") == ([], None)
-
-
-def test_html_comment_parser_counts_and_hides_member_only():
-    html = '<div class="cmt_list">댓글 (18) | 등록순 와 부부가 같이 저지른건 또 신박하네 답글 0 추천 5</div>'
-    texts, n = reactions.parse_html_comments(html)
-    assert n == 18 and "신박하네" in texts[0]
-    hidden = '<div class="comment_line">임시글자임시글자임시글자 1시간 내 작성된 댓글은 회원만 볼 수 있어요, 로그인 후 이용해 주세요 정말 좋은 글이네요 공감합니다</div>'
-    texts, _ = reactions.parse_html_comments(hidden)
-    assert texts and "임시글자" not in texts[0] and "공감합니다" in texts[0]
-
-
-def test_summarize_accepts_names_and_wrapped_answers():
-    texts = {"i1": {"bobaedream": "댓글들", "theqoo": "댓글들"}}
-    wrapped = json.dumps({"result": {"이슈 i1": {"보배드림": "분노가 큼", "theqoo": "안타까움"}}})
-    assert reactions.summarize(texts, lambda _: wrapped) == {"i1": {"bobaedream": "분노가 큼", "theqoo": "안타까움"}}
-
-
-def test_apply_sets_comment_counts():
-    issues, _ = cluster.cluster_with_llm(_rows(), lambda _: json.dumps({"issues": [
-        {"headline": "x", "summary": "", "why": "", "category": "사회", "post_ids": ["p1", "p2"], "framing": {}}]}))
-    reactions.apply(issues, {"i0": {"dcinside": "요약"}}, {"i0": {"dcinside": 336}})
-    dc = next(c for c in issues[0]["communities"] if c["key"] == "dcinside")
-    assert dc["reaction"] == "요약" and dc["comment_count"] == 336
-
-
-def test_hidden_value_any_attribute_order():
-    a = '<input type="hidden" id="e_s_n_o" value="abc123" name="e_s_n_o">'
-    b = "<input value='xyz' type='hidden' name='e_s_n_o'/>"
-    c = '<script>var e_s_n_o = "fromjs";</script>'
-    assert reactions.hidden_value(a, "e_s_n_o") == "abc123"
-    assert reactions.hidden_value(b, "e_s_n_o") == "xyz"
-    assert reactions.hidden_value(c, "e_s_n_o") == "fromjs"
-    assert reactions.hidden_value("<input name='other' value='1'>", "e_s_n_o") is None

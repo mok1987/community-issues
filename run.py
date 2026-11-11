@@ -1,7 +1,7 @@
 """요즘뭐 실행 스크립트.
 
 사용법:
-  python run.py            수집 → 묶기 → 댓글 반응 → site/issues.json 갱신
+  python run.py            수집 → 묶기 → site/issues.json 갱신
   python run.py --check    각 출처에서 글이 제대로 잡히는지만 확인 (저장 안 함)
   python run.py --no-ai    API 없이 단순 묶기만
 
@@ -18,13 +18,13 @@ import json
 import os
 from pathlib import Path
 
-from issuebundle import cluster, collect, reactions, store, youtube
+from issuebundle import cluster, collect, store, youtube
 from issuebundle.sources import SOURCES, enabled_sources
 
 ROOT = Path(__file__).parent
 POSTS_PATH = ROOT / "data" / "posts.json"
 OUT_PATH = ROOT / "site" / "issues.json"
-TOP_N = 5
+TOP_N = 10
 
 
 def env_key(name: str) -> str | None:
@@ -54,7 +54,7 @@ def check() -> None:
 
 def build_tops(fresh: list[collect.Post], issues: list[dict], top_meta: dict[str, dict],
                status: dict[str, str] | None = None) -> list[dict]:
-    """출처별 현재 TOP 5. 각 글이 어떤 이슈에 속하는지(화제 중 여부)도 표시.
+    """출처별 현재 TOP 10. 각 글이 어떤 이슈에 속하는지(화제 중 여부)도 표시.
     status 를 주면 수집 못 한 출처도 빈 목록 + 상태로 넣는다 (화면에 '수집 불가' 표시용)."""
     issue_of = {p["url"]: it for it in issues for p in it["posts"]}
     names = {s.key: s.name for s in SOURCES}
@@ -109,9 +109,6 @@ def main() -> None:
     issues, top_meta, method = cluster.make_issues(window, llm, top_urls)
     print(f"[묶기] 최근 글 {len(window)}개 → 이슈 {len(issues)}개, "
           f"화제 중 {sum(i['hot'] for i in issues)}개 ({method})")
-
-    filled = reactions.add_reactions(issues, llm, yt_key)
-    print(f"[반응] 댓글 반응 요약 {filled}건")
 
     names = {s.key: s.name for s in SOURCES}
     payload = {

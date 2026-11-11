@@ -27,7 +27,7 @@ DEFAULT_CATEGORY = "생활"
 PROMPT = """너는 인터넷 커뮤니티를 전혀 안 보는 50~60대 독자를 위해 '요즘 화제'를 정리하는 신문 편집자다.
 
 아래는 여러 커뮤니티와 유튜브의 최근 인기글·인기 영상 제목이다. 형식: [글ID] (출처) 제목
-★ 표시는 각 출처의 현재 TOP 5 글이다 (참고용).
+★ 표시는 각 출처의 현재 TOP 10 글이다 (참고용).
 
 할 일 1 — 이슈 묶기:
 1. 같은 사건·인물·발표·사고·논란을 다룬 글끼리 하나의 이슈로 묶어라. 애매하면 묶지 마라.
@@ -180,7 +180,6 @@ def _issue(headline: str, summary: str, why: str, category: str, members: list[d
             "key": k, "name": NAMES.get(k, k),
             "count": sum(1 for p in members if p["source"] == k),
             "framing": (framing.get(k) or "").strip(),
-            "reaction": "",          # reactions.py 가 댓글을 읽고 채운다
             "comment_count": sum(p.get("comment_count") or 0 for p in members if p["source"] == k) or None,
         } for k in keys],
         "posts": [{"title": p["title"], "url": p["url"], "source": p["source"],
