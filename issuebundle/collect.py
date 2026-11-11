@@ -126,6 +126,15 @@ def fetch_source(source: Source, session: requests.Session) -> tuple[list[Post],
     return posts, f"{len(posts)}개"
 
 
+def status_kind(msg: str) -> str:
+    """화면 표시용 상태: ok(수집 중) / blocked(사이트가 자동 수집을 막음) / error(일시 오류)."""
+    if "robots.txt가 막고" in msg:
+        return "blocked"
+    if msg.endswith("개"):
+        return "ok"
+    return "error"
+
+
 def collect_all(sources: list[Source]) -> tuple[list[Post], dict[str, str]]:
     session = requests.Session()
     session.headers.update({"User-Agent": USER_AGENT, "Accept-Language": "ko-KR,ko;q=0.9"})

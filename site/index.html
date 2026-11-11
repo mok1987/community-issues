@@ -67,6 +67,11 @@
   .tabs button { flex: none; border: 1px solid var(--line); background: var(--card); color: var(--ink);
                  border-radius: 999px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
   .tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .tabs button.off { color: var(--muted); border-style: dashed; }
+  .tabs button.off small { font-size: .78em; margin-left: 4px; }
+  .tabs button.off[aria-selected="true"] { background: var(--muted); color: var(--bg); border-color: var(--muted); }
+  .src-summary { font-size: .82em; color: var(--muted); margin: 0 0 4px; }
+  .off-note { padding: 18px 16px; color: var(--muted); font-size: .92em; line-height: 1.6; }
   .top { list-style: none; margin: 6px 0 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
   .top li { border-bottom: 1px solid var(--line); }
   .top li:last-child { border-bottom: 0; }
@@ -97,6 +102,7 @@
 
   <h2 class="section">곳곳의 인기 TOP 5</h2>
   <p class="section-note">무슨 내용인지 쉽게 바꿔 적었어요. 누르면 원래 글로 이동해요.</p>
+  <p class="src-summary" id="src-summary"></p>
   <nav class="tabs" id="tabs" role="tablist" aria-label="출처"></nav>
   <ol class="top" id="top"></ol>
 
@@ -164,12 +170,26 @@ let data, tab = 0;
 function renderTop() {
   const tabs = document.getElementById("tabs"), list = document.getElementById("top");
   if (!data.tops?.length) { tabs.innerHTML = ""; list.innerHTML = `<li class="empty">아직 모은 글이 없어요.</li>`; return; }
-  tabs.innerHTML = data.tops.map((t, i) =>
-    `<button role="tab" aria-selected="${i === tab}">${esc(t.name)}</button>`).join("");
+  const ok = data.tops.filter(t => (t.state || "ok") === "ok").length;
+  const off = data.tops.length - ok;
+  document.getElementById("src-summary").textContent =
+    `지금 ${ok}곳에서 모으는 중` + (off ? ` · ${off}곳은 수집 불가 (점선 탭)` : "");
+  tabs.innerHTML = data.tops.map((t, i) => {
+    const isOff = (t.state || "ok") !== "ok";
+    const tag = t.state === "blocked" ? "수집 불가" : "일시 오류";
+    return `<button role="tab" class="${isOff ? "off" : ""}" aria-selected="${i === tab}">${esc(t.name)}${isOff ? `<small>${tag}</small>` : ""}</button>`;
+  }).join("");
   tabs.querySelectorAll("button").forEach((b, i) => b.addEventListener("click", () => { tab = i; renderTop(); }));
   const sel = tabs.children[tab];
   if (sel) tabs.scrollLeft = Math.max(0, sel.offsetLeft - tabs.offsetLeft - 16);
-  list.innerHTML = data.tops[tab].items.map((p, i) => {
+  const cur = data.tops[tab];
+  if ((cur.state || "ok") !== "ok") {
+    list.innerHTML = cur.state === "blocked"
+      ? `<li class="off-note"><b>${esc(cur.name)}</b>는 사이트 정책(robots.txt)으로 자동 수집을 허용하지 않아서 보여드릴 수 없어요. 사이트의 결정을 존중해 모으지 않고 있어요.</li>`
+      : `<li class="off-note"><b>${esc(cur.name)}</b>에서 이번에는 글을 가져오지 못했어요. 다음 업데이트 때 다시 시도해요.</li>`;
+    return;
+  }
+  list.innerHTML = cur.items.map((p, i) => {
     const main = p.easy || p.title;
     // 원래 제목은 비속어가 섞일 수 있어 화면에는 쉬운 제목만 보여준다 (원래 제목은 링크 설명으로만)
     const orig = "";
@@ -208,8 +228,9 @@ sizeBtn.addEventListener("click", () => setBig(!document.body.classList.contains
 fetch("issues.json", { cache: "no-store" }).then(r => r.json()).then(d => {
   data = d;
   document.getElementById("updated").textContent = `${ago(d.updated_at)} 업데이트`;
+  const label = { ok: "수집 중", blocked: "수집 불가", error: "일시 오류" };
   document.getElementById("sources").textContent =
-    "수집 상태: " + d.sources.map(s => `${s.name} ${s.status}`).join(" · ");
+    "출처 현황: " + d.sources.map(s => `${s.name} ${label[s.state] || s.status}`).join(" · ");
   render();
 }).catch(() => {
   document.getElementById("updated").textContent = "";

@@ -60,6 +60,36 @@ SOURCES: list[Source] = [
         list_url="https://www.clien.net/service/recommend",
         post_pattern=r"^(https://www\.clien\.net)?/service/board/[a-z_]+/\d+",
     ),
+    Source(
+        key="instiz",
+        name="인스티즈",
+        list_url="https://www.instiz.net/hot.htm",
+        post_pattern=r"instiz\.net/(pt|name|name_enter|free)/\d+|^/(pt|name|name_enter|free)/\d+",
+    ),
+    Source(
+        key="ppomppu",
+        name="뽐뿌",
+        list_url="https://www.ppomppu.co.kr/hot.php",
+        post_pattern=r"view\.php\?id=\w+&no=\d+",
+    ),
+    Source(
+        key="bobaedream",
+        name="보배드림",
+        list_url="https://www.bobaedream.co.kr/list?code=best",
+        post_pattern=r"/view\?code=best&No=\d+",
+    ),
+    Source(
+        key="navernews",
+        name="네이버뉴스",
+        list_url="https://news.naver.com/main/ranking/popularDay.naver",
+        post_pattern=r"n\.news\.naver\.com/(mnews/)?article/\d+/\d+",
+    ),
+    Source(
+        key="daumnews",
+        name="다음뉴스",
+        list_url="https://news.daum.net/ranking/popular",
+        post_pattern=r"v\.daum\.net/v/\d{10,}",
+    ),
     # 유튜브는 크롤링이 아니라 공식 API로 가져온다 (issuebundle/youtube.py)
     Source(
         key="youtube",

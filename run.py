@@ -52,12 +52,15 @@ def check() -> None:
             print(f"   {p.rank:>2}. {p.title}  →  {p.url}")
 
 
-def build_tops(fresh: list[collect.Post], issues: list[dict], top_meta: dict[str, dict]) -> list[dict]:
-    """출처별 현재 TOP 5. 각 글이 어떤 이슈에 속하는지(화제 중 여부)도 표시."""
+def build_tops(fresh: list[collect.Post], issues: list[dict], top_meta: dict[str, dict],
+               status: dict[str, str] | None = None) -> list[dict]:
+    """출처별 현재 TOP 5. 각 글이 어떤 이슈에 속하는지(화제 중 여부)도 표시.
+    status 를 주면 수집 못 한 출처도 빈 목록 + 상태로 넣는다 (화면에 '수집 불가' 표시용)."""
     issue_of = {p["url"]: it for it in issues for p in it["posts"]}
     names = {s.key: s.name for s in SOURCES}
     tops = []
-    for key in dict.fromkeys(p.source for p in fresh):
+    keys = list(dict.fromkeys([*(status or {}), *(p.source for p in fresh)]))
+    for key in keys:
         items = []
         for p in sorted((p for p in fresh if p.source == key), key=lambda p: p.rank)[:TOP_N]:
             meta, it = top_meta.get(p.url, {}), issue_of.get(p.url)
@@ -69,7 +72,9 @@ def build_tops(fresh: list[collect.Post], issues: list[dict], top_meta: dict[str
                 "hot": bool(it and it["hot"]),
                 "comment_count": p.comment_count,
             })
-        tops.append({"key": key, "name": names.get(key, key), "items": items})
+        msg = (status or {}).get(key, f"{len(items)}개")
+        tops.append({"key": key, "name": names.get(key, key), "items": items,
+                     "state": collect.status_kind(msg), "status": msg})
     return tops
 
 
@@ -113,9 +118,10 @@ def main() -> None:
         "updated_at": store.now_iso(),
         "method": method,
         "post_count": len(window),
-        "sources": [{"key": k, "name": names.get(k, k), "status": v} for k, v in status.items()],
+        "sources": [{"key": k, "name": names.get(k, k), "status": v, "state": collect.status_kind(v)}
+                    for k, v in status.items()],
         "issues": issues[:30],
-        "tops": build_tops(fresh, issues, top_meta),
+        "tops": build_tops(fresh, issues, top_meta, status),
     }
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")

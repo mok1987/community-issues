@@ -36,6 +36,11 @@ def test_every_source_pattern_compiles_and_matches_example():
         "natepann": "/talk/374512345",
         "clien": "/service/board/park/19123456",
         "youtube": "https://www.youtube.com/watch?v=abc",
+        "instiz": "https://www.instiz.net/pt/7612345",
+        "ppomppu": "view.php?id=freeboard&no=9123456",
+        "bobaedream": "/view?code=best&No=812345",
+        "navernews": "https://n.news.naver.com/article/001/0015123456",
+        "daumnews": "https://v.daum.net/v/20261111120012345",
     }
     import re
     for s in SOURCES:
@@ -243,3 +248,11 @@ def test_pick_model_prefers_newest_stable_flash_lite():
     no_lite = [m for m in models if "lite" not in m["name"]]
     assert cluster.pick_model(no_lite) == "gemini-3.6-flash"
     assert cluster.pick_model([]) is None
+
+
+def test_blocked_sources_appear_in_tops_with_state():
+    fresh = [_p("https://x/1", "글", "dcinside", 0)]
+    status = {"dcinside": "1개", "fmkorea": "robots.txt가 막고 있어 건너뜀", "clien": "HTTP 403"}
+    tops = build_tops(fresh, [], {}, status)
+    assert [(t["key"], t["state"], len(t["items"])) for t in tops] == [
+        ("dcinside", "ok", 1), ("fmkorea", "blocked", 0), ("clien", "error", 0)]
