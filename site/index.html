@@ -32,6 +32,11 @@
   h2.section { font-size: 1.1em; margin: 26px 0 4px; display: flex; align-items: center; gap: 6px; }
   .section-note { color: var(--muted); font-size: .85em; margin: 0 0 6px; }
   .fire { font-size: 1.05em; line-height: 1; }
+  .motto { font-size: .72em; font-weight: 600; color: var(--muted); }
+  .band { background: var(--hot-bg); color: var(--ink); border-radius: 12px; padding: 10px 14px; margin-top: 30px; }
+  .now { font-size: 1em; margin: 16px 0 0; }
+  .now .who { margin-right: 1px; }
+  .now .who { font-size: .95em; }
   .live { font-size: .7em; font-weight: 600; color: var(--hot); }
   /* 출처 이름표: 출처마다 고유 색 음영 */
   .src, .who { display: inline-block; border-radius: 6px; padding: 0 7px; font-weight: 700; border: 0;
@@ -76,7 +81,7 @@
   .links a { color: var(--accent); text-decoration: none; }
   .links small { color: var(--muted); margin-right: 6px; }
 
-  .tabs { display: flex; gap: 6px; overflow-x: auto; padding: 6px 0 4px; scrollbar-width: none; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 0 4px; }
   .tabs button { flex: none; border: 1px solid var(--line); background: var(--card); color: var(--ink);
                  border-radius: 999px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
   .tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
@@ -116,15 +121,14 @@
     <button class="size" id="size" aria-pressed="false">글씨 크게</button>
   </header>
 
-  <h2 class="section"><span class="fire" aria-hidden="true">🔥</span>지금 화제 중</h2>
+  <h2 class="section"><span class="fire" aria-hidden="true">🔥</span>지금 화제 중 <small class="motto">(이것만 봐도 세상 돌아가는 게 보여요)</small></h2>
   <p class="section-note">온라인에서 화제가 되고 있는 내용이에요. 누르면 커뮤니티별 분위기와 원래 글을 볼 수 있어요.</p>
   <section id="hot" aria-live="polite"></section>
 
-  <h2 class="section">각종 커뮤니티 화제 글 TOP 10 <small class="live">(실시간)</small></h2>
-  <p class="section-note">무슨 내용인지 쉽게 바꿔 적었어요. 누르면 원래 글로 이동해요.</p>
-  <p class="src-summary" id="src-summary"></p>
+  <h2 class="section band">각종 커뮤니티 화제 글 TOP 10 <small class="live">(실시간)</small></h2>
   <nav class="tabs" id="tabs" role="tablist" aria-label="출처"></nav>
   <div class="intro" id="intro"></div>
+  <h3 class="now" id="now"></h3>
   <ol class="top" id="top"></ol>
 
   <h2 class="section" id="more-title" hidden>그 밖의 이슈</h2>
@@ -255,20 +259,19 @@ function sortTops(tops) {
 function renderTop() {
   const tabs = document.getElementById("tabs"), list = document.getElementById("top");
   if (!data.tops?.length) { tabs.innerHTML = ""; list.innerHTML = `<li class="empty">아직 모은 글이 없어요.</li>`; return; }
-  const ok = data.tops.filter(t => (t.state || "ok") === "ok").length;
-  const off = data.tops.length - ok;
-  document.getElementById("src-summary").textContent =
-    `지금 ${ok}곳에서 모으는 중` + (off ? ` · ${off}곳은 수집 불가 (점선 탭)` : "");
   tabs.innerHTML = data.tops.map((t, i) => {
     const isOff = (t.state || "ok") !== "ok";
     const tag = t.state === "blocked" ? "수집 불가" : "일시 오류";
     return `<button role="tab" class="${isOff ? "off" : ""}" aria-selected="${i === tab}">${esc(t.name)}${isOff ? `<small>${tag}</small>` : ""}</button>`;
   }).join("");
   tabs.querySelectorAll("button").forEach((b, i) => b.addEventListener("click", () => { tab = i; renderTop(); }));
-  const sel = tabs.children[tab];
-  if (sel) tabs.scrollLeft = Math.max(0, sel.offsetLeft - tabs.offsetLeft - 16);
   const cur = data.tops[tab];
   renderIntro(cur);
+  const now = document.getElementById("now");
+  const sk = /^[a-z]+$/.test(cur.key) ? `s-${cur.key}` : "";
+  now.innerHTML = (cur.state || "ok") === "ok"
+    ? `지금 <span class="who ${sk}">${esc(cur.name)}</span>에서 화제예요` : "";
+  now.hidden = (cur.state || "ok") !== "ok";
   if ((cur.state || "ok") !== "ok") {
     list.innerHTML = cur.state === "blocked"
       ? `<li class="off-note"><b>${esc(cur.name)}</b>는 사이트 정책(robots.txt)으로 자동 수집을 허용하지 않아서 보여드릴 수 없어요. 사이트의 결정을 존중해 모으지 않고 있어요.</li>`
