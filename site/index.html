@@ -96,7 +96,7 @@
   <section id="hot" aria-live="polite"></section>
 
   <h2 class="section">곳곳의 인기 TOP 5</h2>
-  <p class="section-note">누르면 원래 글로 이동해요.</p>
+  <p class="section-note">무슨 내용인지 쉽게 바꿔 적었어요. 누르면 원래 글로 이동해요.</p>
   <nav class="tabs" id="tabs" role="tablist" aria-label="출처"></nav>
   <ol class="top" id="top"></ol>
 
@@ -171,10 +171,11 @@ function renderTop() {
   if (sel) tabs.scrollLeft = Math.max(0, sel.offsetLeft - tabs.offsetLeft - 16);
   list.innerHTML = data.tops[tab].items.map((p, i) => {
     const main = p.easy || p.title;
-    const orig = p.easy ? `<span class="orig">원래 제목: ${esc(p.title)}</span>` : "";
+    // 원래 제목은 비속어가 섞일 수 있어 화면에는 쉬운 제목만 보여준다 (원래 제목은 링크 설명으로만)
+    const orig = "";
     const hot = p.hot ? '<span class="hot-chip">화제 중</span>' : "";
     const cnt = p.comment_count ? `<span class="orig">댓글 ${num(p.comment_count)}</span>` : "";
-    return `<li><a href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener noreferrer nofollow">
+    return `<li><a href="${esc(safeUrl(p.url))}" title="원래 제목: ${esc(p.title)}" target="_blank" rel="noopener noreferrer nofollow">
       <span class="n">${i + 1}</span><span>${cat(p.category)}<span class="easy">${esc(main)}</span>${hot}${orig}${cnt}</span></a></li>`;
   }).join("");
 }
