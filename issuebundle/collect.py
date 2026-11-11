@@ -23,6 +23,7 @@ _SPACES = re.compile(r"\s+")
 _ONLY_COUNT = re.compile(r"^[\[\(]?[\d/,\s]+[\]\)]?$")     # "[6571/2]" 같은 댓글 수 링크
 # 제목 맨 앞의 [공지] [🚨필독🚨] 같은 머리말, 또는 '이용 안내' 류
 _NOTICE_WORDS = re.compile(r"^\W{0,4}(공지\s*[\]\)】:가]|필독(?=\W)|운영\s*원칙)|이용\s*안내|규칙\s*안내")
+_TITLE_CLASS = re.compile(r"(^|[_-])(tit|title|subject|sbj)", re.I)
 _DROP_PARAMS = {"page", "t", "exception_mode", "list_num", "sort_type", "search_head", "listStyle", "category", "vdate"}
 
 
@@ -75,7 +76,9 @@ def extract_posts(html: str, source: Source, limit: int = 50) -> list[Post]:
         if not pattern.search(href) or is_notice(a) or (skip_url and skip_url.search(href)):
             continue
         url = normalize_url(href, source.list_url)
-        title = clean_title(a.get_text(" "))
+        # 링크 안에 제목 전용 요소(class에 tit/subject)가 있으면 그것만 쓴다 (요약문·언론사·시간 제외)
+        head = a.find(class_=_TITLE_CLASS)
+        title = clean_title((head or a).get_text(" "))
         if url not in best:
             order.append(url)
             best[url] = title

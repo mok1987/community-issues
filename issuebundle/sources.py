@@ -97,6 +97,8 @@ SOURCES: list[Source] = [
         name="다음뉴스",
         list_url="https://news.daum.net/",  # 랭킹 페이지가 없어져 메인 주요 뉴스로 대체
         post_pattern=r"v\.daum\.net/v/\d{10,}",
+        # 제목 뒤에 붙은 "[서울=뉴시스] 기자 = 본문…" 또는 "언론사 34분 전" 제거
+        title_regex=r"^(.*?\S)(?:\s\[[^\]]*=[^\]]*\].*|\s\S+\s\d+\s?(?:분|시간|일)\s?전)$",
     ),
     # 유튜브는 크롤링이 아니라 공식 API로 가져온다 (issuebundle/youtube.py)
     Source(

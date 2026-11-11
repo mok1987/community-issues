@@ -28,7 +28,17 @@
           border-radius: 10px; padding: 6px 10px; font-size: .85em; cursor: pointer; }
   h2.section { font-size: 1.1em; margin: 26px 0 4px; display: flex; align-items: center; gap: 6px; }
   .section-note { color: var(--muted); font-size: .85em; margin: 0 0 6px; }
-  .hot-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--hot); display: inline-block; }
+  .fire { font-size: 1.05em; line-height: 1; }
+  /* 출처 이름표: 출처마다 고유 색 음영 */
+  .src, .who { display: inline-block; border-radius: 6px; padding: 0 7px; font-weight: 700; border: 0;
+               background: var(--src-bg, #eeece6); color: var(--src-ink, #55534c); }
+  .s-dcinside { --src-bg: #e3e7fb; --src-ink: #2f3f9e; } .s-fmkorea { --src-bg: #e2f2e6; --src-ink: #24683b; }
+  .s-theqoo { --src-bg: #fbe4ee; --src-ink: #a02a5c; } .s-ruliweb { --src-bg: #fdebdc; --src-ink: #9a4a0e; }
+  .s-natepann { --src-bg: #fde3e1; --src-ink: #a8291f; } .s-clien { --src-bg: #e0eef9; --src-ink: #1d5f96; }
+  .s-instiz { --src-bg: #efe4fa; --src-ink: #6a2fa0; } .s-ppomppu { --src-bg: #f3efd6; --src-ink: #6d5d0c; }
+  .s-bobaedream { --src-bg: #dff3f3; --src-ink: #12676a; } .s-navernews { --src-bg: #ddf5e3; --src-ink: #157a35; }
+  .s-daumnews { --src-bg: #e1ecfd; --src-ink: #2457b8; } .s-youtube { --src-bg: #fde2e2; --src-ink: #b3161d; }
+  @media (prefers-color-scheme: dark) { .src, .who { filter: brightness(.82) saturate(1.25); } }
 
   .cat { display: inline-block; font-size: .75em; font-weight: 700; padding: 1px 8px; border-radius: 6px;
          vertical-align: 2px; margin-right: 6px; white-space: nowrap; }
@@ -47,7 +57,6 @@
   .why b { color: var(--hot); }
   .summary { margin: 0; color: var(--muted); font-size: .92em; }
   .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 8px; font-size: .8em; color: var(--muted); }
-  .src { border: 1px solid var(--line); border-radius: 6px; padding: 0 7px; color: var(--ink); }
   .badge { font-size: .8em; padding: 0 7px; border-radius: 6px; background: var(--warn-bg); color: var(--warn); font-weight: 700; }
   .more { margin-left: auto; color: var(--accent); }
   .detail { display: none; border-top: 1px solid var(--line); padding: 4px 16px 14px; }
@@ -56,7 +65,7 @@
   .react { list-style: none; margin: 0; padding: 0; }
   .react li { padding: 7px 0; border-bottom: 1px dashed var(--line); font-size: .95em; }
   .react li:last-child { border-bottom: 0; }
-  .react .who { font-weight: 700; margin-right: 6px; }
+  .react .who { margin-right: 8px; }
   .react small { color: var(--muted); }
   .links { list-style: none; margin: 0; padding: 0; }
   .links li { padding: 6px 0; font-size: .92em; }
@@ -96,8 +105,8 @@
     <button class="size" id="size" aria-pressed="false">글씨 크게</button>
   </header>
 
-  <h2 class="section"><span class="hot-dot" aria-hidden="true"></span>지금 화제 중</h2>
-  <p class="section-note">여러 곳에서 동시에 이야기되는 이슈예요. 누르면 사람들 반응을 볼 수 있어요.</p>
+  <h2 class="section"><span class="fire" aria-hidden="true">🔥</span>지금 화제 중</h2>
+  <p class="section-note">온라인에서 화제가 되고 있는 내용이에요. 누르면 사람들 반응을 볼 수 있어요.</p>
   <section id="hot" aria-live="polite"></section>
 
   <h2 class="section">곳곳의 인기 TOP 5</h2>
@@ -132,13 +141,14 @@ function ago(iso) {
 }
 
 function issueCard(it) {
-  const srcs = it.communities.map(c => `<span class="src">${esc(c.name)}</span>`).join("");
+  const cls = k => /^[a-z]+$/.test(k) ? `s-${k}` : "";
+  const srcs = it.communities.map(c => `<span class="src ${cls(c.key)}">${esc(c.name)}</span>`).join("");
   const reacts = it.communities.map(c => {
     const text = c.reaction || c.framing;
     if (!text) return "";
     const label = c.reaction ? "" : " <small>(제목 분위기)</small>";
     const cnt = c.comment_count ? ` <small>· 댓글 ${num(c.comment_count)}</small>` : "";
-    return `<li><span class="who">${esc(c.name)}</span>${esc(text)}${label}${cnt}</li>`;
+    return `<li><span class="who ${cls(c.key)}">${esc(c.name)}</span>${esc(text)}${label}${cnt}</li>`;
   }).join("");
   const links = it.posts.map(p =>
     `<li><small>${esc(p.source_name)}</small><a href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener noreferrer nofollow">${esc(p.title)}</a></li>`).join("");

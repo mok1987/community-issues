@@ -274,3 +274,14 @@ def test_source_specific_cleanup():
     bobae = next(s for s in SOURCES if s.key == "bobaedream")
     posts = collect.extract_posts('<a href="/view?code=best&No=1046725&vdate=">근황 소식</a>', bobae)
     assert posts[0].url == "https://www.bobaedream.co.kr/view?code=best&No=1046725"
+
+
+def test_daum_titles_drop_lede_and_press():
+    daum = next(s for s in SOURCES if s.key == "daumnews")
+    html = """<a href="https://v.daum.net/v/20261111124324925">"美상무장관도 '젠슨황 첩보' 듣고도 中기업 AI칩 수출승인"(종합) [서울=뉴시스] 김승민 기자 = 도널드 트럼프 미국 대통령이 ... 액시오스 뉴시스 34분 전</a>
+      <a href="https://v.daum.net/v/20261111123800726">中, 엔비디아 칩 10조원대 밀수 의혹…美中 관계 얼어붙나? 파이낸셜뉴스 40분 전</a>
+      <a href="https://v.daum.net/v/20261111114757123"><strong class="tit_txt">한-우크라 첫 외교장관 회담</strong><p class="desc">본문 요약</p></a>"""
+    assert [p.title for p in collect.extract_posts(html, daum)] == [
+        '"美상무장관도 \'젠슨황 첩보\' 듣고도 中기업 AI칩 수출승인"(종합)',
+        "中, 엔비디아 칩 10조원대 밀수 의혹…美中 관계 얼어붙나?",
+        "한-우크라 첫 외교장관 회담"]
