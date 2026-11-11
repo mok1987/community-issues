@@ -20,7 +20,7 @@
   body.big { --fs: 19px; }
   * { box-sizing: border-box; }
   [hidden] { display: none !important; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font-size: var(--fs); line-height: 1.6;
+  body { margin: 0; background: var(--bg); color: var(--ink); font-size: var(--fs); line-height: 1.6; word-break: keep-all; overflow-wrap: anywhere;
          font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif; }
   main { max-width: 640px; margin: 0 auto; padding: 18px 16px 64px; }
   header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
@@ -103,7 +103,8 @@
   .top a { display: grid; grid-template-columns: 26px 1fr; gap: 6px; padding: 12px 14px; color: var(--ink); text-decoration: none; }
   .top a:hover .easy { text-decoration: underline; }
   .top .n { font-weight: 800; color: var(--muted); }
-  .top .easy { font-weight: 600; }
+  /* 제목이 카테고리 옆 한 줄에 다 안 들어가면 통째로 다음 줄에서 시작 */
+  .top .easy { font-weight: 600; display: inline-block; max-width: 100%; vertical-align: top; }
   .top .orig { display: block; color: var(--muted); font-size: .82em; margin-top: 2px; }
   .hot-chip { font-size: .72em; font-weight: 700; color: var(--hot); background: var(--hot-bg); padding: 1px 6px; border-radius: 6px; margin-left: 4px; white-space: nowrap; }
   .empty { text-align: center; color: var(--muted); padding: 32px 0; }
@@ -285,7 +286,7 @@ function renderTop() {
     const hot = p.hot ? '<span class="hot-chip">화제 중</span>' : "";
     const cnt = p.comment_count ? `<span class="orig">댓글 ${num(p.comment_count)}</span>` : "";
     return `<li><a href="${esc(safeUrl(p.url))}" title="원래 제목: ${esc(p.title)}" target="_blank" rel="noopener noreferrer nofollow">
-      <span class="n">${i + 1}</span><span>${cat(p.category)}<span class="easy">${esc(main)}</span>${hot}${orig}${cnt}</span></a></li>`;
+      <span class="n">${i + 1}</span><span>${cat(p.category)}<span class="easy">${esc(main)}${hot}</span>${orig}${cnt}</span></a></li>`;
   }).join("");
 }
 
