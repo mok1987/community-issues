@@ -9,6 +9,7 @@
 
 from __future__ import annotations
 
+import json
 import re
 import time
 from urllib.parse import urlsplit
@@ -37,7 +38,8 @@ PROMPT = """너는 인터넷 커뮤니티를 안 보는 50~60대 독자에게 '�
 - 개인의 실명·신상은 쓰지 마라.
 - 텍스트가 댓글이 아니거나 내용이 없으면 그 출처는 빼라.
 
-JSON으로만 답하라: {{"이슈ID": {{"출처키": "반응 한 줄"}}}}
+이슈ID(예: i0)와 출처키(예: dcinside)를 그대로 키로 써서 JSON으로만 답하라:
+{{"i0": {{"dcinside": "반응 한 줄", "youtube": "반응 한 줄"}}}}
 
 {blocks}
 """
@@ -85,48 +87,200 @@ def comment_text(html: str, limit: int = EXCERPT_CHARS) -> str:
     return max(candidates, key=len)[:limit]
 
 
-def gather(issues: list[dict], yt_key: str | None, session: requests.Session | None = None,
-           fetch_html=None) -> dict[str, dict[str, str]]:
-    """{이슈ID: {출처키: 댓글 텍스트}}"""
-    session = session or requests.Session()
-    session.headers.setdefault("User-Agent", USER_AGENT)
-    robots = RobotsCache(session)
+# ---------- 사이트별 댓글 읽기 ----------
+# 각 함수는 (댓글 문장 목록, 전체 댓글 수 또는 None)을 돌려준다.
 
-    def default_fetch(url: str) -> str:
-        if not robots.allowed(url):
-            return ""
+_TAG = re.compile(r"<[^>]+>")
+_HIDDEN = re.compile(r"(임시글자|회원만 볼 수|비회원은|로그인 후)")
+SKIP_NAMES = {"댓글돌이"}  # 디시 광고성 자동 댓글
+
+
+def _plain(html_text: str) -> str:
+    return re.sub(r"\s+", " ", _TAG.sub(" ", html_text or "")).strip()
+
+
+def parse_dc_comments(data: dict) -> tuple[list[str], int | None]:
+    texts = []
+    for c in data.get("comments") or []:
+        if c.get("del_yn") == "Y" or c.get("is_delete") not in (None, "0", 0) or c.get("name") in SKIP_NAMES:
+            continue
+        t = _plain(str(c.get("memo") or ""))
+        if t and not t.startswith("dccon"):
+            texts.append(t[:200])
+    total = data.get("total_cnt")
+    return texts, int(total) if str(total or "").isdigit() else None
+
+
+def parse_theqoo_comments(data: dict) -> tuple[list[str], int | None]:
+    texts = []
+    for c in data.get("comment_list") or []:
+        raw = str(c.get("ct") or "")
+        if "commentWarningMessage" in raw:  # 비회원에게 가려진 최근 댓글은 건너뛴다
+            continue
+        t = _plain(raw)
+        if t and not _HIDDEN.search(t):
+            texts.append(t[:200])
+    total = data.get("comment_count") or data.get("total_count")
+    return texts, int(total) if str(total or "").isdigit() else None
+
+
+def parse_ppomppu_page(html: str) -> tuple[list[str], int | None]:
+    m = re.search(r"initialCommentData\s*=\s*", html)
+    if not m:
+        return [], None
+    try:
+        data, _ = json.JSONDecoder().raw_decode(html[m.end():])
+    except ValueError:
+        return [], None
+    texts = []
+    for c in data.get("comments") or []:
+        body = next((c[k] for k in ("memo", "comment", "content", "body", "text", "c_memo") if isinstance(c.get(k), str)), None)
+        if body is None:  # 필드 이름을 모르면 가장 긴 문자열 값을 댓글로 본다
+            strings = [v for v in c.values() if isinstance(v, str)]
+            body = max(strings, key=len) if strings else ""
+        t = _plain(body)
+        if t:
+            texts.append(t[:200])
+    total = data.get("total_comment")
+    return texts, int(total) if str(total or "").isdigit() else None
+
+
+_COUNT = re.compile(r"(?:댓글\s*[\(\[]?\s*|총\s*)(\d[\d,]*)\s*(?:개|[\)\]])")
+
+
+def parse_html_comments(html: str) -> tuple[list[str], int | None]:
+    text = comment_text(html)
+    if _HIDDEN.search(text):  # 인스티즈: 회원 전용 안내·가림 글자 제거
+        text = _HIDDEN.sub(" ", re.sub(r"(임시글자)+", " ", text))
+    m = _COUNT.search(text)
+    count = int(m.group(1).replace(",", "")) if m else None
+    return ([text] if len(text.strip()) >= 20 else []), count
+
+
+class CommentReader:
+    """출처별 방식으로 댓글을 읽는다. robots.txt가 막는 주소는 읽지 않는다."""
+
+    def __init__(self, yt_key: str | None = None, session: requests.Session | None = None):
+        self.yt_key = yt_key
+        self.session = session or requests.Session()
+        self.session.headers.setdefault("User-Agent", USER_AGENT)
+        self.robots = RobotsCache(self.session)
+
+    def _get(self, url: str) -> requests.Response | None:
+        if not self.robots.allowed(url):
+            return None
         time.sleep(DELAY)
         try:
-            resp = session.get(url, timeout=TIMEOUT)
+            resp = self.session.get(url, timeout=TIMEOUT)
         except requests.RequestException:
-            return ""
-        if resp.status_code != 200:
-            return ""
-        resp.encoding = resp.apparent_encoding or resp.encoding
-        return resp.text
+            return None
+        return resp if resp.status_code == 200 else None
 
-    fetch_html = fetch_html or default_fetch
+    def _post_json(self, url: str, data: dict, referer: str) -> dict | None:
+        if not self.robots.allowed(url):
+            return None
+        time.sleep(DELAY)
+        try:
+            resp = self.session.post(url, data=data, timeout=TIMEOUT,
+                                     headers={"X-Requested-With": "XMLHttpRequest", "Referer": referer})
+            return resp.json() if resp.status_code == 200 else None
+        except (requests.RequestException, ValueError):
+            return None
+
+    def read(self, source: str, url: str) -> tuple[list[str], int | None]:
+        try:
+            if source == "youtube":
+                vid = youtube.video_id(url)
+                return (youtube.fetch_comments(self.yt_key, vid), None) if self.yt_key and vid else ([], None)
+            if source == "dcinside":
+                return self._dc(url)
+            if source == "theqoo":
+                return self._theqoo(url)
+            resp = self._get(url)
+            if resp is None:
+                return [], None
+            if source == "ppomppu":
+                return parse_ppomppu_page(resp.content.decode("euc-kr", "replace"))
+            resp.encoding = resp.apparent_encoding or resp.encoding
+            return parse_html_comments(resp.text)
+        except Exception as e:  # noqa: BLE001 - 한 사이트 실패가 전체를 멈추지 않게
+            print(f"[경고] 댓글 읽기 실패 {source}: {e.__class__.__name__}")
+            return [], None
+
+    def _dc(self, url: str) -> tuple[list[str], int | None]:
+        resp = self._get(url)
+        if resp is None:
+            return [], None
+        html = resp.text
+        gid, no = re.search(r"[?&]id=(\w+)", url), re.search(r"[?&]no=(\d+)", url)
+        esno = re.search(r"""name=["']e_s_n_o["'][^>]*value=["']([^"']*)""", html)
+        gtype = re.search(r"""name=["']_GALLTYPE_["'][^>]*value=["']([^"']*)""", html)
+        if not (gid and no and esno):
+            return [], None
+        data = self._post_json("https://gall.dcinside.com/board/comment/", {
+            "id": gid.group(1), "no": no.group(1), "cmt_id": gid.group(1), "cmt_no": no.group(1),
+            "focus_cno": "", "focus_pno": "", "e_s_n_o": esno.group(1), "comment_page": "1",
+            "sort": "", "prevCnt": "", "board_type": "", "_GALLTYPE_": gtype.group(1) if gtype else "G",
+        }, referer=url)
+        return parse_dc_comments(data) if data else ([], None)
+
+    def _theqoo(self, url: str) -> tuple[list[str], int | None]:
+        doc = re.search(r"/(\d{6,})", url)
+        if not doc:
+            return [], None
+        data = self._post_json("https://theqoo.net/index.php", {
+            "module": "theqoo", "act": "dispTheqooContentCommentListTheqoo",
+            "document_srl": doc.group(1), "cpage": "1",
+        }, referer=url)
+        return parse_theqoo_comments(data) if data else ([], None)
+
+
+def gather(issues: list[dict], yt_key: str | None, session: requests.Session | None = None,
+           fetch_html=None) -> tuple[dict[str, dict[str, str]], dict[str, dict[str, int]]]:
+    """({이슈ID: {출처키: 댓글 텍스트}}, {이슈ID: {출처키: 댓글 수}})
+
+    fetch_html 을 주면 (테스트용) 모든 출처를 그 HTML로 읽는다.
+    """
+    reader = CommentReader(yt_key, session)
     out: dict[str, dict[str, str]] = {}
+    counts: dict[str, dict[str, int]] = {}
     for it in issues[:MAX_ISSUES]:
         per_source: dict[str, str] = {}
         for c in it["communities"]:
             posts = [p for p in it["posts"] if p["source"] == c["key"]][:POSTS_PER_SOURCE]
-            texts = []
+            texts, total = [], 0
             for p in posts:
-                if c["key"] == "youtube":
-                    vid = youtube.video_id(p["url"])
-                    if yt_key and vid:
-                        texts.append(" / ".join(youtube.fetch_comments(yt_key, vid)))
+                if fetch_html is not None:
+                    found, n = parse_html_comments(fetch_html(p["url"]))
                 else:
-                    html = fetch_html(p["url"])
-                    if html:
-                        texts.append(comment_text(html))
+                    found, n = reader.read(c["key"], p["url"])
+                texts.extend(found)
+                total += n or 0
             joined = " / ".join(t for t in texts if t)[:EXCERPT_CHARS * 2]
             if joined:
                 per_source[c["key"]] = joined
+            if total:
+                counts.setdefault(it["id"], {})[c["key"]] = total
+            print(f"[반응] {it['id']} {c['key']}: 댓글 {len(texts)}개 읽음" + (f", 전체 {total}개" if total else ""))
         if per_source:
             out[it["id"]] = per_source
-    return out
+    return out, counts
+
+
+def _norm_issue(key: str, valid: set[str]) -> str | None:
+    if key in valid:
+        return key
+    m = re.search(r"i\d+", key)
+    return m.group(0) if m and m.group(0) in valid else None
+
+
+def _norm_source(key: str, valid: set[str]) -> str | None:
+    if key in valid:
+        return key
+    for k in valid:  # 모델이 출처 키 대신 '보배드림' 같은 이름으로 답한 경우
+        if NAMES.get(k) and NAMES[k] in key:
+            return k
+    return None
 
 
 def summarize(texts: dict[str, dict[str, str]], llm: LLM) -> dict[str, dict[str, str]]:
@@ -135,19 +289,33 @@ def summarize(texts: dict[str, dict[str, str]], llm: LLM) -> dict[str, dict[str,
     blocks = []
     for iid, per in texts.items():
         for key, text in per.items():
-            blocks.append(f"### 이슈 {iid} / 출처 {key} ({NAMES.get(key, key)})\n{text}")
+            blocks.append(f"### 이슈ID {iid} / 출처키 {key} ({NAMES.get(key, key)})\n{text}")
     raw = parse_json(llm(PROMPT.format(blocks="\n\n".join(blocks))))
+    if isinstance(raw, dict) and len(raw) == 1 and not _norm_issue(next(iter(raw)), set(texts)):
+        inner = next(iter(raw.values()))  # {"result": {...}} 처럼 한 겹 싸서 답한 경우
+        raw = inner if isinstance(inner, dict) else raw
     clean: dict[str, dict[str, str]] = {}
-    for iid, per in raw.items():
-        if iid in texts and isinstance(per, dict):
-            clean[iid] = {k: str(v).strip()[:80] for k, v in per.items() if k in texts[iid] and v}
+    for key, per in (raw or {}).items():
+        iid = _norm_issue(str(key), set(texts))
+        if not iid or not isinstance(per, dict):
+            continue
+        for skey, v in per.items():
+            sk = _norm_source(str(skey), set(texts[iid]))
+            if sk and v:
+                clean.setdefault(iid, {})[sk] = str(v).strip()[:80]
+    if not clean:
+        print(f"[경고] 반응 요약 결과를 해석하지 못함: {str(raw)[:200]}")
     return clean
 
 
-def apply(issues: list[dict], summaries: dict[str, dict[str, str]]) -> None:
+def apply(issues: list[dict], summaries: dict[str, dict[str, str]],
+          counts: dict[str, dict[str, int]] | None = None) -> None:
     for it in issues:
         for c in it["communities"]:
             c["reaction"] = summaries.get(it["id"], {}).get(c["key"], "")
+            n = (counts or {}).get(it["id"], {}).get(c["key"])
+            if n:
+                c["comment_count"] = n
 
 
 def add_reactions(issues: list[dict], llm: LLM | None, yt_key: str | None) -> int:
@@ -155,9 +323,10 @@ def add_reactions(issues: list[dict], llm: LLM | None, yt_key: str | None) -> in
     if llm is None or not issues:
         return 0
     try:
-        summaries = summarize(gather(issues, yt_key), llm)
+        texts, counts = gather(issues, yt_key)
+        summaries = summarize(texts, llm)
     except Exception as e:  # noqa: BLE001
         print(f"[경고] 댓글 반응 요약 실패: {e}")
         return 0
-    apply(issues, summaries)
+    apply(issues, summaries, counts)
     return sum(len(v) for v in summaries.values())
