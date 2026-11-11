@@ -174,7 +174,9 @@ class CommentReader:
     def __init__(self, yt_key: str | None = None, session: requests.Session | None = None):
         self.yt_key = yt_key
         self.session = session or requests.Session()
-        self.session.headers.setdefault("User-Agent", USER_AGENT)
+        # 목록 수집기와 같은 헤더 (일부 사이트는 언어 헤더가 없으면 빈 페이지를 준다)
+        self.session.headers.update({"User-Agent": USER_AGENT, "Accept-Language": "ko-KR,ko;q=0.9",
+                                     "Accept": "text/html,application/json;q=0.9,*/*;q=0.8"})
         self.robots = RobotsCache(self.session)
 
     def _get(self, url: str) -> requests.Response | None:
