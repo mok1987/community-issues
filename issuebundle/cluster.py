@@ -163,6 +163,12 @@ def score(posts: list[dict]) -> float:
 def _issue(headline: str, summary: str, why: str, category: str, members: list[dict],
            framing: dict[str, str], unverified: bool) -> dict:
     members = sorted(members, key=lambda p: (p["source"], p["best_rank"]))
+    seen, unique = set(), []  # 같은 출처에 같은 제목이 주소만 달리 두 번 잡힌 경우 하나만
+    for p in members:
+        if (p["source"], p["title"]) not in seen:
+            seen.add((p["source"], p["title"]))
+            unique.append(p)
+    members = unique
     keys = sorted({p["source"] for p in members})
     return {
         "headline": headline.strip()[:60],
