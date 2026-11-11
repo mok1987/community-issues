@@ -150,7 +150,8 @@ function issueCard(it) {
   const reacts = it.communities.map(c => {
     const text = c.reaction || c.framing;
     if (!text) return "";
-    const label = c.reaction ? "" : " <small>(제목 분위기)</small>";
+    // 댓글을 못 읽은 출처는 제목으로 본 분위기 (뉴스는 댓글을 열람할 수 없어 기사 제목 기준)
+    const label = c.reaction ? "" : (/news$/.test(c.key) ? " <small>(기사 제목 기준)</small>" : " <small>(제목 분위기)</small>");
     const cnt = c.comment_count ? ` <small>· 댓글 ${num(c.comment_count)}</small>` : "";
     return `<li><span class="who ${cls(c.key)}">${esc(c.name)}</span>${esc(text)}${label}${cnt}</li>`;
   }).join("");
