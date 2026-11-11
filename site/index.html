@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>이슈 묶음 — 커뮤니티 이슈를 한 장으로</title>
+<meta name="description" content="여러 커뮤니티에 퍼진 같은 이슈를 하나로 묶고, 커뮤니티마다 어떻게 다루는지 비교합니다.">
+<style>
+  :root {
+    --bg: #f6f5f1; --card: #ffffff; --ink: #1c1b19; --muted: #6b6860; --line: #e4e1d8;
+    --accent: #1f5eff; --warn: #b4540a; --warn-bg: #fdf1e4;
+    --dcinside: #3b4890; --fmkorea: #2f7d4f; --theqoo: #c2417a; --ruliweb: #d4691e;
+    --natepann: #e0453a; --clien: #3f7fbf;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #141412; --card: #1d1c1a; --ink: #eceae4; --muted: #a29f95; --line: #2f2e2a;
+            --accent: #7aa2ff; --warn: #f0a868; --warn-bg: #3a2814; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 20px 16px 64px; }
+  header h1 { font-size: 22px; letter-spacing: -0.02em; margin: 8px 0 2px; }
+  header p { margin: 0; color: var(--muted); font-size: 14px; }
+  .filters { display: flex; gap: 6px; overflow-x: auto; padding: 16px 0 4px; scrollbar-width: none; }
+  .filters button { flex: none; border: 1px solid var(--line); background: var(--card); color: var(--ink);
+                    border-radius: 999px; padding: 6px 12px; font-size: 14px; cursor: pointer; }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .issue { background: var(--card); border: 1px solid var(--line); border-radius: 14px; margin-top: 12px; }
+  .issue > button { all: unset; display: block; width: 100%; padding: 16px; cursor: pointer; box-sizing: border-box; }
+  .issue > button:focus-visible { outline: 2px solid var(--accent); border-radius: 14px; }
+  .meta { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+  .rank { font-weight: 700; color: var(--ink); }
+  .badge { font-size: 12px; padding: 1px 7px; border-radius: 6px; background: var(--warn-bg); color: var(--warn); font-weight: 600; }
+  h2 { font-size: 18px; line-height: 1.4; letter-spacing: -0.01em; margin: 6px 0 4px; }
+  .summary { margin: 0; color: var(--ink); opacity: .85; font-size: 15px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .chip { font-size: 12.5px; padding: 2px 8px; border-radius: 6px; color: #fff; font-weight: 600; }
+  .detail { display: none; border-top: 1px solid var(--line); padding: 4px 16px 16px; }
+  .issue.open .detail { display: block; }
+  .detail h3 { font-size: 13px; color: var(--muted); font-weight: 600; margin: 14px 0 6px; }
+  .framing { list-style: none; margin: 0; padding: 0; }
+  .framing li { display: grid; grid-template-columns: 76px 1fr; gap: 8px; padding: 6px 0; font-size: 14.5px; }
+  .framing .who { font-weight: 700; }
+  .links { list-style: none; margin: 0; padding: 0; }
+  .links li { padding: 6px 0; font-size: 14.5px; border-bottom: 1px dashed var(--line); }
+  .links li:last-child { border-bottom: 0; }
+  .links a { color: var(--ink); text-decoration: none; }
+  .links a:hover { text-decoration: underline; }
+  .links small { color: var(--muted); margin-right: 6px; }
+  .empty, .error { text-align: center; color: var(--muted); padding: 48px 0; }
+  footer { margin-top: 32px; font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>이슈 묶음</h1>
+    <p id="updated">불러오는 중…</p>
+  </header>
+  <nav class="filters" id="filters" aria-label="카테고리"></nav>
+  <section id="list" aria-live="polite"></section>
+  <footer>
+    여러 커뮤니티의 인기글 <b>제목</b>을 AI가 같은 이슈끼리 묶은 것입니다. 본문은 저장하지 않으며, 제목을 누르면 원문으로 이동합니다.
+    글의 저작권은 각 작성자와 커뮤니티에 있습니다. 요약은 제목만 보고 만든 것이라 틀릴 수 있고, '미확인'은 언론 보도로 확인되지 않은 이야기입니다.
+    삭제·제외 요청: <a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a>
+    <div id="sources"></div>
+  </footer>
+</main>
+<script>
+const COLORS = ["dcinside","fmkorea","theqoo","ruliweb","natepann","clien"];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const color = key => COLORS.includes(key) ? `var(--${key})` : "#777";
+const safeUrl = u => /^https?:\/\//.test(u) ? u : "#";
+
+function ago(iso) {
+  const min = Math.round((Date.now() - new Date(iso)) / 60000);
+  if (min < 1) return "방금";
+  if (min < 60) return `${min}분 전`;
+  if (min < 1440) return `${Math.round(min / 60)}시간 전`;
+  return `${Math.round(min / 1440)}일 전`;
+}
+
+let data = null, current = "전체";
+
+function render() {
+  const list = document.getElementById("list");
+  const issues = data.issues.filter(i => current === "전체" || i.category === current);
+  if (!issues.length) { list.innerHTML = `<p class="empty">아직 여러 커뮤니티에 함께 퍼진 이슈가 없어요.</p>`; return; }
+  list.innerHTML = issues.map((it, n) => {
+    const total = it.posts.length;
+    const chips = it.communities.map(c =>
+      `<span class="chip" style="background:${color(c.key)}">${esc(c.name)} ${c.count}</span>`).join("");
+    const framing = it.communities.filter(c => c.framing).map(c =>
+      `<li><span class="who" style="color:${color(c.key)}">${esc(c.name)}</span><span>${esc(c.framing)}</span></li>`).join("");
+    const links = it.posts.map(p =>
+      `<li><small>${esc(p.source_name)}</small><a href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener noreferrer nofollow">${esc(p.title)}</a></li>`).join("");
+    return `<article class="issue" id="i${n}">
+      <button aria-expanded="false" aria-controls="d${n}">
+        <div class="meta"><span class="rank">${n + 1}</span><span>${esc(it.category)}</span>
+          <span>· 커뮤니티 ${it.communities.length}곳 · 글 ${total}개 · ${ago(it.first_seen)} 시작</span>
+          ${it.unverified ? '<span class="badge">미확인</span>' : ""}</div>
+        <h2>${esc(it.headline)}</h2>
+        ${it.summary ? `<p class="summary">${esc(it.summary)}</p>` : ""}
+        <div class="chips">${chips}</div>
+      </button>
+      <div class="detail" id="d${n}">
+        ${framing ? `<h3>커뮤니티별 분위기</h3><ul class="framing">${framing}</ul>` : ""}
+        <h3>원문 제목</h3><ul class="links">${links}</ul>
+      </div>
+    </article>`;
+  }).join("");
+  list.querySelectorAll(".issue > button").forEach(btn => btn.addEventListener("click", () => {
+    const card = btn.parentElement, open = card.classList.toggle("open");
+    btn.setAttribute("aria-expanded", open);
+  }));
+}
+
+function renderFilters() {
+  const cats = ["전체", ...new Set(data.issues.map(i => i.category))];
+  const nav = document.getElementById("filters");
+  nav.innerHTML = cats.map(c => `<button aria-pressed="${c === current}">${esc(c)}</button>`).join("");
+  nav.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+    current = b.textContent; renderFilters(); render();
+  }));
+}
+
+fetch("issues.json", { cache: "no-store" }).then(r => r.json()).then(d => {
+  data = d;
+  document.getElementById("updated").textContent =
+    `${ago(d.updated_at)} 업데이트 · 최근 24시간 인기글 ${d.post_count}개에서 이슈 ${d.issues.length}개`;
+  document.getElementById("sources").textContent =
+    "수집 상태: " + d.sources.map(s => `${s.name} ${s.status}`).join(" · ");
+  renderFilters(); render();
+}).catch(() => {
+  document.getElementById("updated").textContent = "";
+  document.getElementById("list").innerHTML = `<p class="error">데이터를 불러오지 못했어요.</p>`;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+{
+ "updated_at": "2026-11-11T12:18:00+09:00",
+ "method": "demo",
+ "post_count": 9,
+ "sources": [
+  {
+   "key": "demo",
+   "name": "예시 데이터",
+   "status": "실제 수집 전"
+  }
+ ],
+ "issues": [
+  {
+   "headline": "[예시] 지하철 2호선 출근길 운행 중단",
+   "summary": "출근 시간대 2호선이 신호 장애로 멈췄다는 글이 여러 커뮤니티에 올라왔다.",
+   "category": "사회",
+   "communities": [
+    {
+     "key": "clien",
+     "name": "클리앙",
+     "count": 1,
+     "framing": "원인(신호 장애) 중심"
+    },
+    {
+     "key": "dcinside",
+     "name": "디시",
+     "count": 1,
+     "framing": "현장 상황 공유 위주"
+    },
+    {
+     "key": "fmkorea",
+     "name": "에펨코리아",
+     "count": 1,
+     "framing": "지각 걱정과 불만"
+    },
+    {
+     "key": "theqoo",
+     "name": "더쿠",
+     "count": 1,
+     "framing": "공지 내용 정리"
+    }
+   ],
+   "posts": [
+    {
+     "title": "[예시] 2호선 신호 장애로 운행 중단",
+     "url": "https://example.com/3",
+     "source": "clien",
+     "source_name": "클리앙"
+    },
+    {
+     "title": "[예시] OO시 지하철 2호선 출근길 운행 중단",
+     "url": "https://example.com/0",
+     "source": "dcinside",
+     "source_name": "디시"
+    },
+    {
+     "title": "[예시] 2호선 멈춤 지금 역 상황",
+     "url": "https://example.com/1",
+     "source": "fmkorea",
+     "source_name": "에펨코리아"
+    },
+    {
+     "title": "[예시] 지하철 2호선 운행 중단 공지 떴대",
+     "url": "https://example.com/2",
+     "source": "theqoo",
+     "source_name": "더쿠"
+    }
+   ],
+   "first_seen": "2026-11-11T12:18:00+09:00",
+   "unverified": false,
+   "score": 51.88
+  },
+  {
+   "headline": "[예시] B게임 신작 출시일 발표",
+   "summary": "B게임 신작 출시일이 발표됐고, 가격을 두고 반응이 갈린다.",
+   "category": "게임",
+   "communities": [
+    {
+     "key": "dcinside",
+     "name": "디시",
+     "count": 1,
+     "framing": "가격 비판"
+    },
+    {
+     "key": "fmkorea",
+     "name": "에펨코리아",
+     "count": 1,
+     "framing": "출시일 공유"
+    },
+    {
+     "key": "ruliweb",
+     "name": "루리웹",
+     "count": 1,
+     "framing": "기대감"
+    }
+   ],
+   "posts": [
+    {
+     "title": "[예시] B게임 출시일 발표 근데 가격이",
+     "url": "https://example.com/8",
+     "source": "dcinside",
+     "source_name": "디시"
+    },
+    {
+     "title": "[예시] B게임 신작 출시일 떴다",
+     "url": "https://example.com/7",
+     "source": "fmkorea",
+     "source_name": "에펨코리아"
+    },
+    {
+     "title": "[예시] B게임 신작 출시일 발표",
+     "url": "https://example.com/6",
+     "source": "ruliweb",
+     "source_name": "루리웹"
+    }
+   ],
+   "first_seen": "2026-11-11T12:18:00+09:00",
+   "unverified": false,
+   "score": 38.58
+  },
+  {
+   "headline": "[예시] A그룹 컴백 티저 공개",
+   "summary": "A그룹이 신곡 티저를 공개했다.",
+   "category": "연예",
+   "communities": [
+    {
+     "key": "natepann",
+     "name": "네이트판",
+     "count": 1,
+     "framing": "스타일 호불호"
+    },
+    {
+     "key": "theqoo",
+     "name": "더쿠",
+     "count": 1,
+     "framing": "콘셉트 호평"
+    }
+   ],
+   "posts": [
+    {
+     "title": "[예시] A그룹 컴백 티저 반응",
+     "url": "https://example.com/5",
+     "source": "natepann",
+     "source_name": "네이트판"
+    },
+    {
+     "title": "[예시] A그룹 신곡 티저 공개",
+     "url": "https://example.com/4",
+     "source": "theqoo",
+     "source_name": "더쿠"
+    }
+   ],
+   "first_seen": "2026-11-11T12:18:00+09:00",
+   "unverified": false,
+   "score": 25.82
+  }
+ ]
+}
