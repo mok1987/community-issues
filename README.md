@@ -30,7 +30,7 @@
 2. **유튜브 키 (무료)**: https://console.cloud.google.com → 새 프로젝트 → API 및 서비스 → 라이브러리에서 "YouTube Data API v3" 사용 설정 → 사용자 인증 정보 → API 키 만들기. 하루 무료 할당량 10,000 단위 중 수백 단위만 쓴다.
    - **저장소 Secrets**: Settings → Secrets and variables → Actions → New secret으로 `GEMINI_API_KEY`, `YOUTUBE_API_KEY` 두 개를 등록한다.
 3. **Pages 켜기**: Settings → Pages → Source를 **GitHub Actions**로 설정.
-4. **이름·연락처 바꾸기**: `issuebundle/collect.py`의 `USER_AGENT`에 들어 있는 `YOUR_ID`, `site/index.html`의 `YOUR_EMAIL`.
+4. **연락처**: 삭제 요청 메일은 `site/index.html` 하단, 수집기 이름(User-Agent)은 `issuebundle/collect.py`에 있다.
 5. **첫 실행**: Actions 탭 → "이슈 업데이트" → Run workflow. 그다음부터는 30분마다 자동으로 돈다.
 
 ## 내 컴퓨터에서 돌리기

@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 from .sources import Source
 
 # 정체를 숨기지 않는 User-Agent (판례상 우회 수집은 불리하다). 연락처는 저장소 주소로 바꿔 쓸 것.
-USER_AGENT = "IssueBundleBot/0.1 (+https://github.com/YOUR_ID/community-issues)"
+USER_AGENT = "IssueBundleBot/0.1 (+https://github.com/mok1987/community-issues)"
 TIMEOUT = 15
 DELAY_BETWEEN_SITES = 3  # 초. 사이트당 30분에 1번만 요청한다.
 
