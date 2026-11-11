@@ -131,11 +131,14 @@ def test_fix_category_maps_partial_and_unknown():
 
 def test_top_meta_and_hot_flag():
     rows = _rows()
-    fake = json.dumps({"issues": [
+    fake_issues = json.dumps({"issues": [
         {"headline": "아이폰 18 가격", "summary": "", "why": "비싸서", "category": "IT",
-         "post_ids": ["p5", "p6"], "framing": {}, "unverified": False}],
-        "top": {"p5": {"category": "IT", "easy": "아이폰 18 가격 공개"}, "p99": {"easy": "가짜"}}})
-    issues, top_meta = cluster.cluster_with_llm(rows, lambda _: fake, {rows[4]["url"]})
+         "post_ids": ["p5", "p6"], "framing": {}, "unverified": False}]})
+    # TOP5 호출에서는 TOP 글만 p1부터 다시 번호가 매겨진다
+    fake_top = json.dumps({"p1": {"category": "IT", "easy": "아이폰 18 가격 공개"},
+                           "p99": {"easy": "가짜"}, "p2": {"category": "IT", "easy": ""}})
+    llm = lambda prompt: fake_top if "쉬운 말로 바꿔주는" in prompt else fake_issues
+    issues, top_meta = cluster.cluster_with_llm(rows, llm, {rows[4]["url"]})
     assert issues[0]["hot"] is True and issues[0]["category"] == "IT·과학" and issues[0]["id"] == "i0"
     assert top_meta == {rows[4]["url"]: {"category": "IT·과학", "easy": "아이폰 18 가격 공개"}}
     fresh = [_p(r["url"], r["title"], r["source"], r["best_rank"]) for r in rows]

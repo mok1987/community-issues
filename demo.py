@@ -76,8 +76,11 @@ if __name__ == "__main__":
     fresh = [Post(url=f"https://example.com/{i}", title=t, source=s, rank=r, comment_count=c)
              for i, (s, t, r, c) in enumerate(ROWS)]
     rows = list(store.merge({}, fresh, at=now).values())
-    issues, top_meta = cluster.cluster_with_llm(
-        rows, lambda _: json.dumps(CLUSTER, ensure_ascii=False), {p.url for p in fresh})
+    def fake_llm(prompt: str) -> str:  # 묶기 호출과 TOP5 쉬운 제목 호출에 각각 답한다
+        data = CLUSTER["top"] if "쉬운 말로 바꿔주는" in prompt else {"issues": CLUSTER["issues"]}
+        return json.dumps(data, ensure_ascii=False)
+
+    issues, top_meta = cluster.cluster_with_llm(rows, fake_llm, {p.url for p in fresh})
     reactions.apply(issues, REACTIONS)
     names = {s.key: s.name for s in SOURCES}
     out = {"updated_at": now, "method": "demo", "post_count": len(rows),

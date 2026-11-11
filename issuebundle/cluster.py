@@ -27,7 +27,7 @@ DEFAULT_CATEGORY = "생활"
 PROMPT = """너는 인터넷 커뮤니티를 전혀 안 보는 50~60대 독자를 위해 '요즘 화제'를 정리하는 신문 편집자다.
 
 아래는 여러 커뮤니티와 유튜브의 최근 인기글·인기 영상 제목이다. 형식: [글ID] (출처) 제목
-★ 표시는 각 출처의 현재 TOP 5 글이다.
+★ 표시는 각 출처의 현재 TOP 5 글이다 (참고용).
 
 할 일 1 — 이슈 묶기:
 1. 같은 사건·인물·발표·사고·논란을 다룬 글끼리 하나의 이슈로 묶어라. 애매하면 묶지 마라.
@@ -44,20 +44,28 @@ PROMPT = """너는 인터넷 커뮤니티를 전혀 안 보는 50~60대 독자�
 - framing: 출처별로 그 출처 제목들의 분위기를 중립적으로 한 줄. 욕설·비하 표현은 옮기지 마라.
 - 정치·젠더 이슈도 한쪽 편을 들지 말고 "각 출처가 이렇게 다룬다"로만 써라.
 
-할 일 3 — ★ 표시된 TOP 5 글 전부에 대해:
-- category와, 이 글이 무슨 내용인지 쉬운 말로 바꾼 easy 제목(30자 이내)을 달아라.
-- 갤러리 이름 같은 머리말([싱갤] 등)과 욕설·비속어는 빼고, 내용만 점잖게 써라.
-- 특정 일반인을 지목해 실명·얼굴·신상을 드러내는 글일 때만 easy를 "개인 관련 글"로 써라. 그 밖의 후기·경험담·잡담은 내용을 그대로 쉽게 설명해라.
-
 category는 반드시 다음 중 하나: {categories}
 출처 키는 다음 중 하나: {keys}
 
 JSON으로만 답하라:
 {{"issues": [{{"headline": "...", "summary": "...", "why": "...", "category": "...",
-   "post_ids": ["p1", "p7"], "framing": {{"출처키": "..."}}, "unverified": false}}],
-  "top": {{"p3": {{"category": "...", "easy": "..."}}}}}}
+   "post_ids": ["p1", "p7"], "framing": {{"출처키": "..."}}, "unverified": false}}]}}
 
 제목 목록:
+{lines}
+"""
+
+TOP_PROMPT = """너는 인터넷 커뮤니티를 전혀 안 보는 50~60대 독자를 위해 인기글 제목을 쉬운 말로 바꿔주는 편집자다.
+
+아래 각 글에 대해:
+- easy: 이 글이 무슨 내용인지 쉬운 말로 (30자 이내). 신조어·줄임말·은어는 풀어 쓰고,
+  [싱갤] 같은 머리말과 욕설·비속어는 빼고 점잖게 써라. 제목만으로 알 수 있는 내용만 쓰고 지어내지 마라.
+- 특정 일반인을 지목해 실명·얼굴·신상을 드러내는 글일 때만 easy를 "개인 관련 글"로 써라.
+- category: {categories} 중 하나.
+
+목록의 모든 글ID에 대해 빠짐없이 JSON으로만 답하라:
+{{"p1": {{"category": "...", "easy": "..."}}, "p2": {{...}}}}
+
 {lines}
 """
 
@@ -208,12 +216,28 @@ def cluster_with_llm(posts: list[dict], llm: LLM, top_urls: set[str] | None = No
         issues.append(_issue(item.get("headline", ""), item.get("summary", ""), item.get("why", ""),
                              item.get("category"), members, framing, item.get("unverified", True)))
 
-    top_meta = {}
-    for pid, meta in (raw.get("top") or {}).items():
-        if pid in idmap and isinstance(meta, dict):
-            top_meta[idmap[pid]["url"]] = {"category": fix_category(meta.get("category")),
-                                           "easy": (meta.get("easy") or "").strip()[:60]}
+    top_meta = label_tops([p for p in posts if p["url"] in top_urls], llm) if top_urls else {}
     return _finish(issues), top_meta
+
+
+def label_tops(posts: list[dict], llm: LLM) -> dict[str, dict]:
+    """TOP5 글마다 {url: {category, easy}}. 실패하면 빈 dict (화면은 원래 제목으로 대체)."""
+    if not posts:
+        return {}
+    idmap = {f"p{i + 1}": p for i, p in enumerate(posts)}
+    lines = "\n".join(f"[{pid}] ({p['source']}) {p['title']}" for pid, p in idmap.items())
+    try:
+        raw = parse_json(llm(TOP_PROMPT.format(lines=lines, categories=", ".join(CATEGORIES))))
+    except Exception as e:  # noqa: BLE001
+        print(f"[경고] TOP5 쉬운 제목 실패: {e}")
+        return {}
+    out = {}
+    for pid, meta in raw.items():
+        if pid in idmap and isinstance(meta, dict) and (meta.get("easy") or "").strip():
+            out[idmap[pid]["url"]] = {"category": fix_category(meta.get("category")),
+                                      "easy": meta["easy"].strip()[:60]}
+    print(f"[TOP5] 쉬운 제목 {len(out)}/{len(posts)}개")
+    return out
 
 
 # ---------- API 없이 쓰는 단순 묶기 (대체용) ----------
