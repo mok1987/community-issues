@@ -157,6 +157,17 @@ def parse_html_comments(html: str) -> tuple[list[str], int | None]:
     return ([text] if len(text.strip()) >= 20 else []), count
 
 
+def hidden_value(html: str, name: str) -> str | None:
+    """<input ... name="x" ... value="y"> 또는 id="x", 속성 순서와 상관없이 value를 찾는다."""
+    for tag in re.findall(r"<input\b[^>]*>", html, re.I):
+        if re.search(rf"""\b(?:name|id)\s*=\s*["']{re.escape(name)}["']""", tag):
+            m = re.search(r"""\bvalue\s*=\s*["']([^"']*)["']""", tag)
+            if m and m.group(1):
+                return m.group(1)
+    m = re.search(rf"""\b{re.escape(name)}\b["']?\s*[:=]\s*["']([^"']+)["']""", html)  # 스크립트 변수
+    return m.group(1) if m else None
+
+
 class CommentReader:
     """출처별 방식으로 댓글을 읽는다. robots.txt가 막는 주소는 읽지 않는다."""
 
@@ -223,15 +234,15 @@ class CommentReader:
             return [], None
         html = resp.text
         gid, no = re.search(r"[?&]id=(\w+)", url), re.search(r"[?&]no=(\d+)", url)
-        esno = re.search(r"""name=["']e_s_n_o["'][^>]*value=["']([^"']*)""", html)
-        gtype = re.search(r"""name=["']_GALLTYPE_["'][^>]*value=["']([^"']*)""", html)
+        esno, gtype = hidden_value(html, "e_s_n_o"), hidden_value(html, "_GALLTYPE_")
         if not (gid and no and esno):
-            print(f"[반응] 디시 글 정보(id/no/e_s_n_o) 못 찾음: {url}")
+            print(f"[반응] 디시 글 정보 못 찾음 (id {bool(gid)}, no {bool(no)}, e_s_n_o {bool(esno)}, "
+                  f"페이지 {len(html)}자): {url}")
             return [], None
         data = self._post_json("https://gall.dcinside.com/board/comment/", {
             "id": gid.group(1), "no": no.group(1), "cmt_id": gid.group(1), "cmt_no": no.group(1),
-            "focus_cno": "", "focus_pno": "", "e_s_n_o": esno.group(1), "comment_page": "1",
-            "sort": "", "prevCnt": "", "board_type": "", "_GALLTYPE_": gtype.group(1) if gtype else "G",
+            "focus_cno": "", "focus_pno": "", "e_s_n_o": esno, "comment_page": "1",
+            "sort": "", "prevCnt": "", "board_type": "", "_GALLTYPE_": gtype or "G",
         }, referer=url)
         return parse_dc_comments(data) if data else ([], None)
 

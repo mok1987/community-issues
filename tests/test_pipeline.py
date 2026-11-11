@@ -333,3 +333,13 @@ def test_apply_sets_comment_counts():
     reactions.apply(issues, {"i0": {"dcinside": "요약"}}, {"i0": {"dcinside": 336}})
     dc = next(c for c in issues[0]["communities"] if c["key"] == "dcinside")
     assert dc["reaction"] == "요약" and dc["comment_count"] == 336
+
+
+def test_hidden_value_any_attribute_order():
+    a = '<input type="hidden" id="e_s_n_o" value="abc123" name="e_s_n_o">'
+    b = "<input value='xyz' type='hidden' name='e_s_n_o'/>"
+    c = '<script>var e_s_n_o = "fromjs";</script>'
+    assert reactions.hidden_value(a, "e_s_n_o") == "abc123"
+    assert reactions.hidden_value(b, "e_s_n_o") == "xyz"
+    assert reactions.hidden_value(c, "e_s_n_o") == "fromjs"
+    assert reactions.hidden_value("<input name='other' value='1'>", "e_s_n_o") is None
