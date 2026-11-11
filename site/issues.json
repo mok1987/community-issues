@@ -1,7 +1,7 @@
 {
- "updated_at": "2026-11-11T12:18:00+09:00",
+ "updated_at": "2026-11-11T12:30:53+09:00",
  "method": "demo",
- "post_count": 9,
+ "post_count": 13,
  "sources": [
   {
    "key": "demo",
@@ -12,147 +12,380 @@
  "issues": [
   {
    "headline": "[예시] 지하철 2호선 출근길 운행 중단",
-   "summary": "출근 시간대 2호선이 신호 장애로 멈췄다는 글이 여러 커뮤니티에 올라왔다.",
+   "summary": "출근 시간에 2호선이 신호 장애로 멈췄다는 글과 영상이 여러 곳에 올라왔다.",
+   "why": "출근길 수많은 사람이 직접 영향을 받아서",
    "category": "사회",
+   "hot": true,
    "communities": [
     {
      "key": "clien",
      "name": "클리앙",
      "count": 1,
-     "framing": "원인(신호 장애) 중심"
+     "framing": "원인 중심",
+     "reaction": "",
+     "comment_count": null
     },
     {
      "key": "dcinside",
      "name": "디시",
      "count": 1,
-     "framing": "현장 상황 공유 위주"
+     "framing": "현장 상황을 과장 섞어 전함",
+     "reaction": "지각 걱정과 공사 대응에 대한 불만이 많음",
+     "comment_count": null
     },
     {
      "key": "fmkorea",
      "name": "에펨코리아",
      "count": 1,
-     "framing": "지각 걱정과 불만"
+     "framing": "역 상황 공유",
+     "reaction": "대체 경로를 서로 알려주는 분위기",
+     "comment_count": null
     },
     {
      "key": "theqoo",
      "name": "더쿠",
      "count": 1,
-     "framing": "공지 내용 정리"
+     "framing": "공지 내용 정리",
+     "reaction": "",
+     "comment_count": null
+    },
+    {
+     "key": "youtube",
+     "name": "유튜브",
+     "count": 1,
+     "framing": "현장 영상",
+     "reaction": "현장이 생각보다 심각하다는 반응, 안전 걱정",
+     "comment_count": 1840
     }
    ],
    "posts": [
     {
      "title": "[예시] 2호선 신호 장애로 운행 중단",
-     "url": "https://example.com/3",
+     "url": "https://example.com/8",
      "source": "clien",
      "source_name": "클리앙"
     },
     {
-     "title": "[예시] OO시 지하철 2호선 출근길 운행 중단",
+     "title": "[예시] 2호선 지금 개박살남",
      "url": "https://example.com/0",
      "source": "dcinside",
      "source_name": "디시"
     },
     {
      "title": "[예시] 2호선 멈춤 지금 역 상황",
-     "url": "https://example.com/1",
+     "url": "https://example.com/3",
      "source": "fmkorea",
      "source_name": "에펨코리아"
     },
     {
      "title": "[예시] 지하철 2호선 운행 중단 공지 떴대",
-     "url": "https://example.com/2",
+     "url": "https://example.com/6",
      "source": "theqoo",
      "source_name": "더쿠"
+    },
+    {
+     "title": "[예시] 2호선 운행 중단 현장 — 예시뉴스",
+     "url": "https://example.com/10",
+     "source": "youtube",
+     "source_name": "유튜브"
     }
    ],
-   "first_seen": "2026-11-11T12:18:00+09:00",
+   "first_seen": "2026-11-11T12:30:53+09:00",
    "unverified": false,
-   "score": 51.88
+   "score": 65.0,
+   "id": "i0"
   },
   {
-   "headline": "[예시] B게임 신작 출시일 발표",
-   "summary": "B게임 신작 출시일이 발표됐고, 가격을 두고 반응이 갈린다.",
-   "category": "게임",
+   "headline": "[예시] 한국은행 기준금리 동결",
+   "summary": "한국은행이 기준금리를 그대로 두기로 했다.",
+   "why": "대출 이자와 집값에 바로 연결되는 결정이라서",
+   "category": "경제",
+   "hot": true,
    "communities": [
     {
-     "key": "dcinside",
-     "name": "디시",
+     "key": "clien",
+     "name": "클리앙",
      "count": 1,
-     "framing": "가격 비판"
+     "framing": "",
+     "reaction": "",
+     "comment_count": null
     },
     {
      "key": "fmkorea",
      "name": "에펨코리아",
      "count": 1,
-     "framing": "출시일 공유"
+     "framing": "",
+     "reaction": "",
+     "comment_count": null
     },
     {
-     "key": "ruliweb",
-     "name": "루리웹",
+     "key": "youtube",
+     "name": "유튜브",
      "count": 1,
-     "framing": "기대감"
+     "framing": "",
+     "reaction": "대출 이자 부담이 계속된다는 걱정이 많음",
+     "comment_count": 911
     }
    ],
    "posts": [
     {
-     "title": "[예시] B게임 출시일 발표 근데 가격이",
-     "url": "https://example.com/8",
-     "source": "dcinside",
-     "source_name": "디시"
+     "title": "[예시] 한국은행 기준금리 동결",
+     "url": "https://example.com/9",
+     "source": "clien",
+     "source_name": "클리앙"
     },
     {
-     "title": "[예시] B게임 신작 출시일 떴다",
-     "url": "https://example.com/7",
+     "title": "[예시] 금리 동결 발표",
+     "url": "https://example.com/4",
      "source": "fmkorea",
      "source_name": "에펨코리아"
     },
     {
-     "title": "[예시] B게임 신작 출시일 발표",
-     "url": "https://example.com/6",
-     "source": "ruliweb",
-     "source_name": "루리웹"
+     "title": "[예시] 금리 동결, 내 대출은? — 예시경제",
+     "url": "https://example.com/12",
+     "source": "youtube",
+     "source_name": "유튜브"
     }
    ],
-   "first_seen": "2026-11-11T12:18:00+09:00",
+   "first_seen": "2026-11-11T12:30:53+09:00",
    "unverified": false,
-   "score": 38.58
+   "score": 38.92,
+   "id": "i1"
   },
   {
-   "headline": "[예시] A그룹 컴백 티저 공개",
-   "summary": "A그룹이 신곡 티저를 공개했다.",
-   "category": "연예",
+   "headline": "[예시] A그룹 컴백 예고 영상 공개",
+   "summary": "A그룹이 새 노래 예고 영상을 공개했다.",
+   "why": "오랜만의 활동 소식이라서",
+   "category": "문화·연예",
+   "hot": true,
    "communities": [
-    {
-     "key": "natepann",
-     "name": "네이트판",
-     "count": 1,
-     "framing": "스타일 호불호"
-    },
     {
      "key": "theqoo",
      "name": "더쿠",
      "count": 1,
-     "framing": "콘셉트 호평"
+     "framing": "",
+     "reaction": "",
+     "comment_count": null
+    },
+    {
+     "key": "youtube",
+     "name": "유튜브",
+     "count": 1,
+     "framing": "",
+     "reaction": "",
+     "comment_count": 5320
     }
    ],
    "posts": [
     {
-     "title": "[예시] A그룹 컴백 티저 반응",
-     "url": "https://example.com/5",
-     "source": "natepann",
-     "source_name": "네이트판"
-    },
-    {
-     "title": "[예시] A그룹 신곡 티저 공개",
-     "url": "https://example.com/4",
+     "title": "[예시] A그룹 컴백 티저 공개",
+     "url": "https://example.com/7",
      "source": "theqoo",
      "source_name": "더쿠"
+    },
+    {
+     "title": "[예시] A그룹 신곡 티저 — 예시엔터",
+     "url": "https://example.com/11",
+     "source": "youtube",
+     "source_name": "유튜브"
     }
    ],
-   "first_seen": "2026-11-11T12:18:00+09:00",
+   "first_seen": "2026-11-11T12:30:53+09:00",
    "unverified": false,
-   "score": 25.82
+   "score": 25.96,
+   "id": "i2"
+  },
+  {
+   "headline": "[예시] B게임 신작 출시일 발표",
+   "summary": "B게임 신작 출시일이 공개됐고, 가격을 두고 말이 많다.",
+   "why": "예상보다 가격이 높다는 반응이 많아서",
+   "category": "문화·연예",
+   "hot": true,
+   "communities": [
+    {
+     "key": "dcinside",
+     "name": "디시",
+     "count": 1,
+     "framing": "",
+     "reaction": "",
+     "comment_count": null
+    },
+    {
+     "key": "fmkorea",
+     "name": "에펨코리아",
+     "count": 1,
+     "framing": "",
+     "reaction": "",
+     "comment_count": null
+    }
+   ],
+   "posts": [
+    {
+     "title": "[예시] B겜 출시일 떴는데 가격 실화냐",
+     "url": "https://example.com/1",
+     "source": "dcinside",
+     "source_name": "디시"
+    },
+    {
+     "title": "[예시] B게임 신작 출시일 공개",
+     "url": "https://example.com/5",
+     "source": "fmkorea",
+     "source_name": "에펨코리아"
+    }
+   ],
+   "first_seen": "2026-11-11T12:30:53+09:00",
+   "unverified": false,
+   "score": 25.94,
+   "id": "i3"
+  }
+ ],
+ "tops": [
+  {
+   "key": "dcinside",
+   "name": "디시",
+   "items": [
+    {
+     "title": "[예시] 2호선 지금 개박살남",
+     "url": "https://example.com/0",
+     "easy": "지하철 2호선이 멈춰서 혼란",
+     "category": "사회",
+     "issue_id": "i0",
+     "hot": true,
+     "comment_count": null
+    },
+    {
+     "title": "[예시] B겜 출시일 떴는데 가격 실화냐",
+     "url": "https://example.com/1",
+     "easy": "B게임 출시일 공개, 가격이 비싸다는 반응",
+     "category": "문화·연예",
+     "issue_id": "i3",
+     "hot": true,
+     "comment_count": null
+    },
+    {
+     "title": "[예시] 편의점 신상 먹어봄",
+     "url": "https://example.com/2",
+     "easy": "편의점 새 상품 먹어본 후기",
+     "category": "생활",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    }
+   ]
+  },
+  {
+   "key": "fmkorea",
+   "name": "에펨코리아",
+   "items": [
+    {
+     "title": "[예시] 2호선 멈춤 지금 역 상황",
+     "url": "https://example.com/3",
+     "easy": "2호선 멈춘 역 현장 상황",
+     "category": "사회",
+     "issue_id": "i0",
+     "hot": true,
+     "comment_count": null
+    },
+    {
+     "title": "[예시] 금리 동결 발표",
+     "url": "https://example.com/4",
+     "easy": "기준금리 동결 발표",
+     "category": "경제",
+     "issue_id": "i1",
+     "hot": true,
+     "comment_count": null
+    },
+    {
+     "title": "[예시] B게임 신작 출시일 공개",
+     "url": "https://example.com/5",
+     "easy": "B게임 신작 출시일 공개",
+     "category": "문화·연예",
+     "issue_id": "i3",
+     "hot": true,
+     "comment_count": null
+    }
+   ]
+  },
+  {
+   "key": "theqoo",
+   "name": "더쿠",
+   "items": [
+    {
+     "title": "[예시] 지하철 2호선 운행 중단 공지 떴대",
+     "url": "https://example.com/6",
+     "easy": "2호선 운행 중단 공지",
+     "category": "사회",
+     "issue_id": "i0",
+     "hot": true,
+     "comment_count": null
+    },
+    {
+     "title": "[예시] A그룹 컴백 티저 공개",
+     "url": "https://example.com/7",
+     "easy": "A그룹 컴백 예고 영상 공개",
+     "category": "문화·연예",
+     "issue_id": "i2",
+     "hot": true,
+     "comment_count": null
+    }
+   ]
+  },
+  {
+   "key": "clien",
+   "name": "클리앙",
+   "items": [
+    {
+     "title": "[예시] 2호선 신호 장애로 운행 중단",
+     "url": "https://example.com/8",
+     "easy": "2호선 신호 장애로 운행 중단",
+     "category": "사회",
+     "issue_id": "i0",
+     "hot": true,
+     "comment_count": null
+    },
+    {
+     "title": "[예시] 한국은행 기준금리 동결",
+     "url": "https://example.com/9",
+     "easy": "한국은행 기준금리 동결",
+     "category": "경제",
+     "issue_id": "i1",
+     "hot": true,
+     "comment_count": null
+    }
+   ]
+  },
+  {
+   "key": "youtube",
+   "name": "유튜브",
+   "items": [
+    {
+     "title": "[예시] 2호선 운행 중단 현장 — 예시뉴스",
+     "url": "https://example.com/10",
+     "easy": "2호선 운행 중단 현장 영상",
+     "category": "사회",
+     "issue_id": "i0",
+     "hot": true,
+     "comment_count": 1840
+    },
+    {
+     "title": "[예시] A그룹 신곡 티저 — 예시엔터",
+     "url": "https://example.com/11",
+     "easy": "A그룹 새 노래 예고 영상",
+     "category": "문화·연예",
+     "issue_id": "i2",
+     "hot": true,
+     "comment_count": 5320
+    },
+    {
+     "title": "[예시] 금리 동결, 내 대출은? — 예시경제",
+     "url": "https://example.com/12",
+     "easy": "금리 동결로 대출 이자는 어떻게 되나",
+     "category": "경제",
+     "issue_id": "i1",
+     "hot": true,
+     "comment_count": 911
+    }
+   ]
   }
  ]
 }

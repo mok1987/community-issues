@@ -35,6 +35,7 @@ def test_every_source_pattern_compiles_and_matches_example():
         "ruliweb": "https://bbs.ruliweb.com/best/board/300143/read/71234567",
         "natepann": "/talk/374512345",
         "clien": "/service/board/park/19123456",
+        "youtube": "https://www.youtube.com/watch?v=abc",
     }
     import re
     for s in SOURCES:
@@ -84,7 +85,7 @@ def test_cluster_with_llm_drops_invented_ids_and_single_source_pairs():
         {"headline": "단독 글", "summary": "", "category": "생활", "post_ids": ["p4"], "framing": {}},
         {"headline": "중복 사용", "summary": "", "category": "기타", "post_ids": ["p1", "p2"], "framing": {}},
     ]})
-    issues = cluster.cluster_with_llm(_rows(), lambda prompt: fake)
+    issues, _ = cluster.cluster_with_llm(_rows(), lambda prompt: fake)
     assert len(issues) == 1
     it = issues[0]
     assert len(it["posts"]) == 3
@@ -94,7 +95,7 @@ def test_cluster_with_llm_drops_invented_ids_and_single_source_pairs():
 
 
 def test_prompt_contains_every_title_once():
-    prompt, idmap = cluster.build_prompt(_rows())
+    prompt, idmap = cluster.build_prompt(_rows(), set())
     assert len(idmap) == 6
     for row in _rows():
         assert prompt.count(row["title"]) == 1
@@ -110,5 +111,80 @@ def test_simple_cluster_groups_cross_community_titles():
 def test_make_issues_falls_back_when_llm_fails():
     def broken(_):
         raise RuntimeError("quota")
-    issues, method = cluster.make_issues(_rows(), broken)
+    issues, _, method = cluster.make_issues(_rows(), broken)
     assert method == "simple" and issues
+
+
+# ---------- 카테고리, TOP5, 유튜브, 댓글 반응 ----------
+
+from issuebundle import reactions, youtube
+from run import build_tops
+
+
+def test_fix_category_maps_partial_and_unknown():
+    assert cluster.fix_category("연예") == "문화·연예"
+    assert cluster.fix_category("IT") == "IT·과학"
+    assert cluster.fix_category("정치") == "정치"
+    assert cluster.fix_category("아무거나") == cluster.DEFAULT_CATEGORY
+    assert cluster.fix_category(None) == cluster.DEFAULT_CATEGORY
+
+
+def test_top_meta_and_hot_flag():
+    rows = _rows()
+    fake = json.dumps({"issues": [
+        {"headline": "아이폰 18 가격", "summary": "", "why": "비싸서", "category": "IT",
+         "post_ids": ["p5", "p6"], "framing": {}, "unverified": False}],
+        "top": {"p5": {"category": "IT", "easy": "아이폰 18 가격 공개"}, "p99": {"easy": "가짜"}}})
+    issues, top_meta = cluster.cluster_with_llm(rows, lambda _: fake, {rows[4]["url"]})
+    assert issues[0]["hot"] is True and issues[0]["category"] == "IT·과학" and issues[0]["id"] == "i0"
+    assert top_meta == {rows[4]["url"]: {"category": "IT·과학", "easy": "아이폰 18 가격 공개"}}
+    fresh = [_p(r["url"], r["title"], r["source"], r["best_rank"]) for r in rows]
+    tops = build_tops(fresh, issues, top_meta)
+    clien = next(t for t in tops if t["key"] == "clien")["items"][0]
+    assert clien["hot"] and clien["issue_id"] == "i0" and clien["easy"] == "아이폰 18 가격 공개"
+    nate = next(t for t in tops if t["key"] == "natepann")["items"][0]
+    assert not nate["hot"] and nate["issue_id"] is None
+
+
+def test_prompt_marks_top_posts():
+    rows = _rows()
+    prompt, _ = cluster.build_prompt(rows, {rows[0]["url"]})
+    assert "(dcinside) ★ 손흥민" in prompt and "(fmkorea) 손흥민" in prompt
+
+
+def test_youtube_parsers():
+    popular = {"items": [
+        {"id": "v1", "snippet": {"title": "뉴스 특보", "channelTitle": "방송사"}, "statistics": {"commentCount": "120"}},
+        {"id": "v2", "snippet": {"title": "", "channelTitle": "x"}, "statistics": {}},
+        {"id": "v3", "snippet": {"title": "뮤비"}, "statistics": {}},
+    ]}
+    posts = youtube.parse_popular(popular)
+    assert [p.title for p in posts] == ["뉴스 특보 — 방송사", "뮤비"]
+    assert posts[0].comment_count == 120 and posts[1].comment_count is None
+    assert posts[0].url == "https://www.youtube.com/watch?v=v1" and youtube.video_id(posts[0].url) == "v1"
+    comments = {"items": [{"snippet": {"topLevelComment": {"snippet": {"textOriginal": "걱정되네요"}}}}]}
+    assert youtube.parse_comments(comments) == ["걱정되네요"]
+
+
+def test_comment_text_reads_only_comment_area():
+    html = """<html><body><article>본문 내용이 아주 길게 있습니다 본문 본문 본문</article>
+      <div class="comment_list"><p>첫 댓글입니다 정말 공감해요</p><p>두번째 댓글은 반대 의견</p></div>
+      <script>var comment = 'x'</script></body></html>"""
+    text = reactions.comment_text(html)
+    assert "첫 댓글" in text and "두번째 댓글" in text and "본문" not in text
+    assert reactions.comment_text("<div>댓글 없음</div>") == ""
+
+
+def test_reactions_gather_and_summarize_end_to_end():
+    issues, _ = cluster.cluster_with_llm(_rows(), lambda _: json.dumps({"issues": [
+        {"headline": "손흥민", "summary": "", "why": "", "category": "스포츠",
+         "post_ids": ["p1", "p2"], "framing": {}, "unverified": False}]}))
+    page = '<div id="cmt_wrap">대단하다는 댓글이 정말 많음, 이번 경기 최고였다는 반응</div>'
+    texts = reactions.gather(issues, None, fetch_html=lambda url: page)
+    assert set(texts["i0"]) == {"dcinside", "fmkorea"}
+    llm = lambda _: json.dumps({"i0": {"dcinside": "칭찬 일색", "theqoo": "없는 출처"}, "i9": {"x": "y"}})
+    summaries = reactions.summarize(texts, llm)
+    assert summaries == {"i0": {"dcinside": "칭찬 일색"}}
+    reactions.apply(issues, summaries)
+    got = {c["key"]: c["reaction"] for c in issues[0]["communities"]}
+    assert got == {"dcinside": "칭찬 일색", "fmkorea": ""}

@@ -3,76 +3,119 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>이슈 묶음 — 커뮤니티 이슈를 한 장으로</title>
-<meta name="description" content="여러 커뮤니티에 퍼진 같은 이슈를 하나로 묶고, 커뮤니티마다 어떻게 다루는지 비교합니다.">
+<title>이슈 묶음 — 요즘 뭐가 화제인지 한눈에</title>
+<meta name="description" content="커뮤니티와 유튜브에서 지금 화제인 이야기를 쉬운 말로 정리해 드립니다.">
 <style>
   :root {
     --bg: #f6f5f1; --card: #ffffff; --ink: #1c1b19; --muted: #6b6860; --line: #e4e1d8;
-    --accent: #1f5eff; --warn: #b4540a; --warn-bg: #fdf1e4;
-    --dcinside: #3b4890; --fmkorea: #2f7d4f; --theqoo: #c2417a; --ruliweb: #d4691e;
-    --natepann: #e0453a; --clien: #3f7fbf;
+    --accent: #1f5eff; --hot: #d1371f; --hot-bg: #fdece8; --warn: #9a5208; --warn-bg: #fdf1e4;
+    --fs: 16px;
   }
   @media (prefers-color-scheme: dark) {
     :root { --bg: #141412; --card: #1d1c1a; --ink: #eceae4; --muted: #a29f95; --line: #2f2e2a;
-            --accent: #7aa2ff; --warn: #f0a868; --warn-bg: #3a2814; }
+            --accent: #7aa2ff; --hot: #ff7a63; --hot-bg: #3a1c16; --warn: #f0a868; --warn-bg: #3a2814; }
   }
+  body.big { --fs: 19px; }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink);
-         font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif; }
-  main { max-width: 640px; margin: 0 auto; padding: 20px 16px 64px; }
-  header h1 { font-size: 22px; letter-spacing: -0.02em; margin: 8px 0 2px; }
-  header p { margin: 0; color: var(--muted); font-size: 14px; }
-  .filters { display: flex; gap: 6px; overflow-x: auto; padding: 16px 0 4px; scrollbar-width: none; }
-  .filters button { flex: none; border: 1px solid var(--line); background: var(--card); color: var(--ink);
-                    border-radius: 999px; padding: 6px 12px; font-size: 14px; cursor: pointer; }
-  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-  .issue { background: var(--card); border: 1px solid var(--line); border-radius: 14px; margin-top: 12px; }
-  .issue > button { all: unset; display: block; width: 100%; padding: 16px; cursor: pointer; box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-size: var(--fs); line-height: 1.6;
+         font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 18px 16px 64px; }
+  header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  header h1 { font-size: 1.4em; letter-spacing: -0.02em; margin: 4px 0 0; }
+  header p { margin: 0; color: var(--muted); font-size: .85em; }
+  .size { flex: none; border: 1px solid var(--line); background: var(--card); color: var(--ink);
+          border-radius: 10px; padding: 6px 10px; font-size: .85em; cursor: pointer; }
+  h2.section { font-size: 1.1em; margin: 26px 0 4px; display: flex; align-items: center; gap: 6px; }
+  .section-note { color: var(--muted); font-size: .85em; margin: 0 0 6px; }
+  .hot-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--hot); display: inline-block; }
+
+  .cat { display: inline-block; font-size: .75em; font-weight: 700; padding: 1px 8px; border-radius: 6px;
+         vertical-align: 2px; margin-right: 6px; white-space: nowrap; }
+  .cat-정치 { background: #ece9fb; color: #4a3fb0; } .cat-경제 { background: #e5f3e3; color: #2f6b27; }
+  .cat-사회 { background: #e4eefb; color: #1f5596; } .cat-문화·연예 { background: #fbe7f0; color: #9b2c5c; }
+  .cat-스포츠 { background: #fdeedd; color: #9a4d0b; } .cat-IT·과학 { background: #e0f4f1; color: #136b60; }
+  .cat-생활 { background: #eeece6; color: #55534c; }
+  @media (prefers-color-scheme: dark) { .cat { filter: brightness(.85) saturate(1.2); } }
+
+  .issue { background: var(--card); border: 1px solid var(--line); border-radius: 14px; margin-top: 10px; }
+  .issue.hot { border: 2px solid var(--hot); }
+  .issue > button { all: unset; display: block; width: 100%; padding: 14px 16px; cursor: pointer; box-sizing: border-box; }
   .issue > button:focus-visible { outline: 2px solid var(--accent); border-radius: 14px; }
-  .meta { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
-  .rank { font-weight: 700; color: var(--ink); }
-  .badge { font-size: 12px; padding: 1px 7px; border-radius: 6px; background: var(--warn-bg); color: var(--warn); font-weight: 600; }
-  h2 { font-size: 18px; line-height: 1.4; letter-spacing: -0.01em; margin: 6px 0 4px; }
-  .summary { margin: 0; color: var(--ink); opacity: .85; font-size: 15px; }
-  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-  .chip { font-size: 12.5px; padding: 2px 8px; border-radius: 6px; color: #fff; font-weight: 600; }
-  .detail { display: none; border-top: 1px solid var(--line); padding: 4px 16px 16px; }
+  .issue h3 { font-size: 1.12em; line-height: 1.45; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .why { margin: 0 0 4px; font-size: .95em; }
+  .why b { color: var(--hot); }
+  .summary { margin: 0; color: var(--muted); font-size: .92em; }
+  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 8px; font-size: .8em; color: var(--muted); }
+  .src { border: 1px solid var(--line); border-radius: 6px; padding: 0 7px; color: var(--ink); }
+  .badge { font-size: .8em; padding: 0 7px; border-radius: 6px; background: var(--warn-bg); color: var(--warn); font-weight: 700; }
+  .more { margin-left: auto; color: var(--accent); }
+  .detail { display: none; border-top: 1px solid var(--line); padding: 4px 16px 14px; }
   .issue.open .detail { display: block; }
-  .detail h3 { font-size: 13px; color: var(--muted); font-weight: 600; margin: 14px 0 6px; }
-  .framing { list-style: none; margin: 0; padding: 0; }
-  .framing li { display: grid; grid-template-columns: 76px 1fr; gap: 8px; padding: 6px 0; font-size: 14.5px; }
-  .framing .who { font-weight: 700; }
+  .detail h4 { font-size: .82em; color: var(--muted); margin: 12px 0 4px; }
+  .react { list-style: none; margin: 0; padding: 0; }
+  .react li { padding: 7px 0; border-bottom: 1px dashed var(--line); font-size: .95em; }
+  .react li:last-child { border-bottom: 0; }
+  .react .who { font-weight: 700; margin-right: 6px; }
+  .react small { color: var(--muted); }
   .links { list-style: none; margin: 0; padding: 0; }
-  .links li { padding: 6px 0; font-size: 14.5px; border-bottom: 1px dashed var(--line); }
-  .links li:last-child { border-bottom: 0; }
-  .links a { color: var(--ink); text-decoration: none; }
-  .links a:hover { text-decoration: underline; }
+  .links li { padding: 6px 0; font-size: .92em; }
+  .links a { color: var(--accent); text-decoration: none; }
   .links small { color: var(--muted); margin-right: 6px; }
-  .empty, .error { text-align: center; color: var(--muted); padding: 48px 0; }
-  footer { margin-top: 32px; font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+
+  .tabs { display: flex; gap: 6px; overflow-x: auto; padding: 6px 0 4px; scrollbar-width: none; }
+  .tabs button { flex: none; border: 1px solid var(--line); background: var(--card); color: var(--ink);
+                 border-radius: 999px; padding: 6px 14px; font-size: .9em; cursor: pointer; }
+  .tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .top { list-style: none; margin: 6px 0 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+  .top li { border-bottom: 1px solid var(--line); }
+  .top li:last-child { border-bottom: 0; }
+  .top a { display: grid; grid-template-columns: 26px 1fr; gap: 6px; padding: 12px 14px; color: var(--ink); text-decoration: none; }
+  .top a:hover .easy { text-decoration: underline; }
+  .top .n { font-weight: 800; color: var(--muted); }
+  .top .easy { font-weight: 600; }
+  .top .orig { display: block; color: var(--muted); font-size: .82em; margin-top: 2px; }
+  .hot-chip { font-size: .72em; font-weight: 700; color: var(--hot); background: var(--hot-bg); padding: 1px 6px; border-radius: 6px; margin-left: 4px; white-space: nowrap; }
+  .empty { text-align: center; color: var(--muted); padding: 32px 0; }
+  footer { margin-top: 32px; font-size: .78em; color: var(--muted); line-height: 1.6; }
   footer a { color: var(--muted); }
 </style>
 </head>
 <body>
 <main>
   <header>
-    <h1>이슈 묶음</h1>
-    <p id="updated">불러오는 중…</p>
+    <div>
+      <h1>이슈 묶음</h1>
+      <p id="updated">불러오는 중…</p>
+    </div>
+    <button class="size" id="size" aria-pressed="false">글씨 크게</button>
   </header>
-  <nav class="filters" id="filters" aria-label="카테고리"></nav>
-  <section id="list" aria-live="polite"></section>
+
+  <h2 class="section"><span class="hot-dot" aria-hidden="true"></span>지금 화제 중</h2>
+  <p class="section-note">여러 곳에서 동시에 이야기되는 이슈예요. 누르면 사람들 반응을 볼 수 있어요.</p>
+  <section id="hot" aria-live="polite"></section>
+
+  <h2 class="section">곳곳의 인기 TOP 5</h2>
+  <p class="section-note">누르면 원래 글로 이동해요.</p>
+  <nav class="tabs" id="tabs" role="tablist" aria-label="출처"></nav>
+  <ol class="top" id="top"></ol>
+
+  <h2 class="section" id="more-title" hidden>그 밖의 이슈</h2>
+  <section id="more"></section>
+
   <footer>
-    여러 커뮤니티의 인기글 <b>제목</b>을 AI가 같은 이슈끼리 묶은 것입니다. 본문은 저장하지 않으며, 제목을 누르면 원문으로 이동합니다.
-    글의 저작권은 각 작성자와 커뮤니티에 있습니다. 요약은 제목만 보고 만든 것이라 틀릴 수 있고, '미확인'은 언론 보도로 확인되지 않은 이야기입니다.
+    커뮤니티와 유튜브의 인기글 <b>제목</b>과 댓글 일부를 AI가 읽고 쉬운 말로 정리한 것입니다. 원문과 댓글은 저장하거나 옮기지 않고, 원문은 링크로만 연결합니다.
+    글의 저작권은 각 작성자와 사이트에 있습니다. AI 요약은 틀릴 수 있고, '확인 안 됨'은 언론 보도로 확인되지 않은 이야기입니다.
     삭제·제외 요청: <a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a>
     <div id="sources"></div>
   </footer>
 </main>
 <script>
-const COLORS = ["dcinside","fmkorea","theqoo","ruliweb","natepann","clien"];
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const color = key => COLORS.includes(key) ? `var(--${key})` : "#777";
 const safeUrl = u => /^https?:\/\//.test(u) ? u : "#";
+const CATS = ["정치","경제","사회","문화·연예","스포츠","IT·과학","생활"];
+const cat = c => CATS.includes(c) ? `<span class="cat cat-${c}">${esc(c)}</span>` : "";
+const num = n => n == null ? "" : n >= 10000 ? `${(n / 10000).toFixed(1)}만` : n.toLocaleString("ko-KR");
 
 function ago(iso) {
   const min = Math.round((Date.now() - new Date(iso)) / 60000);
@@ -82,60 +125,94 @@ function ago(iso) {
   return `${Math.round(min / 1440)}일 전`;
 }
 
-let data = null, current = "전체";
+function issueCard(it) {
+  const srcs = it.communities.map(c => `<span class="src">${esc(c.name)}</span>`).join("");
+  const reacts = it.communities.map(c => {
+    const text = c.reaction || c.framing;
+    if (!text) return "";
+    const label = c.reaction ? "" : " <small>(제목 분위기)</small>";
+    const cnt = c.comment_count ? ` <small>· 댓글 ${num(c.comment_count)}</small>` : "";
+    return `<li><span class="who">${esc(c.name)}</span>${esc(text)}${label}${cnt}</li>`;
+  }).join("");
+  const links = it.posts.map(p =>
+    `<li><small>${esc(p.source_name)}</small><a href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener noreferrer nofollow">${esc(p.title)}</a></li>`).join("");
+  return `<article class="issue${it.hot ? " hot" : ""}" id="${esc(it.id)}">
+    <button aria-expanded="false" aria-controls="${esc(it.id)}-d">
+      <h3>${cat(it.category)}${esc(it.headline)}</h3>
+      ${it.why ? `<p class="why"><b>왜 화제?</b> ${esc(it.why)}</p>` : ""}
+      ${it.summary ? `<p class="summary">${esc(it.summary)}</p>` : ""}
+      <div class="meta">${srcs}<span>글 ${it.posts.length}개 · ${ago(it.first_seen)}부터</span>
+        ${it.unverified ? '<span class="badge">확인 안 됨</span>' : ""}<span class="more">반응 보기 ▾</span></div>
+    </button>
+    <div class="detail" id="${esc(it.id)}-d">
+      ${reacts ? `<h4>사람들 반응</h4><ul class="react">${reacts}</ul>` : ""}
+      <h4>원래 글 보러 가기</h4><ul class="links">${links}</ul>
+    </div>
+  </article>`;
+}
+
+function wire(root) {
+  root.querySelectorAll(".issue > button").forEach(btn => btn.addEventListener("click", () => {
+    const open = btn.parentElement.classList.toggle("open");
+    btn.setAttribute("aria-expanded", open);
+    btn.querySelector(".more").textContent = open ? "접기 ▴" : "반응 보기 ▾";
+  }));
+}
+
+let data, tab = 0;
+
+function renderTop() {
+  const tabs = document.getElementById("tabs"), list = document.getElementById("top");
+  if (!data.tops?.length) { tabs.innerHTML = ""; list.innerHTML = `<li class="empty">아직 모은 글이 없어요.</li>`; return; }
+  tabs.innerHTML = data.tops.map((t, i) =>
+    `<button role="tab" aria-selected="${i === tab}">${esc(t.name)}</button>`).join("");
+  tabs.querySelectorAll("button").forEach((b, i) => b.addEventListener("click", () => { tab = i; renderTop(); }));
+  const sel = tabs.children[tab];
+  if (sel) tabs.scrollLeft = Math.max(0, sel.offsetLeft - tabs.offsetLeft - 16);
+  list.innerHTML = data.tops[tab].items.map((p, i) => {
+    const main = p.easy || p.title;
+    const orig = p.easy ? `<span class="orig">원래 제목: ${esc(p.title)}</span>` : "";
+    const hot = p.hot ? '<span class="hot-chip">화제 중</span>' : "";
+    const cnt = p.comment_count ? `<span class="orig">댓글 ${num(p.comment_count)}</span>` : "";
+    return `<li><a href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener noreferrer nofollow">
+      <span class="n">${i + 1}</span><span>${cat(p.category)}<span class="easy">${esc(main)}</span>${hot}${orig}${cnt}</span></a></li>`;
+  }).join("");
+}
 
 function render() {
-  const list = document.getElementById("list");
-  const issues = data.issues.filter(i => current === "전체" || i.category === current);
-  if (!issues.length) { list.innerHTML = `<p class="empty">아직 여러 커뮤니티에 함께 퍼진 이슈가 없어요.</p>`; return; }
-  list.innerHTML = issues.map((it, n) => {
-    const total = it.posts.length;
-    const chips = it.communities.map(c =>
-      `<span class="chip" style="background:${color(c.key)}">${esc(c.name)} ${c.count}</span>`).join("");
-    const framing = it.communities.filter(c => c.framing).map(c =>
-      `<li><span class="who" style="color:${color(c.key)}">${esc(c.name)}</span><span>${esc(c.framing)}</span></li>`).join("");
-    const links = it.posts.map(p =>
-      `<li><small>${esc(p.source_name)}</small><a href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener noreferrer nofollow">${esc(p.title)}</a></li>`).join("");
-    return `<article class="issue" id="i${n}">
-      <button aria-expanded="false" aria-controls="d${n}">
-        <div class="meta"><span class="rank">${n + 1}</span><span>${esc(it.category)}</span>
-          <span>· 커뮤니티 ${it.communities.length}곳 · 글 ${total}개 · ${ago(it.first_seen)} 시작</span>
-          ${it.unverified ? '<span class="badge">미확인</span>' : ""}</div>
-        <h2>${esc(it.headline)}</h2>
-        ${it.summary ? `<p class="summary">${esc(it.summary)}</p>` : ""}
-        <div class="chips">${chips}</div>
-      </button>
-      <div class="detail" id="d${n}">
-        ${framing ? `<h3>커뮤니티별 분위기</h3><ul class="framing">${framing}</ul>` : ""}
-        <h3>원문 제목</h3><ul class="links">${links}</ul>
-      </div>
-    </article>`;
-  }).join("");
-  list.querySelectorAll(".issue > button").forEach(btn => btn.addEventListener("click", () => {
-    const card = btn.parentElement, open = card.classList.toggle("open");
-    btn.setAttribute("aria-expanded", open);
-  }));
+  const hot = data.issues.filter(i => i.hot), rest = data.issues.filter(i => !i.hot);
+  const hotEl = document.getElementById("hot");
+  hotEl.innerHTML = hot.length ? hot.slice(0, 10).map(issueCard).join("")
+    : `<p class="empty">지금은 여러 곳에서 동시에 뜬 이슈가 없어요.</p>`;
+  wire(hotEl);
+  const moreEl = document.getElementById("more");
+  document.getElementById("more-title").hidden = !rest.length;
+  moreEl.innerHTML = rest.slice(0, 10).map(issueCard).join("");
+  wire(moreEl);
+  renderTop();
 }
 
-function renderFilters() {
-  const cats = ["전체", ...new Set(data.issues.map(i => i.category))];
-  const nav = document.getElementById("filters");
-  nav.innerHTML = cats.map(c => `<button aria-pressed="${c === current}">${esc(c)}</button>`).join("");
-  nav.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
-    current = b.textContent; renderFilters(); render();
-  }));
+const sizeBtn = document.getElementById("size");
+function setBig(on) {
+  document.body.classList.toggle("big", on);
+  sizeBtn.setAttribute("aria-pressed", on);
+  sizeBtn.textContent = on ? "글씨 보통" : "글씨 크게";
+  try { localStorage.setItem("big", on ? "1" : "0"); } catch (e) {}
 }
+let saved = false;
+try { saved = localStorage.getItem("big") === "1"; } catch (e) {}
+setBig(saved);
+sizeBtn.addEventListener("click", () => setBig(!document.body.classList.contains("big")));
 
 fetch("issues.json", { cache: "no-store" }).then(r => r.json()).then(d => {
   data = d;
-  document.getElementById("updated").textContent =
-    `${ago(d.updated_at)} 업데이트 · 최근 24시간 인기글 ${d.post_count}개에서 이슈 ${d.issues.length}개`;
+  document.getElementById("updated").textContent = `${ago(d.updated_at)} 업데이트`;
   document.getElementById("sources").textContent =
     "수집 상태: " + d.sources.map(s => `${s.name} ${s.status}`).join(" · ");
-  renderFilters(); render();
+  render();
 }).catch(() => {
   document.getElementById("updated").textContent = "";
-  document.getElementById("list").innerHTML = `<p class="error">데이터를 불러오지 못했어요.</p>`;
+  document.getElementById("hot").innerHTML = `<p class="empty">데이터를 불러오지 못했어요.</p>`;
 });
 </script>
 </body>

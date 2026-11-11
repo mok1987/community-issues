@@ -41,6 +41,8 @@ def merge(existing: dict[str, dict], fresh: list[Post], at: str | None = None) -
             row["last_seen"] = at
             row["best_rank"] = min(row["best_rank"], p.rank)
             row["title"] = p.title or row["title"]
+        if p.comment_count is not None:
+            existing[p.url]["comment_count"] = p.comment_count
     return existing
 
 

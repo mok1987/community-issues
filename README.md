@@ -1,10 +1,21 @@
 # 이슈 묶음 (0단계 프로토타입)
 
-여러 커뮤니티 인기글 **제목**을 30분마다 모아서, AI가 같은 사건끼리 묶고 커뮤니티별 분위기를 한 줄로 비교하는 웹페이지.
+커뮤니티를 안 보는 바쁜 사람, 나이 든 사람도 "요즘 뭐가 화제인지" 한눈에 알게 해주는 웹페이지.
+30분마다 커뮤니티 6곳 인기글 제목과 유튜브 인기 영상을 모으고, AI가 같은 사건끼리 묶어서 쉬운 말로 설명한다.
 기획서의 0단계(반응 검증)용이라 서버·DB 없이 GitHub만으로 무료로 돌아간다.
 
+**화면 구성**
+- 지금 화제 중: 두 곳 이상에서 동시에 뜬 이슈. 카테고리(정치·경제·사회·문화·연예·스포츠·IT·과학·생활), 왜 화제인지, 쉬운 요약. 누르면 출처별 사람들 반응과 원래 글 링크.
+- 곳곳의 인기 TOP 5: 출처별 탭. 쉬운 제목 + 원래 제목, 화제 중 표시. 누르면 원래 글로 이동.
+- 글씨 크게 버튼.
+
 ```
-수집(run.py) → data/posts.json 누적 → Gemini로 이슈 묶기 → site/issues.json → GitHub Pages
+수집(run.py): 커뮤니티 목록 페이지 + 유튜브 API
+  → data/posts.json 누적
+  → Gemini ①: 이슈 묶기·카테고리·쉬운 설명·TOP5 쉬운 제목
+  → 상위 이슈 원문 댓글 영역 / 유튜브 인기 댓글 읽기
+  → Gemini ②: 출처별 반응 한 줄 요약
+  → site/issues.json → GitHub Pages
 ```
 
 ## 원칙 (지키면서 확장할 것)
@@ -16,7 +27,8 @@
 
 ## 처음 설정 (10분)
 1. **Gemini 무료 키**: https://aistudio.google.com → Get API key. 카드 등록은 필요 없다.
-2. **저장소 Secrets**: Settings → Secrets and variables → Actions → New secret → 이름 `GEMINI_API_KEY`.
+2. **유튜브 키 (무료)**: https://console.cloud.google.com → 새 프로젝트 → API 및 서비스 → 라이브러리에서 "YouTube Data API v3" 사용 설정 → 사용자 인증 정보 → API 키 만들기. 하루 무료 할당량 10,000 단위 중 수백 단위만 쓴다.
+   - **저장소 Secrets**: Settings → Secrets and variables → Actions → New secret으로 `GEMINI_API_KEY`, `YOUTUBE_API_KEY` 두 개를 등록한다.
 3. **Pages 켜기**: Settings → Pages → Source를 **GitHub Actions**로 설정.
 4. **이름·연락처 바꾸기**: `issuebundle/collect.py`의 `USER_AGENT`에 들어 있는 `YOUR_ID`, `site/index.html`의 `YOUR_EMAIL`.
 5. **첫 실행**: Actions 탭 → "이슈 업데이트" → Run workflow. 그다음부터는 30분마다 자동으로 돈다.
@@ -25,7 +37,7 @@
 ```bash
 pip install -r requirements.txt
 python run.py --check          # 커뮤니티별로 글이 잘 잡히는지 확인 (저장 안 함)
-GEMINI_API_KEY=키 python run.py   # 실제 실행
+GEMINI_API_KEY=키 YOUTUBE_API_KEY=키 python run.py   # 실제 실행
 python demo.py                 # 네트워크 없이 예시 데이터로 화면만 확인
 cd site && python -m http.server   # http://localhost:8000
 python -m pytest -q            # 테스트
@@ -34,7 +46,8 @@ python -m pytest -q            # 테스트
 ## 처음에 꼭 확인할 것
 - **링크 패턴**: `sources.py`의 `post_pattern`은 각 사이트의 글 주소 모양으로 만든 추정치다. `--check`를 돌려서 "글 링크를 찾지 못함"으로 나오는 사이트는 목록 페이지에서 글 링크 주소를 보고 정규식을 고친다.
 - **해외 IP 차단**: GitHub Actions는 미국 서버에서 돈다. 일부 커뮤니티가 해외나 데이터센터 IP를 막으면 그 사이트는 "HTTP 403" 같은 상태로 나온다. 그럴 때는 내 PC에서 작업 스케줄러(cron)로 `run.py`를 돌리고, 결과만 push하도록 바꾼다.
-- **무료 한도**: 실행 1번에 Gemini를 1번 호출하므로 하루 48회다. 무료 티어 안에 들어온다.
+- **무료 한도**: 실행 1번에 Gemini를 2번 호출하므로 하루 96회다. 무료 티어 안에 들어온다.
+- **댓글 반응**: 원문에서 class나 id에 comment·reply·cmt가 들어간 영역만 읽는다. 댓글을 자바스크립트로 나중에 불러오는 사이트는 비어 있을 수 있는데, 그때는 화면에 "(제목 분위기)"로 대신 표시된다.
 
 ## 다음 단계 (기획서 1단계)
 - 글 조회수·댓글 수를 같이 수집해서 화제성 점수 보강

@@ -28,6 +28,7 @@ class Post:
     title: str
     source: str   # Source.key
     rank: int     # 목록에서의 순서 (0 = 맨 위)
+    comment_count: int | None = None  # 알 수 있을 때만 (유튜브)
 
 
 def clean_title(text: str) -> str:

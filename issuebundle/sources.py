@@ -20,6 +20,7 @@ class Source:
     list_url: str       # 인기글 목록 페이지
     post_pattern: str   # 게시글 링크(href)를 고르는 정규식
     enabled: bool = True
+    kind: str = "web"   # "web" = 목록 페이지에서 링크 수집, "youtube" = 공식 API
 
 
 SOURCES: list[Source] = [
@@ -59,8 +60,16 @@ SOURCES: list[Source] = [
         list_url="https://www.clien.net/service/recommend",
         post_pattern=r"^(https://www\.clien\.net)?/service/board/[a-z_]+/\d+",
     ),
+    # 유튜브는 크롤링이 아니라 공식 API로 가져온다 (issuebundle/youtube.py)
+    Source(
+        key="youtube",
+        name="유튜브",
+        list_url="https://www.youtube.com/feed/trending",
+        post_pattern=r"youtube\.com/watch\?v=",
+        kind="youtube",
+    ),
 ]
 
 
-def enabled_sources() -> list[Source]:
-    return [s for s in SOURCES if s.enabled]
+def enabled_sources(kind: str | None = None) -> list[Source]:
+    return [s for s in SOURCES if s.enabled and (kind is None or s.kind == kind)]

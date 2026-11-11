@@ -6,43 +6,83 @@
 import json
 from pathlib import Path
 
-from issuebundle import cluster, store
+from issuebundle import cluster, reactions, store
+from issuebundle.collect import Post
+from issuebundle.sources import SOURCES
+from run import build_tops
 
-ROWS = [
-    ("dcinside", "[예시] OO시 지하철 2호선 출근길 운행 중단"),
-    ("fmkorea", "[예시] 2호선 멈춤 지금 역 상황"),
-    ("theqoo", "[예시] 지하철 2호선 운행 중단 공지 떴대"),
-    ("clien", "[예시] 2호선 신호 장애로 운행 중단"),
-    ("theqoo", "[예시] A그룹 신곡 티저 공개"),
-    ("natepann", "[예시] A그룹 컴백 티저 반응"),
-    ("ruliweb", "[예시] B게임 신작 출시일 발표"),
-    ("fmkorea", "[예시] B게임 신작 출시일 떴다"),
-    ("dcinside", "[예시] B게임 출시일 발표 근데 가격이"),
+ROWS = [  # (출처, 제목, 순위, 댓글 수)
+    ("dcinside", "[예시] 2호선 지금 개박살남", 0, None),
+    ("dcinside", "[예시] B겜 출시일 떴는데 가격 실화냐", 1, None),
+    ("dcinside", "[예시] 편의점 신상 먹어봄", 2, None),
+    ("fmkorea", "[예시] 2호선 멈춤 지금 역 상황", 0, None),
+    ("fmkorea", "[예시] 금리 동결 발표", 1, None),
+    ("fmkorea", "[예시] B게임 신작 출시일 공개", 2, None),
+    ("theqoo", "[예시] 지하철 2호선 운행 중단 공지 떴대", 0, None),
+    ("theqoo", "[예시] A그룹 컴백 티저 공개", 1, None),
+    ("clien", "[예시] 2호선 신호 장애로 운행 중단", 0, None),
+    ("clien", "[예시] 한국은행 기준금리 동결", 1, None),
+    ("youtube", "[예시] 2호선 운행 중단 현장 — 예시뉴스", 0, 1840),
+    ("youtube", "[예시] A그룹 신곡 티저 — 예시엔터", 1, 5320),
+    ("youtube", "[예시] 금리 동결, 내 대출은? — 예시경제", 2, 911),
 ]
 
-FAKE = {"issues": [
-    {"headline": "[예시] 지하철 2호선 출근길 운행 중단", "category": "사회",
-     "summary": "출근 시간대 2호선이 신호 장애로 멈췄다는 글이 여러 커뮤니티에 올라왔다.",
-     "post_ids": ["p1", "p2", "p3", "p4"], "unverified": False,
-     "framing": {"dcinside": "현장 상황 공유 위주", "fmkorea": "지각 걱정과 불만",
-                 "theqoo": "공지 내용 정리", "clien": "원인(신호 장애) 중심"}},
-    {"headline": "[예시] B게임 신작 출시일 발표", "category": "게임",
-     "summary": "B게임 신작 출시일이 발표됐고, 가격을 두고 반응이 갈린다.",
-     "post_ids": ["p7", "p8", "p9"], "unverified": False,
-     "framing": {"ruliweb": "기대감", "fmkorea": "출시일 공유", "dcinside": "가격 비판"}},
-    {"headline": "[예시] A그룹 컴백 티저 공개", "category": "연예",
-     "summary": "A그룹이 신곡 티저를 공개했다.", "post_ids": ["p5", "p6"], "unverified": False,
-     "framing": {"theqoo": "콘셉트 호평", "natepann": "스타일 호불호"}},
-]}
+CLUSTER = {
+    "issues": [
+        {"headline": "[예시] 지하철 2호선 출근길 운행 중단", "category": "사회",
+         "summary": "출근 시간에 2호선이 신호 장애로 멈췄다는 글과 영상이 여러 곳에 올라왔다.",
+         "why": "출근길 수많은 사람이 직접 영향을 받아서",
+         "post_ids": ["p1", "p4", "p7", "p9", "p11"], "unverified": False,
+         "framing": {"dcinside": "현장 상황을 과장 섞어 전함", "fmkorea": "역 상황 공유",
+                     "theqoo": "공지 내용 정리", "clien": "원인 중심", "youtube": "현장 영상"}},
+        {"headline": "[예시] 한국은행 기준금리 동결", "category": "경제",
+         "summary": "한국은행이 기준금리를 그대로 두기로 했다.",
+         "why": "대출 이자와 집값에 바로 연결되는 결정이라서",
+         "post_ids": ["p5", "p10", "p13"], "unverified": False, "framing": {}},
+        {"headline": "[예시] B게임 신작 출시일 발표", "category": "문화·연예",
+         "summary": "B게임 신작 출시일이 공개됐고, 가격을 두고 말이 많다.",
+         "why": "예상보다 가격이 높다는 반응이 많아서",
+         "post_ids": ["p2", "p6"], "unverified": False, "framing": {}},
+        {"headline": "[예시] A그룹 컴백 예고 영상 공개", "category": "문화·연예",
+         "summary": "A그룹이 새 노래 예고 영상을 공개했다.", "why": "오랜만의 활동 소식이라서",
+         "post_ids": ["p8", "p12"], "unverified": False, "framing": {}},
+    ],
+    "top": {
+        "p1": {"category": "사회", "easy": "지하철 2호선이 멈춰서 혼란"},
+        "p2": {"category": "문화·연예", "easy": "B게임 출시일 공개, 가격이 비싸다는 반응"},
+        "p3": {"category": "생활", "easy": "편의점 새 상품 먹어본 후기"},
+        "p4": {"category": "사회", "easy": "2호선 멈춘 역 현장 상황"},
+        "p5": {"category": "경제", "easy": "기준금리 동결 발표"},
+        "p6": {"category": "문화·연예", "easy": "B게임 신작 출시일 공개"},
+        "p7": {"category": "사회", "easy": "2호선 운행 중단 공지"},
+        "p8": {"category": "문화·연예", "easy": "A그룹 컴백 예고 영상 공개"},
+        "p9": {"category": "사회", "easy": "2호선 신호 장애로 운행 중단"},
+        "p10": {"category": "경제", "easy": "한국은행 기준금리 동결"},
+        "p11": {"category": "사회", "easy": "2호선 운행 중단 현장 영상"},
+        "p12": {"category": "문화·연예", "easy": "A그룹 새 노래 예고 영상"},
+        "p13": {"category": "경제", "easy": "금리 동결로 대출 이자는 어떻게 되나"},
+    },
+}
+
+REACTIONS = {
+    "i0": {"dcinside": "지각 걱정과 공사 대응에 대한 불만이 많음",
+           "fmkorea": "대체 경로를 서로 알려주는 분위기",
+           "youtube": "현장이 생각보다 심각하다는 반응, 안전 걱정"},
+    "i1": {"youtube": "대출 이자 부담이 계속된다는 걱정이 많음"},
+}
 
 if __name__ == "__main__":
     now = store.now_iso()
-    rows = [{"url": f"https://example.com/{i}", "title": t, "source": s, "best_rank": i,
-             "first_seen": now, "last_seen": now} for i, (s, t) in enumerate(ROWS)]
-    issues = cluster.cluster_with_llm(rows, lambda _: json.dumps(FAKE, ensure_ascii=False))
+    fresh = [Post(url=f"https://example.com/{i}", title=t, source=s, rank=r, comment_count=c)
+             for i, (s, t, r, c) in enumerate(ROWS)]
+    rows = list(store.merge({}, fresh, at=now).values())
+    issues, top_meta = cluster.cluster_with_llm(
+        rows, lambda _: json.dumps(CLUSTER, ensure_ascii=False), {p.url for p in fresh})
+    reactions.apply(issues, REACTIONS)
+    names = {s.key: s.name for s in SOURCES}
     out = {"updated_at": now, "method": "demo", "post_count": len(rows),
            "sources": [{"key": "demo", "name": "예시 데이터", "status": "실제 수집 전"}],
-           "issues": issues}
+           "issues": issues, "tops": build_tops(fresh, issues, top_meta)}
     path = Path(__file__).parent / "site" / "issues.json"
     path.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"예시 이슈 {len(issues)}개 → {path}")
+    print(f"예시 이슈 {len(issues)}개 (화제 중 {sum(i['hot'] for i in issues)}개) → {path}")
