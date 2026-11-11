@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-11T13:56:51+09:00",
- "method": "ai",
+ "updated_at": "2026-11-11T14:00:26+09:00",
+ "method": "simple",
  "post_count": 400,
  "sources": [
   {
@@ -48,7 +48,7 @@
   {
    "key": "ppomppu",
    "name": "뽐뿌",
-   "status": "6개",
+   "status": "7개",
    "state": "ok"
   },
   {
@@ -78,111 +78,30 @@
  ],
  "issues": [
   {
-   "headline": "엔비디아 젠슨 황 관련 인물의 중국 AI칩 밀반입 의혹",
-   "summary": "엔비디아와 관련된 인물이 10조 원 규모의 첨단 인공지능(AI) 칩을 중국으로 밀반입했다는 의혹이 제기되어 파장이 일고 있다.",
-   "why": "미중 기술 갈등과 반도체 수출 통제에 직접적인 영향을 주는 사안이기 때문이다.",
-   "category": "경제",
-   "hot": true,
-   "communities": [
-    {
-     "key": "daumnews",
-     "name": "다음뉴스",
-     "count": 4,
-     "framing": "외교 및 경제적 파장과 미국 정부의 반응을 중심으로 상세히 보도하고 있다.",
-     "reaction": "",
-     "comment_count": null
-    },
-    {
-     "key": "dcinside",
-     "name": "디시",
-     "count": 1,
-     "framing": "온라인상에서 화제가 된 관련 인물의 의혹 소식을 빠르게 공유하고 있다.",
-     "reaction": "기업의 반도체 기술 유출 의혹과 부적절한 관계를 강하게 비판함",
-     "comment_count": 553
-    },
-    {
-     "key": "theqoo",
-     "name": "더쿠",
-     "count": 1,
-     "framing": "해당 사건의 내용과 파급 효과에 대해 높은 관심을 보이고 있다.",
-     "reaction": "대규모 기술 유출에 분노하며 불륜보다 밀수에 초점이 맞춰져야 한다고 봄",
-     "comment_count": null
-    }
-   ],
-   "posts": [
-    {
-     "title": "\"美상무장관도 '젠슨황 첩보' 듣고도 中기업 AI칩 수출승인\"(종합)",
-     "url": "https://v.daum.net/v/20261111124324925",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "中, 엔비디아 칩 10조원대 밀수 의혹...美中 관계 얼어붙나? 파이낸셜뉴스 40분 전",
-     "url": "https://v.daum.net/v/20261111123800726",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "“앨리스 황, 보기만 해도 감전…남자들 영혼까지 끌려갔다”",
-     "url": "https://v.daum.net/v/20261111131741605",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "[줌인] 젠슨 황 ‘죽느냐 사느냐’ 한국계 이민 2세 변호사 손에 달렸다",
-     "url": "https://v.daum.net/v/20261111102519099",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "[미갤] \"젠슨황 연인 앨리스황, 10조원 엔비디아 AI칩 중국으로 밀반입\"",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=477719&_dcbest=1",
-     "source": "dcinside",
-     "source_name": "디시"
-    },
-    {
-     "title": "'젠슨황 불륜녀' 앨리스황, 10조 원 엔비디아 AI칩 중국으로 밀반입",
-     "url": "https://theqoo.net/hot/4402407834",
-     "source": "theqoo",
-     "source_name": "더쿠"
-    }
-   ],
-   "first_seen": "2026-11-11T13:02:07+09:00",
-   "unverified": true,
-   "score": 47.08,
-   "id": "i0"
-  },
-  {
-   "headline": "성북구서 50대 남성, 아들의 성범죄 피해 여성 살해 혐의로 긴급체포",
-   "summary": "아들의 성범죄 사건과 관련해 합의를 거부한다는 이유로 10대 여성 피해자를 살해한 50대 남성이 경찰에 검거됐다.",
-   "why": "흉악 범죄의 잔혹성과 피해자 보호의 중요성 때문에 많은 이들의 공분을 사고 있다.",
-   "category": "사회",
+   "headline": "아들 성범죄 피해자를 살해",
+   "summary": "",
+   "why": "",
+   "category": "생활",
    "hot": true,
    "communities": [
     {
      "key": "bobaedream",
      "name": "보배드림",
-     "count": 4,
-     "framing": "참담한 범죄 소식에 분노와 충격을 표하는 반응이다.",
-     "reaction": "흉악 범죄에 대한 엄벌과 사형제 집행, 사법부의 처벌을 비판함",
-     "comment_count": 21
+     "count": 3,
+     "framing": "",
+     "reaction": "성범죄 가해자와 그 가족의 행태에 비판과 분노가 쏟아짐.",
+     "comment_count": 5
     },
     {
      "key": "theqoo",
      "name": "더쿠",
-     "count": 3,
-     "framing": "사건의 상세한 내막과 단독 보도 내용을 공유하며 안타까움과 경악을 금치 못하고 있다.",
-     "reaction": "끔찍한 범죄 행각에 분노하며 강력한 처벌과 신상공개를 요구함",
+     "count": 1,
+     "framing": "",
+     "reaction": "상식에 어긋난 끔찍한 사건 내용에 충격과 분노를 감추지 못함.",
      "comment_count": null
     }
    ],
    "posts": [
-    {
-     "title": "성북구서 아들이 성폭행한 10대여성 살해한 아버지 구속",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1046730",
-     "source": "bobaedream",
-     "source_name": "보배드림"
-    },
     {
      "title": "아들 성범죄 피해자를 살해",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1046729",
@@ -202,18 +121,6 @@
      "source_name": "보배드림"
     },
     {
-     "title": "[단독] '성북 살인' 50대, 피해자 가족과 친분…아들은 구속 상태",
-     "url": "https://theqoo.net/hot/4402487175",
-     "source": "theqoo",
-     "source_name": "더쿠"
-    },
-    {
-     "title": "[단독] '10대 여성 살해' 50대, 아들 성범죄 합의 거부하자 범행",
-     "url": "https://theqoo.net/hot/4402433339",
-     "source": "theqoo",
-     "source_name": "더쿠"
-    },
-    {
      "title": "[단독] '아들 성범죄 사건' 피해자 살해…50대 남성 검거",
      "url": "https://theqoo.net/hot/4402420557",
      "source": "theqoo",
@@ -221,168 +128,52 @@
     }
    ],
    "first_seen": "2026-11-11T13:02:07+09:00",
-   "unverified": false,
-   "score": 39.54,
-   "id": "i1"
+   "unverified": true,
+   "score": 30.92,
+   "id": "i0"
   },
   {
-   "headline": "한국 민속촌, 귀신 캐릭터 훈육 논란에 사과 및 입장 표명",
-   "summary": "한국민속촌에서 진행된 귀신 체험 프로그램 중 출연진의 행동이 논란이 되면서 고소장 접수 및 운영 방식에 대한 비판이 커졌다.",
-   "why": "관람객을 대하는 태도와 안전 및 인권 침해 논란으로 번졌기 때문이다.",
-   "category": "문화·연예",
+   "headline": "'젠슨황 불륜녀' 앨리스황, 10조 원 엔비디아 AI칩 중국으로 밀반입",
+   "summary": "",
+   "why": "",
+   "category": "생활",
    "hot": true,
    "communities": [
-    {
-     "key": "bobaedream",
-     "name": "보배드림",
-     "count": 1,
-     "framing": "현장 상황과 관련된 소식을 가볍고 흥미위주로 다루고 있다.",
-     "reaction": "정당한 서비스를 고소한 민원인들의 과도한 태도를 비판함",
-     "comment_count": 40
-    },
     {
      "key": "dcinside",
      "name": "디시",
      "count": 1,
      "framing": "",
-     "reaction": "지나친 민원 제기와 진상 행태를 꼬집는 의견이 주를 이룸",
-     "comment_count": 707
+     "reaction": "기업의 대규모 반도체 유출 의혹과 관련해 책임론과 엇갈린 반응이 나옴.",
+     "comment_count": 555
     },
     {
      "key": "theqoo",
      "name": "더쿠",
      "count": 1,
-     "framing": "논란이 커진 경위와 민속촌 측의 대응을 비판적인 시선으로 다루고 있다.",
-     "reaction": "안 가면 될 일을 민원과 고소로 이어간 태도를 강하게 비판함",
+     "framing": "",
+     "reaction": "단순 불륜이 아닌 대규모 기술 유출 사건으로 보이며 배후에 고의성이 있었다는 의견이 많음.",
      "comment_count": null
     }
    ],
    "posts": [
     {
-     "title": "민속촌 귀신 현상황",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1046711",
-     "source": "bobaedream",
-     "source_name": "보배드림"
-    },
-    {
-     "title": "한국민속촌 신고한 계정 근황",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=477637",
+     "title": "[미갤] \"젠슨황 연인 앨리스황, 10조원 엔비디아 AI칩 중국으로 밀반입\"",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=477719&_dcbest=1",
      "source": "dcinside",
      "source_name": "디시"
     },
     {
-     "title": "고소장 받은 민속촌 '귀신 훈육'...논란 커지자 결국",
-     "url": "https://theqoo.net/hot/4402340885",
+     "title": "'젠슨황 불륜녀' 앨리스황, 10조 원 엔비디아 AI칩 중국으로 밀반입",
+     "url": "https://theqoo.net/hot/4402407834",
      "source": "theqoo",
      "source_name": "더쿠"
     }
    ],
    "first_seen": "2026-11-11T13:02:07+09:00",
-   "unverified": false,
-   "score": 37.54,
-   "id": "i2"
-  },
-  {
-   "headline": "분당에서 시내버스와 승용차 등 수십 대 연쇄 추돌사고 발생",
-   "summary": "경기도 성남시 분당구에서 버스가 승용차 등 여러 대를 들이받는 대규모 연쇄 추돌사고가 발생해 인명피해와 혼란이 빚어졌다.",
-   "why": "도심 한복판에서 일어난 대형 교통사고로 출퇴근길 시민들과 운전자들에게 큰 충격을 주었기 때문이다.",
-   "category": "사회",
-   "hot": true,
-   "communities": [
-    {
-     "key": "daumnews",
-     "name": "다음뉴스",
-     "count": 3,
-     "framing": "사고 현장의 피해 규모와 목격자 증언을 바탕으로 원인 조사를 보도하고 있다.",
-     "reaction": "",
-     "comment_count": null
-    },
-    {
-     "key": "dcinside",
-     "name": "디시",
-     "count": 1,
-     "framing": "사고 당시의 급박한 현장 상황을 담은 언론 보도를 공유하고 있다.",
-     "reaction": "고령 운전자의 위험성과 안전 불감증을 지적하는 반응이 나옴",
-     "comment_count": 42
-    }
-   ],
-   "posts": [
-    {
-     "title": "[그래픽] 경기 성남시 분당구 차량 32대 연쇄 추돌사고",
-     "url": "https://v.daum.net/v/20261111114629050",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "분당 시내버스 지그재그로 승용차 등 17중 연쇄 충격[현장]",
-     "url": "https://v.daum.net/v/20261111131133477",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "“왜 브레이크 안밟지” 32중 추돌 버스, 전봇대 밀고도 질주했다 [르포]",
-     "url": "https://v.daum.net/v/20261111124039822",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "[더갤] JTBC) 기사가 내린 사이, 버스가 정류장을 덮쳐",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=477697&_dcbest=1",
-     "source": "dcinside",
-     "source_name": "디시"
-    }
-   ],
-   "first_seen": "2026-11-11T13:04:24+09:00",
-   "unverified": false,
-   "score": 29.82,
-   "id": "i3"
-  },
-  {
-   "headline": "배우 한수아, 사생활 및 인맥 관련 논란으로 악플 세례",
-   "summary": "배우 한수아가 연예계 인맥과 사생활 문제로 구설수에 오르며 인스타그램 등 소셜미디어에서 악성 댓글에 시달리고 있다.",
-   "why": "유명 연예인들의 사적인 관계와 발언이 대중의 큰 관심을 받기 때문이다.",
-   "category": "문화·연예",
-   "hot": false,
-   "communities": [
-    {
-     "key": "instiz",
-     "name": "인스티즈",
-     "count": 4,
-     "framing": "당사자를 향한 과도한 악플 테러를 우려하며 양측의 입장을 균형 있게 보려 하고 있다.",
-     "reaction": "",
-     "comment_count": null
-    }
-   ],
-   "posts": [
-    {
-     "title": "이거 읽고 카리나 팬들 입장도 이해감 한수아가 잘못했단건 아닌데",
-     "url": "https://www.instiz.net/name_enter/101000136",
-     "source": "instiz",
-     "source_name": "인스티즈"
-    },
-    {
-     "title": "정보/소식 \"샤워했을 때 친해져\"…카리나와 우정 과시한 배우, '친분 팔이' 지적→\"인지도 이용하..",
-     "url": "https://www.instiz.net/name_enter/101000268",
-     "source": "instiz",
-     "source_name": "인스티즈"
-    },
-    {
-     "title": "근데 카리나랑 한수아랑 어케 아는 사이임??",
-     "url": "https://www.instiz.net/name_enter/101000105",
-     "source": "instiz",
-     "source_name": "인스티즈"
-    },
-    {
-     "title": "2 정보/소식 실시간 심하게 악플 테러 당하고 있는 배우 한수아 인스타...",
-     "url": "https://www.instiz.net/name_enter/101000030",
-     "source": "instiz",
-     "source_name": "인스티즈"
-    }
-   ],
-   "first_seen": "2026-11-11T13:14:02+09:00",
-   "unverified": false,
-   "score": 19.28,
-   "id": "i4"
+   "unverified": true,
+   "score": 25.28,
+   "id": "i1"
   }
  ],
  "tops": [
@@ -393,8 +184,8 @@
     {
      "title": "[싱갤] 서울우유가 싱붕이를 고소하고 얻은것들",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=477768&_dcbest=1",
-     "easy": "서울우유가 법적 대응으로 얻은 것들",
-     "category": "사회",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -402,8 +193,8 @@
     {
      "title": "[버갤] 무대에 서는 게 실적인 이유",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=477766&_dcbest=1",
-     "easy": "아이돌 무대 출연이 실적인 이유",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -411,8 +202,8 @@
     {
      "title": "[코갤] 영포티 ㅅㅅ대출 ㅋㅋㅋㅋㅋㅋㅋ",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=477765&_dcbest=1",
-     "easy": "중년층 대출 관련 인터넷 글",
-     "category": "경제",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -420,8 +211,8 @@
     {
      "title": "[싱갤] 아직도 정신 못차린 백선생님",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=477764&_dcbest=1",
-     "easy": "정신을 차리지 못한 백종원 관련 소식",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -429,8 +220,8 @@
     {
      "title": "[싱갤] 싱긍벙글 신천지 포교만큼 ㅈ같은 새끼들",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=477755&_dcbest=1",
-     "easy": "신천지 포교 방식에 대한 비판",
-     "category": "사회",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -453,8 +244,8 @@
     {
      "title": "재혼황후 특별출연 예정인 이준혁...jpg",
      "url": "https://theqoo.net/hot/4402598338",
-     "easy": "드라마 특별 출연 예정인 배우 이준혁",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -462,8 +253,8 @@
     {
      "title": "요새 인터넷 레시피에 엄청 자주 등장하는 재료",
      "url": "https://theqoo.net/hot/4402590961",
-     "easy": "요즘 인터넷 요리법에 자주 나오는 재료",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -471,8 +262,8 @@
     {
      "title": "한국이 이슬람 혐오를 하고 있다고 하는 무슬림",
      "url": "https://theqoo.net/hot/4402568417",
-     "easy": "한국이 이슬람을 혐오한다는 무슬림의 주장",
-     "category": "사회",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -480,8 +271,8 @@
     {
      "title": "유니클로에 아직도 거부감을 갖는 사람들이 생겨난 광고",
      "url": "https://theqoo.net/hot/4402558613",
-     "easy": "유니클로에 대한 거부감을 일으킨 광고",
-     "category": "경제",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -489,8 +280,8 @@
     {
      "title": "그 범죄자아버지가 죽였다는 피해자가 고작 15세였다는데...",
      "url": "https://theqoo.net/hot/4402557085",
-     "easy": "범죄자 아버지에게 희생된 15세 피해자",
-     "category": "사회",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -506,8 +297,8 @@
     {
      "title": "싯가 110딸라 뷔페 근황",
      "url": "https://bbs.ruliweb.com/best/board/300143/read/77336771",
-     "easy": "시가 110달러 뷔페의 최근 모습",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -515,8 +306,8 @@
     {
      "title": "황우석 \"법무부에 한국 국적 회복 신청...심사 결과 기다려\"",
      "url": "https://bbs.ruliweb.com/best/board/300143/read/77336038",
-     "easy": "황우석 박사의 한국 국적 회복 신청",
-     "category": "사회",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -524,8 +315,8 @@
     {
      "title": "와 살다살다 남자한테 번호따일뻔",
      "url": "https://bbs.ruliweb.com/best/board/300143/read/77336189",
-     "easy": "남성에게 전화번호를 릴 뻔한 사연",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -533,8 +324,8 @@
     {
      "title": "일본인이 싫어하는 한국 무속신",
      "url": "https://bbs.ruliweb.com/best/board/300143/read/77337557",
-     "easy": "일본인들이 싫어하는 한국의 무속 신앙",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -542,8 +333,8 @@
     {
      "title": "중국산 에어프라이어를 구매하고 후회하는 블라인",
      "url": "https://bbs.ruliweb.com/best/board/300143/read/77337287",
-     "easy": "중국산 에어프라이어 구매 후기",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -571,19 +362,10 @@
    "name": "인스티즈",
    "items": [
     {
-     "title": "남편 기세워주려고 수제빼빼로 갖다주려고 만듦",
-     "url": "https://www.instiz.net/name/67950012",
-     "easy": "남편 기를 살려주려 만든 수제 빼빼로",
-     "category": "생활",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
      "title": "면접 자유 복장이면 이 옷 괜찮아?",
      "url": "https://www.instiz.net/name/67949891",
-     "easy": "면접 자유 복장 의상 고민",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -591,8 +373,8 @@
     {
      "title": "베스티에 이어 다시 활동 시작하는듯한 3세대 여돌",
      "url": "https://www.instiz.net/pt/7924570",
-     "easy": "걸그룹 멤버의 활동 재개 소식",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -600,8 +382,8 @@
     {
      "title": "💥삼성이 1조 6천억 들여서 개발한 전세계에서 유일한 기술 근황",
      "url": "https://www.instiz.net/pt/7924584",
-     "easy": "삼성이 개발한 세계 유일의 기술 근황",
-     "category": "IT·과학",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -609,8 +391,17 @@
     {
      "title": "쿠팡 반품 거지들 근황",
      "url": "https://www.instiz.net/pt/7924560",
-     "easy": "쿠팡 반품 제도를 악용하는 사람들 근황",
-     "category": "경제",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "책을 이렇게 쌓아놓는 사람들은 인테리어용이야??",
+     "url": "https://www.instiz.net/name/67949688",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -624,10 +415,19 @@
    "name": "뽐뿌",
    "items": [
     {
+     "title": "KBO에서 가장 오래 우승 못한 팀 기록 ㄷㄷ..jpg",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=baseball&no=702029",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
      "title": "역시 상승장에는 정부 칭찬글 하나 없음 . 이중성 쩔음",
      "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=453941",
-     "easy": "증시 상승장 속 정부 반응에 대한 평가",
-     "category": "정치",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -635,8 +435,8 @@
     {
      "title": "8살 어린 일본 미녀를 꼬신 한국 남자",
      "url": "https://www.ppomppu.co.kr/zboard/view.php?id=humor&no=792456",
-     "easy": "어린 일본 여성과 교제하는 한국 남성",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -644,8 +444,8 @@
     {
      "title": "9, 10월 삼전닉스 빠진 이유가 영국의 상속세 때문이라고 하네요",
      "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=453855",
-     "easy": "반도체 주식 하락의 원인으로 지목된 상속세",
-     "category": "경제",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -653,24 +453,15 @@
     {
      "title": "어제 야구부장에서 나온 와이스 이야기",
      "url": "https://www.ppomppu.co.kr/zboard/view.php?id=baseball&no=702024",
-     "easy": "야구 프로그램에서 다룬 선수 이야기",
-     "category": "스포츠",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "(한문철) 카니발의 최후.gif",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=car&no=982005",
-     "easy": "카니발 차량의 사고 영상",
-     "category": "사회",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
     }
    ],
    "state": "ok",
-   "status": "6개"
+   "status": "7개"
   },
   {
    "key": "bobaedream",
@@ -679,8 +470,17 @@
     {
      "title": "(서울 마라톤) 사람보다 기록이 중요한 인간",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1046734",
-     "easy": "기록에만 집착하는 마라톤 참가자 비판",
-     "category": "스포츠",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "대출 영끌해서 판교에 아파트 산 부부 현재 상황",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1046735",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -688,8 +488,17 @@
     {
      "title": "빵집들이 남은 빵 폐기하는 이유",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1046732",
-     "easy": "빵집들이 남은 빵을 폐기하는 이유",
-     "category": "생활",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "와 저 곰 진짜 같아~~~~",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1046736",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -697,26 +506,8 @@
     {
      "title": "'이거슨 영적 결합이야' 개독 근황",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1046725",
-     "easy": "특정 종교 단체의 최근 소식",
-     "category": "사회",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "아이를 키우면서 가장 후회되는 것",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1046728",
-     "easy": "자녀를 키우며 가장 후회되는 순간",
-     "category": "생활",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "초인적인 신체능력을 가진 사람들",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1046724",
-     "easy": "초인적인 신체 능력을 가진 사람들",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -739,8 +530,8 @@
     {
      "title": "동반성장 미흡 37개사…\"연말 '온라인 플랫폼' 발표\"(종합)",
      "url": "https://v.daum.net/v/20261111133925200",
-     "easy": "동반성장 미흡 37개사 발표 및 플랫폼 정책",
-     "category": "경제",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -748,8 +539,8 @@
     {
      "title": "아이 낳을 병원도 부족한데… 정부의 '인구전략'은 무엇을 놓쳤나 [분만실 뺑뺑이②]",
      "url": "https://v.daum.net/v/20261111132011669",
-     "easy": "분만실 부족과 정부 인구 정책의 문제점",
-     "category": "사회",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -757,17 +548,17 @@
     {
      "title": "“앨리스 황, 보기만 해도 감전…남자들 영혼까지 끌려갔다”",
      "url": "https://v.daum.net/v/20261111131741605",
-     "easy": "매력적인 모습을 선보인 인물 관련 소식",
-     "category": "문화·연예",
-     "issue_id": "i0",
-     "hot": true,
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
      "comment_count": null
     },
     {
-     "title": "한·우크라, 파리서 외교장관 회담…포로 공개 소환 갈등 '접점 찾기' 시동",
+     "title": "한·우크라, 파리서 외교장관 회담… 포로 공개 소환 갈등 '접점 찾기' 시동",
      "url": "https://v.daum.net/v/20261111114757123",
-     "easy": "한·우크라이나 외교장관 회담 개최",
-     "category": "정치",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -775,8 +566,8 @@
     {
      "title": "1년새 3687억달러 늘어난 韓수출…74%는 '반도체 힘'",
      "url": "https://v.daum.net/v/20261111113906669",
-     "easy": "지난 1년간 한국 수출 증가와 반도체 역할",
-     "category": "경제",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -792,8 +583,8 @@
     {
      "title": "T1 vs BLG | 녹아웃 스테이지 4강 Day6 | 2026 월드 챔피언십 — LCK",
      "url": "https://www.youtube.com/watch?v=mNk51Z-okD4",
-     "easy": "세계 리그 4강 경기 결과",
-     "category": "스포츠",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": 507
@@ -801,26 +592,26 @@
     {
      "title": "모든 세트 도란 라인전 완패, 중국상대 첫 패 l T1 vs BLG 롤드컵 리뷰 — 정글선생 진 영준",
      "url": "https://www.youtube.com/watch?v=kGCx5En_f8g",
-     "easy": "리그 오브 레전드 경기 패배 리뷰",
-     "category": "스포츠",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 6749
+     "comment_count": 6750
     },
     {
      "title": "나는 인방도적이 좋다 — 랄로",
      "url": "https://www.youtube.com/watch?v=qkmqvpFziJg",
-     "easy": "인터넷 방송인 관련 이야기",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 455
+     "comment_count": 456
     },
     {
      "title": "더 무서워져서 돌아온 백룸 — 김재원의 즐거운 세상",
      "url": "https://www.youtube.com/watch?v=wD7ZBG0m0yY",
-     "easy": "공포 게임 콘텐츠 영상",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": 573
@@ -828,11 +619,11 @@
     {
      "title": "맞으면 흥분하는 남자 — 괴물쥐 유튜브",
      "url": "https://www.youtube.com/watch?v=AMok5O9g26g",
-     "easy": "인터넷 방송인 관련 영상",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 615
+     "comment_count": 616
     }
    ],
    "state": "ok",
