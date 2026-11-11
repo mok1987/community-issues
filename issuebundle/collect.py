@@ -23,7 +23,7 @@ _SPACES = re.compile(r"\s+")
 _ONLY_COUNT = re.compile(r"^[\[\(]?[\d/,\s]+[\]\)]?$")     # "[6571/2]" 같은 댓글 수 링크
 # 제목 맨 앞의 [공지] [🚨필독🚨] 같은 머리말, 또는 '이용 안내' 류
 _NOTICE_WORDS = re.compile(r"^\W{0,4}(공지\s*[\]\)】:가]|필독(?=\W)|운영\s*원칙)|이용\s*안내|규칙\s*안내")
-_DROP_PARAMS = {"page", "t", "exception_mode", "list_num", "sort_type", "search_head", "listStyle", "category"}
+_DROP_PARAMS = {"page", "t", "exception_mode", "list_num", "sort_type", "search_head", "listStyle", "category", "vdate"}
 
 
 @dataclass
@@ -64,12 +64,15 @@ def is_notice(a) -> bool:
 def extract_posts(html: str, source: Source, limit: int = 50) -> list[Post]:
     """목록 HTML에서 게시글 링크를 골라낸다. 같은 글에 링크가 여러 개면 가장 긴 텍스트를 제목으로 쓴다."""
     pattern = re.compile(source.post_pattern)
+    title_re = re.compile(source.title_regex) if source.title_regex else None
+    skip_url = re.compile(source.exclude_url) if source.exclude_url else None
+    skip_title = re.compile(source.exclude_title) if source.exclude_title else None
     soup = BeautifulSoup(html, "html.parser")
     best: dict[str, str] = {}
     order: list[str] = []
     for a in soup.find_all("a", href=True):
         href = a["href"]
-        if not pattern.search(href) or is_notice(a):
+        if not pattern.search(href) or is_notice(a) or (skip_url and skip_url.search(href)):
             continue
         url = normalize_url(href, source.list_url)
         title = clean_title(a.get_text(" "))
@@ -81,6 +84,11 @@ def extract_posts(html: str, source: Source, limit: int = 50) -> list[Post]:
     posts = []
     for url in order:
         title = best[url]
+        if title_re:
+            m = title_re.match(title)
+            title = m.group(1).strip() if m else title
+        if skip_title and skip_title.search(title):
+            continue
         if len(title) < 4 or _ONLY_COUNT.match(title) or _NOTICE_WORDS.search(title):
             continue
         posts.append(Post(url=url, title=title, source=source.key, rank=len(posts)))

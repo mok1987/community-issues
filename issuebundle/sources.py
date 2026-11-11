@@ -21,6 +21,9 @@ class Source:
     post_pattern: str   # 게시글 링크(href)를 고르는 정규식
     enabled: bool = True
     kind: str = "web"   # "web" = 목록 페이지에서 링크 수집, "youtube" = 공식 API
+    title_regex: str | None = None    # 맞으면 group(1)만 제목으로 (목록 줄에 붙은 댓글 수·시간 등 제거)
+    exclude_url: str | None = None    # 맞는 링크는 버림 (광고·핫딜 게시판 등)
+    exclude_title: str | None = None  # 맞는 제목은 버림
 
 
 SOURCES: list[Source] = [
@@ -65,12 +68,17 @@ SOURCES: list[Source] = [
         name="인스티즈",
         list_url="https://www.instiz.net/hot.htm",
         post_pattern=r"instiz\.net/(pt|name|name_enter|free)/\d+|^/(pt|name|name_enter|free)/\d+",
+        # "일상 제목 18 미리보기 12:47 l 조회 894" → "제목"
+        title_regex=r"^(?:(?:일상|정보·기타|연예|이슈|유머|스포츠|게임|드영배|이슈·소식|유머·감동)\s+)?(.*?\S)\s\d{1,4}(?:\s.*)?$",
     ),
     Source(
         key="ppomppu",
         name="뽐뿌",
         list_url="https://www.ppomppu.co.kr/hot.php",
         post_pattern=r"view\.php\?id=\w+&no=\d+",
+        title_regex=r"^(.*?\S)\s\d{1,4}$",                      # 끝의 댓글 수
+        exclude_url=r"id=(ppomppu\d*|pmarket\d*|money|coupon|event)&",  # 핫딜·광고 게시판
+        exclude_title=r"^AD\s",
     ),
     Source(
         key="bobaedream",
@@ -87,7 +95,7 @@ SOURCES: list[Source] = [
     Source(
         key="daumnews",
         name="다음뉴스",
-        list_url="https://news.daum.net/ranking/popular",
+        list_url="https://news.daum.net/",  # 랭킹 페이지가 없어져 메인 주요 뉴스로 대체
         post_pattern=r"v\.daum\.net/v/\d{10,}",
     ),
     # 유튜브는 크롤링이 아니라 공식 API로 가져온다 (issuebundle/youtube.py)

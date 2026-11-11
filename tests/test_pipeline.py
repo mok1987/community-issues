@@ -256,3 +256,21 @@ def test_blocked_sources_appear_in_tops_with_state():
     tops = build_tops(fresh, [], {}, status)
     assert [(t["key"], t["state"], len(t["items"])) for t in tops] == [
         ("dcinside", "ok", 1), ("fmkorea", "blocked", 0), ("clien", "error", 0)]
+
+
+def test_source_specific_cleanup():
+    instiz = next(s for s in SOURCES if s.key == "instiz")
+    html = """<a href="https://www.instiz.net/name/67949695">일상 신상빼빼로 26 ㄷㄱㄷㄱ 12:47 l 조회 894</a>
+      <a href="/pt/7924553">정보·기타 입사 일주일만에 3개월치 월급 줄테니 퇴사 하라네요 19 11:37 l</a>
+      <a href="/pt/7924530">2026 월드컵 4강 18 미리보기</a>"""
+    assert [p.title for p in collect.extract_posts(html, instiz)] == [
+        "신상빼빼로", "입사 일주일만에 3개월치 월급 줄테니 퇴사 하라네요", "2026 월드컵 4강"]
+    pp = next(s for s in SOURCES if s.key == "ppomppu")
+    html = """<a href="/zboard/view.php?id=pmarket7&no=1">겨울철 제동거리 116</a>
+      <a href="/zboard/view.php?id=baby&no=54473">'탈락'이라는 단어자체도 기분나쁜 학부모들.jpg 109</a>
+      <a href="/zboard/view.php?id=ppomppu&no=747872">[G마켓] 운동화 7</a>
+      <a href="/zboard/view.php?id=freeboard&no=9">AD [박리다매] 인터넷 가입</a>"""
+    assert [p.title for p in collect.extract_posts(html, pp)] == ["'탈락'이라는 단어자체도 기분나쁜 학부모들.jpg"]
+    bobae = next(s for s in SOURCES if s.key == "bobaedream")
+    posts = collect.extract_posts('<a href="/view?code=best&No=1046725&vdate=">근황 소식</a>', bobae)
+    assert posts[0].url == "https://www.bobaedream.co.kr/view?code=best&No=1046725"
