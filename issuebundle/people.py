@@ -25,7 +25,7 @@ WIKI_UA = "YojeummwoBot/0.1 (https://github.com/mok1987/community-issues)"
 
 PROMPT = """너는 인터넷 커뮤니티를 안 보는 50~60대에게 '요즘 온라인에서 화제인 사람'을 알려주는 편집자다.
 
-아래 제목들에서 지금 가장 많이 이야기되는 '공인'을 많이 언급된 순서로 최대 6명 골라라.
+아래 제목들에서 지금 가장 많이 이야기되는 '공인'을 많이 언급된 순서로 최대 8명 골라라.
 
 규칙:
 - 공인만: 연예인, 방송인, 운동선수, 정치인, 기업인, 유명 유튜버 등 이미 널리 알려진 사람.
@@ -43,13 +43,36 @@ JSON으로만 답하라: {{"people": [{{"name": "...", "why": "..."}}]}}
 Fetch = Callable[[str], dict | None]
 
 
-def wiki_fetch(title: str) -> dict | None:
+WIKI_SEARCH = "https://ko.wikipedia.org/w/rest.php/v1/search/title"
+
+
+def _wiki_summary(title: str) -> dict | None:
     try:
         resp = requests.get(WIKI_API + quote(title.replace(" ", "_")), timeout=15,
                             headers={"User-Agent": WIKI_UA, "Accept": "application/json"})
     except requests.RequestException:
         return None
     return resp.json() if resp.status_code == 200 else None
+
+
+def wiki_fetch(title: str) -> dict | None:
+    """위키백과 요약. 정확한 제목이 없으면(띄어쓰기 차이 등) 제목 검색으로 한 번 더 찾는다.
+    검색 결과는 띄어쓰기를 뺀 이름이 같을 때만 인정 (엉뚱한 사람 방지)."""
+    s = _wiki_summary(title)
+    if s:
+        return s
+    try:
+        resp = requests.get(WIKI_SEARCH, params={"q": title, "limit": 5}, timeout=15,
+                            headers={"User-Agent": WIKI_UA, "Accept": "application/json"})
+        pages = resp.json().get("pages", []) if resp.status_code == 200 else []
+    except (requests.RequestException, ValueError):
+        return None
+    want = _squash(title)
+    for pg in pages:
+        t = pg.get("title") or ""
+        if _squash(re.sub(r"\s*\(.*?\)$", "", t)) == want:   # "이름 (가수)" 같은 문서도 허용
+            return _wiki_summary(t)
+    return None
 
 
 def commons_photo(summary: dict) -> str | None:
@@ -169,10 +192,13 @@ def pick(titles: list[str], llm: LLM, fetch: Fetch = wiki_fetch, limit: int = 3)
         seen.add(name)
         n = mentions(name, titles)
         if n == 0:          # 제목에 실제로 없는 이름(지어낸 이름)은 버림
+            print(f"[인물] 제외: {name} (제목에 없음)")
             continue
         s = fetch(name)
         if not s or s.get("type") == "disambiguation" or not s.get("description"):
-            continue        # 위키백과 문서가 없거나 동명이인 안내 문서면 버림 (공인 확인 실패)
+            # 위키백과 문서가 없거나 동명이인 안내 문서면 버림 (공인 확인 실패)
+            print(f"[인물] 제외: {name} ({'동명이인 문서' if s and s.get('type') == 'disambiguation' else '위키백과 확인 안 됨'})")
+            continue
         out.append({
             "name": s.get("title") or name,
             "who": re.sub(r"\s+", " ", s.get("description", "")).strip()[:40],
