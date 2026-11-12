@@ -291,3 +291,23 @@ def test_make_issues_retries_once_on_broken_json():
         return "{망가진" if len(calls) == 1 else good
     issues, _, method = cluster.make_issues(_rows(), flaky)
     assert method == "ai" and issues and len(calls) == 2
+
+
+def test_explain_words_drops_rough_origins():
+    titles = ["완전 엄미새네", "주가 떡상"]
+    fake = json.dumps({"words": [
+        {"word": "엄미새", "origin": "엄마 미친 새끼", "meaning": "엄마를 지나치게 따르는 사람"},
+        {"word": "떡상", "origin": "떡처럼 위로 솟음", "meaning": "갑자기 크게 오름"}]})
+    assert [w["word"] for w in cluster.explain_words(titles, lambda _: fake)] == ["떡상"]
+
+
+def test_label_tops_accepts_list_or_wrapped_answers_and_batches():
+    rows = _rows()
+    as_list = json.dumps([{"id": "p1", "category": "스포츠", "easy": "쉬운 제목"}])
+    wrapped = json.dumps({"items": {"p2": {"category": "IT", "easy": "또 다른 제목"}}})
+    assert list(cluster.label_tops(rows[:1], lambda _: as_list).values())[0]["easy"] == "쉬운 제목"
+    assert list(cluster.label_tops(rows[:2], lambda _: wrapped).values())[0]["category"] == "IT·과학"
+    many = [dict(r, url=f"https://x/{i}") for i, r in enumerate(rows * 15)]  # 90개 → 3번 나눠 요청
+    calls = []
+    cluster.label_tops(many, lambda p: calls.append(1) or json.dumps({"p1": {"easy": "a"}}))
+    assert len(calls) == 3

@@ -76,13 +76,15 @@ WORDS_PROMPT = """너는 인터넷 커뮤니티를 전혀 안 보는 50~60대에
 
 규칙:
 - word: 제목에 적힌 그대로의 표기 (제목 안에 정확히 있어야 함)
+- origin: 줄임말이면 원래 말 그대로, 아니면 어디서 온 말인지 (꾸미지 말고 사실대로)
 - meaning: 뜻을 쉬운 말로 한 문장 (40자 이내)
 - example: 이렇게 쓴다는 짧은 예문 (30자 이내, 제목을 그대로 옮기지 말 것)
 - 욕설·비속어, 성적인 표현, 특정 지역·성별·집단을 비하하는 말, 혐오 표현은 절대 고르지 마라.
+  줄임말의 원래 말에 욕(새끼, 년, 놈, 미친, 병신, 존나, 씨발 등)이 들어 있어도 고르지 마라.
 - 일반적인 단어, 고유명사(사람·회사·작품 이름), 영어 약자(AI, CEO 등)는 고르지 마라.
 - 확실하지 않은 뜻은 쓰지 마라. 모르면 고르지 마라.
 
-JSON으로만 답하라: {{"words": [{{"word": "...", "meaning": "...", "example": "..."}}]}}
+JSON으로만 답하라: {{"words": [{{"word": "...", "origin": "...", "meaning": "...", "example": "..."}}]}}
 
 제목:
 {lines}
@@ -248,20 +250,43 @@ def label_tops(posts: list[dict], llm: LLM) -> dict[str, dict]:
     """TOP10 글마다 {url: {category, easy}}. 실패하면 빈 dict (화면은 원래 제목으로 대체)."""
     if not posts:
         return {}
-    idmap = {f"p{i + 1}": p for i, p in enumerate(posts)}
-    lines = "\n".join(f"[{pid}] ({p['source']}) {p['title']}" for pid, p in idmap.items())
-    try:
-        raw = parse_json(llm(TOP_PROMPT.format(lines=lines, categories=", ".join(CATEGORIES))))
-    except Exception as e:  # noqa: BLE001
-        print(f"[경고] TOP10 쉬운 제목 실패: {e}")
-        return {}
     out = {}
-    for pid, meta in raw.items():
-        if pid in idmap and isinstance(meta, dict) and (meta.get("easy") or "").strip():
-            out[idmap[pid]["url"]] = {"category": fix_category(meta.get("category")),
-                                      "easy": meta["easy"].strip()[:60]}
+    for start in range(0, len(posts), 40):  # 한 번에 너무 많으면 답이 빠지므로 40개씩
+        out.update(_label_batch(posts[start:start + 40], llm))
     print(f"[TOP10] 쉬운 제목 {len(out)}/{len(posts)}개")
     return out
+
+
+def _as_id_map(raw) -> dict:
+    """{"p1": {...}} / {"items": {"p1": ...}} / [{"id": "p1", ...}] 어떤 모양이든 {"p1": {...}}로."""
+    if isinstance(raw, list):
+        return {str(x.get("id") or x.get("pid") or x.get("글ID") or ""): x for x in raw if isinstance(x, dict)}
+    if isinstance(raw, dict):
+        if raw and all(not re.fullmatch(r"p\d+", str(k)) for k in raw) and len(raw) == 1:
+            return _as_id_map(next(iter(raw.values())))
+        return raw
+    return {}
+
+
+def _label_batch(posts: list[dict], llm: LLM) -> dict[str, dict]:
+    idmap = {f"p{i + 1}": p for i, p in enumerate(posts)}
+    lines = "\n".join(f"[{pid}] ({p['source']}) {p['title']}" for pid, p in idmap.items())
+    for attempt in (1, 2):
+        try:
+            raw = _as_id_map(parse_json(llm(TOP_PROMPT.format(lines=lines, categories=", ".join(CATEGORIES)))))
+        except Exception as e:  # noqa: BLE001
+            print(f"[경고] TOP10 쉬운 제목 실패({attempt}차): {e}")
+            continue
+        out = {}
+        for pid, meta in raw.items():
+            pid = str(pid).strip("[] ")
+            if pid in idmap and isinstance(meta, dict) and (meta.get("easy") or "").strip():
+                out[idmap[pid]["url"]] = {"category": fix_category(meta.get("category")),
+                                          "easy": meta["easy"].strip()[:60]}
+        if out:
+            return out
+        print(f"[경고] TOP10 쉬운 제목 응답 해석 못함({attempt}차): {str(raw)[:150]}")
+    return {}
 
 
 # ---------- API 없이 쓰는 단순 묶기 (대체용) ----------
@@ -314,6 +339,10 @@ def make_issues(posts: list[dict], llm: LLM | None, top_urls: set[str] | None = 
     return cluster_simple(posts), {}, "simple"
 
 
+# 욕설·비하어 (단, '2026년', '청소년'처럼 흔한 말에 섞이는 '년·놈' 같은 글자는 넣지 않음)
+_ROUGH = re.compile(r"(새끼|섀끼|색기|미친|미췬|병신|븅신|존나|졸라|씨발|시발|ㅅㅂ|ㅂㅅ|좆|좃|개새|지랄|느금|니미|창녀|섹스|야동|한남|김치녀|틀딱|급식충|맘충|[가-힣]충이|잡것|썅)")
+
+
 def explain_words(titles: list[str], llm: LLM, limit: int = 10) -> list[dict]:
     """제목들에 나온 요즘 말 풀이. 제목에 실제로 없는 단어는 버린다. 실패하면 빈 목록."""
     titles = list(dict.fromkeys(t for t in titles if t))[:150]
@@ -333,6 +362,8 @@ def explain_words(titles: list[str], llm: LLM, limit: int = 10) -> list[dict]:
         meaning = (w.get("meaning") or "").strip()
         if not word or not meaning or word in seen or len(word) > 15 or word not in joined:
             continue
+        if _ROUGH.search(" ".join(str(w.get(k) or "") for k in ("word", "origin", "meaning", "example"))):
+            continue  # 원래 말·뜻·예문에 욕설이 섞인 말은 빼기
         seen.add(word)
         out.append({"word": word, "meaning": meaning[:80], "example": (w.get("example") or "").strip()[:60]})
         if len(out) >= limit:
