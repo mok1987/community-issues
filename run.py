@@ -153,6 +153,7 @@ def main() -> None:
         "tops": build_tops(fresh, issues, top_meta, status),
         "words": words,
         "people": hot_people,
+        "push_app_id": env_key("ONESIGNAL_APP_ID") or "",  # 공개용 앱 ID (비밀 아님)
     }
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")

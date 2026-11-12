@@ -1,0 +1,36 @@
+name: 화제 알림 보내기
+
+on:
+  schedule:
+    # 한국시간 7:03, 9:33, 12:03, 14:33, 17:03, 19:33, 22:03 (UTC로 적음)
+    - cron: "3 22 * * *"
+    - cron: "33 0 * * *"
+    - cron: "3 3 * * *"
+    - cron: "33 5 * * *"
+    - cron: "3 8 * * *"
+    - cron: "33 10 * * *"
+    - cron: "3 13 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "조용한 시간이어도 보내기 (시험용)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: python notify.py
+        env:
+          ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+          FORCE: ${{ inputs.force && '1' || '0' }}

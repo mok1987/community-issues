@@ -396,3 +396,24 @@ def test_people_ground_uses_cache_and_requires_suggestions():
     assert ps[1]["why"] == "원래" and "suggest" not in ps[1]
     people.ground(ps, [], g, cache, "2026-11-12T12:00:00+09:00")
     assert len(calls) == 3  # 존박은 캐시 사용, 손흥민만 다시 시도
+
+
+def test_notify_quiet_hours_and_message():
+    from datetime import datetime
+    import notify
+    k = notify.KST
+    assert notify.in_quiet_hours(datetime(2026, 11, 12, 6, 59, tzinfo=k))
+    assert not notify.in_quiet_hours(datetime(2026, 11, 12, 7, 3, tzinfo=k))
+    assert not notify.in_quiet_hours(datetime(2026, 11, 12, 22, 20, tzinfo=k))
+    assert notify.in_quiet_hours(datetime(2026, 11, 12, 22, 45, tzinfo=k))
+    line = notify.top_line({"issues": [{"hot": False, "headline": "B"}, {"hot": True, "headline": "A"}]})
+    assert line == "지금 1위: A"
+    b = notify.build("app", line, "https://hotnow.kr/")
+    assert b["headings"]["en"] == "실시간 화제를 확인해보세요" and b["web_push_topic"]
+
+
+def test_safe_why_blocks_rumors_but_not_ordinary_words():
+    from issuebundle.people import safe_why, NEUTRAL_WHY
+    assert safe_why("사내 불륜 의혹으로 화제예요") == NEUTRAL_WHY
+    assert safe_why("열애설이 돌아요") == NEUTRAL_WHY
+    assert safe_why("연설이 화제예요") == "연설이 화제예요"

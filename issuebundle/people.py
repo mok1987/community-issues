@@ -31,7 +31,7 @@ PROMPT = """너는 인터넷 커뮤니티를 안 보는 50~60대에게 '요즘 �
 - 공인만: 연예인, 방송인, 운동선수, 정치인, 기업인, 유명 유튜버 등 이미 널리 알려진 사람.
 - 절대 넣지 말 것: 일반인, 미성년자(만 18세 미만), 사건·사고의 피해자, 이름이 알려지지 않은 사람, 가상 인물.
 - name: 위키백과 문서 제목처럼 정확한 실명 또는 활동명 (예: 손흥민, 아이유)
-- why: 왜 화제인지 한 문장 (35자 이내). 제목들에서 알 수 있는 사실만, 확인 안 된 소문은 "~라는 이야기가 돌고 있다"로.
+- why: 왜 화제인지 한 문장 (35자 이내). 제목들에서 알 수 있는 사실만. 의혹·소문·루머·폭로·열애설·불륜설 같은 확인 안 된 이야기는 이유로 쓰지 말 것.
 - 비하·조롱 표현 없이 중립적으로. 정치인도 한쪽 편을 들지 말 것.
 
 JSON으로만 답하라: {{"people": [{{"name": "...", "why": "..."}}]}}
@@ -104,7 +104,8 @@ WHY_PROMPT = """너는 인터넷을 안 보는 50~60대에게 '이 사람이 왜
 - 막연하게 쓰지 말고 무슨 일인지 구체적으로 (예: "맥도날드에서 랩으로 주문하는 영상이 퍼지며 화제예요").
 - 여러 이야기가 있으면 가장 많이 언급되고 최근인 것 하나를 고르고, 필요하면 두 번째를 짧게 덧붙여라.
 - 제목과 뉴스에 있는 사실만 써라. 지어내지 마라.
-- 확인되지 않은 의혹·소문은 단정하지 말고 "~라는 보도가 나와", "~ 의혹이 제기돼"처럼 써라.
+- 의혹·소문·루머·폭로·열애설·불륜설·사생활 이야기는 절대 이유로 쓰지 마라. 공식 발표·경기·방송·작품·공개 발언처럼 확인된 일만 써라.
+- 확인된 일이 없고 소문뿐이면 "온라인에서 여러 이야기가 오가며 이름이 자주 오르내려요"라고 써라.
 - 비하·조롱·욕설 없이 중립적으로. 정치인도 한쪽 편을 들지 마라.
 - 60자 이내. 문장 끝은 부드러운 존댓말(~했어요, ~화제예요, ~나왔어요)로 맺어라. 반말 금지.
 
@@ -112,6 +113,16 @@ JSON으로만 답하라: {{"인물이름": "왜 화제인지"}}
 
 {blocks}
 """
+
+
+RUMOR = re.compile(r"의혹|루머|소문|찌라시|폭로|불륜|외도|(?:열애|결별|이혼|사망|해임|추진|퇴출|임신|교제|은퇴|불화|잠적|이상|탈퇴|사퇴)설|사생활")
+NEUTRAL_WHY = "온라인에서 여러 이야기가 오가며 이름이 자주 오르내려요."
+
+
+def safe_why(text: str) -> str:
+    """확인 안 된 소문성 이유는 공개 화면에 내보내지 않는다."""
+    text = (text or "").strip()
+    return NEUTRAL_WHY if not text or RUMOR.search(text) else text
 
 
 def describe(people_list: list[dict], titles: list[str], llm: LLM, news_fn=naver_news) -> None:
@@ -137,6 +148,8 @@ def describe(people_list: list[dict], titles: list[str], llm: LLM, news_fn=naver
         why = by_key.get(_squash(p["name"]))
         if why:
             p["why"] = why.strip()[:80]
+    for p in people_list:
+        p["why"] = safe_why(p.get("why"))
 
 
 def pick(titles: list[str], llm: LLM, fetch: Fetch = wiki_fetch, limit: int = 3) -> list[dict]:
@@ -163,7 +176,7 @@ def pick(titles: list[str], llm: LLM, fetch: Fetch = wiki_fetch, limit: int = 3)
         out.append({
             "name": s.get("title") or name,
             "who": re.sub(r"\s+", " ", s.get("description", "")).strip()[:40],
-            "why": (p.get("why") or "").strip()[:60],
+            "why": safe_why((p.get("why") or "").strip()[:60]),
             "mentions": n,
             "photo": commons_photo(s),
             "wiki": ((s.get("content_urls") or {}).get("mobile") or {}).get("page")
@@ -190,7 +203,7 @@ GROUND_PROMPT = """구글에서 '{name}'({who})의 최근 소식을 검색해서
 규칙:
 - 검색으로 확인한 최근(며칠 이내) 사실 중, 위 제목들과 맞는 가장 화제인 일 하나를 구체적으로.
   (예: "맥도날드에서 랩으로 주문하는 영상이 퍼지며 화제예요")
-- 확인되지 않은 의혹·소문은 단정하지 말고 "~라는 보도가 나와"처럼. 비하·조롱 없이 중립적으로, 정치인도 편들지 말 것.
+- 의혹·소문·루머·폭로·열애설·불륜설·사생활 이야기는 이유로 쓰지 말 것. 검색으로 확인된 공식적인 일만. 비하·조롱 없이 중립적으로, 정치인도 편들지 말 것.
 - 인터넷을 잘 안 보는 50~60대도 알아듣게 쉬운 말로, 60자 이내 한 문장, 부드러운 존댓말(~했어요, ~화제예요).
 - 문장 하나만 답해. 따옴표·출처 표시·설명 붙이지 마."""
 
@@ -253,7 +266,7 @@ def ground(people_list: list[dict], titles: list[str], grounded: Grounded, cache
                 if "429" in str(e):
                     break   # 사용 한도 초과면 나머지 사람도 실패하니 이번 회차는 그만
                 continue
-            why = _one_sentence(r["text"])
+            why = safe_why(_one_sentence(r["text"]))
             if not (why and r["suggest"]):   # 검색 추천을 못 받으면 약관상 쓸 수 없음
                 print(f"[경고] {p['name']} 검색 결과 없음 (검색어 {len(r['queries'])}개)")
                 continue
