@@ -334,3 +334,25 @@ def test_real_dictionary_is_clean():
     for e in entries:
         assert not cluster._ROUGH.search(e["word"] + e["meaning"] + e.get("example", "")), e["word"]
     assert len({e["word"] for e in entries}) == len(entries)
+
+
+def test_people_pick_filters_and_ranks():
+    from issuebundle import people
+    titles = ["손흥민 해트트릭", "손흥민 또 골", "아이유 신곡 공개", "김철수 씨 사건", "지어낸사람 등장"]
+    fake = json.dumps({"people": [
+        {"name": "아이유", "why": "신곡을 공개해서"},
+        {"name": "손흥민", "why": "해트트릭을 기록해서"},
+        {"name": "김철수", "why": "일반인"},
+        {"name": "없는이름", "why": "제목에 없음"}]})
+    wiki = {
+        "손흥민": {"title": "손흥민", "description": "대한민국의 축구 선수", "type": "standard",
+                 "thumbnail": {"source": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/x.jpg"}},
+        "아이유": {"title": "아이유", "description": "대한민국의 가수", "type": "standard",
+                 "thumbnail": {"source": "https://upload.wikimedia.org/wikipedia/ko/thumb/nonfree.jpg"}},
+        "김철수": {"title": "김철수", "type": "disambiguation", "description": "동명이인"},
+    }
+    got = people.pick(titles, lambda _: fake, fetch=lambda n: wiki.get(n))
+    assert [p["name"] for p in got] == ["손흥민", "아이유"]           # 언급 수 순, 일반인·지어낸 이름 제외
+    assert got[0]["photo"].startswith("https://upload.wikimedia.org/wikipedia/commons/")
+    assert got[1]["photo"] is None                                   # 위키백과 자체 사진(비자유 가능)은 안 씀
+    assert got[0]["who"] == "대한민국의 축구 선수" and got[0]["mentions"] == 2

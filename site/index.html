@@ -96,6 +96,17 @@
   .intro dt { color: var(--muted); font-size: .9em; }
   .intro dd { margin: 0; }
   .intro .note { color: var(--muted); font-size: .78em; margin-top: 6px; }
+  .people { list-style: none; margin: 6px 0 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+  .people li { display: grid; grid-template-columns: 22px 64px 1fr; gap: 12px; align-items: center; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+  .people li:last-child { border-bottom: 0; }
+  .people .n { font-weight: 800; color: var(--muted); }
+  .people .ph { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; object-position: top; background: var(--bg); display: flex;
+                align-items: center; justify-content: center; font-size: 1.5em; font-weight: 800; color: var(--muted); overflow: hidden; }
+  .people .nm { font-weight: 800; font-size: 1.05em; }
+  .people .who { all: unset; color: var(--muted); font-size: .85em; margin-left: 4px; }
+  .people .why { margin: 2px 0 0; font-size: .92em; }
+  .people .credit { font-size: .72em; color: var(--muted); margin-top: 2px; }
+  .people .credit a { color: var(--muted); }
   .words { background: var(--card); border: 1px solid var(--line); border-radius: 14px; margin: 6px 0 0; padding: 4px 14px; }
   .words div { padding: 10px 0; border-bottom: 1px dashed var(--line); }
   .words div:last-child { border-bottom: 0; }
@@ -137,6 +148,11 @@
   <h2 class="section"><span class="fire" aria-hidden="true">🔥</span>지금 화제 중 <small class="motto">(요즘 세상, 이것만 알면 돼요)</small></h2>
   <p class="section-note">온라인에서 화제가 되고 있는 내용이에요. 누르면 커뮤니티별 분위기와 원래 글을 볼 수 있어요.</p>
   <section id="hot" aria-live="polite"></section>
+
+  <section id="people-sec" hidden>
+    <h2 class="section">👤 지금 화제의 인물 TOP 3</h2>
+    <ol class="people" id="people"></ol>
+  </section>
 
   <h2 class="section band">각종 커뮤니티 화제 글 TOP 10 <small class="live">(실시간)</small></h2>
   <nav class="tabs" id="tabs" role="tablist" aria-label="출처"></nav>
@@ -321,6 +337,22 @@ function renderTop() {
   }));
 }
 
+function renderPeople() {
+  const ps = data.people || [];
+  document.getElementById("people-sec").hidden = !ps.length;
+  document.getElementById("people").innerHTML = ps.map((p, i) => {
+    const photo = p.photo
+      ? `<img class="ph" src="${esc(safeUrl(p.photo))}" alt="${esc(p.name)} 사진" loading="lazy" referrerpolicy="no-referrer">`
+      : `<span class="ph" aria-hidden="true">${esc((p.name.replace(/\[[^\]]*\]/g, "").match(/[가-힣A-Za-z0-9]/) || ["?"])[0])}</span>`;
+    const credit = p.photo ? "사진: 위키미디어 공용 · " : "";
+    return `<li><span class="n">${i + 1}</span>${photo}<div>
+      <div><span class="nm">${esc(p.name)}</span><span class="who">${esc(p.who)}</span></div>
+      ${p.why ? `<p class="why">${esc(p.why)}</p>` : ""}
+      <div class="credit">${credit}<a href="${esc(safeUrl(p.wiki))}" target="_blank" rel="noopener noreferrer">위키백과에서 더 보기</a></div>
+    </div></li>`;
+  }).join("");
+}
+
 function renderWords() {
   const words = data.words || [];
   document.getElementById("words-sec").hidden = !words.length;
@@ -407,6 +439,7 @@ function render() {
   document.getElementById("more-title").hidden = !rest.length;
   moreEl.innerHTML = rest.slice(0, 10).map(issueCard).join("");
   wire(moreEl);
+  renderPeople();
   renderTop();
   renderWords();
 }

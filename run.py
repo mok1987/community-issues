@@ -18,7 +18,7 @@ import json
 import os
 from pathlib import Path
 
-from issuebundle import cluster, collect, store, words as wordbook, youtube
+from issuebundle import cluster, collect, people, store, words as wordbook, youtube
 from issuebundle.sources import SOURCES, enabled_sources
 
 ROOT = Path(__file__).parent
@@ -116,6 +116,9 @@ def main() -> None:
 
     # "이게 무슨 말이에요?" — 지금 화제인 글 제목에 나온 요즘 말 풀이
     titles = [p.title for p in fresh if p.rank < TOP_N] + [p["title"] for it in issues if it["hot"] for p in it["posts"]]
+    # 온라인에서 화제인 인물 TOP 3 (최근 24시간 제목 전체에서)
+    hot_people = people.pick([r["title"] for r in window], llm) if llm else []
+
     dictionary = wordbook.load(WORDS_PATH)
     words = wordbook.find(titles, dictionary)
     print(f"[요즘 말] 사전에서 {len(words)}개 찾음")
@@ -133,6 +136,7 @@ def main() -> None:
         "issues": issues[:30],
         "tops": build_tops(fresh, issues, top_meta, status),
         "words": words,
+        "people": hot_people,
     }
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")

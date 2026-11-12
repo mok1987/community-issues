@@ -78,6 +78,13 @@ if __name__ == "__main__":
     out = {"updated_at": now, "method": "demo", "post_count": len(rows),
            "sources": [{"key": "demo", "name": "예시 데이터", "status": "실제 수집 전"}],
            "issues": issues, "tops": build_tops(fresh, issues, top_meta),
+           "people": [
+               {"name": "[예시] 가수 A", "who": "대한민국의 가수", "why": "새 노래 예고 영상을 공개해서", "mentions": 3,
+                "photo": None, "wiki": "https://ko.wikipedia.org/"},
+               {"name": "[예시] 선수 B", "who": "대한민국의 축구 선수", "why": "경기에서 결승골을 넣어서", "mentions": 2,
+                "photo": None, "wiki": "https://ko.wikipedia.org/"},
+               {"name": "[예시] 대표 C", "who": "게임 회사 대표", "why": "신작 출시일을 발표해서", "mentions": 2,
+                "photo": None, "wiki": "https://ko.wikipedia.org/"}],
            "words": [{"word": "실화냐", "meaning": "'정말이야?' 하고 놀랄 때 쓰는 말", "example": "이 가격 실화냐?"},
                      {"word": "B겜", "meaning": "B게임. '겜'은 '게임'을 줄인 말", "example": "주말에 겜 한 판 하자"}]}
     path = Path(__file__).parent / "site" / "issues.json"
