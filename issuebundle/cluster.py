@@ -304,11 +304,13 @@ def make_issues(posts: list[dict], llm: LLM | None, top_urls: set[str] | None = 
                 ) -> tuple[list[dict], dict[str, dict], str]:
     """(이슈 목록, TOP5 글 정보, 사용한 방법)"""
     if llm is not None:
-        try:
-            issues, top_meta = cluster_with_llm(posts, llm, top_urls)
-            return issues, top_meta, "ai"
-        except Exception as e:  # noqa: BLE001 - 실패해도 페이지는 갱신되게
-            print(f"[경고] AI 묶기 실패, 단순 묶기로 대체: {e}")
+        for attempt in (1, 2):  # AI가 가끔 깨진 JSON을 주므로 한 번 더 시도
+            try:
+                issues, top_meta = cluster_with_llm(posts, llm, top_urls)
+                return issues, top_meta, "ai"
+            except Exception as e:  # noqa: BLE001 - 실패해도 페이지는 갱신되게
+                print(f"[경고] AI 묶기 실패({attempt}차): {e}")
+        print("[경고] 단순 묶기로 대체")
     return cluster_simple(posts), {}, "simple"
 
 

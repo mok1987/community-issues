@@ -280,3 +280,14 @@ def test_explain_words_keeps_only_words_in_titles():
 def test_tops_carry_list_url_for_direct_links():
     tops = build_tops([], [], {}, {"fmkorea": "robots.txt가 막고 있어 건너뜀"})
     assert tops[0]["list_url"] == "https://www.fmkorea.com/best" and tops[0]["state"] == "blocked"
+
+
+def test_make_issues_retries_once_on_broken_json():
+    good = json.dumps({"issues": [{"headline": "손흥민", "summary": "", "why": "", "category": "스포츠",
+                                   "post_ids": ["p1", "p2"], "framing": {}}]})
+    calls = []
+    def flaky(prompt):
+        calls.append(1)
+        return "{망가진" if len(calls) == 1 else good
+    issues, _, method = cluster.make_issues(_rows(), flaky)
+    assert method == "ai" and issues and len(calls) == 2
