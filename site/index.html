@@ -459,7 +459,7 @@ sizeBtn.addEventListener("click", () => setBig(!document.body.classList.contains
 fetch("issues.json", { cache: "no-store" }).then(r => r.json()).then(d => {
   data = d;
   data.tops = sortTops(d.tops || []);
-  document.getElementById("updated").textContent = `${ago(d.updated_at)} 업데이트`;
+  document.getElementById("updated").textContent = `30분 단위로 업데이트돼요 · 마지막 ${ago(d.updated_at)}`;
   const label = { ok: "수집 중", blocked: "수집 불가", error: "일시 오류" };
   document.getElementById("sources").textContent =
     "출처 현황: " + d.sources.map(s => `${s.name} ${label[s.state] || s.status}`).join(" · ");
