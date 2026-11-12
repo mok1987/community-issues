@@ -356,3 +356,24 @@ def test_people_pick_filters_and_ranks():
     assert got[0]["photo"].startswith("https://upload.wikimedia.org/wikipedia/commons/")
     assert got[1]["photo"] is None                                   # 위키백과 자체 사진(비자유 가능)은 안 씀
     assert got[0]["who"] == "대한민국의 축구 선수" and got[0]["mentions"] == 2
+
+
+def test_people_mentions_ignore_spaces_and_describe_uses_news():
+    from issuebundle import people
+    titles = ["젠슨황 추가 의혹", "젠슨 황 스캔들", "넉살: 존박은 랩을 하면 안된다", "존박 생라면"]
+    assert people.mentions("젠슨 황", titles) == 2 and people.mentions("존 박", titles) == 2
+    ps = [{"name": "존 박", "who": "가수", "why": "생라면"}]
+    seen = {}
+    def llm(prompt):
+        seen["prompt"] = prompt
+        return json.dumps({"존박": "맥도날드에서 랩으로 주문하는 영상이 퍼지며 화제"})
+    people.describe(ps, titles, llm, news_fn=lambda n: ["존박, 맥도날드 랩 주문 영상 화제 — 예능 출연 중"])
+    assert ps[0]["why"].startswith("맥도날드") and ps[0]["news_used"] is True
+    assert "넉살: 존박은 랩을 하면 안된다" in seen["prompt"] and "맥도날드 랩 주문" in seen["prompt"]
+
+
+def test_naver_news_without_keys_returns_empty(monkeypatch):
+    from issuebundle import people
+    monkeypatch.delenv("NAVER_CLIENT_ID", raising=False)
+    monkeypatch.delenv("NAVER_CLIENT_SECRET", raising=False)
+    assert people.naver_news("아무개") == []

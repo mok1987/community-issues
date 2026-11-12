@@ -117,7 +117,11 @@ def main() -> None:
     # "이게 무슨 말이에요?" — 지금 화제인 글 제목에 나온 요즘 말 풀이
     titles = [p.title for p in fresh if p.rank < TOP_N] + [p["title"] for it in issues if it["hot"] for p in it["posts"]]
     # 온라인에서 화제인 인물 TOP 3 (최근 24시간 제목 전체에서)
-    hot_people = people.pick([r["title"] for r in window], llm) if llm else []
+    window_titles = [r["title"] for r in window]
+    hot_people = people.pick(window_titles, llm) if llm else []
+    if hot_people:
+        people.describe(hot_people, window_titles, llm)  # 관련 제목 전부 + 네이버 최신 뉴스로 '왜 화제' 구체화
+        print(f"[인물] 뉴스 참고: {sum(p.get('news_used', False) for p in hot_people)}/{len(hot_people)}명")
 
     dictionary = wordbook.load(WORDS_PATH)
     words = wordbook.find(titles, dictionary)

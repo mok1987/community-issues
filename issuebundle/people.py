@@ -9,6 +9,8 @@
 
 from __future__ import annotations
 
+import html
+import os
 import re
 from typing import Callable
 from urllib.parse import quote
@@ -56,8 +58,85 @@ def commons_photo(summary: dict) -> str | None:
     return src if "/wikipedia/commons/" in src else None
 
 
+def _squash(text: str) -> str:
+    return re.sub(r"\s+", "", text or "")
+
+
 def mentions(name: str, titles: list[str]) -> int:
-    return sum(1 for t in titles if name in t)
+    """'젠슨 황'과 '젠슨황'처럼 띄어쓰기가 달라도 같은 사람으로 센다."""
+    key = _squash(name)
+    return sum(1 for t in titles if key and key in _squash(t))
+
+
+def titles_about(name: str, titles: list[str], limit: int = 25) -> list[str]:
+    key = _squash(name)
+    return [t for t in titles if key and key in _squash(t)][:limit]
+
+
+# ---------- 인물 최신 소식: 네이버 뉴스 검색 공식 API (키가 있을 때만) ----------
+NAVER_NEWS = "https://openapi.naver.com/v1/search/news.json"
+
+
+def _clean(text: str) -> str:
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", text or ""))).strip()
+
+
+def naver_news(name: str, client_id: str | None = None, secret: str | None = None, n: int = 10) -> list[str]:
+    """'제목 — 요약' 문자열 목록 (최신순). 키가 없거나 실패하면 빈 목록."""
+    client_id = client_id or (os.environ.get("NAVER_CLIENT_ID") or "").strip()
+    secret = secret or (os.environ.get("NAVER_CLIENT_SECRET") or "").strip()
+    if not (client_id and secret):
+        return []
+    try:
+        resp = requests.get(NAVER_NEWS, params={"query": name, "display": n, "sort": "date"}, timeout=15,
+                            headers={"X-Naver-Client-Id": client_id, "X-Naver-Client-Secret": secret})
+        items = resp.json().get("items", []) if resp.status_code == 200 else []
+    except (requests.RequestException, ValueError):
+        return []
+    return [f"{_clean(i.get('title'))} — {_clean(i.get('description'))[:120]}" for i in items]
+
+
+WHY_PROMPT = """너는 인터넷을 안 보는 50~60대에게 '이 사람이 왜 요즘 화제인지' 한두 문장으로 알려주는 기자다.
+
+인물마다 [커뮤니티 글 제목]과 [최신 뉴스]가 주어진다. 이를 보고 '지금 가장 많이 이야기되는 구체적인 일'을 써라.
+
+규칙:
+- 막연하게 쓰지 말고 무슨 일인지 구체적으로 (예: "맥도날드에서 랩으로 주문하는 영상이 퍼지며 화제").
+- 여러 이야기가 있으면 가장 많이 언급되고 최근인 것 하나를 고르고, 필요하면 두 번째를 짧게 덧붙여라.
+- 제목과 뉴스에 있는 사실만 써라. 지어내지 마라.
+- 확인되지 않은 의혹·소문은 단정하지 말고 "~라는 보도가 나와", "~ 의혹이 제기돼"처럼 써라.
+- 비하·조롱·욕설 없이 중립적으로. 정치인도 한쪽 편을 들지 마라.
+- 60자 이내.
+
+JSON으로만 답하라: {{"인물이름": "왜 화제인지"}}
+
+{blocks}
+"""
+
+
+def describe(people_list: list[dict], titles: list[str], llm: LLM, news_fn=naver_news) -> None:
+    """인물별 관련 제목 + 최신 뉴스로 '왜 화제' 문장을 다시 쓴다 (실패하면 기존 문장 유지)."""
+    if not people_list:
+        return
+    blocks = []
+    for p in people_list:
+        about = titles_about(p["name"], titles)
+        news = news_fn(p["name"])
+        p["news_used"] = bool(news)
+        blocks.append(f"### {p['name']} ({p['who']})\n[커뮤니티 글 제목]\n" + "\n".join(f"- {t}" for t in about)
+                      + "\n[최신 뉴스]\n" + ("\n".join(f"- {n}" for n in news) if news else "- (없음)"))
+    try:
+        raw = parse_json(llm(WHY_PROMPT.format(blocks="\n\n".join(blocks))))
+    except Exception as e:  # noqa: BLE001
+        print(f"[경고] 인물 '왜 화제' 다시 쓰기 실패: {e}")
+        return
+    if not isinstance(raw, dict):
+        return
+    by_key = {_squash(k): v for k, v in raw.items() if isinstance(v, str) and v.strip()}
+    for p in people_list:
+        why = by_key.get(_squash(p["name"]))
+        if why:
+            p["why"] = why.strip()[:80]
 
 
 def pick(titles: list[str], llm: LLM, fetch: Fetch = wiki_fetch, limit: int = 3) -> list[dict]:
