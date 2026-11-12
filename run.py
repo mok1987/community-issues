@@ -123,10 +123,12 @@ def main() -> None:
     if hot_people:
         people.describe(hot_people, window_titles, llm)  # 1차: 관련 제목(+네이버 뉴스 키가 있으면 뉴스)으로
         # 2차: Gemini 구글 검색 연동으로 최신 소식 확인 (실패하면 1차 문장 유지)
+        # 구글 검색 연동은 결제 등록된 프로젝트 키가 필요할 수 있어 따로 둘 수 있게 함 (없으면 기본 키)
+        search_key = env_key("GEMINI_SEARCH_KEY") or gemini_key
         try:
             cache = json.loads(PEOPLE_CACHE.read_text(encoding="utf-8")) if PEOPLE_CACHE.exists() else {}
             n = people.ground(hot_people, window_titles,
-                              people.gemini_grounded(gemini_key, cluster.resolve_model(gemini_key)),
+                              people.gemini_grounded(search_key, cluster.resolve_model(search_key)),
                               cache, store.now_iso())
             PEOPLE_CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
             print(f"[인물] 구글 검색 반영 {sum(p.get('grounded', False) for p in hot_people)}/{len(hot_people)}명 (새 검색 {n}회)")

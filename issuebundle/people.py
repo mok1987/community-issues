@@ -204,10 +204,10 @@ def gemini_grounded(api_key: str, model: str) -> Grounded:
         body = {"contents": [{"parts": [{"text": prompt}]}],
                 "tools": [{"google_search": {}}],
                 "generationConfig": {"temperature": 0.2}}
-        for attempt in range(3):
+        for attempt in range(2):
             resp = requests.post(url, json=body, timeout=120, headers={"x-goog-api-key": api_key})
-            if resp.status_code in (429, 500, 503) and attempt < 2:
-                time.sleep(10 * (attempt + 1))
+            if resp.status_code in (429, 500, 503) and attempt < 1:
+                time.sleep(15)
                 continue
             if resp.status_code != 200:
                 raise RuntimeError(f"HTTP {resp.status_code}: {resp.text[:200]}")
@@ -249,7 +249,9 @@ def ground(people_list: list[dict], titles: list[str], grounded: Grounded, cache
                                                   titles="\n".join(f"- {t}" for t in about)))
                 searched += 1
             except Exception as e:  # noqa: BLE001
-                print(f"[경고] {p['name']} 구글 검색 연동 실패: {e}")
+                print(f"[경고] {p['name']} 구글 검색 연동 실패: {str(e)[:120]}")
+                if "429" in str(e):
+                    break   # 사용 한도 초과면 나머지 사람도 실패하니 이번 회차는 그만
                 continue
             why = _one_sentence(r["text"])
             if not (why and r["suggest"]):   # 검색 추천을 못 받으면 약관상 쓸 수 없음
