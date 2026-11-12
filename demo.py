@@ -77,7 +77,9 @@ if __name__ == "__main__":
     names = {s.key: s.name for s in SOURCES}
     out = {"updated_at": now, "method": "demo", "post_count": len(rows),
            "sources": [{"key": "demo", "name": "예시 데이터", "status": "실제 수집 전"}],
-           "issues": issues, "tops": build_tops(fresh, issues, top_meta)}
+           "issues": issues, "tops": build_tops(fresh, issues, top_meta),
+           "words": [{"word": "실화냐", "meaning": "'정말이야?' 하고 놀랄 때 쓰는 말", "example": "이 가격 실화냐?"},
+                     {"word": "B겜", "meaning": "B게임. '겜'은 '게임'을 줄인 말", "example": "주말에 겜 한 판 하자"}]}
     path = Path(__file__).parent / "site" / "issues.json"
     path.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"예시 이슈 {len(issues)}개 (화제 중 {sum(i['hot'] for i in issues)}개) → {path}")

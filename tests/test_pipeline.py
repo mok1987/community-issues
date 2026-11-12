@@ -261,3 +261,22 @@ def test_daum_titles_drop_lede_and_press():
         "한-우크라 첫 외교장관 회담"]
 
 
+
+
+def test_explain_words_keeps_only_words_in_titles():
+    titles = ["2호선 멈춤 실화냐", "B게임 출시일 떴다 ㄹㅇ 갓겜 예약"]
+    fake = json.dumps({"words": [
+        {"word": "실화냐", "meaning": "정말이냐는 놀람의 표현", "example": "이 가격 실화냐?"},
+        {"word": "갓겜", "meaning": "아주 잘 만든 게임", "example": "이건 갓겜이야"},
+        {"word": "없는말", "meaning": "제목에 없음"},
+        {"word": "갓겜", "meaning": "중복"},
+        {"word": "", "meaning": "빈 단어"}]})
+    words = cluster.explain_words(titles, lambda _: fake)
+    assert [w["word"] for w in words] == ["실화냐", "갓겜"]
+    assert cluster.explain_words(titles, lambda _: "망가진 JSON") == []
+    assert cluster.explain_words([], lambda _: fake) == []
+
+
+def test_tops_carry_list_url_for_direct_links():
+    tops = build_tops([], [], {}, {"fmkorea": "robots.txt가 막고 있어 건너뜀"})
+    assert tops[0]["list_url"] == "https://www.fmkorea.com/best" and tops[0]["state"] == "blocked"

@@ -69,6 +69,25 @@ TOP_PROMPT = """너는 인터넷 커뮤니티를 전혀 안 보는 50~60대 독�
 {lines}
 """
 
+WORDS_PROMPT = """너는 인터넷 커뮤니티를 전혀 안 보는 50~60대에게 '요즘 말'을 설명해 주는 친절한 선생님이다.
+
+아래는 지금 인터넷에서 화제인 글 제목들이다. 이 제목들에 실제로 나온 신조어·줄임말·인터넷 밈·커뮤니티 은어 중에서
+50~60대가 모를 만한 것을 최대 10개 골라 쉽게 풀어줘라.
+
+규칙:
+- word: 제목에 적힌 그대로의 표기 (제목 안에 정확히 있어야 함)
+- meaning: 뜻을 쉬운 말로 한 문장 (40자 이내)
+- example: 이렇게 쓴다는 짧은 예문 (30자 이내, 제목을 그대로 옮기지 말 것)
+- 욕설·비속어, 성적인 표현, 특정 지역·성별·집단을 비하하는 말, 혐오 표현은 절대 고르지 마라.
+- 일반적인 단어, 고유명사(사람·회사·작품 이름), 영어 약자(AI, CEO 등)는 고르지 마라.
+- 확실하지 않은 뜻은 쓰지 마라. 모르면 고르지 마라.
+
+JSON으로만 답하라: {{"words": [{{"word": "...", "meaning": "...", "example": "..."}}]}}
+
+제목:
+{lines}
+"""
+
 LLM = Callable[[str], str]
 
 
@@ -291,3 +310,30 @@ def make_issues(posts: list[dict], llm: LLM | None, top_urls: set[str] | None = 
         except Exception as e:  # noqa: BLE001 - 실패해도 페이지는 갱신되게
             print(f"[경고] AI 묶기 실패, 단순 묶기로 대체: {e}")
     return cluster_simple(posts), {}, "simple"
+
+
+def explain_words(titles: list[str], llm: LLM, limit: int = 10) -> list[dict]:
+    """제목들에 나온 요즘 말 풀이. 제목에 실제로 없는 단어는 버린다. 실패하면 빈 목록."""
+    titles = list(dict.fromkeys(t for t in titles if t))[:150]
+    if not titles:
+        return []
+    try:
+        raw = parse_json(llm(WORDS_PROMPT.format(lines="\n".join(f"- {t}" for t in titles))))
+    except Exception as e:  # noqa: BLE001
+        print(f"[경고] 요즘 말 풀이 실패: {e}")
+        return []
+    joined = "\n".join(titles)
+    out, seen = [], set()
+    for w in (raw.get("words") or []) if isinstance(raw, dict) else []:
+        if not isinstance(w, dict):
+            continue
+        word = (w.get("word") or "").strip()
+        meaning = (w.get("meaning") or "").strip()
+        if not word or not meaning or word in seen or len(word) > 15 or word not in joined:
+            continue
+        seen.add(word)
+        out.append({"word": word, "meaning": meaning[:80], "example": (w.get("example") or "").strip()[:60]})
+        if len(out) >= limit:
+            break
+    print(f"[요즘 말] {len(out)}개 풀이")
+    return out

@@ -58,6 +58,7 @@ def build_tops(fresh: list[collect.Post], issues: list[dict], top_meta: dict[str
     status 를 주면 수집 못 한 출처도 빈 목록 + 상태로 넣는다 (화면에 '수집 불가' 표시용)."""
     issue_of = {p["url"]: it for it in issues for p in it["posts"]}
     names = {s.key: s.name for s in SOURCES}
+    urls = {s.key: s.list_url for s in SOURCES}  # 수집 불가 출처는 이 주소로 '직접 보러 가기'
     tops = []
     keys = list(dict.fromkeys([*(status or {}), *(p.source for p in fresh)]))
     for key in keys:
@@ -74,6 +75,7 @@ def build_tops(fresh: list[collect.Post], issues: list[dict], top_meta: dict[str
             })
         msg = (status or {}).get(key, f"{len(items)}개")
         tops.append({"key": key, "name": names.get(key, key), "items": items,
+                     "list_url": urls.get(key, ""),
                      "state": collect.status_kind(msg), "status": msg})
     return tops
 
@@ -110,6 +112,10 @@ def main() -> None:
     print(f"[묶기] 최근 글 {len(window)}개 → 이슈 {len(issues)}개, "
           f"화제 중 {sum(i['hot'] for i in issues)}개 ({method})")
 
+    # "이게 무슨 말이에요?" — 지금 화제인 글 제목에 나온 요즘 말 풀이
+    titles = [p.title for p in fresh if p.rank < TOP_N] + [p["title"] for it in issues if it["hot"] for p in it["posts"]]
+    words = cluster.explain_words(titles, llm) if llm else []
+
     names = {s.key: s.name for s in SOURCES}
     payload = {
         "updated_at": store.now_iso(),
@@ -119,6 +125,7 @@ def main() -> None:
                     for k, v in status.items()],
         "issues": issues[:30],
         "tops": build_tops(fresh, issues, top_meta, status),
+        "words": words,
     }
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
