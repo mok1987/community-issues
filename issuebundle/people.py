@@ -57,6 +57,26 @@ def _wiki_summary(title: str) -> dict | None:
     return resp.json() if resp.status_code == 200 else None
 
 
+def wiki_search(q: str) -> list[dict]:
+    """위키백과 제목 검색 → [{title, description}]"""
+    try:
+        resp = requests.get(WIKI_SEARCH, params={"q": q, "limit": 10}, timeout=15,
+                            headers={"User-Agent": WIKI_UA, "Accept": "application/json"})
+        return resp.json().get("pages", []) if resp.status_code == 200 else []
+    except (requests.RequestException, ValueError):
+        return []
+
+
+def by_job(name: str, job: str, search=wiki_search) -> str | None:
+    """동명이인 중 '이름 (…)' 문서에서 설명에 직업이 들어간 것을 고른다 (한국 사람 우선)."""
+    want, j = _squash(name), _squash(job)
+    hits = [pg for pg in search(name)
+            if _squash(re.sub(r"\s*\(.*?\)$", "", pg.get("title") or "")) == want
+            and j and j in _squash(pg.get("description") or "")]
+    hits.sort(key=lambda pg: "대한민국" not in (pg.get("description") or ""))
+    return hits[0]["title"] if hits else None
+
+
 def wiki_fetch(title: str) -> dict | None:
     """위키백과 요약. 정확한 제목이 없으면(띄어쓰기 차이 등) 제목 검색으로 한 번 더 찾는다.
     검색 결과는 띄어쓰기를 뺀 이름이 같을 때만 인정 (엉뚱한 사람 방지)."""
@@ -201,6 +221,9 @@ def pick(titles: list[str], llm: LLM, fetch: Fetch = wiki_fetch, limit: int = 3)
         if s and s.get("type") == "disambiguation" and job:
             # 동명이인 안내 문서면 "이름 (직업)" 문서로 한 번 더 찾아본다 (예: 조이 (가수))
             s = fetch(f"{name} ({job})") or fetch(f"{name} (대한민국의 {job})") or s
+            if s.get("type") == "disambiguation" and fetch is wiki_fetch:
+                t = by_job(name, job)
+                s = (fetch(t) if t else None) or s
         if not s or s.get("type") == "disambiguation" or not s.get("description"):
             # 위키백과 문서가 없거나 동명이인 안내 문서면 버림 (공인 확인 실패)
             print(f"[인물] 제외: {name} ({'동명이인 문서' if s and s.get('type') == 'disambiguation' else '위키백과 확인 안 됨'})")

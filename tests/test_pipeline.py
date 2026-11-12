@@ -426,3 +426,13 @@ def test_people_pick_resolves_disambiguation_with_job():
     llm = lambda prompt: '{"people": [{"name": "조이", "job": "가수", "why": "새 노래를 냈어요"}]}'
     out = people.pick(["조이 신곡 공개"], llm, fetch=pages.get)
     assert out and out[0]["name"] == "조이" and out[0]["who"] == "대한민국의 가수"
+
+
+def test_by_job_picks_korean_same_job_page():
+    from issuebundle import people
+    pages = [{"title": "김민재", "description": "동음이의"},
+             {"title": "김민재 (배우)", "description": "대한민국의 배우"},
+             {"title": "김민재 (1996년)", "description": "대한민국의 축구 선수"},
+             {"title": "김민재희", "description": "대한민국의 축구 선수"}]
+    assert people.by_job("김민재", "축구 선수", search=lambda q: pages) == "김민재 (1996년)"
+    assert people.by_job("김민재", "가수", search=lambda q: pages) is None
