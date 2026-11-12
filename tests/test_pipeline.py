@@ -417,3 +417,12 @@ def test_safe_why_blocks_rumors_but_not_ordinary_words():
     assert safe_why("사내 불륜 의혹으로 화제예요") == NEUTRAL_WHY
     assert safe_why("열애설이 돌아요") == NEUTRAL_WHY
     assert safe_why("연설이 화제예요") == "연설이 화제예요"
+
+
+def test_people_pick_resolves_disambiguation_with_job():
+    from issuebundle import people
+    pages = {"조이": {"type": "disambiguation", "title": "조이", "description": "동음이의"},
+             "조이 (가수)": {"type": "standard", "title": "조이 (가수)", "description": "대한민국의 가수"}}
+    llm = lambda prompt: '{"people": [{"name": "조이", "job": "가수", "why": "새 노래를 냈어요"}]}'
+    out = people.pick(["조이 신곡 공개"], llm, fetch=pages.get)
+    assert out and out[0]["name"] == "조이" and out[0]["who"] == "대한민국의 가수"

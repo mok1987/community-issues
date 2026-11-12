@@ -34,7 +34,9 @@ PROMPT = """너는 인터넷 커뮤니티를 안 보는 50~60대에게 '요즘 �
 - why: 왜 화제인지 한 문장 (35자 이내). 제목들에서 알 수 있는 사실만. 의혹·소문·루머·폭로·열애설·불륜설 같은 확인 안 된 이야기는 이유로 쓰지 말 것.
 - 비하·조롱 표현 없이 중립적으로. 정치인도 한쪽 편을 들지 말 것.
 
-JSON으로만 답하라: {{"people": [{{"name": "...", "why": "..."}}]}}
+- job: 직업 한 단어 (예: 가수, 배우, 방송인, 축구 선수, 정치인, 기업인, 유튜버). 같은 이름의 다른 사람과 구분하는 데 쓴다.
+
+JSON으로만 답하라: {{"people": [{{"name": "...", "job": "...", "why": "..."}}]}}
 
 제목:
 {lines}
@@ -195,12 +197,16 @@ def pick(titles: list[str], llm: LLM, fetch: Fetch = wiki_fetch, limit: int = 3)
             print(f"[인물] 제외: {name} (제목에 없음)")
             continue
         s = fetch(name)
+        job = (p.get("job") or "").strip()[:10]
+        if s and s.get("type") == "disambiguation" and job:
+            # 동명이인 안내 문서면 "이름 (직업)" 문서로 한 번 더 찾아본다 (예: 조이 (가수))
+            s = fetch(f"{name} ({job})") or fetch(f"{name} (대한민국의 {job})") or s
         if not s or s.get("type") == "disambiguation" or not s.get("description"):
             # 위키백과 문서가 없거나 동명이인 안내 문서면 버림 (공인 확인 실패)
             print(f"[인물] 제외: {name} ({'동명이인 문서' if s and s.get('type') == 'disambiguation' else '위키백과 확인 안 됨'})")
             continue
         out.append({
-            "name": s.get("title") or name,
+            "name": re.sub(r"\s*\(.*?\)$", "", s.get("title") or name) or name,
             "who": re.sub(r"\s+", " ", s.get("description", "")).strip()[:40],
             "why": safe_why((p.get("why") or "").strip()[:60]),
             "mentions": n,
