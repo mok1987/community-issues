@@ -377,3 +377,22 @@ def test_naver_news_without_keys_returns_empty(monkeypatch):
     monkeypatch.delenv("NAVER_CLIENT_ID", raising=False)
     monkeypatch.delenv("NAVER_CLIENT_SECRET", raising=False)
     assert people.naver_news("아무개") == []
+
+
+def test_people_ground_uses_cache_and_requires_suggestions():
+    from issuebundle import people
+    ps = [{"name": "존박", "who": "가수", "why": "옛"}, {"name": "손흥민", "who": "축구 선수", "why": "원래"}]
+    calls = []
+
+    def g(prompt):
+        calls.append(prompt)
+        if "손흥민" in prompt:
+            return {"text": "문장", "suggest": "", "queries": []}  # 검색 추천 없음 → 쓰지 않음
+        return {"text": '"맥도날드에서 랩으로 주문해 화제예요[1]"', "suggest": "<div>chip</div>", "queries": ["존박"]}
+
+    cache = {}
+    assert people.ground(ps, ["존박 맥도날드"], g, cache, "2026-11-12T11:00:00+09:00") == 2
+    assert ps[0]["why"] == "맥도날드에서 랩으로 주문해 화제예요" and ps[0]["suggest"]
+    assert ps[1]["why"] == "원래" and "suggest" not in ps[1]
+    people.ground(ps, [], g, cache, "2026-11-12T12:00:00+09:00")
+    assert len(calls) == 3  # 존박은 캐시 사용, 손흥민만 다시 시도

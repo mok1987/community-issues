@@ -172,3 +172,91 @@ def pick(titles: list[str], llm: LLM, fetch: Fetch = wiki_fetch, limit: int = 3)
     out.sort(key=lambda x: -x["mentions"])
     print(f"[인물] 화제 인물 {len(out[:limit])}명")
     return out[:limit]
+
+
+# ── 구글 검색 연동(Grounding)으로 '왜 화제' 쓰기 ─────────────────────────────
+# Gemini가 구글에서 최신 소식을 직접 찾아보고 문장을 쓴다.
+# 약관상 응답에 딸려 오는 '구글 검색 추천'(searchEntryPoint)을 화면에 그대로 보여줘야 한다.
+# 무료 사용량을 아끼려고 같은 인물은 CACHE_HOURS 동안 다시 검색하지 않는다.
+
+Grounded = Callable[[str], dict]
+CACHE_HOURS = 3
+
+GROUND_PROMPT = """구글에서 '{name}'({who})의 최근 소식을 검색해서, 이 사람이 지금 왜 온라인에서 화제인지 알려줘.
+
+참고: 지금 한국 온라인 커뮤니티에 올라온 관련 글 제목들
+{titles}
+
+규칙:
+- 검색으로 확인한 최근(며칠 이내) 사실 중, 위 제목들과 맞는 가장 화제인 일 하나를 구체적으로.
+  (예: "맥도날드에서 랩으로 주문하는 영상이 퍼지며 화제예요")
+- 확인되지 않은 의혹·소문은 단정하지 말고 "~라는 보도가 나와"처럼. 비하·조롱 없이 중립적으로, 정치인도 편들지 말 것.
+- 인터넷을 잘 안 보는 50~60대도 알아듣게 쉬운 말로, 60자 이내 한 문장, 부드러운 존댓말(~했어요, ~화제예요).
+- 문장 하나만 답해. 따옴표·출처 표시·설명 붙이지 마."""
+
+
+def gemini_grounded(api_key: str, model: str) -> Grounded:
+    from .cluster import BASE  # 순환 import 피하려고 여기서
+    import time
+    url = f"{BASE}/models/{model}:generateContent"
+
+    def call(prompt: str) -> dict:
+        body = {"contents": [{"parts": [{"text": prompt}]}],
+                "tools": [{"google_search": {}}],
+                "generationConfig": {"temperature": 0.2}}
+        for attempt in range(3):
+            resp = requests.post(url, json=body, timeout=120, headers={"x-goog-api-key": api_key})
+            if resp.status_code in (429, 500, 503) and attempt < 2:
+                time.sleep(10 * (attempt + 1))
+                continue
+            if resp.status_code != 200:
+                raise RuntimeError(f"HTTP {resp.status_code}: {resp.text[:200]}")
+            cand = resp.json()["candidates"][0]
+            text = "".join(p.get("text", "") for p in cand.get("content", {}).get("parts", []))
+            meta = cand.get("groundingMetadata") or {}
+            return {"text": text,
+                    "suggest": (meta.get("searchEntryPoint") or {}).get("renderedContent", ""),
+                    "queries": meta.get("webSearchQueries") or []}
+        raise RuntimeError("Gemini 검색 호출 재시도 초과")
+
+    return call
+
+
+def _one_sentence(text: str) -> str:
+    text = re.sub(r"\[\d+(?:,\s*\d+)*\]", "", text or "")       # [1] 같은 출처 번호 제거
+    line = next((l for l in text.strip().splitlines() if l.strip()), "")
+    return line.strip().strip('"“”\'‘’ ').strip()[:80]
+
+
+def _hours_since(iso: str, now: str) -> float:
+    from datetime import datetime
+    try:
+        return (datetime.fromisoformat(now) - datetime.fromisoformat(iso)).total_seconds() / 3600
+    except (TypeError, ValueError):
+        return 1e9
+
+
+def ground(people_list: list[dict], titles: list[str], grounded: Grounded, cache: dict, now: str) -> int:
+    """구글 검색으로 '왜 화제'를 덮어쓴다. 캐시(3시간)를 쓰고, 실패한 사람은 기존 문장 유지.
+    새로 검색한 횟수를 돌려준다. cache는 그 자리에서 갱신된다."""
+    searched = 0
+    for p in people_list:
+        c = cache.get(p["name"])
+        if not (c and _hours_since(c.get("at", ""), now) < CACHE_HOURS):
+            about = titles_about(p["name"], titles)[:15]
+            try:
+                r = grounded(GROUND_PROMPT.format(name=p["name"], who=p.get("who", ""),
+                                                  titles="\n".join(f"- {t}" for t in about)))
+                searched += 1
+            except Exception as e:  # noqa: BLE001
+                print(f"[경고] {p['name']} 구글 검색 연동 실패: {e}")
+                continue
+            why = _one_sentence(r["text"])
+            if not (why and r["suggest"]):   # 검색 추천을 못 받으면 약관상 쓸 수 없음
+                print(f"[경고] {p['name']} 검색 결과 없음 (검색어 {len(r['queries'])}개)")
+                continue
+            c = cache[p["name"]] = {"why": why, "suggest": r["suggest"], "at": now}
+        p["why"], p["suggest"], p["grounded"] = c["why"], c["suggest"], True
+    for name in [n for n, c in cache.items() if _hours_since(c.get("at", ""), now) > 24]:
+        del cache[name]
+    return searched

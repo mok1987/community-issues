@@ -24,6 +24,7 @@ from issuebundle.sources import SOURCES, enabled_sources
 ROOT = Path(__file__).parent
 POSTS_PATH = ROOT / "data" / "posts.json"
 WORDS_PATH = ROOT / "data" / "words.json"            # 사람이 검수한 요즘 말 사전 (화면에 나가는 것)
+PEOPLE_CACHE = ROOT / "data" / "people_cache.json"
 CANDIDATES_PATH = ROOT / "data" / "word_candidates.json"  # AI가 찾은 새 말 (검토 후보, 화면에 안 나감)
 OUT_PATH = ROOT / "site" / "issues.json"
 TOP_N = 10
@@ -120,8 +121,17 @@ def main() -> None:
     window_titles = [r["title"] for r in window]
     hot_people = people.pick(window_titles, llm) if llm else []
     if hot_people:
-        people.describe(hot_people, window_titles, llm)  # 관련 제목 전부 + 네이버 최신 뉴스로 '왜 화제' 구체화
-        print(f"[인물] 뉴스 참고: {sum(p.get('news_used', False) for p in hot_people)}/{len(hot_people)}명")
+        people.describe(hot_people, window_titles, llm)  # 1차: 관련 제목(+네이버 뉴스 키가 있으면 뉴스)으로
+        # 2차: Gemini 구글 검색 연동으로 최신 소식 확인 (실패하면 1차 문장 유지)
+        try:
+            cache = json.loads(PEOPLE_CACHE.read_text(encoding="utf-8")) if PEOPLE_CACHE.exists() else {}
+            n = people.ground(hot_people, window_titles,
+                              people.gemini_grounded(gemini_key, cluster.resolve_model(gemini_key)),
+                              cache, store.now_iso())
+            PEOPLE_CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
+            print(f"[인물] 구글 검색 반영 {sum(p.get('grounded', False) for p in hot_people)}/{len(hot_people)}명 (새 검색 {n}회)")
+        except Exception as e:  # noqa: BLE001
+            print(f"[경고] 구글 검색 연동 단계 실패: {e}")
 
     dictionary = wordbook.load(WORDS_PATH)
     words = wordbook.find(titles, dictionary)
