@@ -133,6 +133,7 @@
   .empty { text-align: center; color: var(--muted); padding: 32px 0; }
   footer { margin-top: 32px; font-size: .78em; color: var(--muted); line-height: 1.6; }
   footer a { color: var(--muted); }
+#updated{white-space:pre-line}
 </style>
 </head>
 <body>
@@ -459,7 +460,12 @@ sizeBtn.addEventListener("click", () => setBig(!document.body.classList.contains
 fetch("issues.json", { cache: "no-store" }).then(r => r.json()).then(d => {
   data = d;
   data.tops = sortTops(d.tops || []);
-  document.getElementById("updated").textContent = `30분 단위로 업데이트돼요 · 마지막 ${ago(d.updated_at)}`;
+  const upd = document.getElementById("updated");
+  const showNext = () => {
+    const left = Math.ceil((new Date(d.updated_at).getTime() + 30 * 60000 - Date.now()) / 60000);
+    upd.textContent = "30분 단위로 업데이트돼요\n" + (left > 0 ? `(${left}분 후 업데이트 예정)` : "(곧 업데이트 예정)");
+  };
+  showNext(); setInterval(showNext, 30000);
   const label = { ok: "수집 중", blocked: "수집 불가", error: "일시 오류" };
   document.getElementById("sources").textContent =
     "출처 현황: " + d.sources.map(s => `${s.name} ${label[s.state] || s.status}`).join(" · ");
