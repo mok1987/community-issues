@@ -18,11 +18,13 @@ import json
 import os
 from pathlib import Path
 
-from issuebundle import cluster, collect, store, youtube
+from issuebundle import cluster, collect, store, words as wordbook, youtube
 from issuebundle.sources import SOURCES, enabled_sources
 
 ROOT = Path(__file__).parent
 POSTS_PATH = ROOT / "data" / "posts.json"
+WORDS_PATH = ROOT / "data" / "words.json"            # 사람이 검수한 요즘 말 사전 (화면에 나가는 것)
+CANDIDATES_PATH = ROOT / "data" / "word_candidates.json"  # AI가 찾은 새 말 (검토 후보, 화면에 안 나감)
 OUT_PATH = ROOT / "site" / "issues.json"
 TOP_N = 10
 
@@ -114,7 +116,12 @@ def main() -> None:
 
     # "이게 무슨 말이에요?" — 지금 화제인 글 제목에 나온 요즘 말 풀이
     titles = [p.title for p in fresh if p.rank < TOP_N] + [p["title"] for it in issues if it["hot"] for p in it["posts"]]
-    words = cluster.explain_words(titles, llm) if llm else []
+    dictionary = wordbook.load(WORDS_PATH)
+    words = wordbook.find(titles, dictionary)
+    print(f"[요즘 말] 사전에서 {len(words)}개 찾음")
+    if llm:
+        added = wordbook.update_candidates(CANDIDATES_PATH, cluster.explain_words(titles, llm), dictionary, store.now_iso())
+        print(f"[요즘 말] 새 검토 후보 {added}개 (data/word_candidates.json)")
 
     names = {s.key: s.name for s in SOURCES}
     payload = {

@@ -311,3 +311,26 @@ def test_label_tops_accepts_list_or_wrapped_answers_and_batches():
     calls = []
     cluster.label_tops(many, lambda p: calls.append(1) or json.dumps({"p1": {"easy": "a"}}))
     assert len(calls) == 3
+
+
+def test_wordbook_find_and_candidates(tmp_path):
+    from issuebundle import words as wordbook
+    d = [{"word": "실화냐", "meaning": "놀람"}, {"word": "찐", "meaning": "진짜"}, {"word": "떡상", "meaning": "급등"}]
+    titles = ["이 가격 실화냐", "찐빵 맛집", "주가 떡상 ㄷㄷ 떡상", "찐 맛집 발견"]
+    found = wordbook.find(titles, d)
+    assert [w["word"] for w in found] == ["떡상", "실화냐", "찐"]  # 찐빵의 '찐'은 한 번만 안 셈
+    path = tmp_path / "cands.json"
+    assert wordbook.update_candidates(path, [{"word": "실화냐"}, {"word": "새말", "meaning": "AI 초안"}], d, "t1") == 1
+    assert wordbook.update_candidates(path, [{"word": "새말"}], d, "t2") == 0
+    cands = json.loads(path.read_text(encoding="utf-8"))
+    assert cands == [{"word": "새말", "ai_meaning": "AI 초안", "example": "", "seen": 2, "first_seen": "t1", "last_seen": "t2"}]
+
+
+def test_real_dictionary_is_clean():
+    from pathlib import Path
+    from issuebundle import words as wordbook
+    entries = wordbook.load(Path(__file__).resolve().parent.parent / "data" / "words.json")
+    assert len(entries) >= 50
+    for e in entries:
+        assert not cluster._ROUGH.search(e["word"] + e["meaning"] + e.get("example", "")), e["word"]
+    assert len({e["word"] for e in entries}) == len(entries)
