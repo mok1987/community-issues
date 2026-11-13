@@ -436,3 +436,18 @@ def test_by_job_picks_korean_same_job_page():
              {"title": "김민재희", "description": "대한민국의 축구 선수"}]
     assert people.by_job("김민재", "축구 선수", search=lambda q: pages) == "김민재 (1996년)"
     assert people.by_job("김민재", "가수", search=lambda q: pages) is None
+
+
+def test_soften_issues_rewrites_or_drops_private_rumors():
+    from issuebundle import cluster
+    base = lambda h: {"headline": h, "summary": "요약", "why": "이유",
+                      "communities": [{"key": "dcinside", "framing": "불륜 의혹에 놀람"}]}
+    ok = {"headline": "기준금리 동결", "summary": "", "why": "", "communities": []}
+    llm = lambda prompt: '{"headline": "젠슨 황 거취 관련 보도", "summary": "요약", "why": "이유", "framing:dcinside": "관련 보도에 놀람"}'
+    out = cluster.soften_issues([base("젠슨 황 사퇴 및 불륜 의혹"), ok], llm)
+    assert out[0]["headline"] == "젠슨 황 거취 관련 보도" and out[0]["unverified"]
+    assert out[0]["communities"][0]["framing"] == "관련 보도에 놀람" and out[1] is ok
+    bad = lambda prompt: '{"headline": "불륜 의혹"}'
+    assert cluster.soften_issues([base("불륜 의혹")], bad) == []
+    assert cluster.soften_issues([base("불륜 의혹")], None) == []
+    assert cluster.soften_issues([{"headline": "여당과 결별 선언", "communities": []}], None)  # 정치 '결별'은 그대로

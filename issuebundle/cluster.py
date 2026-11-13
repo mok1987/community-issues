@@ -43,6 +43,8 @@ PROMPT = """너는 인터넷 커뮤니티를 전혀 안 보는 50~60대 독자�
 - 확인되지 않은 주장은 "~라는 이야기가 퍼지고 있다"처럼 쓰고 unverified를 true로.
 - framing: 출처별로 그 출처 제목들의 분위기를 중립적으로 한 줄. 욕설·비하 표현은 옮기지 마라.
 - 정치·젠더 이슈도 한쪽 편을 들지 말고 "각 출처가 이렇게 다룬다"로만 써라.
+- 사생활 소문(불륜·외도·내연·열애·결별·이혼·혼외자·성추문 등)은 headline·summary·why·framing 어디에도
+  그 단어를 쓰지 마라. "○○ 관련 보도", "○○ 거취 관련 소식"처럼 담담하게 쓰고 unverified를 true로.
 
 category는 반드시 다음 중 하나: {categories}
 출처 키는 다음 중 하나: {keys}
@@ -325,6 +327,56 @@ def cluster_simple(posts: list[dict], threshold: float = 0.3) -> list[dict]:
     return _finish(issues)
 
 
+# 사생활 소문 단어 — 이슈 제목·설명·분위기에 나오면 담담하게 다시 쓰게 한다
+PRIVATE = re.compile(r"불륜|외도|내연|열애|결별설|이혼|혼외|성추문|성\s?스캔들|사생활|양다리|바람(?:을|피|난)|스폰서|불륜녀|애인")
+
+SOFTEN_PROMPT = """아래 JSON은 뉴스 요약 문장들이다. 사생활 소문(불륜·외도·내연·열애·결별·이혼·혼외자·성추문 등)을 가리키는
+단어를 쓰지 말고, 같은 뜻을 "○○ 관련 보도", "○○ 거취 관련 소식", "개인 문제 관련 보도"처럼 담담하게 다시 써라.
+사실을 더하거나 지어내지 말고, 길이와 형식(키 이름)은 그대로 유지해라. JSON으로만 답하라.
+
+{data}"""
+
+
+def _issue_texts(it: dict) -> dict:
+    d = {"headline": it.get("headline", ""), "summary": it.get("summary", ""), "why": it.get("why", "")}
+    for c in it.get("communities", []):
+        if c.get("framing"):
+            d[f"framing:{c['key']}"] = c["framing"]
+    return d
+
+
+def soften_issues(issues: list[dict], llm: LLM | None) -> list[dict]:
+    """사생활 소문 단어가 들어간 이슈 문장을 AI로 담담하게 다시 쓴다.
+    다시 써도 남으면 그 이슈는 '지금 화제 중'에서 뺀다 (원래 글 링크는 커뮤니티 TOP10에 그대로 남음)."""
+    out = []
+    for it in issues:
+        texts = _issue_texts(it)
+        if not any(PRIVATE.search(v or "") for v in texts.values()):
+            out.append(it)
+            continue
+        new = {}
+        if llm is not None:
+            try:
+                new = parse_json(llm(SOFTEN_PROMPT.format(data=json.dumps(texts, ensure_ascii=False))))
+            except Exception as e:  # noqa: BLE001
+                print(f"[경고] 소문 표현 다듬기 실패: {e}")
+        if isinstance(new, dict):
+            for k, v in new.items():
+                if k in texts and isinstance(v, str) and v.strip():
+                    texts[k] = v.strip()
+        if any(PRIVATE.search(v or "") for v in texts.values()):
+            print(f"[이슈] 사생활 소문이라 제외: {it.get('headline', '')[:30]}")
+            continue
+        it["headline"], it["summary"], it["why"] = texts["headline"], texts["summary"], texts["why"]
+        for c in it.get("communities", []):
+            if f"framing:{c['key']}" in texts:
+                c["framing"] = texts[f"framing:{c['key']}"]
+        it["unverified"] = True
+        print(f"[이슈] 소문 표현 다듬음: {it['headline'][:30]}")
+        out.append(it)
+    return out
+
+
 def make_issues(posts: list[dict], llm: LLM | None, top_urls: set[str] | None = None
                 ) -> tuple[list[dict], dict[str, dict], str]:
     """(이슈 목록, TOP5 글 정보, 사용한 방법)"""
@@ -332,11 +384,11 @@ def make_issues(posts: list[dict], llm: LLM | None, top_urls: set[str] | None = 
         for attempt in (1, 2):  # AI가 가끔 깨진 JSON을 주므로 한 번 더 시도
             try:
                 issues, top_meta = cluster_with_llm(posts, llm, top_urls)
-                return issues, top_meta, "ai"
+                return soften_issues(issues, llm), top_meta, "ai"
             except Exception as e:  # noqa: BLE001 - 실패해도 페이지는 갱신되게
                 print(f"[경고] AI 묶기 실패({attempt}차): {e}")
         print("[경고] 단순 묶기로 대체")
-    return cluster_simple(posts), {}, "simple"
+    return soften_issues(cluster_simple(posts), None), {}, "simple"
 
 
 # 욕설·비하어 (단, '2026년', '청소년'처럼 흔한 말에 섞이는 '년·놈' 같은 글자는 넣지 않음)
