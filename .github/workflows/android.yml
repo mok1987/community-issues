@@ -1,0 +1,71 @@
+name: 안드로이드 앱 만들기
+
+# 웹사이트(hotnow.kr)를 그대로 감싸는 안드로이드 앱(TWA)을 만든다. 직접 실행할 때만 돈다.
+# 필요한 비밀값: ANDROID_KEYSTORE_B64(업로드 키 파일을 base64로), ANDROID_KEYSTORE_PASS
+# 비밀값이 없으면 시험용 임시 키로 만든다 (플레이스토어에는 올릴 수 없음).
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Bubblewrap 설치
+        run: |
+          npm install -g @bubblewrap/cli@1
+          mkdir -p ~/.bubblewrap
+          printf '{"jdkPath":"%s","androidSdkPath":"%s"}' "$JAVA_HOME" "$ANDROID_HOME" > ~/.bubblewrap/config.json
+          cat ~/.bubblewrap/config.json
+      - name: 서명 키 준비
+        env:
+          KS: ${{ secrets.ANDROID_KEYSTORE_B64 }}
+          KP: ${{ secrets.ANDROID_KEYSTORE_PASS }}
+        run: |
+          mkdir -p twa
+          if [ -n "$KS" ]; then
+            echo "$KS" | base64 -d > twa/android.keystore
+            echo "KIND=release" >> "$GITHUB_ENV"
+          else
+            keytool -genkeypair -keystore twa/android.keystore -alias upload -keyalg RSA -keysize 2048 \
+              -validity 365 -storepass testtest -keypass testtest -dname "CN=test" >/dev/null 2>&1
+            echo "KIND=TEST-not-for-play" >> "$GITHUB_ENV"
+          fi
+      - name: 앱 프로젝트 만들기
+        working-directory: twa
+        run: |
+          python3 - <<'PY'
+          import json, os
+          m = json.load(open("../android/twa-manifest.json", encoding="utf-8"))
+          n = int(os.environ["GITHUB_RUN_NUMBER"])
+          m["appVersionCode"] = n                 # 올릴 때마다 커져야 함
+          m["appVersionName"] = m["appVersion"] = f"1.0.{n}"
+          json.dump(m, open("twa-manifest.json", "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+          PY
+          yes | bubblewrap update --skipVersionUpgrade
+      - name: 빌드
+        working-directory: twa
+        env:
+          BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASS || 'testtest' }}
+          BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASS || 'testtest' }}
+        run: |
+          yes | bubblewrap build --skipPwaValidation
+          ls -la *.aab *.apk
+          keytool -printcert -jarfile app-release-signed.apk | grep SHA256 || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: yojeummwo-android-${{ env.KIND }}-${{ github.run_number }}
+          path: |
+            twa/app-release-bundle.aab
+            twa/app-release-signed.apk
