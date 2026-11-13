@@ -25,6 +25,9 @@ jobs:
       - name: Bubblewrap 설치
         run: |
           npm install -g @bubblewrap/cli@1
+          # Bubblewrap은 예전 SDK 구조(tools 폴더)를 찾기 때문에 연결 고리를 만들어 준다
+          [ -e "$ANDROID_HOME/tools" ] || sudo ln -sfn "$ANDROID_HOME/cmdline-tools/latest" "$ANDROID_HOME/tools"
+          ls "$ANDROID_HOME" "$ANDROID_HOME/tools/bin" | head -30
           mkdir -p ~/.bubblewrap
           printf '{"jdkPath":"%s","androidSdkPath":"%s"}' "$JAVA_HOME" "$ANDROID_HOME" > ~/.bubblewrap/config.json
           cat ~/.bubblewrap/config.json
