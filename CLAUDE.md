@@ -38,6 +38,14 @@
 - 휴대폰 알림(OneSignal) + 알림 설명 칸 + 홈 화면 추가(PWA) 아이콘·설정. 키 연결·발송 서버 확인 완료(구독자 0명이라 실제 수신은 아직).
 - Gemini 구글 검색 연동 코드 추가 — 무료 키는 사용량 0이라 막힘(429). 실패하면 자동으로 제목 기반 문장 사용.
 
+## 안드로이드 앱 (2026-11-13 시작)
+- 방식: 웹사이트를 그대로 감싸는 TWA(Bubblewrap). 패키지 이름 `kr.hotnow.app`(바꿀 수 없음), 앱 이름 '요즘뭐'.
+- 빌드: GitHub Actions **'안드로이드 앱 만들기'**(android.yml)를 직접 실행 → 결과물(AAB/APK)이 실행 기록의 Artifacts에 생김. 버전 번호는 실행 번호로 자동 증가.
+- 설정 파일: `android/twa-manifest.json`. 앱 연결 파일: `site/.well-known/assetlinks.json`(업로드 키 SHA-256 들어 있음).
+- 서명 키: 업로드 키를 사용자에게 파일로 전달(PC에 보관). GitHub Secrets `ANDROID_KEYSTORE_B64`, `ANDROID_KEYSTORE_PASS` 필요. 없으면 시험용 키로 빌드됨(플레이 업로드 불가).
+- 개인정보처리방침: https://hotnow.kr/privacy.html (화면 맨 아래 링크).
+- Play 앱 서명 사용 시, Play Console → 앱 무결성의 **앱 서명 키 SHA-256**을 assetlinks.json에 추가해야 주소창 없이 열림.
+
 ## 결정사항
 - 네이버 검색 API: 2026-07-31부터 개발자센터 신규 발급 중단(API HUB로 이전) + 9월 약관에서 AI 답변 생성 활용 제한 → 사용 안 함.
 - 구글 검색 연동은 결제 카드 등록이 필요해 보류(사용자 선택: 2번 = 제목만 + 소문 빼기).
@@ -47,6 +55,7 @@
 - 방문자 통계: Cloudflare Web Analytics(쿠키 없음) 추천, 홈 화면 아이콘으로 들어온 사람 따로 집계 예정.
 
 ## 남은 일 (우선순위 순)
+0. 안드로이드: Secrets 2개 넣기 → 빌드 → Play Console 앱 만들기·등록정보 → 비공개 테스트(12명·14일, 야근수첩 테스터 재활용) → 앱 서명 SHA-256을 assetlinks에 추가 → 출시.
 1. 휴대폰에서 https://hotnow.kr 열고 **알림 켜기** → Claude에게 말하면 시험 알림 발송(notify.yml을 force로 실행).
    - 아이폰은 사파리 → 공유 → 홈 화면에 추가 후 그 아이콘에서 켜야 함.
 2. GitHub Pages 설정에서 **Enforce HTTPS** 체크 확인.
