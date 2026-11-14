@@ -124,8 +124,10 @@ def main() -> None:
         people.describe(hot_people, window_titles, llm)  # 1차: 관련 제목(+네이버 뉴스 키가 있으면 뉴스)으로
         # 2차: Gemini 구글 검색 연동으로 최신 소식 확인 (실패하면 1차 문장 유지)
         # 구글 검색 연동은 결제 등록된 프로젝트 키가 필요할 수 있어 따로 둘 수 있게 함 (없으면 기본 키)
-        search_key = env_key("GEMINI_SEARCH_KEY") or gemini_key
+        search_key = env_key("GEMINI_SEARCH_KEY")   # 무료 키로는 막히므로 전용 키가 있을 때만 시도
         try:
+            if not search_key:
+                raise RuntimeError("GEMINI_SEARCH_KEY 없음 — 구글 검색 연동 건너뜀")
             cache = json.loads(PEOPLE_CACHE.read_text(encoding="utf-8")) if PEOPLE_CACHE.exists() else {}
             n = people.ground(hot_people, window_titles,
                               people.gemini_grounded(search_key, cluster.resolve_model(search_key)),
