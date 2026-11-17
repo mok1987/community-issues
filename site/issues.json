@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-17T10:02:51+09:00",
+ "updated_at": "2026-11-17T11:12:39+09:00",
  "method": "ai",
  "post_count": 400,
  "sources": [
@@ -24,8 +24,8 @@
   {
    "key": "ruliweb",
    "name": "루리웹",
-   "status": "16개",
-   "state": "ok"
+   "status": "사이트 접속 실패(ConnectTimeout), 건너뜀",
+   "state": "error"
   },
   {
    "key": "natepann",
@@ -48,7 +48,7 @@
   {
    "key": "ppomppu",
    "name": "뽐뿌",
-   "status": "14개",
+   "status": "13개",
    "state": "ok"
   },
   {
@@ -66,7 +66,7 @@
   {
    "key": "daumnews",
    "name": "다음뉴스",
-   "status": "33개",
+   "status": "32개",
    "state": "ok"
   },
   {
@@ -78,42 +78,69 @@
  ],
  "issues": [
   {
-   "headline": "인공지능 이용한 시험 부정행위 확산",
-   "summary": "최근 각종 자격시험과 입시에서 인공지능 기술과 초소형 카메라를 악용한 부정행위 의혹이 잇따라 터져 나와 사회적 파장이 커지고 있다. 관련 업계와 당국은 철저한 진상 규명과 대책 마련에 나섰다.",
-   "why": "공정한 경쟁의 근간을 흔드는 부정행위 수법이 날로 지능화되면서 수험생들과 학부모들의 불안감이 커지고 있기 때문에",
+   "headline": "인공지능 안경 등 각종 시험 부정행위 확산",
+   "summary": "초소형 카메라와 인공지능 기술을 이용한 시험 부정행위가 수능을 비롯한 각종 국가 및 전문 자격시험에서 잇따라 적발되며 사회적 논란이 되고 있습니다.",
+   "why": "국가 공인 시험의 공정성과 신뢰도가 크게 흔들리며 수험생들과 관계 당국에 큰 충격을 주었기 때문입니다.",
    "category": "사회",
    "hot": true,
    "communities": [
     {
      "key": "bobaedream",
      "name": "보배드림",
-     "count": 5,
-     "framing": "교육 당국과 관련 업계의 안일한 대응을 질타하며 공정성 훼손을 강하게 비판하고 있다.",
+     "count": 6,
+     "framing": "관련 소식을 공유하며 사회적 도덕성 해이를 비판하는 목소리가 높습니다.",
      "comment_count": null
     },
     {
      "key": "daumnews",
      "name": "다음뉴스",
-     "count": 6,
-     "framing": "당국의 단속 현황과 경찰 수사 속보, 전문가들의 진단을 객관적으로 보도하고 있다.",
+     "count": 14,
+     "framing": "정부의 대책 마련과 전문가들의 진단, 수사 진행 상황을 비중 있게 보도했습니다.",
      "comment_count": null
     },
     {
      "key": "dcinside",
      "name": "디시",
-     "count": 3,
-     "framing": "인공지능을 이용한 각종 시험 부정행위 사례와 관련 의혹들을 집중적으로 파헤치며 논란을 확산시키고 있다.",
+     "count": 10,
+     "framing": "부정행위 관련 의혹과 관련된 폭로 및 수험생들의 반응이 집중적으로 올라왔습니다.",
+     "comment_count": null
+    },
+    {
+     "key": "instiz",
+     "name": "인스티즈",
+     "count": 14,
+     "framing": "수험생과 학부모 입장에서 시험 제도의 허점과 파장을 걱정하는 반응이 이어졌습니다.",
+     "comment_count": null
+    },
+    {
+     "key": "ppomppu",
+     "name": "뽐뿌",
+     "count": 1,
+     "framing": "부정행위 사태의 심각성에 공감하며 파장을 주목하고 있습니다.",
+     "comment_count": null
+    },
+    {
+     "key": "ruliweb",
+     "name": "루리웹",
+     "count": 2,
+     "framing": "",
      "comment_count": null
     },
     {
      "key": "theqoo",
      "name": "더쿠",
-     "count": 6,
-     "framing": "부정행위 수법의 심각성을 비판하며 철저한 대책 마련과 수사를 촉구하는 목소리가 높다.",
+     "count": 11,
+     "framing": "시험 공정성 훼손에 대한 우려와 함께 관련 논란을 예의주시하고 있습니다.",
      "comment_count": null
     }
    ],
    "posts": [
+    {
+     "title": "펌)교육부 피셜 떴다!!!..jpg",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048005",
+     "source": "bobaedream",
+     "source_name": "보배드림"
+    },
     {
      "title": "8년 전 숙명여고 쌍둥이 자매의 컨닝 암기장 클라스",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1048013",
@@ -145,14 +172,44 @@
      "source_name": "보배드림"
     },
     {
-     "title": "[단독]'AI 커닝' 직접 해봤다…문외한 기자도 40분만에 세무사 시험 만점",
-     "url": "https://v.daum.net/v/20261117062821269",
+     "title": "'AI 무장' 중국 연계 해킹조직, 한국 외교 조직까지 노렸다",
+     "url": "https://v.daum.net/v/20261117110824487",
+     "source": "daumnews",
+     "source_name": "다음뉴스"
+    },
+    {
+     "title": "韓총리 \"수능 시험장 스마트기기 원천 차단…안경·시계 전수점검\"(종합)",
+     "url": "https://v.daum.net/v/20261117110525323",
+     "source": "daumnews",
+     "source_name": "다음뉴스"
+    },
+    {
+     "title": "감독 책임자 64% 외부 인력, 수당은 '동결'… ‘AI 커닝' 앞에 멈춰 선 국가시험",
+     "url": "https://v.daum.net/v/20261117110144031",
+     "source": "daumnews",
+     "source_name": "다음뉴스"
+    },
+    {
+     "title": "中·印은 전파 차단, 日은 안경 단속…亞각국 'AI 커닝' 비상",
+     "url": "https://v.daum.net/v/20261117105041407",
+     "source": "daumnews",
+     "source_name": "다음뉴스"
+    },
+    {
+     "title": "사회 고위층서 벌이던 수험 부정행위가 대중화했다 [AI 커닝 사태의 경제학①]",
+     "url": "https://v.daum.net/v/20261117105016375",
      "source": "daumnews",
      "source_name": "다음뉴스"
     },
     {
      "title": "매년 수만명 응시 '보험 자격시험'…AI 부정행위 확산에 업계 '속앓이'",
      "url": "https://v.daum.net/v/20261117070133833",
+     "source": "daumnews",
+     "source_name": "다음뉴스"
+    },
+    {
+     "title": "수능 앞두고 ‘AI 커닝’ 공방…개헌 논의에도 여야 대치 [투데이 여의도 스케치]",
+     "url": "https://v.daum.net/v/20261117070344939",
      "source": "daumnews",
      "source_name": "다음뉴스"
     },
@@ -169,8 +226,20 @@
      "source_name": "다음뉴스"
     },
     {
+     "title": "식약처 “공부 잘하는 약 없다”…‘수능약’ 불법 판매 571건 적발",
+     "url": "https://v.daum.net/v/20261117082631687",
+     "source": "daumnews",
+     "source_name": "다음뉴스"
+    },
+    {
      "title": "세무사회 “수습세무사 전원 실력 검증, 부정행위자 걸러낼 것”",
      "url": "https://v.daum.net/v/20261117073909500",
+     "source": "daumnews",
+     "source_name": "다음뉴스"
+    },
+    {
+     "title": "[박순찬의 장도리 카툰] 시험에 든 한국 교육",
+     "url": "https://v.daum.net/v/20261117091232269",
      "source": "daumnews",
      "source_name": "다음뉴스"
     },
@@ -179,6 +248,18 @@
      "url": "https://v.daum.net/v/20261116173635408",
      "source": "daumnews",
      "source_name": "다음뉴스"
+    },
+    {
+     "title": "[르포] 수능 코앞인데...'찰싹 합격'은 옛말?…100년 떡집 한산, 여긴 '북적'",
+     "url": "https://v.daum.net/v/20261117070148845",
+     "source": "daumnews",
+     "source_name": "다음뉴스"
+    },
+    {
+     "title": "[동갤] 진짜 난리났다는 냥이본토 중국산 컨닝용 AI 제품들",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479366&_dcbest=1",
+     "source": "dcinside",
+     "source_name": "디시"
     },
     {
      "title": "[한갤] 서울대치대 리트만점자 얘도 Ai 100프로임",
@@ -193,16 +274,148 @@
      "source_name": "디시"
     },
     {
+     "title": "[한갤] 이랬으면 안 털렸을텐데",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479438&_dcbest=1",
+     "source": "dcinside",
+     "source_name": "디시"
+    },
+    {
+     "title": "[싱갤] Ai 이름 잘 구별해야하는 이유",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479434&_dcbest=1",
+     "source": "dcinside",
+     "source_name": "디시"
+    },
+    {
+     "title": "[영갤] Ai를 뇌에 심어 영어공부가 불필요한 시대가 곧 온다.",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479430&_dcbest=1",
+     "source": "dcinside",
+     "source_name": "디시"
+    },
+    {
+     "title": "[세갤] [오피셜] 세무.냥.이 개조된 쌀집 계산기로 Al 부정행위",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479420&_dcbest=1",
+     "source": "dcinside",
+     "source_name": "디시"
+    },
+    {
+     "title": "[싱갤] 싱글벙글 다른건 모르겠고 리트냥이 하나 확실한거",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479416&_dcbest=1",
+     "source": "dcinside",
+     "source_name": "디시"
+    },
+    {
      "title": "[카연] 논란의 ai안경",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479285&_dcbest=1",
      "source": "dcinside",
      "source_name": "디시"
     },
     {
-     "title": "ai사용 부정행위로 의심/ 확정된 사안에서 행위자가 전부 남성이라는 점이 진짜 섬뜩",
-     "url": "https://theqoo.net/hot/4408561709",
-     "source": "theqoo",
-     "source_name": "더쿠"
+     "title": "[싱갤] 싱글벙글 AI안경 컨닝사태보다 1557배 심각할거라는 \"그것\"",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479280&_dcbest=1",
+     "source": "dcinside",
+     "source_name": "디시"
+    },
+    {
+     "title": "현 교육부 장관 입장 발표!",
+     "url": "https://www.instiz.net/pt/7926745",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "많은 걸 생각하게 하는 댓글 하나.. (ai부정시험관련)",
+     "url": "https://www.instiz.net/pt/7926642",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "리트냥이 오늘자 추가제보 ㅎㄷㄷ",
+     "url": "https://www.instiz.net/pt/7926741",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "리트만점자로 추정되는 사람이 요청한 생2 과외 내용",
+     "url": "https://www.instiz.net/pt/7926667",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "현재까지 나온 냥이들 목록 정리",
+     "url": "https://www.instiz.net/pt/7926633",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "리트만점자 말 바꾼게 ㄹㅈㄷ네",
+     "url": "https://www.instiz.net/name_enter/101053472",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "미미미누 리트냥이꺼 보고와봐",
+     "url": "https://www.instiz.net/name/67997374",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "근데 리트냥이 책에도 엉터리 내용 많아?",
+     "url": "https://www.instiz.net/name/67997336",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "수능날 너무 재밌을거같음 얼마나 ai 속출할까 ㅋㅋㅋㅋㅋ",
+     "url": "https://www.instiz.net/name/67997267",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "일상생활에서 Ai 부정행위로 들어온거 아닌거 입증하려면 어떻게 해야함?",
+     "url": "https://www.instiz.net/name/67997429",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "초소형카메라 이거 너무 무섭다",
+     "url": "https://www.instiz.net/name_enter/101055844",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "최상위권이 ai한테 표점 밀리면 그 밑으로 쭈욱 다 밀림",
+     "url": "https://www.instiz.net/name_enter/101055841",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "근데 수능을 어캐미뤄",
+     "url": "https://www.instiz.net/name_enter/101055822",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "아니 또 어느 귀한 집 자제분이 수능에 ai 초소형 안경을 쓰려고 준비를 다아~ 해놓으셨길래",
+     "url": "https://www.instiz.net/name_enter/101055843",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "\"이건 범죄\" 울분, 도청 사무관 사직 후 고발나서",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=youtube_info&no=26240",
+     "source": "ppomppu",
+     "source_name": "뽐뿌"
+    },
+    {
+     "title": "어제 미미미누도 울면서 방송했네",
+     "url": "https://bbs.ruliweb.com/best/board/300143/read/77407838",
+     "source": "ruliweb",
+     "source_name": "루리웹"
+    },
+    {
+     "title": "대치동쪽 음모론 돌고있네 ㄷㄷ",
+     "url": "https://bbs.ruliweb.com/best/board/300143/read/77406943",
+     "source": "ruliweb",
+     "source_name": "루리웹"
     },
     {
      "title": "리트만점 이진우(이희찬) 스토킹 폭로 +계속추가중",
@@ -217,8 +430,32 @@
      "source_name": "더쿠"
     },
     {
+     "title": "ai사용 부정행위로 의심/ 확정된 사안에서 행위자가 전부 남성이라는 점이 진짜 섬뜩",
+     "url": "https://theqoo.net/hot/4408561709",
+     "source": "theqoo",
+     "source_name": "더쿠"
+    },
+    {
+     "title": "아직도 사태파악 못한 교육부 장관.jpg",
+     "url": "https://theqoo.net/hot/4408612577",
+     "source": "theqoo",
+     "source_name": "더쿠"
+    },
+    {
      "title": "더쿠가 쓴 AI부정행위 대책안 의견받고있습니다",
      "url": "https://theqoo.net/hot/4408541998",
+     "source": "theqoo",
+     "source_name": "더쿠"
+    },
+    {
+     "title": "@ : 무슨 시험이던 여자 합격생들은 절대 안믿을란다",
+     "url": "https://theqoo.net/hot/4408818699",
+     "source": "theqoo",
+     "source_name": "더쿠"
+    },
+    {
+     "title": "역사상 수능이 연기된 사례는 단 3번",
+     "url": "https://theqoo.net/hot/4408765301",
      "source": "theqoo",
      "source_name": "더쿠"
     },
@@ -229,132 +466,72 @@
      "source_name": "더쿠"
     },
     {
+     "title": "서울대 치대수석 리트 만점자 아는 사람인데",
+     "url": "https://theqoo.net/hot/4408446372",
+     "source": "theqoo",
+     "source_name": "더쿠"
+    },
+    {
      "title": "사실상 우리나라 국회의원들이 스스로 불러온 재앙인 초소형 카메라를 이용한 컨닝",
      "url": "https://theqoo.net/hot/4408438533",
+     "source": "theqoo",
+     "source_name": "더쿠"
+    },
+    {
+     "title": "고대에서 리트만점자 생2 과외해준 또 다른 사람 나타남",
+     "url": "https://theqoo.net/hot/4408436141",
      "source": "theqoo",
      "source_name": "더쿠"
     }
    ],
    "first_seen": "2026-11-16T10:59:21+09:00",
-   "unverified": true,
-   "score": 97.3,
+   "unverified": false,
+   "score": 231.88,
    "id": "i0"
   },
   {
-   "headline": "국내 증시 하락 및 경제 불안 소식",
-   "summary": "코스피 지수가 급락세를 보이는 등 국내외 경제 불확실성이 커지면서 투자자들의 우려가 깊어지고 있다.",
-   "why": "서민 경제와 직결되는 자산 시장의 변동성이 커져 많은 이들의 관심이 집중되기 때문에",
+   "headline": "엔비디아 젠슨 황 관련 거취 및 경영 혼란 보도",
+   "summary": "최근 엔비디아의 젠슨 황과 관련된 각종 보도와 이사회의 대응을 둘러싸고 경영진의 거취와 향후 행보에 대한 여러 관측이 나오고 있습니다.",
+   "why": "글로벌 인공지능 시장을 이끄는 핵심 기업의 수장과 관련된 소식이라 세계 경제와 증시에 미치는 파장이 크기 때문입니다.",
    "category": "경제",
    "hot": true,
    "communities": [
     {
-     "key": "daumnews",
-     "name": "다음뉴스",
-     "count": 1,
-     "framing": "지수 하락의 원인과 전문가들의 진단을 차분하게 전달하고 있다.",
-     "comment_count": null
-    },
-    {
-     "key": "instiz",
-     "name": "인스티즈",
+     "key": "bobaedream",
+     "name": "보배드림",
      "count": 1,
      "framing": "",
      "comment_count": null
     },
     {
-     "key": "ppomppu",
-     "name": "뽐뿌",
-     "count": 4,
-     "framing": "증시 하락에 따른 투자자들의 허탈감과 대책 마련을 촉구하는 목소리가 섞여 있다.",
-     "comment_count": null
-    },
-    {
-     "key": "ruliweb",
-     "name": "루리웹",
-     "count": 1,
-     "framing": "시장 상황에 대한 불안감을 솔직하게 공유하고 있다.",
-     "comment_count": null
-    }
-   ],
-   "posts": [
-    {
-     "title": "코스피, 장 초반 5000선 붕괴…美 반도체주 급락 여파",
-     "url": "https://v.daum.net/v/20261117091741439",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "취준생..속이 타들어간다ㅠ",
-     "url": "https://www.instiz.net/name/67997382",
-     "source": "instiz",
-     "source_name": "인스티즈"
-    },
-    {
-     "title": "또 넥장에서 프로그램으로 쓸어담네요.ㅋ",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=455818",
-     "source": "ppomppu",
-     "source_name": "뽐뿌"
-    },
-    {
-     "title": "현재 계좌 상황입니다. 오늘이 마지막 글 혹은",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=455810",
-     "source": "ppomppu",
-     "source_name": "뽐뿌"
-    },
-    {
-     "title": "정부 증시안정책 드디어 나오네여 ㄷㄷ",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=455532",
-     "source": "ppomppu",
-     "source_name": "뽐뿌"
-    },
-    {
-     "title": "낼도 삼하는 하락",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=455900",
-     "source": "ppomppu",
-     "source_name": "뽐뿌"
-    },
-    {
-     "title": "오늘 주식 하락이 유난히 무서운 이유",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77407408",
-     "source": "ruliweb",
-     "source_name": "루리웹"
-    }
-   ],
-   "first_seen": "2026-11-16T17:40:56+09:00",
-   "unverified": false,
-   "score": 60.24,
-   "id": "i1"
-  },
-  {
-   "headline": "기업 최고경영자 거취 및 개인 문제 관련 소식",
-   "summary": "주요 기업 대표의 거취와 개인 문제를 둘러싼 각종 보도와 소문이 이어지면서 업계와 투자자들의 이목이 집중되고 있다.",
-   "why": "세계적인 기업의 최고경영자를 둘러싼 논란과 향후 거취가 글로벌 경제 및 증시에 미치는 영향이 크기 때문에",
-   "category": "경제",
-   "hot": true,
-   "communities": [
-    {
      "key": "daumnews",
      "name": "다음뉴스",
-     "count": 6,
-     "framing": "주요 인물의 거취와 관련된 공식 입장을 신중하게 전달하고 있다.",
+     "count": 7,
+     "framing": "미국 정치권과 금융 시장의 반응을 객관적으로 전달하고 있습니다.",
      "comment_count": null
     },
     {
      "key": "dcinside",
      "name": "디시",
-     "count": 1,
-     "framing": "",
+     "count": 3,
+     "framing": "외신 보도 내용과 이에 대한 누리꾼들의 다양한 해석이 공유되었습니다.",
      "comment_count": null
     },
     {
      "key": "ppomppu",
      "name": "뽐뿌",
-     "count": 1,
-     "framing": "관련 소식에 대한 경제적 파급 효과와 시장의 반응을 주목하고 있다.",
+     "count": 2,
+     "framing": "글로벌 경제에 미칠 영향을 중심으로 소식을 다뤘습니다.",
      "comment_count": null
     }
    ],
    "posts": [
+    {
+     "title": "젠슨황 갑자기 재평가 ㄷㄷ 순애였다",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048076",
+     "source": "bobaedream",
+     "source_name": "보배드림"
+    },
     {
      "title": "트럼프도 젠슨 황 지지했지만…엔비디아 이사회 '요지부동'",
      "url": "https://v.daum.net/v/20261117083040813",
@@ -374,8 +551,14 @@
      "source_name": "다음뉴스"
     },
     {
-     "title": "트럼프, 방중 직전 AI칩 원격이용 차단…동남아 데이터센터 겨냥(종합)",
-     "url": "https://v.daum.net/v/20261117095325271",
+     "title": "젠슨 황 사임에 AI 불안 확산…연준·IMF도 경고음",
+     "url": "https://v.daum.net/v/20261117104643184",
+     "source": "daumnews",
+     "source_name": "다음뉴스"
+    },
+    {
+     "title": "\"젠슨 황 비판 성급\"…美 주요 인사들 사이 '신중론' 확산",
+     "url": "https://v.daum.net/v/20261117104501103",
      "source": "daumnews",
      "source_name": "다음뉴스"
     },
@@ -392,10 +575,28 @@
      "source_name": "다음뉴스"
     },
     {
+     "title": "[유갤] 젠슨황 용산에서 영업하던 시절 90년대 pc 방 후기 ㄷ,,",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479355&_dcbest=1",
+     "source": "dcinside",
+     "source_name": "디시"
+    },
+    {
+     "title": "[러갤] 젠슨황의 친중 발언 인터뷰..블룸버그는 알고 있었다",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479440&_dcbest=1",
+     "source": "dcinside",
+     "source_name": "디시"
+    },
+    {
      "title": "[백갤] ‘황어게인’ 외치는 실리콘밸리…美 재무장관은 복귀 반대",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479259&_dcbest=1",
      "source": "dcinside",
      "source_name": "디시"
+    },
+    {
+     "title": "엔비디아는 금기를 건드렸음",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=455808",
+     "source": "ppomppu",
+     "source_name": "뽐뿌"
     },
     {
      "title": "CNBC : 엔비디아 이사회, 존슨황 복귀 고려 안함",
@@ -406,32 +607,38 @@
    ],
    "first_seen": "2026-11-14T09:55:30+09:00",
    "unverified": true,
-   "score": 52.74,
-   "id": "i2"
+   "score": 77.12,
+   "id": "i1"
   },
   {
-   "headline": "정치권 리더십 위기 및 공방",
-   "summary": "여야 정치권 내부에서 주요 인사의 거취와 징계 문제를 두고 갈등이 불거지는 등 리더십 위기설이 제기되고 있다.",
-   "why": "향후 정국 운영 방향과 다가올 선거에 큰 영향을 미칠 수 있는 사안이기 때문에",
+   "headline": "더불어민주당 내부 현안 및 지도부 거취 논란",
+   "summary": "더불어민주당 지도부의 리더십과 당내 현안을 두고 정치권과 당원들 사이에서 다양한 의견과 비판이 제기되고 있습니다.",
+   "why": "향후 정국 운영과 다가올 선거에 중요한 영향을 미칠 수 있는 사안이기 때문입니다.",
    "category": "정치",
    "hot": true,
    "communities": [
     {
      "key": "bobaedream",
      "name": "보배드림",
-     "count": 5,
-     "framing": "정치권 인사들의 행보와 당내 갈등 상황에 대해 비판적인 시각을 드러내고 있다.",
+     "count": 8,
+     "framing": "당내 상황을 비판적인 시각으로 바라보며 다양한 의견이 오갔습니다.",
      "comment_count": null
     },
     {
      "key": "daumnews",
      "name": "다음뉴스",
      "count": 3,
-     "framing": "정치권의 역학 관계와 향후 전망을 균형 있게 분석하고 있다.",
+     "framing": "정치부 기자들의 분석과 여야의 입장을 균형 있게 보도했습니다.",
      "comment_count": null
     }
    ],
    "posts": [
+    {
+     "title": "조국당으로 꺼지라고요?",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048089",
+     "source": "bobaedream",
+     "source_name": "보배드림"
+    },
     {
      "title": "허위사실 유포하고 당원들 모욕한 김민석 사퇴하라! / 개혁을..",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1047977",
@@ -439,8 +646,20 @@
      "source_name": "보배드림"
     },
     {
+     "title": "송영길 \"선거때는 뭔말을 못하냐? 김민석은 사과했으니 괜찮음..",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048088",
+     "source": "bobaedream",
+     "source_name": "보배드림"
+    },
+    {
      "title": "이재명과 김민석이 필요로 하는 것",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1048067",
+     "source": "bobaedream",
+     "source_name": "보배드림"
+    },
+    {
+     "title": "이재명 싫어하고 민주당 망하길 바라면서 왜 민주당 지지하는 ..",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1047973",
      "source": "bobaedream",
      "source_name": "보배드림"
     },
@@ -483,103 +702,8 @@
    ],
    "first_seen": "2026-11-17T00:01:29+09:00",
    "unverified": false,
-   "score": 42.42,
-   "id": "i3"
-  },
-  {
-   "headline": "일본의 군사적 움직임과 주변국 반응",
-   "summary": "일본이 군사 대국화 행보를 가속화하는 가운데 주변국들과의 관계 및 외교적 마찰 가능성이 제기되고 있다.",
-   "why": "동북아시아 안보 정세에 직접적인 영향을 미치는 민감한 사안이기 때문에",
-   "category": "정치",
-   "hot": true,
-   "communities": [
-    {
-     "key": "bobaedream",
-     "name": "보배드림",
-     "count": 1,
-     "framing": "일본의 정책적 의도에 대해 경계심과 비판적인 시선을 보내고 있다.",
-     "comment_count": null
-    },
-    {
-     "key": "daumnews",
-     "name": "다음뉴스",
-     "count": 1,
-     "framing": "일본의 군사 정책 변화가 가져올 안보적 파장을 전문적으로 분석하고 있다.",
-     "comment_count": null
-    },
-    {
-     "key": "ppomppu",
-     "name": "뽐뿌",
-     "count": 1,
-     "framing": "",
-     "comment_count": null
-    }
-   ],
-   "posts": [
-    {
-     "title": "일본 지방도시가 K-항공사에 지원금 퍼주는 이유",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048006",
-     "source": "bobaedream",
-     "source_name": "보배드림"
-    },
-    {
-     "title": "‘전수방위’ 넘어 ‘원잠’까지…중·러·북 밀착 명분 삼아 군사대국화 가속하는 일본 [밀리터리노트]",
-     "url": "https://v.daum.net/v/20261117095641432",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "일본 지방도시가 한국 항공사에 돈 퍼주는 이유 ㄷ..jpg",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=tour&no=116298",
-     "source": "ppomppu",
-     "source_name": "뽐뿌"
-    }
-   ],
-   "first_seen": "2026-11-17T05:49:16+09:00",
-   "unverified": false,
-   "score": 38.84,
-   "id": "i4"
-  },
-  {
-   "headline": "연금복권 1등 연속 당첨 화제",
-   "summary": "연금복권 1등에 여러 번 당첨되었다는 사연이 전해지면서 많은 이들의 부러움과 놀라움을 자아내고 있다.",
-   "why": "매우 이례적인 행운에 대한 대중적 관심과 호기심이 높기 때문에",
-   "category": "생활",
-   "hot": true,
-   "communities": [
-    {
-     "key": "bobaedream",
-     "name": "보배드림",
-     "count": 1,
-     "framing": "믿기 힘든 행운에 대해 덕담과 함께 놀라움을 나타내고 있다.",
-     "comment_count": null
-    },
-    {
-     "key": "theqoo",
-     "name": "더쿠",
-     "count": 1,
-     "framing": "당첨 소식을 신기해하며 부러움을 표하는 반응이 주를 이룬다.",
-     "comment_count": null
-    }
-   ],
-   "posts": [
-    {
-     "title": "연금복권 1등 2번 당첨",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048075",
-     "source": "bobaedream",
-     "source_name": "보배드림"
-    },
-    {
-     "title": "연금복권 1등 2번 당첨",
-     "url": "https://theqoo.net/hot/4408782171",
-     "source": "theqoo",
-     "source_name": "더쿠"
-    }
-   ],
-   "first_seen": "2026-11-17T10:00:10+09:00",
-   "unverified": true,
-   "score": 25.92,
-   "id": "i5"
+   "score": 51.26,
+   "id": "i2"
   }
  ],
  "tops": [
@@ -588,93 +712,93 @@
    "name": "디시",
    "items": [
     {
-     "title": "[세갤] 에타 ㅈㄴ 웃기네 ㅋㅋㅋㅋㅋㅋ",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479412&_dcbest=1",
-     "easy": "대학생 커뮤니티의 재미있는 이야기",
-     "category": "사회",
-     "issue_id": null,
-     "hot": false,
+     "title": "[러갤] 젠슨황의 친중 발언 인터뷰..블룸버그는 알고 있었다",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479440&_dcbest=1",
+     "easy": "젠슨황의 친중 발언에 대한 언론 보도",
+     "category": "경제",
+     "issue_id": "i1",
+     "hot": true,
      "comment_count": null
     },
     {
-     "title": "[세갤] 소신) 이제 냥이들 논란은 전문직갤 가는게 맞다 생각함",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479410&_dcbest=1",
-     "easy": "고양이 관련 논란은 전문가가 다뤄야 한다는 의견",
-     "category": "사회",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[아갤] 이윤아 ( SBS 8 뉴스 )",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479408&_dcbest=1",
-     "easy": "개인 관련 글",
-     "category": "문화·연예",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[세갤] 포티냥이 댓글 씹 ㅋㅋㅋㅋㅋㅋ",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479406&_dcbest=1",
-     "easy": "인터넷 커뮤니티의 고양이 관련 댓글 반응",
-     "category": "사회",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[세갤] [속보] 편입냥이, 서강대 에타에 입장문 발표 ㄷㄷㄷㄷㄷㄷㄷ",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479402&_dcbest=1",
-     "easy": "편입생 고양이가 대학 커뮤니티에 글을 올렸습니다",
-     "category": "사회",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[일갤] 230mb) 2월 홋카이도 20일 여행 _04 하코다테 25년도",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479401&_dcbest=1",
-     "easy": "2월 하코다테로 떠난 20일간의 일본 여행기",
-     "category": "생활",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[싱갤] 싱글벙글 외국에서 눈이 올 때 우산을 안 쓰는 이유",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479396&_dcbest=1",
-     "easy": "외국에서 눈이 올 때 우산을 쓰지 않는 이유",
-     "category": "생활",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[카연] 장난감 같은 슈퍼로봇 『지구용사 바론』 - 마지막화",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479393&_dcbest=1",
-     "easy": "만화 지구용사 바론 마지막화 내용",
-     "category": "문화·연예",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[싱갤] 나는 절대 게이가 아니라는 미국 유튜버...jpg",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479390&_dcbest=1",
-     "easy": "자신이 동성애자가 아니라고 주장하는 미국 유튜버",
-     "category": "문화·연예",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[한갤] 서울대치대 리트만점자 얘도 Ai 100프로임",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479388&_dcbest=1",
-     "easy": "개인 관련 글",
+     "title": "[한갤] 이랬으면 안 털렸을텐데",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479438&_dcbest=1",
+     "easy": "보안이나 대처 방법에 아쉬움을 나타내는 글",
      "category": "사회",
      "issue_id": "i0",
      "hot": true,
+     "comment_count": null
+    },
+    {
+     "title": "[시갤] 아 진짜 내가 다 ㅈㄴ 부끄럽네 씨발ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479436&_dcbest=1",
+     "easy": "부끄럽고 민망한 상황을 겪은 이야기",
+     "category": "사회",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "[싱갤] Ai 이름 잘 구별해야하는 이유",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479434&_dcbest=1",
+     "easy": "인공지능 서비스 이름을 잘 구별해 써야 하는 이유",
+     "category": "IT·과학",
+     "issue_id": "i0",
+     "hot": true,
+     "comment_count": null
+    },
+    {
+     "title": "[리갤] 지금 보니까 레전드 병신들이네 ㅋㅋㅋㅋㅋ",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479432&_dcbest=1",
+     "easy": "개인 관련 글",
+     "category": "사회",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "[영갤] Ai를 뇌에 심어 영어공부가 불필요한 시대가 곧 온다.",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479430&_dcbest=1",
+     "easy": "인공지능 덕분에 영어 공부가 필요 없어질 미래",
+     "category": "IT·과학",
+     "issue_id": "i0",
+     "hot": true,
+     "comment_count": null
+    },
+    {
+     "title": "[세갤] 지금 가장줫같은건",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479428&_dcbest=1",
+     "easy": "현재 가장 답답하고 힘든 상황에 대한 이야기",
+     "category": "사회",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "[시갤] 비상!!!!!",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479426&_dcbest=1",
+     "easy": "급하게 알리거나 비상 상황을 전하는 내용",
+     "category": "사회",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "[시갤] 실시간 로쇼 “진우야.. 이제 그만 해도 된다”",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479424&_dcbest=1",
+     "easy": "개인 관련 글",
+     "category": "사회",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "[싱갤] 실시간 재평가되는 인물..png",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479422&_dcbest=1",
+     "easy": "시간이 지나면서 새롭게 다시 평가받는 인물 이야기",
+     "category": "사회",
+     "issue_id": null,
+     "hot": false,
      "comment_count": null
     }
    ],
@@ -695,10 +819,46 @@
    "name": "더쿠",
    "items": [
     {
+     "title": "여자랑 절대 야구장 안간다는 남자.jpg",
+     "url": "https://theqoo.net/hot/4408863532",
+     "easy": "야구장에 여성과 가지 않는다는 남성의 이야기",
+     "category": "사회",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "김문수 의원 \" 참 대책이 좀 막막하긴 합니다마는 지금 마지막 호소를 드리자면 수험생 상호 간에 감수를 할 수밖에 없지 않나 서로 경쟁자이기 때문에\"",
+     "url": "https://theqoo.net/hot/4408834616",
+     "easy": "수험생 경쟁과 입시 제막에 대한 김문수 의원의 발언",
+     "category": "정치",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "친구둘이 내 남친 존나 못생겨서 다퉜대..ㅠ",
+     "url": "https://theqoo.net/hot/4408830510",
+     "easy": "친구들이 내 남자친구 외모를 두고 다툰 사연",
+     "category": "생활",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "@ : 무슨 시험이던 여자 합격생들은 절대 안믿을란다",
+     "url": "https://theqoo.net/hot/4408818699",
+     "easy": "각종 시험의 여성 합격자 비율에 대한 의견",
+     "category": "사회",
+     "issue_id": "i0",
+     "hot": true,
+     "comment_count": null
+    },
+    {
      "title": "리트 이거 진짜 웃기다ㅋㅋㅋㅋㅋㅋ",
      "url": "https://theqoo.net/hot/4408783621",
-     "easy": "법학적성시험 관련 재미있는 이야기",
-     "category": "사회",
+     "easy": "재미있는 인터넷 글 소개",
+     "category": "문화·연예",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -706,17 +866,17 @@
     {
      "title": "연금복권 1등 2번 당첨",
      "url": "https://theqoo.net/hot/4408782171",
-     "easy": "연금복권 1등에 두 번 당첨된 사연",
+     "easy": "연금복권 1등에 두 번 당첨된 사례",
      "category": "생활",
-     "issue_id": "i5",
-     "hot": true,
+     "issue_id": null,
+     "hot": false,
      "comment_count": null
     },
     {
      "title": "감정평가사 합격후기도 갑자기 내려감.jpg",
      "url": "https://theqoo.net/hot/4408776866",
-     "easy": "감정평가사 합격 후기 삭제 소식",
-     "category": "경제",
+     "easy": "감정평가사 시험 합격 후기가 갑자기 삭제됨",
+     "category": "생활",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -742,43 +902,7 @@
     {
      "title": "역사상 수능이 연기된 사례는 단 3번",
      "url": "https://theqoo.net/hot/4408765301",
-     "easy": "역사상 대학수학능력시험이 연기되었던 세 차례",
-     "category": "사회",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "어느 순간 깨달았어요. 아, 이렇게 좋아하는 것과 이별을 해야 되는구나.",
-     "url": "https://theqoo.net/hot/4408747587",
-     "easy": "좋아하는 것과 이별하는 순간을 깨달았을 때",
-     "category": "생활",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "🍀11월 17일 별자리/띠별 운세🍀",
-     "url": "https://theqoo.net/hot/4408742532",
-     "easy": "11월 17일 오늘의 별자리와 띠별 운세",
-     "category": "생활",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "리트만점 스토킹 가해자가 오버워치에서 여자 의대생 이예원으로 활동했다는 의혹",
-     "url": "https://theqoo.net/hot/4408717668",
-     "easy": "개인 관련 글",
-     "category": "사회",
-     "issue_id": "i0",
-     "hot": true,
-     "comment_count": null
-    },
-    {
-     "title": "리트만점 이진우(이희찬) 스토킹 폭로 +계속추가중",
-     "url": "https://theqoo.net/hot/4408711297",
-     "easy": "개인 관련 글",
+     "easy": "역사상 대학수학능력시험이 연기된 세 번의 사례",
      "category": "사회",
      "issue_id": "i0",
      "hot": true,
@@ -792,101 +916,10 @@
   {
    "key": "ruliweb",
    "name": "루리웹",
-   "items": [
-    {
-     "title": "소가 얼마나 잘먹다가 갔는지 감도 안잡힘",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77406853",
-     "easy": "소가 음식을 아주 잘 먹는 모습",
-     "category": "생활",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "GTA6 억지로 60프레임으로 돌리는 법",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77408523",
-     "easy": "게임 GTA6를 60프레임으로 실행하는 방법",
-     "category": "IT·과학",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "둠스데이 개봉후 예상해보는 부심",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77408451",
-     "easy": "영화 둠스데이 개봉 후 예상 반응",
-     "category": "문화·연예",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "그리스 시절 크레토스.gif",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77408519",
-     "easy": "과거 게임 속 캐릭터의 모습",
-     "category": "IT·과학",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "사실 토사구팽이 아닌데 토사구팽으로 여겨지는 인물.JPG",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77408400",
-     "easy": "토사구팽으로 오해받는 역사 속 인물",
-     "category": "사회",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "BYD 자동차 근황 ㄷㄷㄷㄷㄷㄷㄷㄷㄷ",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77408154",
-     "easy": "중국 자동차 회사 비와이디의 최근 소식",
-     "category": "경제",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "베스트에서 ai주작이라고 욕먹은 버거킹 초콜릿 와퍼",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77408190",
-     "easy": "인공지능 조작 논란이 있었던 버거킹 초콜릿 와퍼",
-     "category": "생활",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "아직도 엑박패드가 익숙치 않은게",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77407969",
-     "easy": "엑스박스 게임 패드가 아직 불편한 소감",
-     "category": "IT·과학",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "어제 미미미누도 울면서 방송했네",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77407838",
-     "easy": "방송인 미미미누의 눈물 방송",
-     "category": "사회",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "미친사람 취급받던 강성태 근황",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77407592",
-     "easy": "과거 쓴소리를 들었던 강성태의 최근 소식",
-     "category": "사회",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    }
-   ],
+   "items": [],
    "list_url": "https://bbs.ruliweb.com/best/humor",
-   "state": "ok",
-   "status": "16개"
+   "state": "error",
+   "status": "사이트 접속 실패(ConnectTimeout), 건너뜀"
   },
   {
    "key": "natepann",
@@ -917,64 +950,19 @@
    "name": "뽐뿌",
    "items": [
     {
-     "title": "김호령이 C등급이네요.",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=baseball&no=702225",
-     "easy": "야구선수 김호령의 C등급 관련 소식",
-     "category": "스포츠",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "정부 증시안정책 드디어 나오네여 ㄷㄷ",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=455532",
-     "easy": "정부의 증시 안정 대책 발표",
-     "category": "경제",
-     "issue_id": "i1",
-     "hot": true,
-     "comment_count": null
-    },
-    {
-     "title": "머스크 돈 모을 필요없다",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=455806",
-     "easy": "일론 머스크의 자산 관련 이야기",
-     "category": "경제",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "귀 뒤쪽에 뭐가 만져집니다.",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=health&no=157164",
-     "easy": "귀 뒤에 무엇이 만져진다는 건강 고민",
+     "title": "조졌습니다",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=455916",
+     "easy": "큰일이 생겼거나 실패했을 때의 심경",
      "category": "생활",
      "issue_id": null,
      "hot": false,
      "comment_count": null
     },
     {
-     "title": "운동화세탁후 스타일러 돌렸더니.",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=running&no=9055",
-     "easy": "운동화를 세탁한 후 의류관리기를 돌린 후기",
+     "title": "남자 경량패딩 뭐가 이쁜가요?",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=social&no=50975",
+     "easy": "남성용 경량 패딩 추천 및 디자인 문의",
      "category": "생활",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "새로운 제임스 본드 발표",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=youtube_info&no=26233",
-     "easy": "새로운 제임스 본드 배우 발표",
-     "category": "문화·연예",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "포수 연쇄 이동 가나요",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=baseball&no=702230",
-     "easy": "야구 포수들의 연쇄적인 이동 가능성",
-     "category": "스포츠",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -983,25 +971,70 @@
      "title": "일본 지방도시가 한국 항공사에 돈 퍼주는 이유 ㄷ..jpg",
      "url": "https://www.ppomppu.co.kr/zboard/view.php?id=tour&no=116298",
      "easy": "일본 지방 도시들이 한국 항공사에 지원금을 주는 이유",
-     "category": "경제",
-     "issue_id": "i4",
+     "category": "사회",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "\"이건 범죄\" 울분, 도청 사무관 사직 후 고발나서",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=youtube_info&no=26240",
+     "easy": "불법 도청 문제로 사무관이 사직하고 고발한 사건",
+     "category": "사회",
+     "issue_id": "i0",
      "hot": true,
      "comment_count": null
     },
     {
      "title": "[카카오뱅크] 스텔스통장 개설하면 1만원 지급 (최대 3만원)",
      "url": "https://www.ppomppu.co.kr/zboard/view.php?id=event2&no=108223",
-     "easy": "카카오뱅크 스텔스통장 개설 이벤트 안내",
+     "easy": "카카오뱅크 통장 만들면 최대 3만원 지급",
      "category": "경제",
      "issue_id": null,
      "hot": false,
      "comment_count": null
     },
     {
-     "title": "미쳐버린 전기차 보험료 상승폭 ㄷㄷ",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=car&no=982445",
-     "easy": "전기차 보험료가 크게 오른 상황",
+     "title": "'로버트 패틴슨' 007 새로운 제임스 본드 공식 발표",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=movie&no=92301",
+     "easy": "배우 로버트 패틴슨이 007 주인공으로 공식 발표",
+     "category": "문화·연예",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "김호령이 C등급이네요.",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=baseball&no=702225",
+     "easy": "야구선수 김호령의 C등급 평가 소식",
+     "category": "스포츠",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "정부 증시안정책 드디어 나오네여 ㄷㄷ",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=455532",
+     "easy": "정부의 증시 안정화 정책 발표",
      "category": "경제",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "머스크 돈 모을 필요없다",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=455806",
+     "easy": "일론 머스크의 자산과 돈에 대한 생각",
+     "category": "경제",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "귀 뒤쪽에 뭐가 만져집니다.",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=health&no=157164",
+     "easy": "귀 뒤쪽에 멍울이나 혹이 만져진다는 건강 고민",
+     "category": "생활",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1009,16 +1042,70 @@
    ],
    "list_url": "https://www.ppomppu.co.kr/hot.php",
    "state": "ok",
-   "status": "14개"
+   "status": "13개"
   },
   {
    "key": "bobaedream",
    "name": "보배드림",
    "items": [
     {
+     "title": "조국당으로 꺼지라고요?",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048089",
+     "easy": "조국혁신당 관련 정치적 논쟁",
+     "category": "정치",
+     "issue_id": "i2",
+     "hot": true,
+     "comment_count": null
+    },
+    {
+     "title": "송영길 \"선거때는 뭔말을 못하냐? 김민석은 사과했으니 괜찮음..",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048088",
+     "easy": "송영길 전 대표의 선거 관련 발언 내용",
+     "category": "정치",
+     "issue_id": "i2",
+     "hot": true,
+     "comment_count": null
+    },
+    {
+     "title": "군인들에게 악명 높았던 양구군 근황",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048087",
+     "easy": "군부대가 있는 강원도 양구군의 최근 분위기",
+     "category": "사회",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "버스기사가 승객 탑승 확인했다고 성추행 신고당함...ㄷㄷ",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048082",
+     "easy": "승객 탑승을 확인한 버스기사가 성추행으로 신고당한 사건",
+     "category": "사회",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "연봉 올려주겠다던 팀장님이 사라진 이유",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048086",
+     "easy": "연봉을 올려준다고 했던 팀장이 사라진 이유",
+     "category": "경제",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
      "title": "일본인 아내가 장문 메시지를 보낸 이유. jpg",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1048079",
-     "easy": "일본인 아내가 보낸 긴 문자메시지",
+     "easy": "일본인 아내가 보낸 긴 문자메시지 내용",
+     "category": "사회",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "관리 잘한 40대 눈나 몸매",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048081",
+     "easy": "관리를 잘한 40대 여성의 건강한 몸매",
      "category": "생활",
      "issue_id": null,
      "hot": false,
@@ -1027,7 +1114,7 @@
     {
      "title": "24년 AI로 의대간 자백 온라인글 파문",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1048070",
-     "easy": "인공지능으로 의대에 갔다는 인터넷 글 논란",
+     "easy": "인공지능을 이용해 의대에 갔다는 온라인 글 논란",
      "category": "사회",
      "issue_id": "i0",
      "hot": true,
@@ -1036,7 +1123,7 @@
     {
      "title": "축의금안란 친구때문에 눈물나요",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1048064",
-     "easy": "축의금을 내지 않은 친구 때문에 속상한 사연",
+     "easy": "축의금을 내지 않은 친구 때문에 서운한 사연",
      "category": "생활",
      "issue_id": null,
      "hot": false,
@@ -1047,62 +1134,8 @@
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1048075",
      "easy": "연금복권 1등에 두 번 당첨된 사연",
      "category": "생활",
-     "issue_id": "i5",
-     "hot": true,
-     "comment_count": null
-    },
-    {
-     "title": "여자 사무직이 공장단지에서 일 안하는 이유",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048069",
-     "easy": "여성 사무직이 공장단지에서 일하지 않는 이유",
-     "category": "사회",
      "issue_id": null,
      "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "그나이먹고 알바하냐?",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048078",
-     "easy": "나이가 들어 아르바이트를 하는 것에 대한 생각",
-     "category": "사회",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "어이없는 인도네시아 헬스장 사망사고",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048077",
-     "easy": "인도네시아의 한 헬스장에서 발생한 사망 사고",
-     "category": "사회",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "이재명과 김민석이 필요로 하는 것",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048067",
-     "easy": "정치인 이재명과 김민석에게 필요한 것",
-     "category": "정치",
-     "issue_id": "i3",
-     "hot": true,
-     "comment_count": null
-    },
-    {
-     "title": "심각한 중국 경제불황이 만들어낸 현상",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048061",
-     "easy": "심각한 중국 경제 불황이 가져온 사회적 현상",
-     "category": "경제",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "잼통과 김민새의 현실",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048073",
-     "easy": "정치인들의 현실적인 상황에 대한 이야기",
-     "category": "정치",
-     "issue_id": "i3",
-     "hot": true,
      "comment_count": null
     }
    ],
@@ -1123,91 +1156,91 @@
    "name": "다음뉴스",
    "items": [
     {
-     "title": "‘전수방위’ 넘어 ‘원잠’까지…중·러·북 밀착 명분 삼아 군사대국화 가속하는 일본 [밀리터리노트]",
-     "url": "https://v.daum.net/v/20261117095641432",
-     "easy": "일본의 군사력 강화 움직임",
-     "category": "정치",
-     "issue_id": "i4",
-     "hot": true,
-     "comment_count": null
-    },
-    {
-     "title": "트럼프, 엔비디아 주식 800억원 이상 담아…수출길 열어주며 젠슨 황 감싼 것 재주목",
-     "url": "https://v.daum.net/v/20261117095400294",
-     "easy": "트럼프의 엔비디아 주식 매입과 젠슨 황 옹호",
-     "category": "경제",
-     "issue_id": "i2",
-     "hot": true,
-     "comment_count": null
-    },
-    {
-     "title": "트럼프, 방중 직전 AI칩 원격이용 차단…동남아 데이터센터 겨냥(종합)",
-     "url": "https://v.daum.net/v/20261117095325271",
-     "easy": "트럼프의 AI 칩 원격 이용 차단 조치",
-     "category": "경제",
-     "issue_id": "i2",
-     "hot": true,
-     "comment_count": null
-    },
-    {
-     "title": "\"큰소리 치지 마세요\"…민형배 시장의 소통법",
-     "url": "https://v.daum.net/v/20261117095100122",
-     "easy": "민형배 시장의 소통 방식 관련 보도",
-     "category": "정치",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[머니톡스] 북촌, 서민을 살렸다…주거공급의 창의적 혁신(종합)",
-     "url": "https://v.daum.net/v/20261117094931068",
-     "easy": "북촌 주거 공급 혁신과 서민 주거 안정",
-     "category": "경제",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[단독] 메가커피 고객정보 유출…번개장터 이어 해킹 여파 확산",
-     "url": "https://v.daum.net/v/20261117093311254",
-     "easy": "메가커피 고객 정보 유출과 해킹 확산 소식",
+     "title": "'AI 무장' 중국 연계 해킹조직, 한국 외교 조직까지 노렸다",
+     "url": "https://v.daum.net/v/20261117110824487",
+     "easy": "중국 연계 해킹 조직이 한국 외교 조직을 공격",
      "category": "IT·과학",
-     "issue_id": null,
-     "hot": false,
+     "issue_id": "i0",
+     "hot": true,
      "comment_count": null
     },
     {
-     "title": "진주만 공습 생존 최고령 병사, 106세에 ‘전우들 곁으로’ [이 사람@World]",
-     "url": "https://v.daum.net/v/20261117091958552",
-     "easy": "진주만 공습 생존 최고령 참전용사의 별세",
+     "title": "韓총리 \"수능 시험장 스마트기기 원천 차단…안경·시계 전수점검\"(종합)",
+     "url": "https://v.daum.net/v/20261117110525323",
+     "easy": "수능 시험장 스마트기기 차단 및 소지품 전수 점검",
      "category": "사회",
-     "issue_id": null,
-     "hot": false,
+     "issue_id": "i0",
+     "hot": true,
      "comment_count": null
     },
     {
-     "title": "수습처 못 찾은 ‘미지정 회계사’ 쌓이는데… 금융위, 또 ‘50명 찔끔 감축’ 하나",
-     "url": "https://v.daum.net/v/20261117091840494",
-     "easy": "미지정 회계사 적체 속 금융당국의 감축 정책",
+     "title": "감독 책임자 64% 외부 인력, 수당은 '동결'… ‘AI 커닝' 앞에 멈춰 선 국가시험",
+     "url": "https://v.daum.net/v/20261117110144031",
+     "easy": "국가시험에서 인공지능 커닝을 막기 위한 대책 마련",
+     "category": "사회",
+     "issue_id": "i0",
+     "hot": true,
+     "comment_count": null
+    },
+    {
+     "title": "中·印은 전파 차단, 日은 안경 단속…亞각국 'AI 커닝' 비상",
+     "url": "https://v.daum.net/v/20261117105041407",
+     "easy": "아시아 각국이 인공지능을 이용한 시험 부정행위에 대응",
+     "category": "IT·과학",
+     "issue_id": "i0",
+     "hot": true,
+     "comment_count": null
+    },
+    {
+     "title": "사회 고위층서 벌이던 수험 부정행위가 대중화했다 [AI 커닝 사태의 경제학①]",
+     "url": "https://v.daum.net/v/20261117105016375",
+     "easy": "인공지능을 이용한 부정행위가 늘어나는 현상",
+     "category": "사회",
+     "issue_id": "i0",
+     "hot": true,
+     "comment_count": null
+    },
+    {
+     "title": "[Why] 같은 플라스틱병인데 아시아·유럽만 원료값 뚝 떨어진 이유는?",
+     "url": "https://v.daum.net/v/20261117104830265",
+     "easy": "같은 플라스틱인데 아시아와 유럽의 원료값이 다른 이유",
      "category": "경제",
      "issue_id": null,
      "hot": false,
      "comment_count": null
     },
     {
-     "title": "코스피, 장 초반 5000선 붕괴…美 반도체주 급락 여파",
-     "url": "https://v.daum.net/v/20261117091741439",
-     "easy": "미국 반도체주 급락으로 인한 코스피 하락",
+     "title": "젠슨 황 사임에 AI 불안 확산…연준·IMF도 경고음",
+     "url": "https://v.daum.net/v/20261117104643184",
+     "easy": "기업 대표 사임 소식에 인공지능 관련 불안감 확산",
      "category": "경제",
      "issue_id": "i1",
      "hot": true,
      "comment_count": null
     },
     {
-     "title": "인공지능 생성 얼굴을 가려내는 6가지 기준",
-     "url": "https://v.daum.net/v/20261117093708434",
-     "easy": "인공지능이 만든 가짜 얼굴을 구별하는 여섯 가지 기준",
-     "category": "IT·과학",
+     "title": "이라크 내 親이란 무장단체, 이란으로 원유 빼돌려 수억달러 챙겨",
+     "url": "https://v.daum.net/v/20261117104631171",
+     "easy": "이라크 내 무장단체가 원유를 빼돌려 거액을 챙긴 사건",
+     "category": "경제",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "\"젠슨 황 비판 성급\"…美 주요 인사들 사이 '신중론' 확산",
+     "url": "https://v.daum.net/v/20261117104501103",
+     "easy": "기업 대표에 대한 성급한 비판을 경계하는 미국 인사들",
+     "category": "경제",
+     "issue_id": "i1",
+     "hot": true,
+     "comment_count": null
+    },
+    {
+     "title": "“어르신은 빵 굽고, 청년은 홍보하고”…제주에 문 연 특별한 카페 [다시현역]",
+     "url": "https://v.daum.net/v/20261117100921182",
+     "easy": "어르신과 청년이 함께 일하는 제주도의 특별한 카페",
+     "category": "생활",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1215,7 +1248,7 @@
    ],
    "list_url": "https://news.daum.net/",
    "state": "ok",
-   "status": "33개"
+   "status": "32개"
   },
   {
    "key": "youtube",
@@ -1224,16 +1257,16 @@
     {
      "title": "천천히 강렬하게 | 공식 티저 예고편 | 넷플릭스 — Netflix Korea 넷플릭스 코리아",
      "url": "https://www.youtube.com/watch?v=iEmGtIh60DE",
-     "easy": "넷플릭스 새 영상 예고편",
+     "easy": "넷플릭스 신작 공식 예고편 영상",
      "category": "문화·연예",
      "issue_id": null,
      "hot": false,
-     "comment_count": 891
+     "comment_count": 893
     },
     {
      "title": "GEN vs BLG | 결승전 | 2026 월드 챔피언십 — LCK",
      "url": "https://www.youtube.com/watch?v=qQ4QqT20Ibs",
-     "easy": "게임 월드 챔피언십 결승 경기",
+     "easy": "리그 오브 레전드 월드 챔피언십 결승전 경기",
      "category": "스포츠",
      "issue_id": null,
      "hot": false,
@@ -1242,7 +1275,7 @@
     {
      "title": "[최종회 예고] \"이제 의사 안 하실 거잖아요\" 폐원 위기에 놓인 구서대학병원과 환자의 수술을 중단한 김지원?! | 닥터X : 하얀 마피아의 시대 | SBS — SBS",
      "url": "https://www.youtube.com/watch?v=_GdLSNdDVq8",
-     "easy": "드라마 닥터X 최종회 예고 영상",
+     "easy": "드라마 최종회 예고 영상",
      "category": "문화·연예",
      "issue_id": null,
      "hot": false,
@@ -1251,47 +1284,56 @@
     {
      "title": "정말 달콤해 — 랄로",
      "url": "https://www.youtube.com/watch?v=vc9AWxS-cv4",
-     "easy": "인기 인터넷 방송인의 영상",
+     "easy": "인터넷 방송인 랄로의 영상 콘텐츠",
      "category": "문화·연예",
      "issue_id": null,
      "hot": false,
-     "comment_count": 734
+     "comment_count": 738
     },
     {
      "title": "차원 절단 — PAKA",
      "url": "https://www.youtube.com/watch?v=LlBTKTusu9M",
-     "easy": "인기 인터넷 방송인의 게임 플레이 영상",
+     "easy": "인터넷 방송인의 게임 플레이 영상",
      "category": "문화·연예",
      "issue_id": null,
      "hot": false,
-     "comment_count": 231
+     "comment_count": 232
     },
     {
      "title": "드디어 내가 나설 차례인가.. — 이상호",
      "url": "https://www.youtube.com/watch?v=ydfGidZdUZU",
-     "easy": "방송인 이상호가 직접 나설 차례라는 내용",
+     "easy": "직접 나서겠다고 밝힌 방송인의 이야기",
      "category": "문화·연예",
      "issue_id": null,
      "hot": false,
-     "comment_count": 189
+     "comment_count": 195
     },
     {
      "title": "롤드컵 결승전 Gen.G vs BLG 도파의 시선 — Official dopa",
      "url": "https://www.youtube.com/watch?v=CIzvnCD-75E",
-     "easy": "게임 결승전에 대한 전문 방송인의 분석",
+     "easy": "리그 오브 레전드 결승전에 대한 전문가 분석 영상",
      "category": "스포츠",
      "issue_id": null,
      "hot": false,
-     "comment_count": 1324
+     "comment_count": 1329
     },
     {
      "title": "감스트 본캐 4천만원 현질! 26up 디오만데 11카 1등팩 떴다!!(현금2천만원) fc온라인 — 감스트GAMST",
      "url": "https://www.youtube.com/watch?v=OJUILKR5AG8",
-     "easy": "게임 방송 중 거액을 결제해 좋은 아이템을 얻은 사연",
+     "easy": "유명 방송인이 게임에 큰 금액을 써서 아이템을 얻은 일",
      "category": "문화·연예",
      "issue_id": null,
      "hot": false,
-     "comment_count": 220
+     "comment_count": 222
+    },
+    {
+     "title": "혼자하기 무서워서 멘파님 불렀는데, 둘 다 기절할 뻔했습니다. [DONT-SPLASH] — 혜안",
+     "url": "https://www.youtube.com/watch?v=BPWrmuM_NKY",
+     "easy": "무서워서 동료와 함께 게임을 진행한 이야기",
+     "category": "문화·연예",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": 1117
     },
     {
      "title": "Crush (크러쉬) - 삐그덕 Live with 조이 (JOY) — Crush",
@@ -1300,16 +1342,7 @@
      "category": "문화·연예",
      "issue_id": null,
      "hot": false,
-     "comment_count": 6600
-    },
-    {
-     "title": "혼자하기 무서워서 멘파님 불렀는데, 둘 다 기절할 뻔했습니다. [DONT-SPLASH] — 혜안",
-     "url": "https://www.youtube.com/watch?v=BPWrmuM_NKY",
-     "easy": "혼자 하기 무서워 동료를 불렀다 겪은 일",
-     "category": "문화·연예",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": 1115
+     "comment_count": 6602
     }
    ],
    "list_url": "https://www.youtube.com/feed/trending",
@@ -1324,9 +1357,9 @@
    "example": "가격 보고 ㄷㄷ"
   },
   {
-   "word": "에타",
-   "meaning": "'에브리타임'. 대학생들이 쓰는 학교별 익명 커뮤니티 앱",
-   "example": "에타에 글이 올라왔다"
+   "word": "레전드",
+   "meaning": "두고두고 이야기될 만큼 대단하거나 어이없는 일",
+   "example": "오늘 경기는 레전드였다"
   },
   {
    "word": "근황",
@@ -1343,8 +1376,8 @@
   {
    "name": "젠슨 황",
    "who": "대만계 미국인 기업가 및 비즈니스맨. 엔비디아의 설립자이자 CEO",
-   "why": "온라인에서 여러 이야기가 오가며 이름이 자주 오르내려요",
-   "mentions": 8,
+   "why": "엔비디아 CEO 사임과 이사회의 복귀 검토 안 함 소식 등으로 화제예요.",
+   "mentions": 9,
    "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Jen-Hsun_Huang_Headshot_%2815313247387%29.jpg/330px-Jen-Hsun_Huang_Headshot_%2815313247387%29.jpg?utm_source=ko.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "wiki": "https://ko.wikipedia.org/wiki/%EC%A0%A0%EC%8A%A8_%ED%99%A9",
    "news_used": false
@@ -1352,7 +1385,7 @@
   {
    "name": "김민석",
    "who": "대한민국의 정치인",
-   "why": "온라인에서 여러 이야기가 오가며 이름이 자주 오르내려요",
+   "why": "리더십 위기와 거취를 둘러싼 당내외 여러 이야기가 오가며 이름이 자주 오르내려요.",
    "mentions": 4,
    "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Kim_Min-seok_in_April_2026.jpg/330px-Kim_Min-seok_in_April_2026.jpg?utm_source=ko.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "wiki": "https://ko.wikipedia.org/wiki/%EA%B9%80%EB%AF%BC%EC%84%9D_(%EC%A0%95%EC%B9%98%EC%9D%B8)",
@@ -1361,7 +1394,7 @@
   {
    "name": "이재명",
    "who": "대한민국의 제21대 대통령",
-   "why": "온라인에서 여러 이야기가 오가며 이름이 자주 오르내려요",
+   "why": "온라인에서 거취와 당내 상황을 두고 여러 이야기가 오가며 이름이 자주 오르내려요.",
    "mentions": 2,
    "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/President_Lee_Jae_Myung_20260306.jpg/330px-President_Lee_Jae_Myung_20260306.jpg?utm_source=ko.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "wiki": "https://ko.wikipedia.org/wiki/%EC%9D%B4%EC%9E%AC%EB%AA%85",
