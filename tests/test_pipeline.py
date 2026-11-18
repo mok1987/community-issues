@@ -577,3 +577,19 @@ def test_thumbs_skip_non_news_channels_and_never_repeat(tmp_path):
     thumbs.apply([a, b], "k", tmp_path / "t.json", "2026-11-18T13:00:00+09:00", searcher=lambda q: vids)
     assert a["thumb"]["id"] == "Q"
     assert "thumb" not in b  # 같은 영상은 두 면에 안 쓰고, 개인 채널 영상은 안 씀
+
+
+def test_thumb_pick_accepts_top_word_and_daily_cap(tmp_path):
+    from issuebundle import thumbs
+    words = ["수능", "부정행위", "필기구", "AI"]
+    one_top = [{"id": {"videoId": "A"}, "snippet": {"title": "내일 수능 수험생 응원", "channelTitle": "SBS 뉴스"}}]
+    one_low = [{"id": {"videoId": "B"}, "snippet": {"title": "필기구 사는 법", "channelTitle": "SBS 뉴스"}}]
+    assert thumbs.pick(one_top, words)["id"]["videoId"] == "A"
+    assert thumbs.pick(one_low, words) is None
+    (tmp_path / "yt_search_count.json").write_text('{"day": "2026-11-17", "n": 90}')
+    calls = []
+    it = {"headline": "수능 대책", "posts": [{"url": "u", "source": "x", "title": "수능 대책"}]}
+    # 2026-11-18 13:00 KST = 미국 서부 11-17 → 오늘 한도(90) 다 씀 → 검색 안 함
+    assert thumbs.apply([it], "k", tmp_path / "t.json", "2026-11-18T13:00:00+09:00", searcher=lambda q: calls.append(q) or []) == 0
+    # 한국 오후 5시(미국 서부 자정) 지나면 새 날 → 다시 검색
+    assert thumbs.apply([it], "k", tmp_path / "t.json", "2026-11-18T17:30:00+09:00", searcher=lambda q: calls.append(q) or []) == 1

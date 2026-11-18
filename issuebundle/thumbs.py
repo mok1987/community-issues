@@ -16,12 +16,15 @@ import json
 import re
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import requests
 
 from .youtube import API, TIMEOUT, video_id, watch_url
 
 KEEP_HOURS = 48
+DAILY_SEARCHES = 90  # 유튜브 검색은 하루 100번 따로 한도(미국 서부 자정, 한국 오후 4~5시에 초기화). 여유를 두고 90번에서 멈춘다
+LA = ZoneInfo("America/Los_Angeles")
 RETRY_HOURS = 2  # 못 찾은 이슈는 2시간 뒤 (그사이 영상이 올라왔을 수 있으니) 다시 찾아본다
 MAX_SEARCHES = 3
 # 검색으로 찾은 영상은 주요 언론사·방송사 채널 것만 쓴다 (이름에 '뉴스'만 들어간 개인 채널의 자극적인 썸네일 방지)
@@ -65,8 +68,8 @@ def match_score(words: list[str], title: str) -> int:
 
 
 def pick(items: list[dict], words: list[str]) -> dict | None:
-    """검색 결과 중 핵심 단어가 가장 많이 겹치는 영상. 2개 이상(핵심 단어가 1개뿐이면 그 1개) 겹쳐야 쓴다."""
-    need = 2 if len(words) >= 2 else 1
+    """검색 결과 중 핵심 단어가 가장 많이 겹치는 영상.
+    핵심 단어 2개 이상 겹치거나, 1개만 겹쳐도 그게 가장 자주 나온 단어 1~2위면 쓴다 (주요 언론사 채널만이라 이 정도로 충분)."""
     best, best_key = None, None
     for it in items:
         sn = it.get("snippet", {})
@@ -74,7 +77,8 @@ def pick(items: list[dict], words: list[str]) -> dict | None:
         if not vid:
             continue
         s = match_score(words, sn.get("title", ""))
-        if s < need or not NEWS_CHANNEL.search(sn.get("channelTitle", "")):
+        ok = s >= 2 or (s == 1 and match_score(words[:2], sn.get("title", "")) == 1)
+        if not ok or not NEWS_CHANNEL.search(sn.get("channelTitle", "")):
             continue
         key = (s,)
         if best_key is None or key > best_key:
@@ -116,10 +120,24 @@ def load(path: Path) -> list[dict]:
         return []
 
 
+def _budget(path: Path, now: datetime) -> tuple[dict, int]:
+    """오늘(유튜브 기준 날짜) 검색한 횟수 기록과 남은 횟수."""
+    day = now.astimezone(LA).date().isoformat()
+    try:
+        rec = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    except (ValueError, OSError):
+        rec = {}
+    if rec.get("day") != day:
+        rec = {"day": day, "n": 0}
+    return rec, max(0, DAILY_SEARCHES - rec["n"])
+
+
 def apply(issues: list[dict], api_key: str | None, path: Path, at_iso: str,
           searcher=None, lead: int = 3) -> int:
     """앞의 lead개 이슈에 thumb 를 붙인다. 새로 검색한 횟수를 돌려준다."""
     now = datetime.fromisoformat(at_iso)
+    count_path = path.with_name("yt_search_count.json")
+    rec, left = _budget(count_path, now)
     cache = [c for c in load(path) if _fresh(c, now)]
     # 못 찾았던 이슈는 2시간 지나면 기록을 지워서 다시 찾게 한다
     cache = [c for c in cache if c.get("thumb") or _age(c, now) < timedelta(hours=RETRY_HOURS)]
@@ -134,7 +152,7 @@ def apply(issues: list[dict], api_key: str | None, path: Path, at_iso: str,
         # 같은 이슈 = 지금 글의 절반 이상이 그때 이슈에 있던 글
         hit = next((c for c in cache if len(urls & set(c.get("urls", []))) >= max(1, len(urls) / 2)
                     and (c.get("thumb") or {}).get("id") not in taken), None)
-        if hit is None and api_key and searches < MAX_SEARCHES:
+        if hit is None and api_key and searches < min(MAX_SEARCHES, left):
             words = topic_words(it)
             searches += 1
             try:
@@ -157,6 +175,10 @@ def apply(issues: list[dict], api_key: str | None, path: Path, at_iso: str,
                 taken.add(t["id"])
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
+    rec["n"] += searches
+    count_path.write_text(json.dumps(rec), encoding="utf-8")
+    if searches:
+        print(f"[썸네일] 오늘 유튜브 검색 {rec['n']}/{DAILY_SEARCHES}번")
     return searches
 
 
