@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-19T02:33:33+09:00",
- "method": "ai",
+ "updated_at": "2026-11-19T03:23:07+09:00",
+ "method": "simple",
  "post_count": 400,
  "sources": [
   {
@@ -78,92 +78,227 @@
  ],
  "issues": [
   {
-   "headline": "대학 입학 시험 수능 부정행위 방지 대책 마련",
-   "summary": "대학 입학 시험인 수능을 앞두고 인공지능 등을 활용한 부정행위 우려가 커지면서 정부가 강력한 처벌과 대책 마련에 나섰습니다.",
-   "why": "수험생과 학부모 수십만 명이 직접적으로 영향을 받는 국가적인 큰 시험이기 때문입니다.",
-   "category": "사회",
+   "headline": "아이브 가을 : 유행하는 걸 안 한다고 늙크크라고 하는 거 별로지 않아요?",
+   "summary": "",
+   "why": "",
+   "category": "생활",
    "hot": true,
    "communities": [
-    {
-     "key": "daumnews",
-     "name": "다음뉴스",
-     "count": 6,
-     "framing": "시험 제도의 허점과 AI 부정행위 대책 필요성을 보도하고 있습니다.",
-     "tone": "mixed",
-     "url": "https://v.daum.net/v/20261119010122529",
-     "comment_count": null
-    },
-    {
-     "key": "dcinside",
-     "name": "디시",
-     "count": 1,
-     "framing": "수능 시험장 반입 물품 제한과 부정행위 우려에 대한 반응이 이어지고 있습니다.",
-     "tone": "cold",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479909&_dcbest=1",
-     "comment_count": null
-    },
     {
      "key": "instiz",
      "name": "인스티즈",
      "count": 1,
-     "framing": "시험을 앞두고 부정행위 우려와 관련한 다양한 의견이 오가고 있습니다.",
-     "tone": "cold",
+     "framing": "",
+     "tone": "",
+     "url": "https://www.instiz.net/pt/7927330",
+     "comment_count": null
+    },
+    {
+     "key": "theqoo",
+     "name": "더쿠",
+     "count": 1,
+     "framing": "",
+     "tone": "",
+     "url": "https://theqoo.net/hot/4410848817",
+     "comment_count": null
+    }
+   ],
+   "posts": [
+    {
+     "title": "아이브 가을 : 유행하는 걸 안 한다고 늙크크라고 하는 거 별로지 않아요?",
+     "url": "https://www.instiz.net/pt/7927330",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "아이브 가을 : 유행하는 걸 안 한다고 늙크크라고 하는 거 별로지 않아요?",
+     "url": "https://theqoo.net/hot/4410848817",
+     "source": "theqoo",
+     "source_name": "더쿠"
+    }
+   ],
+   "first_seen": "2026-11-19T00:27:34+09:00",
+   "unverified": true,
+   "score": 25.92,
+   "id": "i0",
+   "trend": {
+    "series": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     2,
+     2,
+     2,
+     2,
+     0,
+     0,
+     2
+    ],
+    "label": "유지",
+    "dir": "flat",
+    "hours": "2시간째 화제"
+   }
+  },
+  {
+   "headline": "코르티스 몸무게",
+   "summary": "",
+   "why": "",
+   "category": "생활",
+   "hot": true,
+   "communities": [
+    {
+     "key": "instiz",
+     "name": "인스티즈",
+     "count": 1,
+     "framing": "",
+     "tone": "",
+     "url": "https://www.instiz.net/name_enter/101069909",
+     "comment_count": null
+    },
+    {
+     "key": "theqoo",
+     "name": "더쿠",
+     "count": 1,
+     "framing": "",
+     "tone": "",
+     "url": "https://theqoo.net/hot/4410833169",
+     "comment_count": null
+    }
+   ],
+   "posts": [
+    {
+     "title": "코르티스 몸무게",
+     "url": "https://www.instiz.net/name_enter/101069909",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "코르티스 몸무게 다 떴다…",
+     "url": "https://theqoo.net/hot/4410833169",
+     "source": "theqoo",
+     "source_name": "더쿠"
+    }
+   ],
+   "first_seen": "2026-11-18T22:06:45+09:00",
+   "unverified": true,
+   "score": 25.9,
+   "id": "i1",
+   "trend": {
+    "series": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     2,
+     2,
+     2,
+     2,
+     0,
+     0,
+     2
+    ],
+    "label": "유지",
+    "dir": "flat",
+    "hours": "5시간째 화제"
+   }
+  },
+  {
+   "headline": "심장사상충 치료제 생산 내년 중단",
+   "summary": "",
+   "why": "",
+   "category": "생활",
+   "hot": true,
+   "communities": [
+    {
+     "key": "instiz",
+     "name": "인스티즈",
+     "count": 1,
+     "framing": "",
+     "tone": "",
+     "url": "https://www.instiz.net/pt/7927313",
+     "comment_count": null
+    },
+    {
+     "key": "theqoo",
+     "name": "더쿠",
+     "count": 1,
+     "framing": "",
+     "tone": "",
+     "url": "https://theqoo.net/hot/4410747382",
+     "comment_count": null
+    }
+   ],
+   "posts": [
+    {
+     "title": "강아지 심장사상충 치료제 내년 생산 중단",
+     "url": "https://www.instiz.net/pt/7927313",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "심장사상충 치료제 생산 내년 중단",
+     "url": "https://theqoo.net/hot/4410747382",
+     "source": "theqoo",
+     "source_name": "더쿠"
+    }
+   ],
+   "first_seen": "2026-11-18T22:06:45+09:00",
+   "unverified": true,
+   "score": 25.56,
+   "id": "i2",
+   "trend": {
+    "series": [
+     0,
+     0,
+     0,
+     0,
+     3,
+     3,
+     2,
+     2,
+     2,
+     2,
+     0,
+     0,
+     2
+    ],
+    "label": "유지",
+    "dir": "flat",
+    "hours": "5시간째 화제"
+   }
+  },
+  {
+   "headline": "사실 AI컨닝 난리난거 한국이 먼저 아님.....",
+   "summary": "",
+   "why": "",
+   "category": "생활",
+   "hot": true,
+   "communities": [
+    {
+     "key": "instiz",
+     "name": "인스티즈",
+     "count": 1,
+     "framing": "",
+     "tone": "",
      "url": "https://www.instiz.net/name_enter/101071066",
      "comment_count": null
     },
     {
      "key": "theqoo",
      "name": "더쿠",
-     "count": 2,
-     "framing": "시험 부정행위와 관련된 논란을 우려 섞인 시선으로 바라보고 있습니다.",
-     "tone": "cold",
+     "count": 1,
+     "framing": "",
+     "tone": "",
      "url": "https://theqoo.net/hot/4410831585",
      "comment_count": null
     }
    ],
    "posts": [
-    {
-     "title": "\"시험 무효 처리로는 부족\"…AI 활용 부정행위 강력한 처벌 필요성 대두",
-     "url": "https://v.daum.net/v/20261119010122529",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "“앙심 품고 가방에 휴대전화 넣을까봐 자물쇠 구입”…수험생들 초긴장",
-     "url": "https://v.daum.net/v/20261118214023365",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "현직 변호사들 '리트 만점자' 고발‥책구매자 집단소송, 시대인재 '손절'",
-     "url": "https://v.daum.net/v/20261118232212515",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "[김현우의 핫스팟] AI 안경 잡을 시간에 시험 제도 바꿀 생각은?",
-     "url": "https://v.daum.net/v/20261116163004660",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "수능 D-day, 개인 사인펜 못 쓴다…단추엔 스티커, 안경은 매 교시 점검",
-     "url": "https://v.daum.net/v/20261119001639150",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "“AI 부정행위 걱정되지만 최선 다해야죠”…수능 D-1, 수험생들 긴장·기대 교차 [현장, 그곳&]",
-     "url": "https://v.daum.net/v/20261118194341751",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "[현갤] 수능시험장 연필만 반입 허용…나머지 불가",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479909&_dcbest=1",
-     "source": "dcinside",
-     "source_name": "디시"
-    },
     {
      "title": "정리글 사실 AI컨닝 난리난거 한국이 먼저 아님.....",
      "url": "https://www.instiz.net/name_enter/101071066",
@@ -175,349 +310,11 @@
      "url": "https://theqoo.net/hot/4410831585",
      "source": "theqoo",
      "source_name": "더쿠"
-    },
-    {
-     "title": "수능에서 부정행위 하겠다는 유튜버",
-     "url": "https://theqoo.net/hot/4410721523",
-     "source": "theqoo",
-     "source_name": "더쿠"
     }
    ],
-   "first_seen": "2026-11-16T17:40:56+09:00",
-   "unverified": false,
-   "score": 67.78,
-   "id": "i0",
-   "trend": {
-    "series": [
-     0,
-     26,
-     26,
-     21,
-     21,
-     21,
-     13,
-     13,
-     2,
-     2,
-     2,
-     2,
-     10
-    ],
-    "label": "유지",
-    "dir": "flat",
-    "hours": "2일째 화제"
-   },
-   "thumb": {
-    "id": "lm1frMPu56g",
-    "url": "https://www.youtube.com/watch?v=lm1frMPu56g",
-    "title": "이 대통령 \"수능 AI 부정행위 무관용\"…신고 포상금 1억 원·시험 중 재난문자 검토 [이슈PLAY] / JTBC News",
-    "channel": "JTBC News",
-    "img": "https://i.ytimg.com/vi/lm1frMPu56g/hqdefault.jpg"
-   }
-  },
-  {
-   "headline": "시험 고득점자의 부정행위 의혹과 진실 공방",
-   "summary": "각종 고득점 시험에서 만점을 받았다는 이들의 실력에 대해 조작 및 부정행위 의혹이 제기되면서 논란이 커지고 있습니다.",
-   "why": "온라인 커뮤니티와 방송을 통해 관련 소식이 빠르게 퍼지며 큰 관심을 모으고 있습니다.",
-   "category": "사회",
-   "hot": true,
-   "communities": [
-    {
-     "key": "dcinside",
-     "name": "디시",
-     "count": 5,
-     "framing": "만점자의 주장과 이에 대한 법적 대응 및 고발 소식을 전하고 있습니다.",
-     "tone": "mixed",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479869&_dcbest=1",
-     "comment_count": null
-    },
-    {
-     "key": "instiz",
-     "name": "인스티즈",
-     "count": 4,
-     "framing": "만점자의 라이브 방송 예고와 관련 반응에 주목하고 있습니다.",
-     "tone": "mixed",
-     "url": "https://www.instiz.net/pt/7927291",
-     "comment_count": null
-    },
-    {
-     "key": "theqoo",
-     "name": "더쿠",
-     "count": 1,
-     "framing": "",
-     "tone": "",
-     "url": "https://theqoo.net/hot/4410775091",
-     "comment_count": null
-    }
-   ],
-   "posts": [
-    {
-     "title": "[시갤] 세무냥이 한원석, 화이트에 초소형카메라 부착해 사용",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479869&_dcbest=1",
-     "source": "dcinside",
-     "source_name": "디시"
-    },
-    {
-     "title": "[싱갤] [단독] 리트냥이 결국 '공무집행방해' 혐의 형사고발 수순",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479863&_dcbest=1",
-     "source": "dcinside",
-     "source_name": "디시"
-    },
-    {
-     "title": "[시갤] [단독]李진우 \"목요일 실력 보여줄것..안 도망간다\"",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479861&_dcbest=1",
-     "source": "dcinside",
-     "source_name": "디시"
-    },
-    {
-     "title": "[한갤] 리트냥이, \"오히려 전남대 의대녀가 나를 스토킹한거다\"",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479927&_dcbest=1",
-     "source": "dcinside",
-     "source_name": "디시"
-    },
-    {
-     "title": "[싱갤] 치팅 의심받은 세무사 시험 최연소 합격자 근황",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479902&_dcbest=1",
-     "source": "dcinside",
-     "source_name": "디시"
-    },
-    {
-     "title": "[펌글] 리트 문제 수준",
-     "url": "https://www.instiz.net/pt/7927291",
-     "source": "instiz",
-     "source_name": "인스티즈"
-    },
-    {
-     "title": "리트남 이진우 수능 국어 스트리밍 대기 뜸",
-     "url": "https://www.instiz.net/pt/7927281",
-     "source": "instiz",
-     "source_name": "인스티즈"
-    },
-    {
-     "title": "리트 만점자 글 올라옴!!!!!",
-     "url": "https://www.instiz.net/name_enter/101070587",
-     "source": "instiz",
-     "source_name": "인스티즈"
-    },
-    {
-     "title": "이희찬 폭로자입니다 (이진우, 리트 만점자, 리트냥이)",
-     "url": "https://www.instiz.net/pt/7927340",
-     "source": "instiz",
-     "source_name": "인스티즈"
-    },
-    {
-     "title": "LEET만점자 라이브 예정, 조건 공개",
-     "url": "https://theqoo.net/hot/4410775091",
-     "source": "theqoo",
-     "source_name": "더쿠"
-    }
-   ],
-   "first_seen": "2026-11-18T20:00:35+09:00",
+   "first_seen": "2026-11-18T23:22:03+09:00",
    "unverified": true,
-   "score": 58.9,
-   "id": "i1",
-   "trend": {
-    "series": [
-     0,
-     22,
-     22,
-     34,
-     34,
-     34,
-     18,
-     18,
-     0,
-     0,
-     0,
-     0,
-     10
-    ],
-    "label": "주춤",
-    "dir": "down",
-    "hours": "6시간째 화제"
-   },
-   "thumb": {
-    "id": "AqjsX9Vu80s",
-    "url": "https://www.youtube.com/watch?v=AqjsX9Vu80s",
-    "title": "\"DNA·염기서열도 잘 모르던데\"…'리트냥이' 과외교사 등판 [지금이뉴스] / YTN",
-    "channel": " YTN",
-    "img": "https://i.ytimg.com/vi/AqjsX9Vu80s/hqdefault.jpg"
-   }
-  },
-  {
-   "headline": "공인 및 연예인 관련 거취·보도 관심 집중",
-   "summary": "연예계 및 대중문화계 유명 인사들의 개인 문제나 향후 거취와 관련된 소식들이 언론과 커뮤니티에 보도되었습니다.",
-   "why": "대중의 이목을끄는 인물들의 소식이어서 관심도가 높기 때문입니다.",
-   "category": "문화·연예",
-   "hot": true,
-   "communities": [
-    {
-     "key": "dcinside",
-     "name": "디시",
-     "count": 2,
-     "framing": "",
-     "tone": "",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479887&_dcbest=1",
-     "comment_count": null
-    },
-    {
-     "key": "instiz",
-     "name": "인스티즈",
-     "count": 2,
-     "framing": "소속 연예인의 소식과 법원 판결에 대한 반응을 전하고 있습니다.",
-     "tone": "mixed",
-     "url": "https://www.instiz.net/pt/7927350",
-     "comment_count": null
-    },
-    {
-     "key": "theqoo",
-     "name": "더쿠",
-     "count": 2,
-     "framing": "현장 사진과 연예계 관련 소식을 공유하고 있습니다.",
-     "tone": "mixed",
-     "url": "https://theqoo.net/hot/4410664501",
-     "comment_count": null
-    }
-   ],
-   "posts": [
-    {
-     "title": "[이갤] 좀 나와! 퍽!\" 아이돌 '라이즈' 과잉경호 논란",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479887&_dcbest=1",
-     "source": "dcinside",
-     "source_name": "디시"
-    },
-    {
-     "title": "[냉갤] 냉부 제작진에게 박수받은 에이티즈 최산 맛 평가 리액션",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479906&_dcbest=1",
-     "source": "dcinside",
-     "source_name": "디시"
-    },
-    {
-     "title": "승리 20대 아내와 동반입국",
-     "url": "https://www.instiz.net/pt/7927350",
-     "source": "instiz",
-     "source_name": "인스티즈"
-    },
-    {
-     "title": "최동석, 박지윤 남사친 상간 소송 일부 승소…법원 \"잠옷 차림 호텔 동숙 정조 의무 위반\"",
-     "url": "https://www.instiz.net/pt/7927273",
-     "source": "instiz",
-     "source_name": "인스티즈"
-    },
-    {
-     "title": "배종옥, 일부 후배들에 쓴소리 \"차에 꿀 발랐는지 안 나와…답답\"[스타현장]",
-     "url": "https://theqoo.net/hot/4410664501",
-     "source": "theqoo",
-     "source_name": "더쿠"
-    },
-    {
-     "title": "현재 과잉경호다 아니다 말나오는 아이돌 공항짤.jpg",
-     "url": "https://theqoo.net/hot/4410601103",
-     "source": "theqoo",
-     "source_name": "더쿠"
-    }
-   ],
-   "first_seen": "2026-11-18T20:00:35+09:00",
-   "unverified": true,
-   "score": 47.6,
-   "id": "i2",
-   "trend": {
-    "series": [
-     0,
-     4,
-     4,
-     6,
-     6,
-     6,
-     3,
-     3,
-     0,
-     0,
-     0,
-     0,
-     6
-    ],
-    "label": "급상승",
-    "dir": "up",
-    "hours": "6시간째 화제"
-   }
-  },
-  {
-   "headline": "인기 게임 대회 결승전 및 e스포츠 소식",
-   "summary": "국내외에서 큰 인기를 끌고 있는 e스포츠 종목의 결승전 경기 결과와 선수들의 이적 소식이 전해지고 있습니다.",
-   "why": "팬들의 관심이 집중되는 대형 경기와 선수 이동 소식이 연이어 발표되었기 때문입니다.",
-   "category": "스포츠",
-   "hot": true,
-   "communities": [
-    {
-     "key": "dcinside",
-     "name": "디시",
-     "count": 1,
-     "framing": "결승전 비하인드와 경기 결과에 주목하고 있습니다.",
-     "tone": "good",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479969&_dcbest=1",
-     "comment_count": null
-    },
-    {
-     "key": "ruliweb",
-     "name": "루리웹",
-     "count": 1,
-     "framing": "선수의 팀 복귀 소식 등을 비중 있게 다루고 있습니다.",
-     "tone": "good",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77429783",
-     "comment_count": null
-    },
-    {
-     "key": "youtube",
-     "name": "유튜브",
-     "count": 4,
-     "framing": "대회 결과와 관련 영상을 흥미롭게 다루고 있습니다.",
-     "tone": "good",
-     "url": "https://www.youtube.com/watch?v=qQ4QqT20Ibs",
-     "comment_count": 3226
-    }
-   ],
-   "posts": [
-    {
-     "title": "[라갤] 범인검거)젠지 결승전 비하인드 요약",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479969&_dcbest=1",
-     "source": "dcinside",
-     "source_name": "디시"
-    },
-    {
-     "title": "롤)[단독] '제우스' 최우제, T1 리턴 유력",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77429783",
-     "source": "ruliweb",
-     "source_name": "루리웹"
-    },
-    {
-     "title": "GEN vs BLG | 결승전 | 2026 월드 챔피언십 — LCK",
-     "url": "https://www.youtube.com/watch?v=qQ4QqT20Ibs",
-     "source": "youtube",
-     "source_name": "유튜브"
-    },
-    {
-     "title": "제우스, 2년 만에 T1 복귀 유력… 떠나는 도란의 마지막 메시지?! 데프트 드디어 전역! — 붐바야",
-     "url": "https://www.youtube.com/watch?v=i7yiCDgOWxA",
-     "source": "youtube",
-     "source_name": "유튜브"
-    },
-    {
-     "title": "서로의 빛이 되어 함께 달려온 우리 | 2026 월드 챔피언십 결승전 비하인드 — 젠지 이스포츠 Gen.G Esports",
-     "url": "https://www.youtube.com/watch?v=6LFBpAXyego",
-     "source": "youtube",
-     "source_name": "유튜브"
-    },
-    {
-     "title": "【LCK】 T1 제우스 리턴 거피셜 발표 / T1 톰 결별 예정 ?  :  스토브 리그 2일차 - 롤 이스포츠 — THIRD[롤 백과사전]",
-     "url": "https://www.youtube.com/watch?v=1E9-OnPNi7o",
-     "source": "youtube",
-     "source_name": "유튜브"
-    }
-   ],
-   "first_seen": "2026-11-15T11:50:58+09:00",
-   "unverified": false,
-   "score": 46.96,
+   "score": 25.0,
    "id": "i3",
    "trend": {
     "series": [
@@ -527,189 +324,17 @@
      0,
      0,
      0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     6
+     2,
+     2,
+     2,
+     2,
+     10,
+     10,
+     2
     ],
-    "label": "화제 중",
+    "label": "유지",
     "dir": "flat",
-    "hours": "3일째 화제"
-   }
-  },
-  {
-   "headline": "글로벌 증시 및 기술주 주가 변동성 확대",
-   "summary": "뉴욕증시가 혼조세를 보이는 가운데 반도체 및 주요 기술주들의 주가 등락이 이어지고 있습니다.",
-   "why": "국내외 투자자들의 자산과 직접적으로 연결된 경제 이슈이기 때문입니다.",
-   "category": "경제",
-   "hot": true,
-   "communities": [
-    {
-     "key": "daumnews",
-     "name": "다음뉴스",
-     "count": 3,
-     "framing": "기술주 중심의 증시 흐름과 투자 전략을 분석하고 있습니다.",
-     "tone": "mixed",
-     "url": "https://v.daum.net/v/20261119003941310",
-     "comment_count": null
-    },
-    {
-     "key": "ppomppu",
-     "name": "뽐뿌",
-     "count": 3,
-     "framing": "주가 하락과 투자 상황에 대한 우려와 반응이 나타나고 있습니다.",
-     "tone": "cold",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=456958",
-     "comment_count": null
-    }
-   ],
-   "posts": [
-    {
-     "title": "뉴욕증시, 앤트로픽 공모가 발표 앞두고 혼조 출발… 엔비디아 호실적에 기술주 강세",
-     "url": "https://v.daum.net/v/20261119003941310",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "“2030 직장인, 세계 성장주에 과감히 투자해 퇴직연금 불려야”",
-     "url": "https://v.daum.net/v/20261119003232238",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "“불장 땐 선수 아닌 사람 있나”…액티브 ETF, 하락장엔 지수만도 못했다",
-     "url": "https://v.daum.net/v/20261118220300696",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "야선 폭락 중",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=456958",
-     "source": "ppomppu",
-     "source_name": "뽐뿌"
-    },
-    {
-     "title": "월러가 또 지르네요",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=456937",
-     "source": "ppomppu",
-     "source_name": "뽐뿌"
-    },
-    {
-     "title": "엔비디아는 모든 지지선 무너지고 폭락중",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=456933",
-     "source": "ppomppu",
-     "source_name": "뽐뿌"
-    }
-   ],
-   "first_seen": "2026-11-18T23:22:03+09:00",
-   "unverified": false,
-   "score": 37.56,
-   "id": "i4",
-   "trend": {
-    "series": [
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     6
-    ],
-    "label": "화제 중",
-    "dir": "flat",
-    "hours": "3시간째 화제"
-   }
-  },
-  {
-   "headline": "한중 정상회담 개최 및 경제 협력 논의",
-   "summary": "한국과 중국 정상들이 만나 회담을 갖고 자유무역협정 2단계 타결 및 문화·인터넷 협력 방안을 논의했습니다.",
-   "why": "양국의 외교 및 경제 관계에 미치는 영향이 매우 크기 때문입니다.",
-   "category": "정치",
-   "hot": true,
-   "communities": [
-    {
-     "key": "daumnews",
-     "name": "다음뉴스",
-     "count": 4,
-     "framing": "정상회담의 주요 내용과 합의 사항을 상세히 보도하고 있습니다.",
-     "tone": "mixed",
-     "url": "https://v.daum.net/v/20261119015319757",
-     "comment_count": null
-    },
-    {
-     "key": "theqoo",
-     "name": "더쿠",
-     "count": 1,
-     "framing": "",
-     "tone": "",
-     "url": "https://theqoo.net/hot/4410599793",
-     "comment_count": null
-    }
-   ],
-   "posts": [
-    {
-     "title": "中 \"한중 2단계 FTA 타결…문화·인터넷 협력 실행계획 마련\"",
-     "url": "https://v.daum.net/v/20261119015319757",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "트럼프·시진핑·푸틴 만났다… 첫 미중러 정상회담 전날 한자리에",
-     "url": "https://v.daum.net/v/20261119002640207",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "공항 직접 나간 習 “예우 돌려줘”… 트럼프 “모든 만남이 유쾌” [中 선전 에이펙]",
-     "url": "https://v.daum.net/v/20261118225550287",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "[그래픽] 한·중 정상회담 주요 내용",
-     "url": "https://v.daum.net/v/20261118181025468",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "이 대통령 \"판다 한 쌍 국내 도입\"...시진핑 \"한중관계 전면적 개선\"",
-     "url": "https://theqoo.net/hot/4410599793",
-     "source": "theqoo",
-     "source_name": "더쿠"
-    }
-   ],
-   "first_seen": "2026-11-18T18:59:16+09:00",
-   "unverified": false,
-   "score": 34.02,
-   "id": "i5",
-   "trend": {
-    "series": [
-     0,
-     0,
-     0,
-     8,
-     8,
-     8,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     5
-    ],
-    "label": "주춤",
-    "dir": "down",
-    "hours": "7시간째 화제"
+    "hours": "4시간째 화제"
    }
   }
  ],
@@ -721,8 +346,8 @@
     {
      "title": "[싱갤] 싱글벙글 마천루의 역사",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479975&_dcbest=1",
-     "easy": "초고층 빌딩인 마천루의 역사 이야기",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -730,8 +355,8 @@
     {
      "title": "[U갤] 유짓수와 싸울생각 있냐는 질문에 형푸리아의 대답",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479973&_dcbest=1",
-     "easy": "격투기 선수 유짓수와의 대결 가능성에 대한 답변",
-     "category": "스포츠",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -739,8 +364,8 @@
     {
      "title": "[시갤] \"그렇게.. 11월 19일이 되었어.\"",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479971&_dcbest=1",
-     "easy": "11월 19일이 되었다는 내용의 글",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -748,17 +373,17 @@
     {
      "title": "[라갤] 범인검거)젠지 결승전 비하인드 요약",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479969&_dcbest=1",
-     "easy": "게임 리그오브레전드 젠지 팀의 결승전 비하인드 요약",
-     "category": "스포츠",
-     "issue_id": "i3",
-     "hot": true,
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
      "comment_count": null
     },
     {
      "title": "[싱갤] 싱글벙글 해발고도 1000m 이상에 있는 수도",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479965&_dcbest=1",
-     "easy": "해발고도 1000미터 이상에 위치한 세계의 수도들",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -766,8 +391,8 @@
     {
      "title": "[나갤] 핫플에서 혼술에 도전해본 박지현",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479963&_dcbest=1",
-     "easy": "개인 관련 글",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -775,8 +400,8 @@
     {
      "title": "[싱갤] 싱글벙글 히잡 소녀들의 외출 (레딧 만화)",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479961&_dcbest=1",
-     "easy": "히잡을 쓴 소녀들의 외출을 다룬 만화",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -784,8 +409,8 @@
     {
      "title": "[기갤] 위기의 사슴 발견한 구조대, 그들에겐 30분밖에 없었다.jpg",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479959&_dcbest=1",
-     "easy": "위기에 처한 사슴을 구조하는 과정",
-     "category": "사회",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -793,8 +418,8 @@
     {
      "title": "[백갤] 백종원 더본코리아의 고소 및 합의에서의 이상한 점.jpg",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479957&_dcbest=1",
-     "easy": "백종원 더본코리아의 고소 및 합의 관련 의문점",
-     "category": "경제",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -802,8 +427,8 @@
     {
      "title": "[싱갤] 싱글벙글 미국이 괌을 케이크처럼 쉽게 먹은 이유",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479955&_dcbest=1",
-     "easy": "미국이 괌을 쉽게 차지할 수 있었던 역사적 이유",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -828,8 +453,8 @@
     {
      "title": "다이소 강아지 모자 피해자 속출",
      "url": "https://theqoo.net/hot/4410930729",
-     "easy": "다이소 강아지 모자를 구매한 이들의 피해 사례",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -837,8 +462,8 @@
     {
      "title": "이런 위로 너무 귀하다",
      "url": "https://theqoo.net/hot/4410927428",
-     "easy": "마음에 큰 힘이 되는 따뜻한 위로의 말",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -846,8 +471,8 @@
     {
      "title": "네페 52원",
      "url": "https://theqoo.net/hot/4410910349",
-     "easy": "네이버페이 포인트 적립 관련 내용",
-     "category": "경제",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -855,8 +480,8 @@
     {
      "title": "네이버페이15원+10원+10원+1원+1원+1원+1원+랜덤 눌러봐👆+🐶👋+10원+5원+눌러눌러 보험랜덤👆+보험랜덤 하나더✌️+👀라이브미리보고13원받기",
      "url": "https://theqoo.net/hot/4410906166",
-     "easy": "네이버페이 포인트 적립 링크 모음",
-     "category": "경제",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -864,8 +489,8 @@
     {
      "title": "리트 보고 송강 닮았다는 일부 여자들",
      "url": "https://theqoo.net/hot/4410903560",
-     "easy": "배우 리트의 모습이 송강을 닮았다는 일부 반응",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -873,8 +498,8 @@
     {
      "title": "센터 먹은 것 같은 한국",
      "url": "https://theqoo.net/hot/4410892690",
-     "easy": "중심 자리를 차지한 것으로 보이는 한국의 모습",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -882,17 +507,17 @@
     {
      "title": "아이브 가을 : 유행하는 걸 안 한다고 늙크크라고 하는 거 별로지 않아요?",
      "url": "https://theqoo.net/hot/4410848817",
-     "easy": "유행을 따르지 않는다고 나이 든 사람 취급하는 것에 대한 생각",
-     "category": "문화·연예",
-     "issue_id": null,
-     "hot": false,
+     "easy": "",
+     "category": "생활",
+     "issue_id": "i0",
+     "hot": true,
      "comment_count": null
     },
     {
      "title": "백억커피 팝콘 라지 2~3일 나눠서 먹는다는 채령",
      "url": "https://theqoo.net/hot/4410837596",
-     "easy": "가수 채령이 팝콘 라지 사이즈를 며칠에 걸쳐 먹는다는 이야기",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -900,18 +525,18 @@
     {
      "title": "코르티스 몸무게 다 떴다…",
      "url": "https://theqoo.net/hot/4410833169",
-     "easy": "그룹 코르티스의 멤버 몸무게 공개",
-     "category": "문화·연예",
-     "issue_id": null,
-     "hot": false,
+     "easy": "",
+     "category": "생활",
+     "issue_id": "i1",
+     "hot": true,
      "comment_count": null
     },
     {
      "title": "사실 AI컨닝 난리난거 한국이 먼저 아님.....",
      "url": "https://theqoo.net/hot/4410831585",
-     "easy": "인공지능 부정행위 논란이 한국에서 먼저 시작된 것이 아니라는 내용",
-     "category": "사회",
-     "issue_id": "i0",
+     "easy": "",
+     "category": "생활",
+     "issue_id": "i3",
      "hot": true,
      "comment_count": null
     }
@@ -927,8 +552,8 @@
     {
      "title": "실시간 인천공항 연예인?",
      "url": "https://bbs.ruliweb.com/best/board/300143/read/77431615",
-     "easy": "개인 관련 글",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -936,8 +561,8 @@
     {
      "title": "무협온라인 게임에서 현돈 6천만원짜리 배 제작하면 생기는 일",
      "url": "https://bbs.ruliweb.com/best/board/300143/read/77431451",
-     "easy": "온라인 게임에서 고가의 배를 제작했을 때의 상황",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -945,8 +570,8 @@
     {
      "title": "\"흑색 연필이 뭐죠?\" 수능 '연필만 허용'에 대혼란",
      "url": "https://bbs.ruliweb.com/best/board/300143/read/77431371",
-     "easy": "대학수학능력시험 연필 지참 규정으로 인한 혼란",
-     "category": "사회",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -954,8 +579,8 @@
     {
      "title": "오묘하게 국까로 이용되는 사례",
      "url": "https://bbs.ruliweb.com/best/board/300143/read/77430755",
-     "easy": "의외로 나라를 깎아내리는 데 이용되는 사례",
-     "category": "사회",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -963,8 +588,8 @@
     {
      "title": "엔드필드) 올해의 베스트 게임 수상",
      "url": "https://bbs.ruliweb.com/best/board/300143/read/77430781",
-     "easy": "게임 엔드필드가 올해의 베스트 게임을 수상했다",
-     "category": "IT·과학",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -972,8 +597,8 @@
     {
      "title": "젠슨 황 복직 무산",
      "url": "https://bbs.ruliweb.com/best/board/300143/read/77430801",
-     "easy": "젠슨 황의 복직이 무산되었다는 소식",
-     "category": "경제",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -981,8 +606,8 @@
     {
      "title": "[속보] 수능날 위급재난문자 불시에 추가 발송",
      "url": "https://bbs.ruliweb.com/best/board/300143/read/77430797",
-     "easy": "수능 당일 위급재난문자가 추가로 발송되었다",
-     "category": "사회",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -990,8 +615,8 @@
     {
      "title": "의외로 꽤 많은 소울무새 유형 甲.JPG",
      "url": "https://bbs.ruliweb.com/best/board/300143/read/77430416",
-     "easy": "특정 게임을 즐겨 찾는 사람들의 흔한 유형",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -999,8 +624,8 @@
     {
      "title": "한국인들이 오히려 대단함을 체감 못하는 작가 甲",
      "url": "https://bbs.ruliweb.com/best/board/300143/read/77430614",
-     "easy": "한국인들이 대단함을 잘 모르는 뛰어난 작가",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1008,8 +633,8 @@
     {
      "title": "8090 세대들이 어릴적 생크림 케잌을 극혐한 이유",
      "url": "https://bbs.ruliweb.com/best/board/300143/read/77430458",
-     "easy": "과거 세대가 어릴 적 생크림 케이크를 싫어했던 이유",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1040,10 +665,19 @@
    "name": "인스티즈",
    "items": [
     {
+     "title": "실시간 세무사 시험 난리난 이유",
+     "url": "https://www.instiz.net/pt/7927353",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
      "title": "현재 일본에서 만년돌로 불리는 여돌",
      "url": "https://www.instiz.net/name_enter/101071495",
-     "easy": "일본에서 오래 사랑받는 아이돌로 불리는 여자 아이돌",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1051,8 +685,8 @@
     {
      "title": "리트냥이 공지",
      "url": "https://www.instiz.net/name_enter/101071346",
-     "easy": "리트냥이 관련 공지사항",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1060,26 +694,26 @@
     {
      "title": "승리 20대 아내와 동반입국",
      "url": "https://www.instiz.net/pt/7927350",
-     "easy": "개인 관련 글",
-     "category": "문화·연예",
-     "issue_id": "i2",
-     "hot": true,
-     "comment_count": null
-    },
-    {
-     "title": "아이브 가을 : 유행하는 걸 안 한다고 늙크크라고 하는 거 별로지 않아요?",
-     "url": "https://www.instiz.net/pt/7927330",
-     "easy": "유행을 안 따른다고 나이 든 사람 취급하는 것은 별로다",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
     },
     {
+     "title": "아이브 가을 : 유행하는 걸 안 한다고 늙크크라고 하는 거 별로지 않아요?",
+     "url": "https://www.instiz.net/pt/7927330",
+     "easy": "",
+     "category": "생활",
+     "issue_id": "i0",
+     "hot": true,
+     "comment_count": null
+    },
+    {
      "title": "ㅁㅊ 내가 지금 뭘본거임",
      "url": "https://www.instiz.net/name_enter/101071188",
-     "easy": "놀라운 광경을 목격했다는 내용의 글",
-     "category": "사회",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1087,8 +721,8 @@
     {
      "title": "의사가 봤을때 이해가 안간다는 컨텐츠",
      "url": "https://www.instiz.net/pt/7927304",
-     "easy": "의사가 보기에 이해하기 어렵다는 인터넷 콘텐츠",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1096,8 +730,8 @@
     {
      "title": "나 택배 반품빈도 보면 정신에 문제있는 사람같음?",
      "url": "https://www.instiz.net/name/68011592",
-     "easy": "택배 반품이 잦아 고민이라는 사연",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1105,8 +739,8 @@
     {
      "title": "근데 이거 하는 나라가 우리나라밖에 없대",
      "url": "https://www.instiz.net/name_enter/101070962",
-     "easy": "우리나라에만 있는 특정한 문화나 제도에 대한 이야기",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1114,17 +748,8 @@
     {
      "title": "뽀글이 아우터 지그재그에서 6만원대 사도 ㄱㅊ을까?",
      "url": "https://www.instiz.net/name/68011496",
-     "easy": "인터넷 쇼핑몰에서 겉옷을 구매해도 괜찮을지 묻는 내용",
-     "category": "생활",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "부모화된 아이(어른아이) 특징.jpg",
-     "url": "https://www.instiz.net/pt/7927307",
-     "easy": "어른처럼 행동해야 했던 아이들의 특징",
-     "category": "사회",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1139,10 +764,19 @@
    "name": "뽐뿌",
    "items": [
     {
+     "title": "야선 하락이 슬프지 않은건",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=456963",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
      "title": "간만에 매수했더니 바로 꽂네ㅋㅋ",
      "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=456961",
-     "easy": "주식 매수 직후 주가가 하락했다는 내용",
-     "category": "경제",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1150,17 +784,17 @@
     {
      "title": "월러가 또 지르네요",
      "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=456937",
-     "easy": "연준 인사의 경제 정책 관련 발언이나 행보",
-     "category": "경제",
-     "issue_id": "i4",
-     "hot": true,
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
      "comment_count": null
     },
     {
      "title": "현기차도 감가 씨게먹네요",
      "url": "https://www.ppomppu.co.kr/zboard/view.php?id=car&no=982633",
-     "easy": "현대·기아 자동차의 중고차 감가 상각이 크다는 내용",
-     "category": "경제",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1168,26 +802,17 @@
     {
      "title": "수능 재난문자에 군인들이 떠는 이유",
      "url": "https://www.ppomppu.co.kr/zboard/view.php?id=youtube_info&no=26382",
-     "easy": "수능 재난문자에 군인들이 당황하는 이유",
-     "category": "사회",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
     },
     {
-     "title": "야선 폭락 중",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=456958",
-     "easy": "미국 증시 하락세 관련 내용",
-     "category": "경제",
-     "issue_id": "i4",
-     "hot": true,
-     "comment_count": null
-    },
-    {
      "title": "광고/제휴",
      "url": "https://www.ppomppu.co.kr/zboard/view.php?id=faq&no=17",
-     "easy": "광고 및 제휴 안내 글",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1204,8 +829,17 @@
     {
      "title": "카광사건관련) 살해협박을 받았습니다 (공개)",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1048576",
-     "easy": "카광 사건과 관련해 살해 협박을 받았다는 고백",
-     "category": "사회",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "여자들이 편의점 알바를 오래 못하는 이유",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048580",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1213,8 +847,8 @@
     {
      "title": "40대 이상 금지목록",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1048573",
-     "easy": "40대 이상은 보지 말아야 할 목록",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1222,8 +856,8 @@
     {
      "title": "문조털래유는 민주당에 관심 끄고 조국 혁신당이나 지지하라니까..",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1048571",
-     "easy": "정치 성향에 대한 비판과 다른 당 지지 권유",
-     "category": "정치",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1231,8 +865,8 @@
     {
      "title": "길에서 폰 보지 마라",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1048572",
-     "easy": "길을 걸을 때는 휴대전화를 보지 말아야 한다",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1240,8 +874,8 @@
     {
      "title": "남편 성과금이 들어왔다네요",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1048574",
-     "easy": "남편의 성과금이 들어왔다는 소식",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1249,8 +883,8 @@
     {
      "title": "\"남편이 바람피우기 싫다고 이혼하재\"",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1048563",
-     "easy": "남편이 바람피우기 싫다며 이혼을 요구한다는 사연",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1258,8 +892,17 @@
     {
      "title": "니는 임마 내하고 붙어야지 누굴 자꾸 건드리노?",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1048569",
-     "easy": "상대방에게 불만을 나타내는 내용의 글",
-     "category": "사회",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "강남 학원장이 초등생에게 술 먹이고 성폭행…긴급체포",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048581",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1267,26 +910,8 @@
     {
      "title": "뉴일베 새끼들 정치글 쓰는 방법",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1048570",
-     "easy": "인터넷 커뮤니티의 정치 글 작성 방식에 대한 비판",
-     "category": "정치",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "악질중에 악질 매국노 중국남자 출몰했습니다!",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048550",
-     "easy": "중국인 남성에 대한 비판적인 내용의 글",
-     "category": "사회",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "지지율 60% 날려먹고 구조적 다수?",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048554",
-     "easy": "정부 지지율 하락과 정치적 상황에 대한 비판",
-     "category": "정치",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1309,37 +934,55 @@
    "name": "다음뉴스",
    "items": [
     {
+     "title": "미중러 정상회담일 유럽은 우크라 지지 '의지의 연합' 정상회의",
+     "url": "https://v.daum.net/v/20261119030724906",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "트럼프 행정부, 잇단 시스템 장애 진화 부심…\"사이버공격 아냐\"(종합)",
+     "url": "https://v.daum.net/v/20261119023030839",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
      "title": "中 \"한중 2단계 FTA 타결…문화·인터넷 협력 실행계획 마련\"",
      "url": "https://v.daum.net/v/20261119015319757",
-     "easy": "한국과 중국의 2단계 자유무역협정 타결 및 협력 계획",
-     "category": "경제",
-     "issue_id": "i5",
-     "hot": true,
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
      "comment_count": null
     },
     {
      "title": "\"시험 무효 처리로는 부족\"…AI 활용 부정행위 강력한 처벌 필요성 대두",
      "url": "https://v.daum.net/v/20261119010122529",
-     "easy": "인공지능을 활용한 부정행위에 대한 강력한 처벌 필요성",
-     "category": "사회",
-     "issue_id": "i0",
-     "hot": true,
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
      "comment_count": null
     },
     {
      "title": "뉴욕증시, 앤트로픽 공모가 발표 앞두고 혼조 출발… 엔비디아 호실적에 기술주 강세",
      "url": "https://v.daum.net/v/20261119003941310",
-     "easy": "뉴욕증시, 기업 실적 기대감 속에 혼조세로 출발했다",
-     "category": "경제",
-     "issue_id": "i4",
-     "hot": true,
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
      "comment_count": null
     },
     {
      "title": "마트서 사먹고 집에서 해먹고… 한식에 빠진 외국인",
      "url": "https://v.daum.net/v/20261119003248251",
-     "easy": "한식에 큰 관심을 보이는 외국인들의 모습",
-     "category": "생활",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1347,17 +990,17 @@
     {
      "title": "“2030 직장인, 세계 성장주에 과감히 투자해 퇴직연금 불려야”",
      "url": "https://v.daum.net/v/20261119003232238",
-     "easy": "젊은 직장인의 퇴직연금 투자 전략 조언",
-     "category": "경제",
-     "issue_id": "i4",
-     "hot": true,
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
      "comment_count": null
     },
     {
      "title": "\"푸틴, 올겨울 내내 우크라전 지속 의지…종전협상 준비 안 돼\"",
      "url": "https://v.daum.net/v/20261118233622588",
-     "easy": "푸틴 러시아 대통령의 우크라이나 전쟁 지속 의지",
-     "category": "정치",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1365,26 +1008,8 @@
     {
      "title": "여야, 국정홍보·K컬처 예산에 공방…특활비도 쟁점(종합)",
      "url": "https://v.daum.net/v/20261118233110562",
-     "easy": "여야가 국정홍보와 문화 예산 문제로 공방을 벌였다",
-     "category": "정치",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "현직 변호사들 '리트 만점자' 고발‥책구매자 집단소송, 시대인재 '손절'",
-     "url": "https://v.daum.net/v/20261118232212515",
-     "easy": "변호사들의 고발과 책 구매자들의 집단소송 제기",
-     "category": "사회",
-     "issue_id": "i0",
-     "hot": true,
-     "comment_count": null
-    },
-    {
-     "title": "시진핑 \"中 50년 보려면 선전으로 오라\"… 美 능가 의지",
-     "url": "https://v.daum.net/v/20261118231107425",
-     "easy": "시진핑 주석의 발언과 중국의 발전 의지",
-     "category": "정치",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1392,8 +1017,8 @@
     {
      "title": "[경제포커스] 간첩보다 못한 한국 반도체 외교",
      "url": "https://v.daum.net/v/20261118233917613",
-     "easy": "한국 반도체 외교의 아쉬움을 지적하는 경제 칼럼",
-     "category": "경제",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": null
@@ -1410,89 +1035,89 @@
     {
      "title": "인내심이 바닥나버렸습니다... ≪어벤져스: 둠스데이≫ 메인 예고편 공개 임박 & 루머 총정리 — 무비띵크_Movie Think",
      "url": "https://www.youtube.com/watch?v=WqQgO06emHU",
-     "easy": "영화 어벤져스: 둠스데이 예고편 공개 임박과 소문 정리",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 466
-    },
-    {
-     "title": "마지막 타입 : 비행타입 하트골드【포켓몬 모든타입 깨기】#1 — 근가놈",
-     "url": "https://www.youtube.com/watch?v=J63EuowbQZ8",
-     "easy": "포켓몬 게임 비행 타입 깨기 도전 영상",
-     "category": "문화·연예",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": 403
-    },
-    {
-     "title": "더 커진 판, 더 독해진 가족 [가족계획 시즌2] 티저 예고편 — 쿠팡플레이 Coupang Play",
-     "url": "https://www.youtube.com/watch?v=cBHXKJiXFJs",
-     "easy": "드라마 가족계획 시즌2 예고편 공개",
-     "category": "문화·연예",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": 167
-    },
-    {
-     "title": "그녀와의 재회는 최악이였다 — 김재원의 즐거운 세상",
-     "url": "https://www.youtube.com/watch?v=FOmplJHIZnw",
-     "easy": "게임 방송 관련 영상",
-     "category": "문화·연예",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": 397
+     "comment_count": 468
     },
     {
      "title": "GTA 6 리뷰 — 인벤",
      "url": "https://www.youtube.com/watch?v=y9RsawyGyCI",
-     "easy": "게임 GTA 6 리뷰 영상",
-     "category": "IT·과학",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 262
+     "comment_count": 265
+    },
+    {
+     "title": "더 커진 판, 더 독해진 가족 [가족계획 시즌2] 티저 예고편 — 쿠팡플레이 Coupang Play",
+     "url": "https://www.youtube.com/watch?v=cBHXKJiXFJs",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": 168
+    },
+    {
+     "title": "마지막 타입 : 비행타입 하트골드【포켓몬 모든타입 깨기】#1 — 근가놈",
+     "url": "https://www.youtube.com/watch?v=J63EuowbQZ8",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": 405
+    },
+    {
+     "title": "그녀와의 재회는 최악이였다 — 김재원의 즐거운 세상",
+     "url": "https://www.youtube.com/watch?v=FOmplJHIZnw",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": 395
     },
     {
      "title": "놈과 왕의 종결급 케미【윤가놈X말왕 합방】 — 윤가놈",
      "url": "https://www.youtube.com/watch?v=mUcnosPjqcA",
-     "easy": "유튜버들의 합동 방송 영상",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 392
+     "comment_count": 401
     },
     {
      "title": "27성 혈 뚫린 팡이요 설마 또...? [팡이요,  메이플스토리] — 팡이요",
      "url": "https://www.youtube.com/watch?v=HHalGzOJAUI",
-     "easy": "메이플스토리 게임 방송 영상",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 156
+     "comment_count": 160
     },
     {
      "title": "포대장 허락 받고 올립니다 — 말왕TV",
      "url": "https://www.youtube.com/watch?v=pJ3iljGI1wg",
-     "easy": "군부대 허락을 받고 올린 운동 관련 영상",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 361
+     "comment_count": 366
     },
     {
      "title": "GEN vs BLG | 결승전 | 2026 월드 챔피언십 — LCK",
      "url": "https://www.youtube.com/watch?v=qQ4QqT20Ibs",
-     "easy": "세계 e스포츠 대회 결승전 경기",
-     "category": "스포츠",
-     "issue_id": "i3",
-     "hot": true,
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
      "comment_count": 433
     },
     {
      "title": "탑에서 만나기만하면 레전드찍는 저클ㅋㅋㅋㅋ — 저라뎃 JUSTLIKETHAT",
      "url": "https://www.youtube.com/watch?v=IWrZNCvLLT8",
-     "easy": "게임 방송 중 벌어진 재미있는 상황",
-     "category": "문화·연예",
+     "easy": "",
+     "category": "",
      "issue_id": null,
      "hot": false,
      "comment_count": 82
@@ -1505,16 +1130,6 @@
  ],
  "words": [
   {
-   "word": "손절",
-   "meaning": "원래는 손해를 감수하고 주식을 파는 것. 사람과 관계를 끊는다는 뜻으로도 씀",
-   "example": "그 친구랑은 손절했어"
-  },
-  {
-   "word": "스포",
-   "meaning": "'스포일러'. 영화·드라마의 결말 등을 미리 알려주는 것",
-   "example": "스포 하지 마!"
-  },
-  {
    "word": "레전드",
    "meaning": "두고두고 이야기될 만큼 대단하거나 어이없는 일",
    "example": "오늘 경기는 레전드였다"
@@ -1523,19 +1138,14 @@
    "word": "핫플",
    "meaning": "'핫 플레이스'. 사람이 많이 찾는 인기 장소",
    "example": "요즘 핫플은 성수동"
-  },
-  {
-   "word": "근황",
-   "meaning": "요즘 사는 모습이나 상황 (인터넷 글 제목에 자주 붙음)",
-   "example": "그 가수 근황"
   }
  ],
  "people": [
   {
    "name": "이재명",
    "who": "대한민국의 제21대 대통령",
-   "why": "커닝 대책으로 SNS나 커뮤니티를 챙겨보라고 발언해 화제예요.",
-   "mentions": 7,
+   "why": "커닝 대책으로 SNS나 커뮤니티를 챙겨보라고 발언한 내용이 화제예요.",
+   "mentions": 6,
    "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/President_Lee_Jae_Myung_20260306.jpg/330px-President_Lee_Jae_Myung_20260306.jpg?utm_source=ko.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "wiki": "https://ko.wikipedia.org/wiki/%EC%9D%B4%EC%9E%AC%EB%AA%85",
    "news_used": false
@@ -1552,7 +1162,7 @@
   {
    "name": "시진핑",
    "who": "중국공산당 제7대 중앙위원회 총서기",
-   "why": "판다 한 쌍의 국내 도입과 한중관계 개선 관련 소식으로 언급되고 있어요.",
+   "why": "한중 관계 개선과 판다 한 쌍 국내 도입 관련 소식으로 언급되고 있어요.",
    "mentions": 2,
    "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Xi_Jinping_in_Beijing_on_May_13%2C_2025_%28cropped%29.jpg/330px-Xi_Jinping_in_Beijing_on_May_13%2C_2025_%28cropped%29.jpg?utm_source=ko.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "wiki": "https://ko.wikipedia.org/wiki/%EC%8B%9C%EC%A7%84%ED%95%91",
