@@ -545,3 +545,24 @@ def test_thumb_topic_words_and_retry(tmp_path):
     assert len(calls) == 1  # 1시간 뒤엔 다시 안 찾음
     thumbs.apply([dict(issue)], "k", path, "2026-11-18T15:30:00+09:00", searcher=lambda q: calls.append(q) or [])
     assert len(calls) == 2  # 2시간 넘으면 다시 찾음
+
+
+def test_lead_pages_are_filled_to_three():
+    from issuebundle import cluster
+    t = "2026-11-18T10:00:00+09:00"
+    def post(u, src, title, rank=1):
+        return {"url": u, "title": title, "source": src, "best_rank": rank, "first_seen": t}
+    posts = [post("a1", "dcinside", "수능 AI 대책"), post("a2", "theqoo", "수능 AI 대책 발표"),
+             post("b1", "theqoo", "가수 컴백 무대"), post("b2", "theqoo", "가수 컴백 무대 반응"),
+             post("c1", "daumnews", "서울 첫눈 내린다 기상청 예보"), post("c2", "dcinside", "서울 첫눈 내린다 기상청")]
+    def llm(prompt):
+        if "인기글 제목을 쉬운 말로" in prompt:
+            return "{}"
+        return ('{"issues":[{"headline":"수능 AI 대책","summary":"","why":"","category":"사회","post_ids":["p1","p2"],'
+                '"tone":{},"unverified":false},'
+                '{"headline":"가수 컴백","summary":"","why":"","category":"문화·연예","post_ids":["p3","p4"],"unverified":false}]}')
+    issues, _, method = cluster.make_issues(posts, llm)
+    heads = [i["headline"] for i in issues]
+    assert method == "ai" and len(issues) == 3
+    assert heads[0] == "수능 AI 대책" and "가수 컴백" in heads
+    assert "서울 첫눈 내린다 기상청 예보" in heads  # 뉴스 제목으로 채움

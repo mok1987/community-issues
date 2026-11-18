@@ -23,6 +23,8 @@ DEFAULT_MODEL = (os.environ.get("GEMINI_MODEL") or "").strip() or None
 _SKIP = ("preview", "exp", "tts", "image", "live", "audio", "embedding", "thinking")
 CATEGORIES = ["정치", "경제", "사회", "문화·연예", "스포츠", "IT·과학", "생활"]
 DEFAULT_CATEGORY = "생활"
+MIN_ISSUES = 3  # 화면 1~3면
+NEWS_SOURCES = ("daumnews", "navernews")
 # 출처별 제목 분위기 (화면의 분위기 막대 색)
 TONES = {"좋음": "good", "갈림": "mixed", "싸늘": "cold"}
 
@@ -34,6 +36,8 @@ PROMPT = """너는 인터넷 커뮤니티를 전혀 안 보는 50~60대 독자�
 할 일 1 — 이슈 묶기:
 1. 같은 사건·인물·발표·사고·논란을 다룬 글끼리 하나의 이슈로 묶어라. 애매하면 묶지 마라.
 2. 두 곳 이상의 출처에 등장한 이슈를 우선하고, 한 곳에만 있어도 글이 3개 이상이면 포함해라.
+   주제가 비슷해도 서로 다른 사건(예: 수능 대책 발표와 다른 시험 합격자 의혹)은 따로 나눠라. 한 이슈에 글이 15개를 넘지 않게 해라.
+   이슈는 가능하면 6개 이상 만들어라 (화면 1~3면을 항상 채워야 한다).
 3. 사건이 아닌 단순 유머·짤·일상글·음악 영상은 이슈에서 제외해라.
 4. 일반인(공인이 아닌 사람)의 실명·얼굴·연락처·신상과 관련된 이슈는 제외해라.
 
@@ -247,7 +251,7 @@ def cluster_with_llm(posts: list[dict], llm: LLM, top_urls: set[str] | None = No
     prompt, idmap = build_prompt(posts, top_urls)
     raw = parse_json(llm(prompt))
 
-    issues, used = [], set()
+    issues, used, spare = [], set(), []
     for item in raw.get("issues", []):
         # 모델이 지어낸 ID나 이미 다른 이슈에 쓴 글은 버린다
         ids = [i for i in item.get("post_ids", []) if i in idmap and i not in used]
@@ -256,8 +260,23 @@ def cluster_with_llm(posts: list[dict], llm: LLM, top_urls: set[str] | None = No
             continue
         sources = {p["source"] for p in members}
         if len(sources) < 2 and len(members) < 3:
+            if len(members) >= 2:  # 이슈가 모자랄 때 채워 넣을 후보로 남겨 둔다
+                spare.append((item, ids, members))
             continue
         used.update(ids)
+        framing = {k: v for k, v in (item.get("framing") or {}).items() if k in sources}
+        tone = {k: v for k, v in (item.get("tone") or {}).items() if k in sources and isinstance(v, str)}
+        issues.append(_issue(item.get("headline", ""), item.get("summary", ""), item.get("why", ""),
+                             item.get("category"), members, framing, item.get("unverified", True), tone))
+
+    # 1~3면을 채우도록, 모자라면 한 출처에서 글 2개짜리 이슈도 넣는다
+    for item, ids, members in sorted(spare, key=lambda x: -score(x[2])):
+        if len(issues) >= MIN_ISSUES:
+            break
+        if any(i in used for i in ids):
+            continue
+        used.update(ids)
+        sources = {p["source"] for p in members}
         framing = {k: v for k, v in (item.get("framing") or {}).items() if k in sources}
         tone = {k: v for k, v in (item.get("tone") or {}).items() if k in sources and isinstance(v, str)}
         issues.append(_issue(item.get("headline", ""), item.get("summary", ""), item.get("why", ""),
@@ -396,6 +415,25 @@ def soften_issues(issues: list[dict], llm: LLM | None) -> list[dict]:
     return out
 
 
+def fill_issues(issues: list[dict], posts: list[dict]) -> list[dict]:
+    """그래도 이슈가 3개가 안 되면, 이슈에 안 쓰인 글을 글자 유사도로 묶어(두 출처 이상) 채운다.
+    제목은 뉴스 기사 제목이 있으면 그것(커뮤니티 제목보다 점잖음). 원래 순서(화제 중 먼저)는 유지."""
+    if len(issues) >= MIN_ISSUES:
+        return issues
+    used = {p["url"] for it in issues for p in it["posts"]}
+    extra = cluster_simple([p for p in posts if p["url"] not in used])
+    for it in extra:
+        news = [p for p in it["posts"] if p["source"] in NEWS_SOURCES]
+        if news:
+            it["headline"] = news[0]["title"][:60]
+        it["filled"] = True
+    extra.sort(key=lambda it: (any(p["source"] in NEWS_SOURCES for p in it["posts"]), it["score"]), reverse=True)
+    extra = soften_issues(extra[: MIN_ISSUES - len(issues)], None)
+    if extra:
+        print(f"[묶기] 이슈가 모자라 단순 묶기로 {len(extra)}개 채움")
+    return _finish(issues + extra)
+
+
 def make_issues(posts: list[dict], llm: LLM | None, top_urls: set[str] | None = None
                 ) -> tuple[list[dict], dict[str, dict], str]:
     """(이슈 목록, TOP5 글 정보, 사용한 방법)"""
@@ -403,7 +441,8 @@ def make_issues(posts: list[dict], llm: LLM | None, top_urls: set[str] | None = 
         for attempt in (1, 2):  # AI가 가끔 깨진 JSON을 주므로 한 번 더 시도
             try:
                 issues, top_meta = cluster_with_llm(posts, llm, top_urls)
-                return soften_issues(issues, llm), top_meta, "ai"
+                issues = soften_issues(issues, llm)
+                return fill_issues(issues, posts), top_meta, "ai"
             except Exception as e:  # noqa: BLE001 - 실패해도 페이지는 갱신되게
                 print(f"[경고] AI 묶기 실패({attempt}차): {e}")
         print("[경고] 단순 묶기로 대체")
