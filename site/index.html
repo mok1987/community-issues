@@ -328,7 +328,7 @@ function issuePage(it) {
     <h1 class="hl">${esc(it.headline)}</h1>
     ${it.why ? `<p class="why"><b>왜 화제?</b>${esc(it.why)}</p>` : ""}
     ${it.summary ? `<p class="sum">${esc(it.summary)}</p>` : ""}
-    ${t && t.series?.length > 1 ? `<section class="sec" style="gap:6px"><div class="rowx"><h2 class="k">화제도 (최근 6시간)</h2><span class="trend-t">${esc(TREND_TEXT[t.dir] || "")}</span></div>${graph(t.series)}</section>` : ""}
+    ${t && (t.series || []).filter(v => v > 0).length >= 3 ? `<section class="sec" style="gap:6px"><div class="rowx"><h2 class="k">화제도 (최근 6시간)</h2><span class="trend-t">${esc(TREND_TEXT[t.dir] || "")}</span></div>${graph(t.series)}</section>` : ""}
     ${moodBlock(it)}
     <details class="orig"><summary>원래 글 ${it.posts.length}개 보러 가기</summary><ul>${links}</ul></details>
     <button class="share" data-id="${esc(it.id)}">가족 단톡방에 공유하기</button>

@@ -62,11 +62,15 @@ def series(urls: set[str], snaps: list[dict], at: datetime) -> list[int]:
     return out
 
 
-def label(values: list[int]) -> tuple[str, str]:
-    """(배지 글자, 방향 up/down/flat/new) — 지금 값과 3시간 전 값을 비교."""
+def label(values: list[int], age_hours: float | None = None) -> tuple[str, str]:
+    """(배지 글자, 방향 up/down/flat/new) — 지금 값과 3시간 전 값을 비교.
+    앞선 기록이 없을 때는 처음 보인 지 2시간 안쪽이면 '새로 떠오름', 아니면 그냥 '화제 중'
+    (기록을 막 쌓기 시작했을 때 오래된 이슈가 '새로 떠오름'으로 나오지 않게)."""
     now, before = values[-1], values[len(values) // 2]
     earlier = [v for v in values[:-1] if v > 0]
     if not earlier:
+        if age_hours is not None and age_hours > 2:
+            return "화제 중", "flat"
         return "새로 떠오름", "new"
     if before == 0:
         before = earlier[0]
@@ -103,11 +107,18 @@ def apply(issues: list[dict], path: Path, at_iso: str) -> None:
         urls = {p["url"] for p in it["posts"]}
         values = series(urls, snaps, at)
         values[-1] = len(it["posts"])
-        text, direction = label(values)
+        text, direction = label(values, _age(it.get("first_seen"), at))
         it["trend"] = {"series": values, "label": text, "dir": direction,
                        "hours": hours_label(it.get("first_seen"), at)}
     snaps.append(snapshot(issues, at_iso))
     save(path, snaps)
+
+
+def _age(first_seen: str | None, at: datetime) -> float | None:
+    try:
+        return (at - datetime.fromisoformat(first_seen)).total_seconds() / 3600 if first_seen else None
+    except ValueError:
+        return None
 
 
 def _after(snap: dict, cutoff: datetime) -> bool:

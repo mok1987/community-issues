@@ -489,5 +489,6 @@ def test_trend_series_matches_by_urls(tmp_path):
     assert (t["label"], t["dir"]) == ("급상승", "up")
     assert t["hours"] == "3시간째 화제"
     assert issues[1]["trend"]["dir"] == "new" and issues[1]["trend"]["hours"] == "방금 떠오른 화제"
+    assert trend.label([0] * 12 + [5], age_hours=17) == ("화제 중", "flat")
     saved = trend.load(path)
     assert len(saved) == 3 and saved[-1]["at"] == "2026-11-18T13:00:00+09:00"
