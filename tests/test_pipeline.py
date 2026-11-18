@@ -492,3 +492,34 @@ def test_trend_series_matches_by_urls(tmp_path):
     assert trend.label([0] * 12 + [5], age_hours=17) == ("화제 중", "flat")
     saved = trend.load(path)
     assert len(saved) == 3 and saved[-1]["at"] == "2026-11-18T13:00:00+09:00"
+
+
+def test_thumbs_reuse_youtube_post_skip_unverified_and_require_overlap(tmp_path):
+    from issuebundle import thumbs
+    path = tmp_path / "thumbs.json"
+    calls = []
+    def searcher(q):
+        calls.append(q)
+        return [
+            {"id": {"videoId": "AAA"}, "snippet": {"title": "오늘 날씨 이야기", "channelTitle": "아무채널"}},
+            {"id": {"videoId": "BBB"}, "snippet": {"title": "수능 AI 부정행위 대책 발표", "channelTitle": "KBS 뉴스"}},
+            {"id": {"videoId": "CCC"}, "snippet": {"title": "수능 부정행위 정리", "channelTitle": "개인"}},
+        ]
+    issues = [
+        {"headline": "수능 AI 부정행위 방지 대책 혼란", "posts": [{"url": "u1", "source": "dcinside", "title": "t"}]},
+        {"headline": "롤드컵 결승", "posts": [{"url": "https://www.youtube.com/watch?v=YYY", "source": "youtube",
+                                             "title": "결승 하이라이트 — LCK"}]},
+        {"headline": "만점자 의혹", "unverified": True, "posts": [{"url": "u9", "source": "theqoo", "title": "t"}]},
+    ]
+    n = thumbs.apply(issues, "key", path, "2026-11-18T13:00:00+09:00", searcher=searcher)
+    assert n == 1 and len(calls) == 1
+    assert issues[0]["thumb"]["id"] == "BBB" and issues[0]["thumb"]["channel"] == "KBS 뉴스"
+    assert issues[1]["thumb"]["id"] == "YYY" and issues[1]["thumb"]["channel"] == "LCK"
+    assert "thumb" not in issues[2]
+    # 다음 실행: 이름이 바뀌어도 같은 글이 있으면 다시 검색하지 않는다
+    again = [{"headline": "수능 대책 바뀌어 수험생 혼란", "posts": [{"url": "u1", "source": "dcinside", "title": "t"}]}]
+    assert thumbs.apply(again, "key", path, "2026-11-18T13:30:00+09:00", searcher=searcher) == 0
+    assert again[0]["thumb"]["id"] == "BBB"
+    # 겹치는 단어가 부족하면 쓰지 않는다
+    assert thumbs.pick([{"id": {"videoId": "Z"}, "snippet": {"title": "수능 응원", "channelTitle": "x"}}],
+                       thumbs.keywords("수능 AI 부정행위 방지 대책")) is None

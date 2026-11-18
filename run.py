@@ -18,7 +18,7 @@ import json
 import os
 from pathlib import Path
 
-from issuebundle import cluster, collect, people, store, trend, words as wordbook, youtube
+from issuebundle import cluster, collect, people, store, thumbs, trend, words as wordbook, youtube
 from issuebundle.sources import SOURCES, enabled_sources
 
 ROOT = Path(__file__).parent
@@ -27,6 +27,7 @@ WORDS_PATH = ROOT / "data" / "words.json"            # 사람이 검수한 요�
 PEOPLE_CACHE = ROOT / "data" / "people_cache.json"
 CANDIDATES_PATH = ROOT / "data" / "word_candidates.json"  # AI가 찾은 새 말 (검토 후보, 화면에 안 나감)
 TREND_PATH = ROOT / "data" / "trend.json"            # 최근 6시간 이슈별 글 수 (화제도 그래프용)
+THUMBS_PATH = ROOT / "data" / "thumbs.json"          # 1~3면 유튜브 썸네일 (같은 이슈는 한 번만 검색)
 OUT_PATH = ROOT / "site" / "issues.json"
 TOP_N = 10
 
@@ -120,6 +121,13 @@ def main() -> None:
         trend.apply(issues, TREND_PATH, store.now_iso())
     except Exception as e:  # noqa: BLE001 - 그래프가 없어도 페이지는 갱신
         print(f"[경고] 화제도 기록 실패: {e}")
+    # 1~3면과 같은 순서(화제 중 먼저)로 앞 3개에 유튜브 썸네일
+    lead = sorted(issues, key=lambda x: not x["hot"])
+    try:
+        n = thumbs.apply(lead, yt_key, THUMBS_PATH, store.now_iso())
+        print(f"[썸네일] {sum(1 for i in lead[:3] if i.get('thumb'))}/3개 (새 검색 {n}회)")
+    except Exception as e:  # noqa: BLE001
+        print(f"[경고] 썸네일 단계 실패: {e}")
 
     # "이게 무슨 말이에요?" — 지금 화제인 글 제목에 나온 요즘 말 풀이
     titles = [p.title for p in fresh if p.rank < TOP_N] + [p["title"] for it in issues if it["hot"] for p in it["posts"]]
