@@ -15,7 +15,7 @@
 - `site/index.html`: 화면 전부(한 파일). `manifest.webmanifest`·아이콘(`icon-*.png`)으로 홈 화면 추가 가능. `OneSignalSDKWorker.js`는 알림용.
 - `data/words.json`: 사람이 확인한 요즘 말 사전(화면에 나오는 것). `data/word_candidates.json`: AI가 찾은 후보(검토용, 화면에 안 나옴).
 - `data/people_cache.json`: 인물 구글 검색 결과 캐시(3시간).
-- 테스트: `python -m pytest -q tests` (34개 통과).
+- 테스트: `python -m pytest -q tests` (37개 통과).
 
 ## GitHub Secrets (이름만, 값은 여기 적지 않음)
 - `GEMINI_API_KEY` (무료 키), `YOUTUBE_API_KEY`
