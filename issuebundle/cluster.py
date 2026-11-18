@@ -23,6 +23,8 @@ DEFAULT_MODEL = (os.environ.get("GEMINI_MODEL") or "").strip() or None
 _SKIP = ("preview", "exp", "tts", "image", "live", "audio", "embedding", "thinking")
 CATEGORIES = ["정치", "경제", "사회", "문화·연예", "스포츠", "IT·과학", "생활"]
 DEFAULT_CATEGORY = "생활"
+# 출처별 제목 분위기 (화면의 분위기 막대 색)
+TONES = {"좋음": "good", "갈림": "mixed", "싸늘": "cold"}
 
 PROMPT = """너는 인터넷 커뮤니티를 전혀 안 보는 50~60대 독자를 위해 '요즘 화제'를 정리하는 신문 편집자다.
 
@@ -42,6 +44,8 @@ PROMPT = """너는 인터넷 커뮤니티를 전혀 안 보는 50~60대 독자�
 - why: 사람들이 왜 이 얘기를 많이 하는지 한 문장 (예: "출근 시간에 수십만 명이 영향을 받아서")
 - 확인되지 않은 주장은 "~라는 이야기가 퍼지고 있다"처럼 쓰고 unverified를 true로.
 - framing: 출처별로 그 출처 제목들의 분위기를 중립적으로 한 줄. 욕설·비하 표현은 옮기지 마라.
+- tone: 출처별로 그 출처 제목들의 전체 분위기를 다음 셋 중 하나로: "좋음"(반가움·응원·호평),
+  "갈림"(찬반이 섞이거나 담담한 소식 전달), "싸늘"(비판·분노·냉소·걱정). 제목만 보고 판단해라.
 - 정치·젠더 이슈도 한쪽 편을 들지 말고 "각 출처가 이렇게 다룬다"로만 써라.
 - 사생활 소문(불륜·외도·내연·열애·결별·이혼·혼외자·성추문 등)은 headline·summary·why·framing 어디에도
   그 단어를 쓰지 마라. "○○ 관련 보도", "○○ 거취 관련 소식"처럼 담담하게 쓰고 unverified를 true로.
@@ -51,7 +55,7 @@ category는 반드시 다음 중 하나: {categories}
 
 JSON으로만 답하라:
 {{"issues": [{{"headline": "...", "summary": "...", "why": "...", "category": "...",
-   "post_ids": ["p1", "p7"], "framing": {{"출처키": "..."}}, "unverified": false}}]}}
+   "post_ids": ["p1", "p7"], "framing": {{"출처키": "..."}}, "tone": {{"출처키": "갈림"}}, "unverified": false}}]}}
 
 제목 목록:
 {lines}
@@ -183,8 +187,20 @@ def score(posts: list[dict]) -> float:
     return round(len(sources) * 10 + len(posts) * 2 + rank_bonus, 2)
 
 
+def fix_tone(value: str | None) -> str:
+    """AI가 준 분위기 말을 good/mixed/cold 로. 모르는 값이면 빈 문자열(화면에서 막대 안 그림)."""
+    value = (value or "").strip()
+    if value in TONES.values():
+        return value
+    for word, key in TONES.items():
+        if word in value:
+            return key
+    return ""
+
+
 def _issue(headline: str, summary: str, why: str, category: str, members: list[dict],
-           framing: dict[str, str], unverified: bool) -> dict:
+           framing: dict[str, str], unverified: bool, tone: dict[str, str] | None = None) -> dict:
+    tone = tone or {}
     members = sorted(members, key=lambda p: (p["source"], p["best_rank"]))
     seen, unique = set(), []  # 같은 출처에 같은 제목이 주소만 달리 두 번 잡힌 경우 하나만
     for p in members:
@@ -203,6 +219,8 @@ def _issue(headline: str, summary: str, why: str, category: str, members: list[d
             "key": k, "name": NAMES.get(k, k),
             "count": sum(1 for p in members if p["source"] == k),
             "framing": (framing.get(k) or "").strip(),
+            "tone": fix_tone(tone.get(k)),
+            "url": next(p["url"] for p in members if p["source"] == k),
             "comment_count": sum(p.get("comment_count") or 0 for p in members if p["source"] == k) or None,
         } for k in keys],
         "posts": [{"title": p["title"], "url": p["url"], "source": p["source"],
@@ -241,8 +259,9 @@ def cluster_with_llm(posts: list[dict], llm: LLM, top_urls: set[str] | None = No
             continue
         used.update(ids)
         framing = {k: v for k, v in (item.get("framing") or {}).items() if k in sources}
+        tone = {k: v for k, v in (item.get("tone") or {}).items() if k in sources and isinstance(v, str)}
         issues.append(_issue(item.get("headline", ""), item.get("summary", ""), item.get("why", ""),
-                             item.get("category"), members, framing, item.get("unverified", True)))
+                             item.get("category"), members, framing, item.get("unverified", True), tone))
 
     top_meta = label_tops([p for p in posts if p["url"] in top_urls], llm) if top_urls else {}
     return _finish(issues), top_meta

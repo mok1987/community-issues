@@ -451,3 +451,43 @@ def test_soften_issues_rewrites_or_drops_private_rumors():
     assert cluster.soften_issues([base("불륜 의혹")], bad) == []
     assert cluster.soften_issues([base("불륜 의혹")], None) == []
     assert cluster.soften_issues([{"headline": "여당과 결별 선언", "communities": []}], None)  # 정치 '결별'은 그대로
+
+
+def test_tone_is_normalized_and_kept_per_source():
+    from issuebundle import cluster
+    assert cluster.fix_tone("싸늘") == "cold"
+    assert cluster.fix_tone("대체로 좋음") == "good"
+    assert cluster.fix_tone("mixed") == "mixed"
+    assert cluster.fix_tone("모름") == ""
+    posts = [
+        {"url": "u1", "title": "가", "source": "theqoo", "best_rank": 1, "first_seen": "2026-11-18T10:00:00+09:00"},
+        {"url": "u2", "title": "나", "source": "dcinside", "best_rank": 2, "first_seen": "2026-11-18T10:30:00+09:00"},
+    ]
+    def llm(prompt):
+        return '{"issues":[{"headline":"h","summary":"s","why":"w","category":"사회","post_ids":["p1","p2"],' \
+               '"framing":{},"tone":{"theqoo":"싸늘","dcinside":"갈림"},"unverified":false}]}'
+    issues, _ = cluster.cluster_with_llm(posts, llm)
+    tones = {c["key"]: (c["tone"], c["url"]) for c in issues[0]["communities"]}
+    assert tones == {"theqoo": ("cold", "u1"), "dcinside": ("mixed", "u2")}
+
+
+def test_trend_series_matches_by_urls(tmp_path):
+    from issuebundle import trend
+    path = tmp_path / "trend.json"
+    trend.save(path, [
+        {"at": "2026-11-18T07:00:00+09:00", "issues": [{"urls": ["a"], "n": 2}]},
+        {"at": "2026-11-18T10:00:00+09:00", "issues": [{"urls": ["x"], "n": 9}, {"urls": ["a", "b"], "n": 3}]},
+        {"at": "2026-11-18T00:00:00+09:00", "issues": [{"urls": ["a"], "n": 50}]},  # 너무 오래돼서 버려짐
+    ])
+    issues = [{"posts": [{"url": "a"}, {"url": "b"}, {"url": "c"}, {"url": "d"}, {"url": "e"}, {"url": "f"}],
+               "first_seen": "2026-11-18T09:20:00+09:00"},
+              {"posts": [{"url": "z"}], "first_seen": "2026-11-18T12:50:00+09:00"}]
+    trend.apply(issues, path, "2026-11-18T13:00:00+09:00")
+    t = issues[0]["trend"]
+    assert len(t["series"]) == trend.POINTS
+    assert t["series"][0] == 2 and t["series"][6] == 3 and t["series"][-1] == 6
+    assert (t["label"], t["dir"]) == ("급상승", "up")
+    assert t["hours"] == "3시간째 화제"
+    assert issues[1]["trend"]["dir"] == "new" and issues[1]["trend"]["hours"] == "방금 떠오른 화제"
+    saved = trend.load(path)
+    assert len(saved) == 3 and saved[-1]["at"] == "2026-11-18T13:00:00+09:00"
