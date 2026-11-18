@@ -11,6 +11,7 @@
 
 from __future__ import annotations
 
+import html
 import json
 import re
 from datetime import datetime, timedelta, timezone
@@ -66,6 +67,8 @@ def pick(items: list[dict], words: list[str]) -> dict | None:
 
 
 def as_thumb(vid: str, title: str, channel: str) -> dict:
+    # 유튜브 API는 제목을 &quot; 같은 HTML 글자로 준다 → 원래 글자로
+    title, channel = html.unescape(title or ""), html.unescape(channel or "")
     return {"id": vid, "url": watch_url(vid), "title": title, "channel": channel,
             "img": f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg"}
 
@@ -128,7 +131,8 @@ def apply(issues: list[dict], api_key: str | None, path: Path, at_iso: str,
         if hit is not None:
             hit["urls"] = sorted(set(hit.get("urls", [])) | urls)
             if hit.get("thumb"):
-                it["thumb"] = hit["thumb"]
+                t = hit["thumb"]
+                it["thumb"] = hit["thumb"] = as_thumb(t["id"], t.get("title", ""), t.get("channel", ""))
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
     return searches

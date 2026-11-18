@@ -523,3 +523,8 @@ def test_thumbs_reuse_youtube_post_skip_unverified_and_require_overlap(tmp_path)
     # 겹치는 단어가 부족하면 쓰지 않는다
     assert thumbs.pick([{"id": {"videoId": "Z"}, "snippet": {"title": "수능 응원", "channelTitle": "x"}}],
                        thumbs.keywords("수능 AI 부정행위 방지 대책")) is None
+
+
+def test_thumb_titles_are_unescaped():
+    from issuebundle import thumbs
+    assert thumbs.as_thumb("x", "&quot;만점?&quot; 신의 영역", "YTN &amp; dmb")["title"] == '"만점?" 신의 영역'
