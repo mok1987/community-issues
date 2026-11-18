@@ -4,7 +4,7 @@
 - 이슈에 이미 유튜브 인기 영상이 묶여 있으면 그 영상을 쓴다 (검색 없음, 가장 정확).
 - 없으면 공식 API로 최근 2일 한국 영상을 검색하고, 영상 제목에 이슈 핵심 단어가 충분히 겹칠 때만 쓴다.
   애매하면 쓰지 않는다 (엉뚱한 썸네일보다 없는 게 낫다).
-- '확인 안 됨' 이슈는 썸네일을 붙이지 않는다 (자극적인 썸네일이 소문을 사실처럼 보이게 할 수 있음).
+- '확인 안 됨' 여부와 상관없이 붙인다 (2026-11-18 사용자 결정).
 - 검색 1회 = 할당량 100단위(하루 10,000). 그래서 같은 이슈는 처음 한 번만 찾고 결과를 data/thumbs.json 에 저장한다.
   이슈 이름은 매번 바뀔 수 있어 '겹치는 글 주소'로 같은 이슈를 알아본다. 한 번 실행에 새 검색은 최대 3번.
 """
@@ -104,8 +104,6 @@ def apply(issues: list[dict], api_key: str | None, path: Path, at_iso: str,
     cache = [c for c in load(path) if _fresh(c, now)]
     searches = 0
     for it in issues[:lead]:
-        if it.get("unverified"):
-            continue
         urls = {p["url"] for p in it.get("posts", [])}
         direct = from_posts(it)
         if direct:

@@ -512,10 +512,10 @@ def test_thumbs_reuse_youtube_post_skip_unverified_and_require_overlap(tmp_path)
         {"headline": "만점자 의혹", "unverified": True, "posts": [{"url": "u9", "source": "theqoo", "title": "t"}]},
     ]
     n = thumbs.apply(issues, "key", path, "2026-11-18T13:00:00+09:00", searcher=searcher)
-    assert n == 1 and len(calls) == 1
+    assert n == 2 and len(calls) == 2  # '확인 안 됨' 이슈도 찾아 본다
     assert issues[0]["thumb"]["id"] == "BBB" and issues[0]["thumb"]["channel"] == "KBS 뉴스"
     assert issues[1]["thumb"]["id"] == "YYY" and issues[1]["thumb"]["channel"] == "LCK"
-    assert "thumb" not in issues[2]
+    assert "thumb" not in issues[2]  # 단어가 안 겹쳐서 썸네일 없음
     # 다음 실행: 이름이 바뀌어도 같은 글이 있으면 다시 검색하지 않는다
     again = [{"headline": "수능 대책 바뀌어 수험생 혼란", "posts": [{"url": "u1", "source": "dcinside", "title": "t"}]}]
     assert thumbs.apply(again, "key", path, "2026-11-18T13:30:00+09:00", searcher=searcher) == 0
