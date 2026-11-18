@@ -22,11 +22,12 @@ import requests
 from .youtube import API, TIMEOUT, video_id, watch_url
 
 KEEP_HOURS = 48
+RETRY_HOURS = 2  # 못 찾은 이슈는 2시간 뒤 (그사이 영상이 올라왔을 수 있으니) 다시 찾아본다
 MAX_SEARCHES = 3
 NEWS_CHANNEL = re.compile(r"뉴스|NEWS|News|news|방송|YTN|KBS|MBC|SBS|JTBC|MBN|TV조선|채널A|연합|한겨레|조선|중앙|동아|경향")
 # 검색어·비교에서 뺄 흔한 말 (기사 제목 꼬리말 등)
 STOP = {"관련", "소식", "논란", "의혹", "이야기", "화제", "최근", "대한", "위한", "통해", "따른", "및", "등", "대책으로",
-        "검토", "발표", "올해", "오늘", "내일", "어제", "이번", "공개", "확산", "제기", "주장", "이유", "사람들", "온라인", "커뮤니티"}
+        "검토", "발표", "앞두고", "강화", "우려", "혼란", "추진", "종합", "단독", "속보", "결국", "올해", "오늘", "내일", "어제", "이번", "공개", "확산", "제기", "주장", "이유", "사람들", "온라인", "커뮤니티"}
 PARTICLES = ("으로", "에서", "에게", "까지", "부터", "이며", "이고", "과", "와", "을", "를", "이", "가", "은", "는", "의", "에", "로", "도", "만")
 
 
@@ -41,6 +42,18 @@ def keywords(text: str) -> list[str]:
         if len(w) >= 2 and w not in STOP and w not in out:
             out.append(w)
     return out
+
+
+def topic_words(it: dict, n: int = 6) -> list[str]:
+    """이슈의 핵심 단어: 묶인 글 제목들에 자주 나온 단어 순 (AI가 쓴 제목의 단어는 가산점)."""
+    head = keywords(it.get("headline", ""))
+    count: dict[str, float] = {w: 2.0 for w in head}
+    for p in it.get("posts", []):
+        title = p.get("title", "").rpartition(" — ")[0] or p.get("title", "")
+        for w in set(keywords(title)):
+            count[w] = count.get(w, 0) + 1
+    ranked = sorted(count, key=lambda w: (-count[w], head.index(w) if w in head else 99))
+    return [w for w in ranked if count[w] >= 2][:n] or head[:n]
 
 
 def match_score(words: list[str], title: str) -> int:
@@ -105,6 +118,8 @@ def apply(issues: list[dict], api_key: str | None, path: Path, at_iso: str,
     """앞의 lead개 이슈에 thumb 를 붙인다. 새로 검색한 횟수를 돌려준다."""
     now = datetime.fromisoformat(at_iso)
     cache = [c for c in load(path) if _fresh(c, now)]
+    # 못 찾았던 이슈는 2시간 지나면 기록을 지워서 다시 찾게 한다
+    cache = [c for c in cache if c.get("thumb") or _age(c, now) < timedelta(hours=RETRY_HOURS)]
     searches = 0
     for it in issues[:lead]:
         urls = {p["url"] for p in it.get("posts", [])}
@@ -114,10 +129,10 @@ def apply(issues: list[dict], api_key: str | None, path: Path, at_iso: str,
             continue
         hit = next((c for c in cache if urls & set(c.get("urls", []))), None)
         if hit is None and api_key and searches < MAX_SEARCHES:
-            words = keywords(it.get("headline", ""))
+            words = topic_words(it)
             searches += 1
             try:
-                items = (searcher or (lambda q: search(api_key, q, now)))(" ".join(words[:4]))
+                items = (searcher or (lambda q: search(api_key, q, now)))(" ".join(words[:3]))
                 chosen = pick(items, words)
             except Exception as e:  # noqa: BLE001 - 썸네일이 없어도 페이지는 갱신
                 print(f"[썸네일] 검색 실패: {e}")
@@ -126,7 +141,7 @@ def apply(issues: list[dict], api_key: str | None, path: Path, at_iso: str,
             if chosen:
                 sn = chosen["snippet"]
                 thumb = as_thumb(chosen["id"]["videoId"], sn.get("title", ""), sn.get("channelTitle", ""))
-            hit = {"at": at_iso, "urls": [], "thumb": thumb, "q": " ".join(words[:4])}
+            hit = {"at": at_iso, "urls": [], "thumb": thumb, "q": " ".join(words[:3])}
             cache.append(hit)
         if hit is not None:
             hit["urls"] = sorted(set(hit.get("urls", [])) | urls)
@@ -136,6 +151,13 @@ def apply(issues: list[dict], api_key: str | None, path: Path, at_iso: str,
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
     return searches
+
+
+def _age(c: dict, now: datetime) -> timedelta:
+    try:
+        return now - datetime.fromisoformat(c["at"])
+    except (KeyError, ValueError):
+        return timedelta(days=999)
 
 
 def _fresh(c: dict, now: datetime) -> bool:

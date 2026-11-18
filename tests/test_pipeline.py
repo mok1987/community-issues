@@ -528,3 +528,20 @@ def test_thumbs_reuse_youtube_post_skip_unverified_and_require_overlap(tmp_path)
 def test_thumb_titles_are_unescaped():
     from issuebundle import thumbs
     assert thumbs.as_thumb("x", "&quot;만점?&quot; 신의 영역", "YTN &amp; dmb")["title"] == '"만점?" 신의 영역'
+
+
+def test_thumb_topic_words_and_retry(tmp_path):
+    from issuebundle import thumbs
+    it = {"headline": "수능 앞두고 필기구 규제 강화 및 부정행위 우려 확산",
+          "posts": [{"title": "수능 AI 부정행위 걱정"}, {"title": "AI커닝 수능 대책"}, {"title": "수능 필기구 제한"},
+                    {"title": "AI 부정행위 고발"}]}
+    words = thumbs.topic_words(it)
+    assert words[:2] == ["수능", "부정행위"] and "AI" in words and "앞두고" not in words
+    path = tmp_path / "t.json"
+    calls = []
+    issue = {"headline": "수능 대책", "posts": [{"url": "u1", "source": "x", "title": "수능 대책"}]}
+    thumbs.apply([issue], "k", path, "2026-11-18T13:00:00+09:00", searcher=lambda q: calls.append(q) or [])
+    thumbs.apply([dict(issue)], "k", path, "2026-11-18T14:00:00+09:00", searcher=lambda q: calls.append(q) or [])
+    assert len(calls) == 1  # 1시간 뒤엔 다시 안 찾음
+    thumbs.apply([dict(issue)], "k", path, "2026-11-18T15:30:00+09:00", searcher=lambda q: calls.append(q) or [])
+    assert len(calls) == 2  # 2시간 넘으면 다시 찾음
