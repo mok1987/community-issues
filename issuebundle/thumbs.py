@@ -24,7 +24,10 @@ from .youtube import API, TIMEOUT, video_id, watch_url
 KEEP_HOURS = 48
 RETRY_HOURS = 2  # 못 찾은 이슈는 2시간 뒤 (그사이 영상이 올라왔을 수 있으니) 다시 찾아본다
 MAX_SEARCHES = 3
-NEWS_CHANNEL = re.compile(r"뉴스|NEWS|News|news|방송|YTN|KBS|MBC|SBS|JTBC|MBN|TV조선|채널A|연합|한겨레|조선|중앙|동아|경향")
+# 검색으로 찾은 영상은 주요 언론사·방송사 채널 것만 쓴다 (이름에 '뉴스'만 들어간 개인 채널의 자극적인 썸네일 방지)
+NEWS_CHANNEL = re.compile(r"YTN|KBS|MBC|SBS|JTBC|MBN|TV조선|채널A|연합뉴스|OBS|CBS|EBS|KTV|한겨레|경향신문|조선일보|중앙일보|"
+                          r"동아일보|한국일보|국민일보|서울신문|세계일보|문화일보|한국경제|매일경제|머니투데이|뉴스1|뉴시스|노컷뉴스|"
+                          r"이데일리|헤럴드경제|아시아경제|SPOTV|스포티비|tvN|티빙|쿠팡플레이|T1|LCK")
 # 검색어·비교에서 뺄 흔한 말 (기사 제목 꼬리말 등)
 STOP = {"관련", "소식", "논란", "의혹", "이야기", "화제", "최근", "대한", "위한", "통해", "따른", "및", "등", "대책으로",
         "검토", "발표", "앞두고", "강화", "우려", "혼란", "추진", "종합", "단독", "속보", "결국", "올해", "오늘", "내일", "어제", "이번", "공개", "확산", "제기", "주장", "이유", "사람들", "온라인", "커뮤니티"}
@@ -71,9 +74,9 @@ def pick(items: list[dict], words: list[str]) -> dict | None:
         if not vid:
             continue
         s = match_score(words, sn.get("title", ""))
-        if s < need:
+        if s < need or not NEWS_CHANNEL.search(sn.get("channelTitle", "")):
             continue
-        key = (s, bool(NEWS_CHANNEL.search(sn.get("channelTitle", ""))))
+        key = (s,)
         if best_key is None or key > best_key:
             best, best_key = it, key
     return best
@@ -120,20 +123,23 @@ def apply(issues: list[dict], api_key: str | None, path: Path, at_iso: str,
     cache = [c for c in load(path) if _fresh(c, now)]
     # 못 찾았던 이슈는 2시간 지나면 기록을 지워서 다시 찾게 한다
     cache = [c for c in cache if c.get("thumb") or _age(c, now) < timedelta(hours=RETRY_HOURS)]
-    searches = 0
+    searches, taken = 0, set()  # taken: 이미 다른 면에 쓴 영상 (같은 썸네일이 두 면에 나오지 않게)
     for it in issues[:lead]:
         urls = {p["url"] for p in it.get("posts", [])}
         direct = from_posts(it)
-        if direct:
+        if direct and direct["id"] not in taken:
             it["thumb"] = direct
+            taken.add(direct["id"])
             continue
-        hit = next((c for c in cache if urls & set(c.get("urls", []))), None)
+        # 같은 이슈 = 지금 글의 절반 이상이 그때 이슈에 있던 글
+        hit = next((c for c in cache if len(urls & set(c.get("urls", []))) >= max(1, len(urls) / 2)
+                    and (c.get("thumb") or {}).get("id") not in taken), None)
         if hit is None and api_key and searches < MAX_SEARCHES:
             words = topic_words(it)
             searches += 1
             try:
                 items = (searcher or (lambda q: search(api_key, q, now)))(" ".join(words[:3]))
-                chosen = pick(items, words)
+                chosen = pick([i for i in items if (i.get("id") or {}).get("videoId") not in taken], words)
             except Exception as e:  # noqa: BLE001 - 썸네일이 없어도 페이지는 갱신
                 print(f"[썸네일] 검색 실패: {e}")
                 continue
@@ -144,10 +150,11 @@ def apply(issues: list[dict], api_key: str | None, path: Path, at_iso: str,
             hit = {"at": at_iso, "urls": [], "thumb": thumb, "q": " ".join(words[:3])}
             cache.append(hit)
         if hit is not None:
-            hit["urls"] = sorted(set(hit.get("urls", [])) | urls)
+            hit["urls"] = sorted(urls)  # 지금 이슈의 글로 바꿔 둔다 (계속 합치면 다른 이슈까지 같은 이슈로 보임)
             if hit.get("thumb"):
                 t = hit["thumb"]
                 it["thumb"] = hit["thumb"] = as_thumb(t["id"], t.get("title", ""), t.get("channel", ""))
+                taken.add(t["id"])
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
     return searches

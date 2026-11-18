@@ -566,3 +566,14 @@ def test_lead_pages_are_filled_to_three():
     assert method == "ai" and len(issues) == 3
     assert heads[0] == "수능 AI 대책" and "가수 컴백" in heads
     assert "서울 첫눈 내린다 기상청 예보" in heads  # 뉴스 제목으로 채움
+
+
+def test_thumbs_skip_non_news_channels_and_never_repeat(tmp_path):
+    from issuebundle import thumbs
+    vids = [{"id": {"videoId": "P"}, "snippet": {"title": "수능 부정행위 대책 총정리", "channelTitle": "뉴스와사람들"}},
+            {"id": {"videoId": "Q"}, "snippet": {"title": "수능 부정행위 대책 발표", "channelTitle": "YTN"}}]
+    a = {"headline": "수능 부정행위 대책", "posts": [{"url": "a", "source": "x", "title": "수능 부정행위 대책"}]}
+    b = {"headline": "수능 부정행위 대책 후속", "posts": [{"url": "b", "source": "x", "title": "수능 부정행위 대책"}]}
+    thumbs.apply([a, b], "k", tmp_path / "t.json", "2026-11-18T13:00:00+09:00", searcher=lambda q: vids)
+    assert a["thumb"]["id"] == "Q"
+    assert "thumb" not in b  # 같은 영상은 두 면에 안 쓰고, 개인 채널 영상은 안 씀
