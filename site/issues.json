@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-19T00:31:33+09:00",
+ "updated_at": "2026-11-19T01:37:44+09:00",
  "method": "simple",
  "post_count": 400,
  "sources": [
@@ -48,14 +48,14 @@
   {
    "key": "ppomppu",
    "name": "뽐뿌",
-   "status": "5개",
+   "status": "6개",
    "state": "ok"
   },
   {
    "key": "bobaedream",
    "name": "보배드림",
-   "status": "30개",
-   "state": "ok"
+   "status": "사이트 접속 실패(ConnectTimeout), 건너뜀",
+   "state": "error"
   },
   {
    "key": "navernews",
@@ -77,6 +77,71 @@
   }
  ],
  "issues": [
+  {
+   "headline": "아이브 가을 : 유행하는 걸 안 한다고 늙크크라고 하는 거 별로지 않아요?",
+   "summary": "",
+   "why": "",
+   "category": "생활",
+   "hot": true,
+   "communities": [
+    {
+     "key": "instiz",
+     "name": "인스티즈",
+     "count": 1,
+     "framing": "",
+     "tone": "",
+     "url": "https://www.instiz.net/pt/7927330",
+     "comment_count": null
+    },
+    {
+     "key": "theqoo",
+     "name": "더쿠",
+     "count": 1,
+     "framing": "",
+     "tone": "",
+     "url": "https://theqoo.net/hot/4410848817",
+     "comment_count": null
+    }
+   ],
+   "posts": [
+    {
+     "title": "아이브 가을 : 유행하는 걸 안 한다고 늙크크라고 하는 거 별로지 않아요?",
+     "url": "https://www.instiz.net/pt/7927330",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "아이브 가을 : 유행하는 걸 안 한다고 늙크크라고 하는 거 별로지 않아요?",
+     "url": "https://theqoo.net/hot/4410848817",
+     "source": "theqoo",
+     "source_name": "더쿠"
+    }
+   ],
+   "first_seen": "2026-11-19T00:27:34+09:00",
+   "unverified": true,
+   "score": 25.92,
+   "id": "i0",
+   "trend": {
+    "series": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     2,
+     2,
+     2
+    ],
+    "label": "유지",
+    "dir": "flat",
+    "hours": "1시간째 화제"
+   }
+  },
   {
    "headline": "코르티스 몸무게",
    "summary": "",
@@ -120,7 +185,7 @@
    "first_seen": "2026-11-18T22:06:45+09:00",
    "unverified": true,
    "score": 25.9,
-   "id": "i0",
+   "id": "i1",
    "trend": {
     "series": [
      0,
@@ -133,13 +198,13 @@
      0,
      0,
      0,
-     0,
-     0,
+     2,
+     2,
      2
     ],
-    "label": "화제 중",
+    "label": "유지",
     "dir": "flat",
-    "hours": "2시간째 화제"
+    "hours": "3시간째 화제"
    }
   },
   {
@@ -185,71 +250,6 @@
    "first_seen": "2026-11-18T22:06:45+09:00",
    "unverified": true,
    "score": 25.56,
-   "id": "i1",
-   "trend": {
-    "series": [
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     3,
-     3,
-     2
-    ],
-    "label": "주춤",
-    "dir": "down",
-    "hours": "2시간째 화제"
-   }
-  },
-  {
-   "headline": "아이브 가을 : 유행하는 걸 안 한다고 늙크크라고 하는 거 별로지 않아요?",
-   "summary": "",
-   "why": "",
-   "category": "생활",
-   "hot": true,
-   "communities": [
-    {
-     "key": "instiz",
-     "name": "인스티즈",
-     "count": 1,
-     "framing": "",
-     "tone": "",
-     "url": "https://www.instiz.net/pt/7927330",
-     "comment_count": null
-    },
-    {
-     "key": "theqoo",
-     "name": "더쿠",
-     "count": 1,
-     "framing": "",
-     "tone": "",
-     "url": "https://theqoo.net/hot/4410848817",
-     "comment_count": null
-    }
-   ],
-   "posts": [
-    {
-     "title": "아이브 가을 : 유행하는 걸 안 한다고 늙크크라고 하는 거 별로지 않아요?",
-     "url": "https://www.instiz.net/pt/7927330",
-     "source": "instiz",
-     "source_name": "인스티즈"
-    },
-    {
-     "title": "아이브 가을 : 유행하는 걸 안 한다고 늙크크라고 하는 거 별로지 않아요?",
-     "url": "https://theqoo.net/hot/4410848817",
-     "source": "theqoo",
-     "source_name": "더쿠"
-    }
-   ],
-   "first_seen": "2026-11-19T00:27:34+09:00",
-   "unverified": true,
-   "score": 25.54,
    "id": "i2",
    "trend": {
     "series": [
@@ -261,15 +261,15 @@
      0,
      0,
      0,
-     0,
-     0,
-     0,
-     0,
+     3,
+     3,
+     2,
+     2,
      2
     ],
-    "label": "새로 떠오름",
-    "dir": "new",
-    "hours": "방금 떠오른 화제"
+    "label": "주춤",
+    "dir": "down",
+    "hours": "3시간째 화제"
    }
   },
   {
@@ -328,13 +328,13 @@
      0,
      0,
      0,
-     0,
-     0,
+     2,
+     2,
      2
     ],
-    "label": "새로 떠오름",
-    "dir": "new",
-    "hours": "1시간째 화제"
+    "label": "유지",
+    "dir": "flat",
+    "hours": "2시간째 화제"
    }
   }
  ],
@@ -343,6 +343,51 @@
    "key": "dcinside",
    "name": "디시",
    "items": [
+    {
+     "title": "[라갤] 범인검거)젠지 결승전 비하인드 요약",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479969&_dcbest=1",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "[싱갤] 싱글벙글 해발고도 1000m 이상에 있는 수도",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479965&_dcbest=1",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "[나갤] 핫플에서 혼술에 도전해본 박지현",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479963&_dcbest=1",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "[싱갤] 싱글벙글 히잡 소녀들의 외출 (레딧 만화)",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479961&_dcbest=1",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "[기갤] 위기의 사슴 발견한 구조대, 그들에겐 30분밖에 없었다.jpg",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479959&_dcbest=1",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
     {
      "title": "[백갤] 백종원 더본코리아의 고소 및 합의에서의 이상한 점.jpg",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479957&_dcbest=1",
@@ -382,51 +427,6 @@
     {
      "title": "[싱갤] 훌쩍훌쩍 아내가 출산할때도 곁에 있어주지 못했다는 원양어선 선장",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479950&_dcbest=1",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[대갤] 황당) 살신성인의 자세로 수업을 한 교사가 징계 해고 당한 이유",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479948&_dcbest=1",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[냉갤] 오이 헤이터인데 오이 요리 해주세요",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479945&_dcbest=1",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[핑갤] 인프제 응원하는 공유와 송혜교",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479944&_dcbest=1",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[이갤] 현기차는 제2의 노키아다. blind",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479942&_dcbest=1",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[일갤] 북교토 이네후나야, 아마노하시다테",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=479941&_dcbest=1",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -473,7 +473,7 @@
      "url": "https://theqoo.net/hot/4410848817",
      "easy": "",
      "category": "생활",
-     "issue_id": "i2",
+     "issue_id": "i0",
      "hot": true,
      "comment_count": null
     },
@@ -491,7 +491,7 @@
      "url": "https://theqoo.net/hot/4410833169",
      "easy": "",
      "category": "생활",
-     "issue_id": "i0",
+     "issue_id": "i1",
      "hot": true,
      "comment_count": null
     },
@@ -527,7 +527,7 @@
      "url": "https://theqoo.net/hot/4410747382",
      "easy": "",
      "category": "생활",
-     "issue_id": "i1",
+     "issue_id": "i2",
      "hot": true,
      "comment_count": null
     },
@@ -665,6 +665,42 @@
    "name": "인스티즈",
    "items": [
     {
+     "title": "리트냥이 공지",
+     "url": "https://www.instiz.net/name_enter/101071346",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "승리 20대 아내와 동반입국",
+     "url": "https://www.instiz.net/pt/7927350",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "아이브 가을 : 유행하는 걸 안 한다고 늙크크라고 하는 거 별로지 않아요?",
+     "url": "https://www.instiz.net/pt/7927330",
+     "easy": "",
+     "category": "생활",
+     "issue_id": "i0",
+     "hot": true,
+     "comment_count": null
+    },
+    {
+     "title": "ㅁㅊ 내가 지금 뭘본거임",
+     "url": "https://www.instiz.net/name_enter/101071188",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
      "title": "의사가 봤을때 이해가 안간다는 컨텐츠",
      "url": "https://www.instiz.net/pt/7927304",
      "easy": "",
@@ -717,42 +753,6 @@
      "issue_id": null,
      "hot": false,
      "comment_count": null
-    },
-    {
-     "title": "꽃다발 3.5 짜린데 너무 별로다",
-     "url": "https://www.instiz.net/name/68011388",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "직장인들아 진짜대학때가 좋았어..?",
-     "url": "https://www.instiz.net/name/68011312",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[펌글] 리트 문제 수준",
-     "url": "https://www.instiz.net/pt/7927291",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "리트 만점자 글 올라옴!!!!!",
-     "url": "https://www.instiz.net/name_enter/101070587",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
     }
    ],
    "list_url": "https://www.instiz.net/hot.htm",
@@ -763,6 +763,33 @@
    "key": "ppomppu",
    "name": "뽐뿌",
    "items": [
+    {
+     "title": "월러가 또 지르네요",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=456937",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "현기차도 감가 씨게먹네요",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=car&no=982633",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "수능 재난문자에 군인들이 떠는 이유",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=youtube_info&no=26382",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
     {
      "title": "야선 폭락 중",
      "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=456958",
@@ -782,24 +809,6 @@
      "comment_count": null
     },
     {
-     "title": "속보, 한화오션 6600억 태국 호위함..백지화 날벼락",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=456948",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "리트 시험문제 난이도 수준 txt",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=employment&no=92327",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
      "title": "광고/제휴",
      "url": "https://www.ppomppu.co.kr/zboard/view.php?id=faq&no=17",
      "easy": "",
@@ -811,106 +820,15 @@
    ],
    "list_url": "https://www.ppomppu.co.kr/hot.php",
    "state": "ok",
-   "status": "5개"
+   "status": "6개"
   },
   {
    "key": "bobaedream",
    "name": "보배드림",
-   "items": [
-    {
-     "title": "40대 이상 금지목록",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048573",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "문조털래유는 민주당에 관심 끄고 조국 혁신당이나 지지하라니까..",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048571",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "길에서 폰 보지 마라",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048572",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "\"남편이 바람피우기 싫다고 이혼하재\"",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048563",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "니는 임마 내하고 붙어야지 누굴 자꾸 건드리노?",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048569",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "뉴일베 새끼들 정치글 쓰는 방법",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048570",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "악질중에 악질 매국노 중국남자 출몰했습니다!",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048550",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "지지율 60% 날려먹고 구조적 다수?",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048554",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "역시나 반명타령 처하더니",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048547",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "친명이던 반명이던 구분하는 갈라치기종자들",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1048545",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    }
-   ],
+   "items": [],
    "list_url": "https://www.bobaedream.co.kr/list?code=best",
-   "state": "ok",
-   "status": "30개"
+   "state": "error",
+   "status": "사이트 접속 실패(ConnectTimeout), 건너뜀"
   },
   {
    "key": "navernews",
@@ -925,8 +843,53 @@
    "name": "다음뉴스",
    "items": [
     {
-     "title": "EU, 우크라에 65조 신규 대출 제안…젤렌스키 \"신속 채택 기대\"",
-     "url": "https://v.daum.net/v/20261119002629206",
+     "title": "中기술굴기 안방 찾은 트럼프, 미국내 인프라 장애로 망신",
+     "url": "https://v.daum.net/v/20261119011922629",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "\"시험 무효 처리로는 부족\"…AI 활용 부정행위 강력한 처벌 필요성 대두",
+     "url": "https://v.daum.net/v/20261119010122529",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "뉴욕증시, 앤트로픽 공모가 발표 앞두고 혼조 출발… 엔비디아 호실적에 기술주 강세",
+     "url": "https://v.daum.net/v/20261119003941310",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "마트서 사먹고 집에서 해먹고… 한식에 빠진 외국인",
+     "url": "https://v.daum.net/v/20261119003248251",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "“2030 직장인, 세계 성장주에 과감히 투자해 퇴직연금 불려야”",
+     "url": "https://v.daum.net/v/20261119003232238",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "트럼프·시진핑·푸틴 만났다… 첫 미중러 정상회담 전날 한자리에",
+     "url": "https://v.daum.net/v/20261119002640207",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -961,51 +924,6 @@
      "comment_count": null
     },
     {
-     "title": "시진핑 \"中 50년 보려면 선전으로 오라\"… 美 능가 의지",
-     "url": "https://v.daum.net/v/20261118231107425",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "공항 직접 나간 習 “예우 돌려줘”… 트럼프 “모든 만남이 유쾌” [中 선전 에이펙]",
-     "url": "https://v.daum.net/v/20261118225550287",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "\"일본인도 못 먹을 판\"…역대 최고가 찍은 '와규' 무슨 일",
-     "url": "https://v.daum.net/v/20261118222240928",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "“불장 땐 선수 아닌 사람 있나”…액티브 ETF, 하락장엔 지수만도 못했다",
-     "url": "https://v.daum.net/v/20261118220300696",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "“앙심 품고 가방에 휴대전화 넣을까봐 자물쇠 구입”…수험생들 초긴장",
-     "url": "https://v.daum.net/v/20261118214023365",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
      "title": "[경제포커스] 간첩보다 못한 한국 반도체 외교",
      "url": "https://v.daum.net/v/20261118233917613",
      "easy": "",
@@ -1030,7 +948,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 459
+     "comment_count": 461
     },
     {
      "title": "마지막 타입 : 비행타입 하트골드【포켓몬 모든타입 깨기】#1 — 근가놈",
@@ -1039,7 +957,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 401
+     "comment_count": 402
     },
     {
      "title": "더 커진 판, 더 독해진 가족 [가족계획 시즌2] 티저 예고편 — 쿠팡플레이 Coupang Play",
@@ -1048,7 +966,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 163
+     "comment_count": 164
     },
     {
      "title": "그녀와의 재회는 최악이였다 — 김재원의 즐거운 세상",
@@ -1057,7 +975,34 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 387
+     "comment_count": 392
+    },
+    {
+     "title": "놈과 왕의 종결급 케미【윤가놈X말왕 합방】 — 윤가놈",
+     "url": "https://www.youtube.com/watch?v=mUcnosPjqcA",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": 378
+    },
+    {
+     "title": "GTA 6 리뷰 — 인벤",
+     "url": "https://www.youtube.com/watch?v=y9RsawyGyCI",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": 248
+    },
+    {
+     "title": "27성 혈 뚫린 팡이요 설마 또...? [팡이요,  메이플스토리] — 팡이요",
+     "url": "https://www.youtube.com/watch?v=HHalGzOJAUI",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": 153
     },
     {
      "title": "GEN vs BLG | 결승전 | 2026 월드 챔피언십 — LCK",
@@ -1069,31 +1014,13 @@
      "comment_count": 433
     },
     {
-     "title": "놈과 왕의 종결급 케미【윤가놈X말왕 합방】 — 윤가놈",
-     "url": "https://www.youtube.com/watch?v=mUcnosPjqcA",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": 349
-    },
-    {
-     "title": "27성 혈 뚫린 팡이요 설마 또...? [팡이요,  메이플스토리] — 팡이요",
-     "url": "https://www.youtube.com/watch?v=HHalGzOJAUI",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": 146
-    },
-    {
      "title": "포대장 허락 받고 올립니다 — 말왕TV",
      "url": "https://www.youtube.com/watch?v=pJ3iljGI1wg",
      "easy": "",
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 342
+     "comment_count": 354
     },
     {
      "title": "탑에서 만나기만하면 레전드찍는 저클ㅋㅋㅋㅋ — 저라뎃 JUSTLIKETHAT",
@@ -1103,15 +1030,6 @@
      "issue_id": null,
      "hot": false,
      "comment_count": 82
-    },
-    {
-     "title": "GTA 6 리뷰 — 인벤",
-     "url": "https://www.youtube.com/watch?v=y9RsawyGyCI",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": 228
     }
    ],
    "list_url": "https://www.youtube.com/feed/trending",
@@ -1131,6 +1049,11 @@
    "example": "그 친구랑은 손절했어"
   },
   {
+   "word": "핫플",
+   "meaning": "'핫 플레이스'. 사람이 많이 찾는 인기 장소",
+   "example": "요즘 핫플은 성수동"
+  },
+  {
    "word": "가성비",
    "meaning": "가격에 비해 성능이나 만족도가 좋은 정도",
    "example": "가성비 좋은 식당"
@@ -1140,28 +1063,28 @@
   {
    "name": "이재명",
    "who": "대한민국의 제21대 대통령",
-   "why": "커닝 대책으로 SNS나 커뮤니티를 챙겨보라고 발언해 화제예요.",
+   "why": "커닝 대책으로 SNS와 커뮤니티를 챙겨보라고 언급해 화제예요.",
    "mentions": 6,
    "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/President_Lee_Jae_Myung_20260306.jpg/330px-President_Lee_Jae_Myung_20260306.jpg?utm_source=ko.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "wiki": "https://ko.wikipedia.org/wiki/%EC%9D%B4%EC%9E%AC%EB%AA%85",
    "news_used": false
   },
   {
-   "name": "블라디미르 푸틴",
-   "who": "러시아의 남자 정치인, 2, 4대 대통령",
-   "why": "온라인에서 여러 이야기가 오가며 이름이 자주 오르내려요.",
-   "mentions": 1,
-   "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/32/Putin_V_2026_08_10.png/330px-Putin_V_2026_08_10.png?utm_source=ko.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-   "wiki": "https://ko.wikipedia.org/wiki/%EB%B8%94%EB%9D%BC%EB%94%94%EB%AF%B8%EB%A5%B4_%ED%91%B8%ED%8B%B4",
+   "name": "시진핑",
+   "who": "중국공산당 제7대 중앙위원회 총서기",
+   "why": "판다 한 쌍의 국내 도입과 함께 한중관계 개선을 이야기해 주목받았어요.",
+   "mentions": 2,
+   "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Xi_Jinping_in_Beijing_on_May_13%2C_2025_%28cropped%29.jpg/330px-Xi_Jinping_in_Beijing_on_May_13%2C_2025_%28cropped%29.jpg?utm_source=ko.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "wiki": "https://ko.wikipedia.org/wiki/%EC%8B%9C%EC%A7%84%ED%95%91",
    "news_used": false
   },
   {
-   "name": "볼로디미르 젤렌스키",
-   "who": "제6대 우크라이나 대통령",
-   "why": "온라인에서 여러 이야기가 오가며 이름이 자주 오르내려요.",
-   "mentions": 1,
-   "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/Volodymyr_Zelensky_2022_official_portrait_%28cropped%29.jpg/330px-Volodymyr_Zelensky_2022_official_portrait_%28cropped%29.jpg?utm_source=ko.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-   "wiki": "https://ko.wikipedia.org/wiki/%EB%B3%BC%EB%A1%9C%EB%94%94%EB%AF%B8%EB%A5%B4_%EC%A0%A4%EB%A0%8C%EC%8A%A4%ED%82%A4",
+   "name": "추경호",
+   "who": "대한민국의 정치인",
+   "why": "계엄 해제 표결 방해 혐의로 1심에서 무죄 선고를 받았어요.",
+   "mentions": 2,
+   "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Choo_Kyung-ho%27s_Portrait_%282024.5%29.png/330px-Choo_Kyung-ho%27s_Portrait_%282024.5%29.png?utm_source=ko.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "wiki": "https://ko.wikipedia.org/wiki/%EC%B6%94%EA%B2%BD%ED%98%B8",
    "news_used": false
   }
  ],
