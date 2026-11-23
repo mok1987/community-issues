@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-24T02:08:16+09:00",
+ "updated_at": "2026-11-24T03:03:43+09:00",
  "method": "simple",
  "post_count": 400,
  "sources": [
@@ -24,8 +24,8 @@
   {
    "key": "ruliweb",
    "name": "루리웹",
-   "status": "16개",
-   "state": "ok"
+   "status": "사이트 접속 실패(ConnectTimeout), 건너뜀",
+   "state": "error"
   },
   {
    "key": "natepann",
@@ -48,7 +48,7 @@
   {
    "key": "ppomppu",
    "name": "뽐뿌",
-   "status": "7개",
+   "status": "5개",
    "state": "ok"
   },
   {
@@ -72,7 +72,7 @@
   {
    "key": "youtube",
    "name": "유튜브",
-   "status": "27개",
+   "status": "28개",
    "state": "ok"
   }
  ],
@@ -149,18 +149,18 @@
      0,
      0,
      0,
-     0,
-     0,
      2,
      2,
      2,
+     4,
+     4,
      4,
      4,
      4
     ],
     "label": "급상승",
     "dir": "up",
-    "hours": "2시간째 화제"
+    "hours": "3시간째 화제"
    },
    "thumb": {
     "id": "apByW5hx1Q0",
@@ -168,6 +168,71 @@
     "title": "젠슨 황 엔비디아 CEO 복귀 결정…이사회 만장일치｜지금 이 뉴스",
     "channel": "JTBC News",
     "img": "https://i.ytimg.com/vi/apByW5hx1Q0/hqdefault.jpg"
+   }
+  },
+  {
+   "headline": "트럼프 아들 배런 트럼프 근황",
+   "summary": "",
+   "why": "",
+   "category": "생활",
+   "hot": true,
+   "communities": [
+    {
+     "key": "instiz",
+     "name": "인스티즈",
+     "count": 1,
+     "framing": "",
+     "tone": "",
+     "url": "https://www.instiz.net/pt/7928983",
+     "comment_count": null
+    },
+    {
+     "key": "theqoo",
+     "name": "더쿠",
+     "count": 1,
+     "framing": "",
+     "tone": "",
+     "url": "https://theqoo.net/hot/4416072578",
+     "comment_count": null
+    }
+   ],
+   "posts": [
+    {
+     "title": "트럼프 아들 배런 트럼프 근황",
+     "url": "https://www.instiz.net/pt/7928983",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "트럼프 아들, 배런 트럼프 근황.jpg",
+     "url": "https://theqoo.net/hot/4416072578",
+     "source": "theqoo",
+     "source_name": "더쿠"
+    }
+   ],
+   "first_seen": "2026-11-24T01:02:45+09:00",
+   "unverified": true,
+   "score": 25.98,
+   "id": "i1",
+   "trend": {
+    "series": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     2
+    ],
+    "label": "새로 떠오름",
+    "dir": "new",
+    "hours": "1시간째 화제"
    }
   },
   {
@@ -213,13 +278,13 @@
    "first_seen": "2026-11-23T18:54:33+09:00",
    "unverified": true,
    "score": 25.96,
-   "id": "i1",
+   "id": "i2",
    "trend": {
     "series": [
      0,
      0,
-     0,
-     0,
+     2,
+     2,
      2,
      2,
      2,
@@ -232,7 +297,7 @@
     ],
     "label": "유지",
     "dir": "flat",
-    "hours": "7시간째 화제"
+    "hours": "8시간째 화제"
    }
   },
   {
@@ -258,7 +323,7 @@
      "framing": "",
      "tone": "",
      "url": "https://www.youtube.com/watch?v=NKJyM8z8qFo",
-     "comment_count": 211
+     "comment_count": 215
     }
    ],
    "posts": [
@@ -278,13 +343,13 @@
    "first_seen": "2026-11-23T15:42:29+09:00",
    "unverified": true,
    "score": 25.78,
-   "id": "i2",
+   "id": "i3",
    "trend": {
     "series": [
      0,
      0,
-     0,
-     0,
+     2,
+     2,
      2,
      2,
      2,
@@ -297,14 +362,7 @@
     ],
     "label": "유지",
     "dir": "flat",
-    "hours": "10시간째 화제"
-   },
-   "thumb": {
-    "id": "NKJyM8z8qFo",
-    "url": "https://www.youtube.com/watch?v=NKJyM8z8qFo",
-    "title": "[단독] 심형래 '디워', AI 입고 재개봉 한다...예고편 최초 공개 / YTN star",
-    "channel": "YTN star",
-    "img": "https://i.ytimg.com/vi/NKJyM8z8qFo/hqdefault.jpg"
+    "hours": "11시간째 화제"
    }
   },
   {
@@ -350,7 +408,7 @@
    "first_seen": "2026-11-24T01:02:45+09:00",
    "unverified": true,
    "score": 25.72,
-   "id": "i3",
+   "id": "i4",
    "trend": {
     "series": [
      0,
@@ -361,8 +419,8 @@
      0,
      0,
      0,
-     0,
-     0,
+     2,
+     2,
      2,
      2,
      2
@@ -486,6 +544,15 @@
    "name": "더쿠",
    "items": [
     {
+     "title": "트럼프 아들, 배런 트럼프 근황.jpg",
+     "url": "https://theqoo.net/hot/4416072578",
+     "easy": "",
+     "category": "생활",
+     "issue_id": "i1",
+     "hot": true,
+     "comment_count": null
+    },
+    {
      "title": "네페 67원",
      "url": "https://theqoo.net/hot/4416050965",
      "easy": "",
@@ -565,15 +632,6 @@
      "issue_id": null,
      "hot": false,
      "comment_count": null
-    },
-    {
-     "title": "마라톤때문에 특히나 피해본다는 분들....jpg",
-     "url": "https://theqoo.net/hot/4415822332",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
     }
    ],
    "list_url": "https://theqoo.net/hot",
@@ -583,101 +641,10 @@
   {
    "key": "ruliweb",
    "name": "루리웹",
-   "items": [
-    {
-     "title": "리만 가설 증명이 되도 달라지는게 별로 없는 이유",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77491966",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "\"용사가 돌아간 차원 좌표는 알아냈겠지?\"",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77492047",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "오늘자 코스닥, 코스피 근황 ㄷㄷㄷㄷㄷ",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77490006",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "속보) Mathlib, 리만가설 검증 정확하다고 선언",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77491827",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "닭공장에서 일하는 사람입니다",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77491717",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "헬스장) 업계 근황",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77490235",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "GTA6 시스템 때문에 강제로 착하게 플레이하게되더라",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77490995",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "차 사기전 몰랐던 사실",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77489885",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "요 최근 점점 기세 등등해지고 있는 애들",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77490737",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "나는 헬스 업계가 이해가 안가는게",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77491163",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    }
-   ],
+   "items": [],
    "list_url": "https://bbs.ruliweb.com/best/humor",
-   "state": "ok",
-   "status": "16개"
+   "state": "error",
+   "status": "사이트 접속 실패(ConnectTimeout), 건너뜀"
   },
   {
    "key": "natepann",
@@ -712,23 +679,14 @@
      "title": "트럼프 아들 배런 트럼프 근황",
      "url": "https://www.instiz.net/pt/7928983",
      "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
+     "category": "생활",
+     "issue_id": "i1",
+     "hot": true,
      "comment_count": null
     },
     {
      "title": "사은품으로 받은 CCTV 후기ㅋㅋㅋㅋㅋ",
      "url": "https://www.instiz.net/pt/7928958",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "엔비디아 3배 숏 산사람들 청산됐다네 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
-     "url": "https://www.instiz.net/name/68048155",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -788,6 +746,15 @@
      "issue_id": null,
      "hot": false,
      "comment_count": null
+    },
+    {
+     "title": "걍 난 송하가 데뷔해서 너무 행복함 ㅠㅠ 10년 연생하고 집갈까봐 무서웠는데",
+     "url": "https://www.instiz.net/name_enter/101118557",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
     }
    ],
    "list_url": "https://www.instiz.net/hot.htm",
@@ -835,24 +802,6 @@
      "comment_count": null
     },
     {
-     "title": "드디어 삼전닉스 이익추정 하향 쏟아지네요",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=459630",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "생수 2L 할인 몽베스트/백산수/풀무원샘물/동원샘물(가격다양/와우무배)",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=coupang_deal&no=664",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
      "title": "광고/제휴",
      "url": "https://www.ppomppu.co.kr/zboard/view.php?id=faq&no=17",
      "easy": "",
@@ -864,7 +813,7 @@
    ],
    "list_url": "https://www.ppomppu.co.kr/hot.php",
    "state": "ok",
-   "status": "7개"
+   "status": "5개"
   },
   {
    "key": "bobaedream",
@@ -920,7 +869,7 @@
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1049625",
      "easy": "",
      "category": "생활",
-     "issue_id": "i3",
+     "issue_id": "i4",
      "hot": true,
      "comment_count": null
     },
@@ -978,8 +927,8 @@
    "name": "다음뉴스",
    "items": [
     {
-     "title": "벨기에 노동자 긴축 반대 총파업…관제사 동참에 하늘길 마비(종합)",
-     "url": "https://v.daum.net/v/20261124015639526",
+     "title": "'개표상황표 은닉' 선관위 직원 1명 구속…7명 영장 기각(종합)",
+     "url": "https://v.daum.net/v/20261124024202693",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -987,8 +936,8 @@
      "comment_count": null
     },
     {
-     "title": "독일 총리 \"2008년 우크라 나토 가입 막은 건 실수\"",
-     "url": "https://v.daum.net/v/20261124015235522",
+     "title": "선관위 특검, 구속영장 7건 기각에 \"납득 어려워…재청구 적극 검토\"(종합)",
+     "url": "https://v.daum.net/v/20261124023524680",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -996,8 +945,8 @@
      "comment_count": null
     },
     {
-     "title": "주가 급락에 후계자 공백…젠슨 황 다시 택한 엔비디아",
-     "url": "https://v.daum.net/v/20261124015035513",
+     "title": "대선 5개월 앞두고…마크롱, 재정 위기에 '황금률' 꺼내들어",
+     "url": "https://v.daum.net/v/20261124022724651",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -1005,8 +954,8 @@
      "comment_count": null
     },
     {
-     "title": "트럼프 압박에 주가 부담까지…다시 젠슨황 불러들인 엔비디아",
-     "url": "https://v.daum.net/v/20261124011925429",
+     "title": "트럼프, 젠슨황에 '안보 면죄부'…AI패권·스캔들 불똥 의식했나",
+     "url": "https://v.daum.net/v/20261124022321640",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -1041,8 +990,8 @@
      "comment_count": null
     },
     {
-     "title": "공소청, '노태우 비자금' 노소영에 공판 전 증인신문 청구",
-     "url": "https://v.daum.net/v/20261123230434030",
+     "title": "中 등으로 불법수출 급증… 9월까지 1.5조 적발, 작년 총액 2.4배",
+     "url": "https://v.daum.net/v/20261124003211055",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -1050,8 +999,8 @@
      "comment_count": null
     },
     {
-     "title": "\"지난해 수능 시험지 십수만 장 폐기\"…부정행위 규명 난항",
-     "url": "https://v.daum.net/v/20261123222700725",
+     "title": "공소청, '노태우 비자금' 노소영에 공판 전 증인신문 청구",
+     "url": "https://v.daum.net/v/20261123230434030",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -1081,9 +1030,9 @@
      "url": "https://www.youtube.com/watch?v=NKJyM8z8qFo",
      "easy": "",
      "category": "생활",
-     "issue_id": "i2",
+     "issue_id": "i3",
      "hot": true,
-     "comment_count": 211
+     "comment_count": 215
     },
     {
      "title": "멸망전 팀 결정 마지막날 클리드에게 선수들 다 뺏긴 맵교ㅋㅋㅋ — 튜브김민교",
@@ -1095,31 +1044,31 @@
      "comment_count": 102
     },
     {
-     "title": "비비는 맛 — 괴물쥐 유튜브",
-     "url": "https://www.youtube.com/watch?v=tbWDrwQOq60",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": 434
-    },
-    {
      "title": "*23,426*개의 벽돌을 직접 만들고 설치해 피라미드를 만드는 게임 — YouTube지누",
      "url": "https://www.youtube.com/watch?v=-RKmRsz6Jys",
      "easy": "",
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 175
+     "comment_count": 178
     },
     {
-     "title": "역대급 하마냥이 등장 | 멸망전 EP.1 — 클리드",
-     "url": "https://www.youtube.com/watch?v=M8YQQk19YJQ",
+     "title": "비비는 맛 — 괴물쥐 유튜브",
+     "url": "https://www.youtube.com/watch?v=tbWDrwQOq60",
      "easy": "",
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 204
+     "comment_count": 436
+    },
+    {
+     "title": "너... 너..... | 멸망전 EP.2 — 클리드",
+     "url": "https://www.youtube.com/watch?v=GX4b2dZ9gMc",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": 590
     },
     {
      "title": "혼자서 5:1로 넥서스를 지킨 미친 명장면..! \"디임이 사수하기\"｜멸망전 EP.04 — 저라뎃 JUSTLIKETHAT",
@@ -1131,15 +1080,6 @@
      "comment_count": 237
     },
     {
-     "title": "≪무기 강화하는 게임≫ 드디어...전설의 검 강화성공!!!!!!! — 혜안",
-     "url": "https://www.youtube.com/watch?v=izlRpHOlgFE",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": 762
-    },
-    {
      "title": "금단의 기술 — PAKA",
      "url": "https://www.youtube.com/watch?v=mCd3lzBY5Uw",
      "easy": "",
@@ -1149,27 +1089,36 @@
      "comment_count": 208
     },
     {
+     "title": "≪무기 강화하는 게임≫ 드디어...전설의 검 강화성공!!!!!!! — 혜안",
+     "url": "https://www.youtube.com/watch?v=izlRpHOlgFE",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": 762
+    },
+    {
      "title": "베스티(BESTie) - 연애의 조건(Love Options) | Suit Dance | 수트댄스 | Performance | 4K — 1theK Originals - 원더케이 오리지널",
      "url": "https://www.youtube.com/watch?v=FVNI7zBuk-4",
      "easy": "",
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 2355
+     "comment_count": 2357
     },
     {
-     "title": "팀나빠 멤버들 모두..병원에 입원 해 버렸습니다. — 멜로우TV",
-     "url": "https://www.youtube.com/watch?v=boEyYn8RjDk",
+     "title": "돌아온 GTA 시민들의 악몽 — 침착맨 플러스",
+     "url": "https://www.youtube.com/watch?v=JqAiGr7N1y8",
      "easy": "",
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 1490
+     "comment_count": 381
     }
    ],
    "list_url": "https://www.youtube.com/feed/trending",
    "state": "ok",
-   "status": "27개"
+   "status": "28개"
   }
  ],
  "words": [
@@ -1179,19 +1128,9 @@
    "example": "그 가수 근황"
   },
   {
-   "word": "ㄷㄷ",
-   "meaning": "'덜덜'. 놀랍거나 무서울 때 쓰는 표현",
-   "example": "가격 보고 ㄷㄷ"
-  },
-  {
    "word": "갑질",
    "meaning": "지위가 높은 사람이 아랫사람에게 부당하게 구는 것",
    "example": "고객 갑질 논란"
-  },
-  {
-   "word": "역대급",
-   "meaning": "지금까지 중에서 가장 대단한 수준",
-   "example": "역대급 폭염"
   },
   {
    "word": "ㄹㅇ",
