@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-23T23:44:12+09:00",
+ "updated_at": "2026-11-24T01:11:24+09:00",
  "method": "simple",
  "post_count": 400,
  "sources": [
@@ -48,7 +48,7 @@
   {
    "key": "ppomppu",
    "name": "뽐뿌",
-   "status": "10개",
+   "status": "6개",
    "state": "ok"
   },
   {
@@ -66,7 +66,7 @@
   {
    "key": "daumnews",
    "name": "다음뉴스",
-   "status": "33개",
+   "status": "32개",
    "state": "ok"
   },
   {
@@ -77,6 +77,99 @@
   }
  ],
  "issues": [
+  {
+   "headline": "젠슨 황 엔비디아 CEO 복귀, 이사회 만장일치",
+   "summary": "",
+   "why": "",
+   "category": "생활",
+   "hot": true,
+   "communities": [
+    {
+     "key": "daumnews",
+     "name": "다음뉴스",
+     "count": 2,
+     "framing": "",
+     "tone": "",
+     "url": "https://v.daum.net/v/20261124005707246",
+     "comment_count": null
+    },
+    {
+     "key": "instiz",
+     "name": "인스티즈",
+     "count": 1,
+     "framing": "",
+     "tone": "",
+     "url": "https://www.instiz.net/pt/7928957",
+     "comment_count": null
+    },
+    {
+     "key": "theqoo",
+     "name": "더쿠",
+     "count": 1,
+     "framing": "",
+     "tone": "",
+     "url": "https://theqoo.net/hot/4415979777",
+     "comment_count": null
+    }
+   ],
+   "posts": [
+    {
+     "title": "젠슨황, 11일만에 엔비디아 CEO 전격복귀…이사회 \"안보위험 없다\"(종합2보)",
+     "url": "https://v.daum.net/v/20261124005707246",
+     "source": "daumnews",
+     "source_name": "다음뉴스"
+    },
+    {
+     "title": "젠슨황, 11일 만에 엔비디아 CEO 복귀…트럼프 \"적절한 결정\"(종합)",
+     "url": "https://v.daum.net/v/20261123234004335",
+     "source": "daumnews",
+     "source_name": "다음뉴스"
+    },
+    {
+     "title": "[속보] 젠슨 황 엔비디아 CEO 즉시 복귀…이사회 만장일치 결정",
+     "url": "https://www.instiz.net/pt/7928957",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "젠슨 황 엔비디아 CEO 복귀, 이사회 만장일치",
+     "url": "https://theqoo.net/hot/4415979777",
+     "source": "theqoo",
+     "source_name": "더쿠"
+    }
+   ],
+   "first_seen": "2026-11-23T23:41:33+09:00",
+   "unverified": true,
+   "score": 41.6,
+   "id": "i0",
+   "trend": {
+    "series": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     2,
+     2,
+     2,
+     4
+    ],
+    "label": "급상승",
+    "dir": "up",
+    "hours": "1시간째 화제"
+   },
+   "thumb": {
+    "id": "apByW5hx1Q0",
+    "url": "https://www.youtube.com/watch?v=apByW5hx1Q0",
+    "title": "젠슨 황 엔비디아 CEO 복귀 결정…이사회 만장일치｜지금 이 뉴스",
+    "channel": "JTBC News",
+    "img": "https://i.ytimg.com/vi/apByW5hx1Q0/hqdefault.jpg"
+   }
+  },
   {
    "headline": "기분 상해서 식당에 편지 남기고 왔다는 손님.jpg",
    "summary": "",
@@ -120,71 +213,6 @@
    "first_seen": "2026-11-23T18:54:33+09:00",
    "unverified": true,
    "score": 25.96,
-   "id": "i0",
-   "trend": {
-    "series": [
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     2,
-     2,
-     2,
-     2
-    ],
-    "label": "유지",
-    "dir": "flat",
-    "hours": "4시간째 화제"
-   }
-  },
-  {
-   "headline": "청담 르엘 배달 갑질 현황",
-   "summary": "",
-   "why": "",
-   "category": "생활",
-   "hot": true,
-   "communities": [
-    {
-     "key": "bobaedream",
-     "name": "보배드림",
-     "count": 1,
-     "framing": "",
-     "tone": "",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1049620",
-     "comment_count": null
-    },
-    {
-     "key": "instiz",
-     "name": "인스티즈",
-     "count": 1,
-     "framing": "",
-     "tone": "",
-     "url": "https://www.instiz.net/pt/7928848",
-     "comment_count": null
-    }
-   ],
-   "posts": [
-    {
-     "title": "청담 르엘 배달 갑질 현황",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1049620",
-     "source": "bobaedream",
-     "source_name": "보배드림"
-    },
-    {
-     "title": "실시간 청담르엘 배달관련이슈",
-     "url": "https://www.instiz.net/pt/7928848",
-     "source": "instiz",
-     "source_name": "인스티즈"
-    }
-   ],
-   "first_seen": "2026-11-23T18:54:33+09:00",
-   "unverified": true,
-   "score": 25.86,
    "id": "i1",
    "trend": {
     "series": [
@@ -194,9 +222,9 @@
      0,
      0,
      0,
-     0,
-     0,
-     0,
+     2,
+     2,
+     2,
      2,
      2,
      2,
@@ -204,7 +232,7 @@
     ],
     "label": "유지",
     "dir": "flat",
-    "hours": "4시간째 화제"
+    "hours": "6시간째 화제"
    }
   },
   {
@@ -255,21 +283,21 @@
     "series": [
      0,
      0,
-     0,
-     0,
-     0,
+     2,
      2,
      5,
      5,
-     5,
+     2,
+     2,
+     2,
      2,
      2,
      2,
      2
     ],
-    "label": "주춤",
-    "dir": "down",
-    "hours": "4시간째 화제"
+    "label": "유지",
+    "dir": "flat",
+    "hours": "6시간째 화제"
    }
   },
   {
@@ -295,7 +323,7 @@
      "framing": "",
      "tone": "",
      "url": "https://www.youtube.com/watch?v=NKJyM8z8qFo",
-     "comment_count": 204
+     "comment_count": 211
     }
    ],
    "posts": [
@@ -324,9 +352,9 @@
      0,
      0,
      0,
-     0,
-     0,
-     0,
+     2,
+     2,
+     2,
      2,
      2,
      2,
@@ -334,23 +362,23 @@
     ],
     "label": "유지",
     "dir": "flat",
-    "hours": "8시간째 화제"
+    "hours": "9시간째 화제"
    }
   },
   {
-   "headline": "젠슨 황 엔비디아 CEO 복귀, 이사회 만장일치",
+   "headline": "방탄소년단 데뷔때 뉴스댓글",
    "summary": "",
    "why": "",
    "category": "생활",
    "hot": true,
    "communities": [
     {
-     "key": "instiz",
-     "name": "인스티즈",
+     "key": "bobaedream",
+     "name": "보배드림",
      "count": 1,
      "framing": "",
      "tone": "",
-     "url": "https://www.instiz.net/pt/7928957",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1049625",
      "comment_count": null
     },
     {
@@ -359,27 +387,27 @@
      "count": 1,
      "framing": "",
      "tone": "",
-     "url": "https://theqoo.net/hot/4415979777",
+     "url": "https://theqoo.net/hot/4415816718",
      "comment_count": null
     }
    ],
    "posts": [
     {
-     "title": "[속보] 젠슨 황 엔비디아 CEO 즉시 복귀…이사회 만장일치 결정",
-     "url": "https://www.instiz.net/pt/7928957",
-     "source": "instiz",
-     "source_name": "인스티즈"
+     "title": "방탄소년단 데뷔때 뉴스댓글",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1049625",
+     "source": "bobaedream",
+     "source_name": "보배드림"
     },
     {
-     "title": "젠슨 황 엔비디아 CEO 복귀, 이사회 만장일치",
-     "url": "https://theqoo.net/hot/4415979777",
+     "title": "방탄소년단 데뷔초 캐릭터 인형",
+     "url": "https://theqoo.net/hot/4415816718",
      "source": "theqoo",
      "source_name": "더쿠"
     }
    ],
-   "first_seen": "2026-11-23T23:41:33+09:00",
+   "first_seen": "2026-11-24T01:02:45+09:00",
    "unverified": true,
-   "score": 25.6,
+   "score": 25.72,
    "id": "i4",
    "trend": {
     "series": [
@@ -409,6 +437,78 @@
    "name": "디시",
    "items": [
     {
+     "title": "[중갤] 이것이 한국게임의 메타스코어 순위우",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481211&_dcbest=1",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "[싱갤] 싱글벙글 전세계의 월클 대도시를 대표하는 공항",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481209&_dcbest=1",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "[야갤] 살해 위협하는 종교 본진 털러 간 기자",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481207&_dcbest=1",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "[싱갤] 싱글벙글 년도별 피자 만들어 먹기",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481205&_dcbest=1",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "[미갤] 테슬라 FSD15...의미 ㄷㄷ...Jpg",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481201&_dcbest=1",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "[싱갤] 싱글벙글... 일본사에서 제일 권력구조가 복잡한 시대...",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481199&_dcbest=1",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "[이갤] “남성 100만원 벌 때 여성은 72만원”…한국의 씁쓸한 현실",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481197&_dcbest=1",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "[싱갤] 붕어빵 종류를 알아보자.......jpg",
+     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481196&_dcbest=1",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
      "title": "[젠갤] (사진많음)하루 늦은 지스타 후기",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481194&_dcbest=1",
      "easy": "",
@@ -420,78 +520,6 @@
     {
      "title": "[인갤] TJB) 길을 안내해 준 시민에게 순금을 선물한 중국 여학생들",
      "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481193&_dcbest=1",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[싱갤] 싱글벙글 공대 교수가 되는법....",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481191&_dcbest=1",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[더갤] 난리난 헬스장 업계...마운자로 땜에 초토화",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481190&_dcbest=1",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[싱갤] 길을 못 물어봐서 실종됐던 내향인",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481188&_dcbest=1",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[미갤] 현대차 시발 이거 진짜야? ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481185&_dcbest=1",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[싱갤] 싱글벙글 일본 호스트바에 빠져서 한국대기업 때려친 한국인",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481184&_dcbest=1",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[중갤] [단독] 창원지법, 25일 판사회의서 ‘사법부 독립’ 논의",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481182&_dcbest=1",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[싱갤] 와들와들 북한에서 개발한 ai 수준..jpg",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481181&_dcbest=1",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "[기음] [금주의 신상] 11월 4주차 신제품 먹거리 모음.jpg",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481179&_dcbest=1",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -516,12 +544,39 @@
    "name": "더쿠",
    "items": [
     {
+     "title": "네페 67원",
+     "url": "https://theqoo.net/hot/4416050965",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "TAEYEON 태연 'Unspecial' Highlight Medley ➫ 2026.11.30 6PM (KST)",
+     "url": "https://theqoo.net/hot/4416046767",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
      "title": "젠슨 황 엔비디아 CEO 복귀, 이사회 만장일치",
      "url": "https://theqoo.net/hot/4415979777",
      "easy": "",
      "category": "생활",
-     "issue_id": "i4",
+     "issue_id": "i0",
      "hot": true,
+     "comment_count": null
+    },
+    {
+     "title": "어케했냐고 바이럴 되는 공연장 전광판 수준",
+     "url": "https://theqoo.net/hot/4415975610",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
      "comment_count": null
     },
     {
@@ -570,39 +625,12 @@
      "comment_count": null
     },
     {
-     "title": "장가계 패키지 여행 갔던 부모님이 협박 감금 당했다가 돌아오셨습니다 (스레드 좋아요 6천개 달린 글)",
-     "url": "https://theqoo.net/hot/4415812024",
+     "title": "방탄소년단 데뷔초 캐릭터 인형",
+     "url": "https://theqoo.net/hot/4415816718",
      "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "이번에도 실패했다는 김천 김밥축제.jpg",
-     "url": "https://theqoo.net/hot/4415804549",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "오늘 x에서 핫했던 ktx 민폐승객",
-     "url": "https://theqoo.net/hot/4415797824",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "댓글들이 더 어이없는 신축아파트 화장실 타일 깨지는 영상",
-     "url": "https://theqoo.net/hot/4415789593",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
+     "category": "생활",
+     "issue_id": "i4",
+     "hot": true,
      "comment_count": null
     }
    ],
@@ -730,6 +758,42 @@
    "name": "인스티즈",
    "items": [
     {
+     "title": "엔비디아 3배 숏 산사람들 청산됐다네 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
+     "url": "https://www.instiz.net/name/68048155",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "주식) 엔비디아가 주가 폭등한 이유는 젠슨황 복귀때문이 아님",
+     "url": "https://www.instiz.net/pt/7928960",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "💥방금 올라온 양홍원 인스타 글",
+     "url": "https://www.instiz.net/pt/7928963",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "성형으로 예쁜포지션 가는것도 아무나 못된대",
+     "url": "https://www.instiz.net/name/68047788",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
      "title": "현재 삼전닉스 시간외 10% 상승",
      "url": "https://www.instiz.net/name_enter/101119178",
      "easy": "",
@@ -782,42 +846,6 @@
      "issue_id": null,
      "hot": false,
      "comment_count": null
-    },
-    {
-     "title": "ㄹㅇ 공감 자꾸 뭘 사다주지마라",
-     "url": "https://www.instiz.net/pt/7928910",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "'음주운전' 임영민, 이동건과 BL물로 연예계 복귀",
-     "url": "https://www.instiz.net/pt/7928911",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "여행 갔다와서 선물 이렇게 주면 좀 별론가..?",
-     "url": "https://www.instiz.net/name/68046805",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "쿠팡 로켓프레시 그 접이식배달박스 바뀜",
-     "url": "https://www.instiz.net/name_enter/101118268",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
     }
    ],
    "list_url": "https://www.instiz.net/hot.htm",
@@ -829,8 +857,8 @@
    "name": "뽐뿌",
    "items": [
     {
-     "title": "4달전 황현희 예언.jpg",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=459633",
+     "title": "홈플 다녀왔는데 진짜 다시 정리하는 느낌이네요.",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=social&no=51056",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -838,8 +866,8 @@
      "comment_count": null
     },
     {
-     "title": "전철 문에 목이 끼이는 사고 발생",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=humor&no=794638",
+     "title": "디지털문화자원 공동활용플랫폼 만족도 조사 이벤트",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=event2&no=108305",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -847,8 +875,8 @@
      "comment_count": null
     },
     {
-     "title": "선착순 200명 지급 고향사랑기부로 네이버페이 2만원 받자!!",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=event2&no=108301",
+     "title": "현대차 위기긴 하네요",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=car&no=983005",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -856,8 +884,8 @@
      "comment_count": null
     },
     {
-     "title": "월요일 도시락",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=free_gallery&no=362812",
+     "title": "드디어 삼전닉스 이익추정 하향 쏟아지네요",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=459630",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -865,44 +893,8 @@
      "comment_count": null
     },
     {
-     "title": "[금융감독원] 홈페이지 설문조사(~11.27) 500명 추첨, 네이버페이 배민 스타벅스 택 1만원",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=event2&no=108310",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "국산 전기차 세금 더 퍼준다",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=car&no=982970",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "<100일의 거짓말> 시청률 추이",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=drama&no=23875",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "해태제과 맛동산, 38g, 20개 (8,120원/무배)",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=coupang_deal&no=675",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "오리온 비쵸비 비스켓, 125g, 2개(4,000원/와우무배)",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=coupang_deal&no=679",
+     "title": "생수 2L 할인 몽베스트/백산수/풀무원샘물/동원샘물(가격다양/와우무배)",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=coupang_deal&no=664",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -921,12 +913,21 @@
    ],
    "list_url": "https://www.ppomppu.co.kr/hot.php",
    "state": "ok",
-   "status": "10개"
+   "status": "6개"
   },
   {
    "key": "bobaedream",
    "name": "보배드림",
    "items": [
+    {
+     "title": "젠슨황 복귀 직후 주주들에게 보내는 편지",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1049631",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
     {
      "title": "인도사마와 코드사마의 눈물겨운 우정",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1049622",
@@ -937,12 +938,57 @@
      "comment_count": null
     },
     {
+     "title": "국내유일 초졸 변호사",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1049629",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "한국남자 좋다는 일본여자에 대한 한국여자들의 반응",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1049626",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
      "title": "청담 르엘 배달 갑질 현황",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1049620",
      "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "방탄소년단 데뷔때 뉴스댓글",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1049625",
+     "easy": "",
      "category": "생활",
-     "issue_id": "i1",
+     "issue_id": "i4",
      "hot": true,
+     "comment_count": null
+    },
+    {
+     "title": "내가 어렸을적 마음속에 간직했던 추억의 사진",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1049630",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "언니 살린 두살짜리 막내",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1049628",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
      "comment_count": null
     },
     {
@@ -957,60 +1003,6 @@
     {
      "title": "KTX 울산 통도사 무임승차 여자 적반하장",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1049618",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "최근 논란이 되고 있는 장자제(장자계) 패키지 여행",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1049615",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "엌ㅋㅋ 얼마를 날린건지 감도안오네",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1049617",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "보배에서 봤던 인상적인 댓글",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1049609",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "진짜 지X하고 자빠짔네예",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1049616",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "조국이 추천한 인물들",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1049623",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "어떤 할아버지 발작하는거보니",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1049613",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -1035,12 +1027,12 @@
    "name": "다음뉴스",
    "items": [
     {
-     "title": "젠슨황, 11일 만에 엔비디아 CEO 복귀…트럼프 \"적절한 결정\"(종합)",
-     "url": "https://v.daum.net/v/20261123234004335",
+     "title": "젠슨황, 11일만에 엔비디아 CEO 전격복귀…이사회 \"안보위험 없다\"(종합2보)",
+     "url": "https://v.daum.net/v/20261124005707246",
      "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
+     "category": "생활",
+     "issue_id": "i0",
+     "hot": true,
      "comment_count": null
     },
     {
@@ -1089,24 +1081,6 @@
      "comment_count": null
     },
     {
-     "title": "“한국엔 관세 15% 안 넘긴다더니”…美, 디지털 정책 겨냥 301조 조사",
-     "url": "https://v.daum.net/v/20261123220000410",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "김정은 “팽창 추구 안해” 루비오에 맞장구…美와 대화 열어둬",
-     "url": "https://v.daum.net/v/20261123215518354",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
      "title": "한전 \"보안 혁신\" 약속 한 달 만에 또 유출‥국회 청문회 추진",
      "url": "https://v.daum.net/v/20261123214609259",
      "easy": "",
@@ -1116,8 +1090,26 @@
      "comment_count": null
     },
     {
-     "title": "이민자가 일자리에 미치는 영향…경제학의 결론은?",
-     "url": "https://v.daum.net/v/20261123184235999",
+     "title": "뉴욕증시 나스닥선물 3.6% 급반등…엔비디아 등 기술주 투매 진정",
+     "url": "https://v.daum.net/v/20261123214404240",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "친명계·청와대 출신 전진 배치…연말 전 개각 이유는",
+     "url": "https://v.daum.net/v/20261123201210703",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "[나이트라인 초대석] '데뷔 30주년' 동서양의 경계 허문 음악가 양방언",
+     "url": "https://v.daum.net/v/20261124010010263",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -1127,7 +1119,7 @@
    ],
    "list_url": "https://news.daum.net/",
    "state": "ok",
-   "status": "33개"
+   "status": "32개"
   },
   {
    "key": "youtube",
@@ -1140,7 +1132,7 @@
      "category": "생활",
      "issue_id": "i3",
      "hot": true,
-     "comment_count": 204
+     "comment_count": 211
     },
     {
      "title": "멸망전 팀 결정 마지막날 클리드에게 선수들 다 뺏긴 맵교ㅋㅋㅋ — 튜브김민교",
@@ -1158,7 +1150,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 419
+     "comment_count": 428
     },
     {
      "title": "*23,426*개의 벽돌을 직접 만들고 설치해 피라미드를 만드는 게임 — YouTube지누",
@@ -1167,7 +1159,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 166
+     "comment_count": 170
     },
     {
      "title": "역대급 하마냥이 등장 | 멸망전 EP.1 — 클리드",
@@ -1176,7 +1168,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 202
+     "comment_count": 203
     },
     {
      "title": "혼자서 5:1로 넥서스를 지킨 미친 명장면..! \"디임이 사수하기\"｜멸망전 EP.04 — 저라뎃 JUSTLIKETHAT",
@@ -1185,7 +1177,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 231
+     "comment_count": 234
     },
     {
      "title": "≪무기 강화하는 게임≫ 드디어...전설의 검 강화성공!!!!!!! — 혜안",
@@ -1212,7 +1204,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 2342
+     "comment_count": 2352
     },
     {
      "title": "팀나빠 멤버들 모두..병원에 입원 해 버렸습니다. — 멜로우TV",
@@ -1221,7 +1213,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 1487
+     "comment_count": 1489
     }
    ],
    "list_url": "https://www.youtube.com/feed/trending",
@@ -1236,54 +1228,26 @@
    "example": "그 가수 근황"
   },
   {
-   "word": "갑질",
-   "meaning": "지위가 높은 사람이 아랫사람에게 부당하게 구는 것",
-   "example": "고객 갑질 논란"
-  },
-  {
    "word": "ㄷㄷ",
    "meaning": "'덜덜'. 놀랍거나 무서울 때 쓰는 표현",
    "example": "가격 보고 ㄷㄷ"
   },
   {
-   "word": "ㄹㅇ",
-   "meaning": "'레알(진짜)'. 정말이라는 뜻",
-   "example": "이거 ㄹㅇ 맛있어"
+   "word": "갑질",
+   "meaning": "지위가 높은 사람이 아랫사람에게 부당하게 구는 것",
+   "example": "고객 갑질 논란"
   },
   {
    "word": "역대급",
    "meaning": "지금까지 중에서 가장 대단한 수준",
    "example": "역대급 폭염"
-  }
- ],
- "people": [
-  {
-   "name": "젠슨 황",
-   "who": "대만계 미국인 기업가. 엔비디아의 설립자이자 CEO",
-   "why": "이사회 만장일치로 엔비디아 CEO에 다시 복귀하며 화제예요.",
-   "mentions": 6,
-   "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Jensen_Huang_Stanford_2026-04-30_010_%28cropped%29.jpg/330px-Jensen_Huang_Stanford_2026-04-30_010_%28cropped%29.jpg?utm_source=ko.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-   "wiki": "https://ko.wikipedia.org/wiki/%EC%A0%A0%EC%8A%A8_%ED%99%A9",
-   "news_used": false
   },
   {
-   "name": "심형래",
-   "who": "대한민국의 영화감독이자 방송인",
-   "why": "과거 영화 '디워'가 인공지능 기술을 입고 재개봉한다는 소식이 전해졌어요.",
-   "mentions": 3,
-   "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/%EC%8B%AC%ED%98%95%EB%9E%98%EC%87%BC-2018_%EB%B3%80%EB%B0%A9%EC%9D%98_%EB%B6%81%EC%86%8C%EB%A6%AC-%EC%8B%AC%ED%98%95%EB%9E%98.jpg/330px-%EC%8B%AC%ED%98%95%EB%9E%98%EC%87%BC-2018_%EB%B3%80%EB%B0%A9%EC%9D%98_%EB%B6%81%EC%86%8C%EB%A6%AC-%EC%8B%AC%ED%98%95%EB%9E%98.jpg?utm_source=ko.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-   "wiki": "https://ko.wikipedia.org/wiki/%EC%8B%AC%ED%98%95%EB%9E%98",
-   "news_used": false
-  },
-  {
-   "name": "한동훈",
-   "who": "대한민국의 검사 출신 정치인",
-   "why": "온라인에서 여러 이야기가 오가며 이름이 자주 오르내려요.",
-   "mentions": 2,
-   "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Han_dong_hoon_2026.png/330px-Han_dong_hoon_2026.png?utm_source=ko.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-   "wiki": "https://ko.wikipedia.org/wiki/%ED%95%9C%EB%8F%99%ED%9B%88",
-   "news_used": false
+   "word": "ㄹㅇ",
+   "meaning": "'레알(진짜)'. 정말이라는 뜻",
+   "example": "이거 ㄹㅇ 맛있어"
   }
  ],
+ "people": [],
  "push_app_id": "11a62ea7-1189-4448-aef1-c5d02b706d4d"
 }
