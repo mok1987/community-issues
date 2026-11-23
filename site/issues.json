@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-24T03:03:43+09:00",
+ "updated_at": "2026-11-24T04:04:00+09:00",
  "method": "simple",
  "post_count": 400,
  "sources": [
@@ -24,8 +24,8 @@
   {
    "key": "ruliweb",
    "name": "루리웹",
-   "status": "사이트 접속 실패(ConnectTimeout), 건너뜀",
-   "state": "error"
+   "status": "16개",
+   "state": "ok"
   },
   {
    "key": "natepann",
@@ -48,7 +48,7 @@
   {
    "key": "ppomppu",
    "name": "뽐뿌",
-   "status": "5개",
+   "status": "7개",
    "state": "ok"
   },
   {
@@ -72,7 +72,7 @@
   {
    "key": "youtube",
    "name": "유튜브",
-   "status": "28개",
+   "status": "29개",
    "state": "ok"
   }
  ],
@@ -147,20 +147,20 @@
      0,
      0,
      0,
-     0,
-     0,
      2,
      2,
      2,
+     4,
+     4,
      4,
      4,
      4,
      4,
      4
     ],
-    "label": "급상승",
-    "dir": "up",
-    "hours": "3시간째 화제"
+    "label": "유지",
+    "dir": "flat",
+    "hours": "4시간째 화제"
    },
    "thumb": {
     "id": "apByW5hx1Q0",
@@ -226,13 +226,13 @@
      0,
      0,
      0,
-     0,
-     0,
+     2,
+     2,
      2
     ],
-    "label": "새로 떠오름",
-    "dir": "new",
-    "hours": "1시간째 화제"
+    "label": "유지",
+    "dir": "flat",
+    "hours": "2시간째 화제"
    }
   },
   {
@@ -282,7 +282,7 @@
    "trend": {
     "series": [
      0,
-     0,
+     2,
      2,
      2,
      2,
@@ -297,7 +297,72 @@
     ],
     "label": "유지",
     "dir": "flat",
-    "hours": "8시간째 화제"
+    "hours": "9시간째 화제"
+   }
+  },
+  {
+   "headline": "위안부 자주 갔지만 죄책감은 없다는 일본 할배",
+   "summary": "",
+   "why": "",
+   "category": "생활",
+   "hot": true,
+   "communities": [
+    {
+     "key": "instiz",
+     "name": "인스티즈",
+     "count": 1,
+     "framing": "",
+     "tone": "",
+     "url": "https://www.instiz.net/pt/7928813",
+     "comment_count": null
+    },
+    {
+     "key": "theqoo",
+     "name": "더쿠",
+     "count": 1,
+     "framing": "",
+     "tone": "",
+     "url": "https://theqoo.net/hot/4415703158",
+     "comment_count": null
+    }
+   ],
+   "posts": [
+    {
+     "title": "위안부 자주 갔지만 죄책감은 없다는 일본 할배",
+     "url": "https://www.instiz.net/pt/7928813",
+     "source": "instiz",
+     "source_name": "인스티즈"
+    },
+    {
+     "title": "위안부 자주 갔지만 죄책감 따위 없다는 일본인",
+     "url": "https://theqoo.net/hot/4415703158",
+     "source": "theqoo",
+     "source_name": "더쿠"
+    }
+   ],
+   "first_seen": "2026-11-23T17:35:34+09:00",
+   "unverified": true,
+   "score": 25.86,
+   "id": "i3",
+   "trend": {
+    "series": [
+     0,
+     2,
+     2,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     2
+    ],
+    "label": "유지",
+    "dir": "flat",
+    "hours": "10시간째 화제"
    }
   },
   {
@@ -343,11 +408,11 @@
    "first_seen": "2026-11-23T15:42:29+09:00",
    "unverified": true,
    "score": 25.78,
-   "id": "i3",
+   "id": "i4",
    "trend": {
     "series": [
      0,
-     0,
+     2,
      2,
      2,
      2,
@@ -362,7 +427,7 @@
     ],
     "label": "유지",
     "dir": "flat",
-    "hours": "11시간째 화제"
+    "hours": "12시간째 화제"
    }
   },
   {
@@ -408,7 +473,7 @@
    "first_seen": "2026-11-24T01:02:45+09:00",
    "unverified": true,
    "score": 25.72,
-   "id": "i4",
+   "id": "i5",
    "trend": {
     "series": [
      0,
@@ -417,8 +482,8 @@
      0,
      0,
      0,
-     0,
-     0,
+     2,
+     2,
      2,
      2,
      2,
@@ -427,7 +492,7 @@
     ],
     "label": "유지",
     "dir": "flat",
-    "hours": "1시간째 화제"
+    "hours": "2시간째 화제"
    }
   }
  ],
@@ -641,10 +706,101 @@
   {
    "key": "ruliweb",
    "name": "루리웹",
-   "items": [],
+   "items": [
+    {
+     "title": "리만 가설 증명이 되도 달라지는게 별로 없는 이유",
+     "url": "https://bbs.ruliweb.com/best/board/300143/read/77491966",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "\"용사가 돌아간 차원 좌표는 알아냈겠지?\"",
+     "url": "https://bbs.ruliweb.com/best/board/300143/read/77492047",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "오늘자 코스닥, 코스피 근황 ㄷㄷㄷㄷㄷ",
+     "url": "https://bbs.ruliweb.com/best/board/300143/read/77490006",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "속보) Mathlib, 리만가설 검증 정확하다고 선언",
+     "url": "https://bbs.ruliweb.com/best/board/300143/read/77491827",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "닭공장에서 일하는 사람입니다",
+     "url": "https://bbs.ruliweb.com/best/board/300143/read/77491717",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "헬스장) 업계 근황",
+     "url": "https://bbs.ruliweb.com/best/board/300143/read/77490235",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "GTA6 시스템 때문에 강제로 착하게 플레이하게되더라",
+     "url": "https://bbs.ruliweb.com/best/board/300143/read/77490995",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "차 사기전 몰랐던 사실",
+     "url": "https://bbs.ruliweb.com/best/board/300143/read/77489885",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "요 최근 점점 기세 등등해지고 있는 애들",
+     "url": "https://bbs.ruliweb.com/best/board/300143/read/77490737",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "나는 헬스 업계가 이해가 안가는게",
+     "url": "https://bbs.ruliweb.com/best/board/300143/read/77491163",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    }
+   ],
    "list_url": "https://bbs.ruliweb.com/best/humor",
-   "state": "error",
-   "status": "사이트 접속 실패(ConnectTimeout), 건너뜀"
+   "state": "ok",
+   "status": "16개"
   },
   {
    "key": "natepann",
@@ -766,6 +922,24 @@
    "name": "뽐뿌",
    "items": [
     {
+     "title": "'음주사고' 고경표 1시간30분 경찰 조사…\"정말 죄송\" 울먹(종합)",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=news_society&no=516645",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "서양식 참치김밥 근황",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=streamer&no=6953",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
      "title": "테슬람 이거 됨?",
      "url": "https://www.ppomppu.co.kr/zboard/view.php?id=car&no=983008",
      "easy": "",
@@ -813,7 +987,7 @@
    ],
    "list_url": "https://www.ppomppu.co.kr/hot.php",
    "state": "ok",
-   "status": "5개"
+   "status": "7개"
   },
   {
    "key": "bobaedream",
@@ -822,6 +996,15 @@
     {
      "title": "젠슨황 복귀 직후 주주들에게 보내는 편지",
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1049631",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "한국때문에 뇌에 버그가 생겼다는 일본인",
+     "url": "https://www.bobaedream.co.kr/view?code=best&No=1049636",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -869,7 +1052,7 @@
      "url": "https://www.bobaedream.co.kr/view?code=best&No=1049625",
      "easy": "",
      "category": "생활",
-     "issue_id": "i4",
+     "issue_id": "i5",
      "hot": true,
      "comment_count": null
     },
@@ -899,15 +1082,6 @@
      "issue_id": null,
      "hot": false,
      "comment_count": null
-    },
-    {
-     "title": "KTX 울산 통도사 무임승차 여자 적반하장",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1049618",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
     }
    ],
    "list_url": "https://www.bobaedream.co.kr/list?code=best",
@@ -927,8 +1101,26 @@
    "name": "다음뉴스",
    "items": [
     {
-     "title": "'개표상황표 은닉' 선관위 직원 1명 구속…7명 영장 기각(종합)",
-     "url": "https://v.daum.net/v/20261124024202693",
+     "title": "美정치권, 젠슨황 복귀에 \"안보 팔아넘겨…불법행위 조사\"(종합)",
+     "url": "https://v.daum.net/v/20261124034638851",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "몰락했다가 깜짝 복귀한 AI제국 황제…청문회 등 가시밭길 예고",
+     "url": "https://v.daum.net/v/20261124034109839",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "'황의 귀환'에 엔비디아 장중 171달러 돌파…주요 지수 일제 상승(종합)",
+     "url": "https://v.daum.net/v/20261124030202754",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -938,24 +1130,6 @@
     {
      "title": "선관위 특검, 구속영장 7건 기각에 \"납득 어려워…재청구 적극 검토\"(종합)",
      "url": "https://v.daum.net/v/20261124023524680",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "대선 5개월 앞두고…마크롱, 재정 위기에 '황금률' 꺼내들어",
-     "url": "https://v.daum.net/v/20261124022724651",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "트럼프, 젠슨황에 '안보 면죄부'…AI패권·스캔들 불똥 의식했나",
-     "url": "https://v.daum.net/v/20261124022321640",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -1026,22 +1200,31 @@
    "name": "유튜브",
    "items": [
     {
-     "title": "[단독] 심형래 '디워', AI 입고 재개봉 한다...예고편 최초 공개 / YTN star — YTN star",
-     "url": "https://www.youtube.com/watch?v=NKJyM8z8qFo",
-     "easy": "",
-     "category": "생활",
-     "issue_id": "i3",
-     "hot": true,
-     "comment_count": 215
-    },
-    {
-     "title": "멸망전 팀 결정 마지막날 클리드에게 선수들 다 뺏긴 맵교ㅋㅋㅋ — 튜브김민교",
-     "url": "https://www.youtube.com/watch?v=u201uSiHiko",
+     "title": "[어벤져스: 둠스데이] 메인 예고편 — MarvelKorea",
+     "url": "https://www.youtube.com/watch?v=Oae1ZnQ15gQ",
      "easy": "",
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 102
+     "comment_count": 5657
+    },
+    {
+     "title": "멸망전 기간 갑자기 떡상해버린 김민교의 수상한 폼 — 튜브김민교",
+     "url": "https://www.youtube.com/watch?v=2zznukklrfs",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": 103
+    },
+    {
+     "title": "AVENGERS DOOMSDAY FINAL TRAILER REACTION! — The Media Knights",
+     "url": "https://www.youtube.com/watch?v=LfIXOqxQCsg",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": 1259
     },
     {
      "title": "*23,426*개의 벽돌을 직접 만들고 설치해 피라미드를 만드는 게임 — YouTube지누",
@@ -1050,7 +1233,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 178
+     "comment_count": 179
     },
     {
      "title": "비비는 맛 — 괴물쥐 유튜브",
@@ -1059,7 +1242,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 436
+     "comment_count": 440
     },
     {
      "title": "너... 너..... | 멸망전 EP.2 — 클리드",
@@ -1068,7 +1251,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 590
+     "comment_count": 600
     },
     {
      "title": "혼자서 5:1로 넥서스를 지킨 미친 명장면..! \"디임이 사수하기\"｜멸망전 EP.04 — 저라뎃 JUSTLIKETHAT",
@@ -1080,22 +1263,13 @@
      "comment_count": 237
     },
     {
-     "title": "금단의 기술 — PAKA",
-     "url": "https://www.youtube.com/watch?v=mCd3lzBY5Uw",
+     "title": "다시 만난 그녀와의 재회는 여전히 최악이었다 : 비행타입 하트골드【포켓몬 모든타입 깨기】#2 — 근가놈",
+     "url": "https://www.youtube.com/watch?v=OvzsjF_imZE",
      "easy": "",
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 208
-    },
-    {
-     "title": "≪무기 강화하는 게임≫ 드디어...전설의 검 강화성공!!!!!!! — 혜안",
-     "url": "https://www.youtube.com/watch?v=izlRpHOlgFE",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": 762
+     "comment_count": 218
     },
     {
      "title": "베스티(BESTie) - 연애의 조건(Love Options) | Suit Dance | 수트댄스 | Performance | 4K — 1theK Originals - 원더케이 오리지널",
@@ -1104,7 +1278,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 2357
+     "comment_count": 2360
     },
     {
      "title": "돌아온 GTA 시민들의 악몽 — 침착맨 플러스",
@@ -1113,12 +1287,12 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 381
+     "comment_count": 390
     }
    ],
    "list_url": "https://www.youtube.com/feed/trending",
    "state": "ok",
-   "status": "28개"
+   "status": "29개"
   }
  ],
  "words": [
@@ -1126,6 +1300,16 @@
    "word": "근황",
    "meaning": "요즘 사는 모습이나 상황 (인터넷 글 제목에 자주 붙음)",
    "example": "그 가수 근황"
+  },
+  {
+   "word": "ㄷㄷ",
+   "meaning": "'덜덜'. 놀랍거나 무서울 때 쓰는 표현",
+   "example": "가격 보고 ㄷㄷ"
+  },
+  {
+   "word": "떡상",
+   "meaning": "값이나 인기가 갑자기 크게 오름",
+   "example": "주가가 떡상했다"
   },
   {
    "word": "갑질",
