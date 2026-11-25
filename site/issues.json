@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-26T02:57:46+09:00",
- "method": "ai",
+ "updated_at": "2026-11-26T03:53:18+09:00",
+ "method": "simple",
  "post_count": 400,
  "sources": [
   {
@@ -24,8 +24,8 @@
   {
    "key": "ruliweb",
    "name": "루리웹",
-   "status": "16개",
-   "state": "ok"
+   "status": "사이트 접속 실패(ConnectTimeout), 건너뜀",
+   "state": "error"
   },
   {
    "key": "natepann",
@@ -78,390 +78,68 @@
  ],
  "issues": [
   {
-   "headline": "삼성전자 및 증시 하락 관련 논란",
-   "summary": "삼성전자 주가가 하락세를 보이고 주식 시장 부진과 관련해 투자자들의 우려와 성토가 이어지고 있다.",
-   "why": "많은 투자자와 일반 시민들의 자산 형성에 직결되는 주식 시장의 급격한 변동 때문.",
-   "category": "경제",
+   "headline": "신축아파트 1층뷰..",
+   "summary": "",
+   "why": "",
+   "category": "생활",
    "hot": true,
    "communities": [
     {
-     "key": "dcinside",
-     "name": "디시",
-     "count": 3,
-     "framing": "주가 하락 상황을 냉소적이거나 유머러스하게 풍자하는 글들이 올라왔다.",
-     "tone": "cold",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481564&_dcbest=1",
+     "key": "instiz",
+     "name": "인스티즈",
+     "count": 1,
+     "framing": "",
+     "tone": "",
+     "url": "https://www.instiz.net/pt/7929593",
      "comment_count": null
     },
     {
      "key": "theqoo",
      "name": "더쿠",
-     "count": 2,
-     "framing": "내려간 주가 상황을 실시간으로 공유하며 안타까움을 표하고 있다.",
-     "tone": "cold",
-     "url": "https://theqoo.net/hot/4417977155",
-     "comment_count": null
-    }
-   ],
-   "posts": [
-    {
-     "title": "[미갤] 외국인들 코스피보고 놀라는중 ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481564&_dcbest=1",
-     "source": "dcinside",
-     "source_name": "디시"
-    },
-    {
-     "title": "[싱갤] 싱글벙글 삼성전자 애널플러그 입갤 ㄷㄷㄷㄷㄷ",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481588&_dcbest=1",
-     "source": "dcinside",
-     "source_name": "디시"
-    },
-    {
-     "title": "[싱갤] 싱글벙글 완전히 멸망한 코스피 근황",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481585&_dcbest=1",
-     "source": "dcinside",
-     "source_name": "디시"
-    },
-    {
-     "title": "실시간 삼전닉스",
-     "url": "https://theqoo.net/hot/4417977155",
-     "source": "theqoo",
-     "source_name": "더쿠"
-    },
-    {
-     "title": "실시간 16만원대 진입한 삼성전자 주가.jpg",
-     "url": "https://theqoo.net/hot/4417667802",
-     "source": "theqoo",
-     "source_name": "더쿠"
-    }
-   ],
-   "first_seen": "2026-11-25T14:06:37+09:00",
-   "unverified": false,
-   "score": 34.86,
-   "id": "i0",
-   "trend": {
-    "series": [
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     5
-    ],
-    "label": "화제 중",
-    "dir": "flat",
-    "hours": "12시간째 화제"
-   }
-  },
-  {
-   "headline": "대마도 마운자로 원정 구입 논란",
-   "summary": "한국인들이 의약품을 구하기 위해 일본 대마도를 방문해 택배차를 뒤지는 등 무리한 행동을 해 현지 경찰이 개입하는 일이 발생했다.",
-   "why": "해외에서의 무분별한 한국 관광객들의 행동이 현지 경찰 출동으로까지 이어져 논란이 되었기 때문이다.",
-   "category": "사회",
-   "hot": true,
-   "communities": [
-    {
-     "key": "dcinside",
-     "name": "디시",
-     "count": 2,
-     "framing": "일본 현지에서 벌어진 원정 구입 소동과 경찰 개입 상황을 비판적으로 전하고 있다.",
-     "tone": "cold",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481597&_dcbest=1",
-     "comment_count": null
-    },
-    {
-     "key": "ruliweb",
-     "name": "루리웹",
-     "count": 2,
-     "framing": "해외에서 벌어진 눈살 찌푸려지는 원정 구입 행태를 조명했다.",
-     "tone": "cold",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77512113",
-     "comment_count": null
-    }
-   ],
-   "posts": [
-    {
-     "title": "[싱갤] 일본가서 마운자로 빨리 받을려고 택배차 뒤지는 한국인들",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481597&_dcbest=1",
-     "source": "dcinside",
-     "source_name": "디시"
-    },
-    {
-     "title": "[싱갤] 마운자로 대마도 원정 경찰 개입했다고 함.jpg",
-     "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=481607&_dcbest=1",
-     "source": "dcinside",
-     "source_name": "디시"
-    },
-    {
-     "title": "마운자로 대란 난 대마도 근황",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77512113",
-     "source": "ruliweb",
-     "source_name": "루리웹"
-    },
-    {
-     "title": "대마도 마운자로 원정대 사진보면",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77511945",
-     "source": "ruliweb",
-     "source_name": "루리웹"
-    }
-   ],
-   "first_seen": "2026-11-25T17:48:53+09:00",
-   "unverified": false,
-   "score": 31.54,
-   "id": "i1",
-   "trend": {
-    "series": [
-     0,
-     5,
-     5,
-     5,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     4
-    ],
-    "label": "유지",
-    "dir": "flat",
-    "hours": "9시간째 화제"
-   },
-   "thumb": {
-    "id": "Odhau1bgbL4",
-    "url": "https://www.youtube.com/watch?v=Odhau1bgbL4",
-    "title": "‘스시자로’ 대마도 원정…택배회사 앞 한국인들 줄 섰다 / 채널A / 뉴스A",
-    "channel": "채널A News",
-    "img": "https://i.ytimg.com/vi/Odhau1bgbL4/hqdefault.jpg"
-   }
-  },
-  {
-   "headline": "남해고속도로 차량 6대 추돌사고 발생",
-   "summary": "남해고속도로에서 차량 6대가 얽히는 추돌사고가 발생해 3명이 사망하고 3명이 부상을 입었다.",
-   "why": "인명 피해가 발생한 대형 교통사고 소식으로 사회적 관심이 집중되었다.",
-   "category": "사회",
-   "hot": true,
-   "communities": [
-    {
-     "key": "bobaedream",
-     "name": "보배드림",
      "count": 1,
-     "framing": "고속도로에서 발생한 인명 사고 소식을 안타까움과 함께 전달했다.",
-     "tone": "cold",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1050086",
-     "comment_count": null
-    },
-    {
-     "key": "ppomppu",
-     "name": "뽐뿌",
-     "count": 1,
-     "framing": "사고 발생 사실과 피해 규모를 신속히 공유했다.",
-     "tone": "mixed",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=car&no=983137",
+     "framing": "",
+     "tone": "",
+     "url": "https://theqoo.net/hot/4417981579",
      "comment_count": null
     }
    ],
    "posts": [
     {
-     "title": "남해고속도로 차량 6대 쾅...3명 사망3명 부상",
-     "url": "https://www.bobaedream.co.kr/view?code=best&No=1050086",
-     "source": "bobaedream",
-     "source_name": "보배드림"
+     "title": "신축아파트 1층뷰.jpg",
+     "url": "https://www.instiz.net/pt/7929593",
+     "source": "instiz",
+     "source_name": "인스티즈"
     },
     {
-     "title": "남해고속도로 차량 6대 추돌사고 3명사망",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=car&no=983137",
-     "source": "ppomppu",
-     "source_name": "뽐뿌"
-    }
-   ],
-   "first_seen": "2026-11-25T17:48:53+09:00",
-   "unverified": false,
-   "score": 25.94,
-   "id": "i2",
-   "trend": {
-    "series": [
-     0,
-     0,
-     0,
-     0,
-     2,
-     2,
-     2,
-     2,
-     2,
-     2,
-     2,
-     2,
-     2
-    ],
-    "label": "유지",
-    "dir": "flat",
-    "hours": "9시간째 화제"
-   },
-   "thumb": {
-    "id": "uHwuWgqG66c",
-    "url": "https://www.youtube.com/watch?v=uHwuWgqG66c",
-    "title": "남해고속도로 차량 6대 '쾅'...3명 사망·3명 부상 / YTN",
-    "channel": " YTN",
-    "img": "https://i.ytimg.com/vi/uHwuWgqG66c/hqdefault.jpg"
-   }
-  },
-  {
-   "headline": "미국, 한국 등 관세 15% 상한 유지 방침",
-   "summary": "미국 무역대표부가 한국과 일본 등의 과잉생산 관세 상한선을 15%로 유지하고 중국에는 추가 관세를 제안하는 방안을 발표했다.",
-   "why": "국내 수출 기업과 무역 시장 전반에 직접적인 영향을 미치는 중대 사안이기 때문이다.",
-   "category": "경제",
-   "hot": false,
-   "communities": [
-    {
-     "key": "daumnews",
-     "name": "다음뉴스",
-     "count": 5,
-     "framing": "미국의 관세 정책 발표와 한국의 영향에 대해 상세히 보도하고 있다.",
-     "tone": "mixed",
-     "url": "https://v.daum.net/v/20261126020402009",
-     "comment_count": null
-    }
-   ],
-   "posts": [
-    {
-     "title": "美무역대표, 韓 과잉생산 관세 근거로 정부지원·인프라계획 지목(종합)",
-     "url": "https://v.daum.net/v/20261126020402009",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "美 '과잉생산 관세'에 한숨 돌린 한국…15% 상한 유지 (종합)",
-     "url": "https://v.daum.net/v/20261125235506782",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "미 과잉생산 관세 이번 주중 발표… 한국은 총 15% 유지할 듯",
-     "url": "https://v.daum.net/v/20261125225230203",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "美, 韓 '과잉생산' 관행 6개 콕 집었다…\"협상 틀어지면 25%\"",
-     "url": "https://v.daum.net/v/20261126000408967",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    },
-    {
-     "title": "美, 한국·일본 등 관세 15% 상한 유지…中에는 추가 20% 제안",
-     "url": "https://v.daum.net/v/20261125225638244",
-     "source": "daumnews",
-     "source_name": "다음뉴스"
-    }
-   ],
-   "first_seen": "2026-11-25T22:54:20+09:00",
-   "unverified": false,
-   "score": 24.92,
-   "id": "i3",
-   "trend": {
-    "series": [
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     5
-    ],
-    "label": "화제 중",
-    "dir": "flat",
-    "hours": "4시간째 화제"
-   }
-  },
-  {
-   "headline": "청룡영화상 주요 부문 수상 결과 발표",
-   "summary": "청룡영화상에서 작품상, 감독상, 신인상 등 주요 부문의 수상자가 결정되며 화제를 모았다.",
-   "why": "국내 주요 영화 시상식의 결과와 수상자들에 대한 대중적 관심이 높기 때문이다.",
-   "category": "문화·연예",
-   "hot": false,
-   "communities": [
-    {
-     "key": "theqoo",
-     "name": "더쿠",
-     "count": 5,
-     "framing": "수상자들의 소식을 축하하며 뜨거운 반응을 보이고 있다.",
-     "tone": "good",
-     "url": "https://theqoo.net/hot/4418085656",
-     "comment_count": null
-    }
-   ],
-   "posts": [
-    {
-     "title": "청룡영화상 감독상 세계의 주인 - 윤가은 감독님🏆 (청룡감독상 최초의 여자 감독 수상이래!!!!)",
-     "url": "https://theqoo.net/hot/4418085656",
-     "source": "theqoo",
-     "source_name": "더쿠"
-    },
-    {
-     "title": "청룡영화상 <최우수작품상> HOPE",
-     "url": "https://theqoo.net/hot/4418131109",
-     "source": "theqoo",
-     "source_name": "더쿠"
-    },
-    {
-     "title": "청룡영화상 신인 남우상 결과.jpg",
-     "url": "https://theqoo.net/hot/4417952863",
-     "source": "theqoo",
-     "source_name": "더쿠"
-    },
-    {
-     "title": "청룡영화상 1부 마크리(Mark Lee) 축하무대",
-     "url": "https://theqoo.net/hot/4417943778",
-     "source": "theqoo",
-     "source_name": "더쿠"
-    },
-    {
-     "title": "가수, 드라마, 영화로 신인상 다 받은 박지훈",
-     "url": "https://theqoo.net/hot/4418171589",
+     "title": "신축아파트 1층뷰..",
+     "url": "https://theqoo.net/hot/4417981579",
      "source": "theqoo",
      "source_name": "더쿠"
     }
    ],
    "first_seen": "2026-11-25T21:36:12+09:00",
-   "unverified": false,
-   "score": 24.78,
-   "id": "i4",
+   "unverified": true,
+   "score": 25.98,
+   "id": "i0",
    "trend": {
     "series": [
      0,
-     5,
-     5,
-     5,
+     0,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
      0,
      0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     5
+     2
     ],
     "label": "유지",
     "dir": "flat",
-    "hours": "5시간째 화제"
+    "hours": "6시간째 화제"
    }
   }
  ],
@@ -626,8 +304,8 @@
      "title": "가수, 드라마, 영화로 신인상 다 받은 박지훈",
      "url": "https://theqoo.net/hot/4418171589",
      "easy": "",
-     "category": "문화·연예",
-     "issue_id": "i4",
+     "category": "",
+     "issue_id": null,
      "hot": false,
      "comment_count": null
     },
@@ -644,8 +322,8 @@
      "title": "청룡영화상 <최우수작품상> HOPE",
      "url": "https://theqoo.net/hot/4418131109",
      "easy": "",
-     "category": "문화·연예",
-     "issue_id": "i4",
+     "category": "",
+     "issue_id": null,
      "hot": false,
      "comment_count": null
     },
@@ -675,101 +353,10 @@
   {
    "key": "ruliweb",
    "name": "루리웹",
-   "items": [
-    {
-     "title": "아직은 세상이 좀더 살기 괜찮은 이유.jpg",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77513045",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "토드하워드 혐한밈이 은근 웃긴점",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77511869",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "에이스 컴뱃 모드 근황",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77512266",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "서로 못 잡아서 안달인 한중일 특.jpg",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77512469",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "솔직히 스타워즈는 팬도 아닌 안보고 깐 사람이 너무 많았어",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77512333",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "스타워즈 라스트 제다이는 가장 신기한 점이 다른 게 아니고",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77512232",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "마운자로 대란 난 대마도 근황",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77512113",
-     "easy": "",
-     "category": "사회",
-     "issue_id": "i1",
-     "hot": true,
-     "comment_count": null
-    },
-    {
-     "title": "번지점프 회당 10억주면 몇번할거임",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77511930",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "대마도 마운자로 원정대 사진보면",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77511945",
-     "easy": "",
-     "category": "사회",
-     "issue_id": "i1",
-     "hot": true,
-     "comment_count": null
-    },
-    {
-     "title": "사람들이 잘 모르지만 식문화가 은근 빈약한 곳.jpg",
-     "url": "https://bbs.ruliweb.com/best/board/300143/read/77511823",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    }
-   ],
+   "items": [],
    "list_url": "https://bbs.ruliweb.com/best/humor",
-   "state": "ok",
-   "status": "16개"
+   "state": "error",
+   "status": "사이트 접속 실패(ConnectTimeout), 건너뜀"
   },
   {
    "key": "natepann",
@@ -891,6 +478,15 @@
    "name": "뽐뿌",
    "items": [
     {
+     "title": "삼전하닉 진짜 ㅈ된거 같습니다",
+     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&no=461943",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
      "title": "자동차 브렌드 티어표 jpg",
      "url": "https://www.ppomppu.co.kr/zboard/view.php?id=car&no=983128",
      "easy": "",
@@ -965,15 +561,6 @@
     {
      "title": "홈플러스 공채로간 친구ㄷㄷ",
      "url": "https://www.ppomppu.co.kr/zboard/view.php?id=problem&no=238585",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
-     "title": "조회수 터졌다는 한국 인어공주 누나",
-     "url": "https://www.ppomppu.co.kr/zboard/view.php?id=streamer&no=6962",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -1097,20 +684,11 @@
    "name": "다음뉴스",
    "items": [
     {
-     "title": "美무역대표, 젠슨황 복귀에 \"트럼프, 경제·안보 균형 맞춰\"",
-     "url": "https://v.daum.net/v/20261126021438054",
-     "easy": "",
-     "category": "",
-     "issue_id": null,
-     "hot": false,
-     "comment_count": null
-    },
-    {
      "title": "美무역대표, 韓 과잉생산 관세 근거로 정부지원·인프라계획 지목(종합)",
      "url": "https://v.daum.net/v/20261126020402009",
      "easy": "",
-     "category": "경제",
-     "issue_id": "i3",
+     "category": "",
+     "issue_id": null,
      "hot": false,
      "comment_count": null
     },
@@ -1127,8 +705,8 @@
      "title": "美, 韓 '과잉생산' 관행 6개 콕 집었다…\"협상 틀어지면 25%\"",
      "url": "https://v.daum.net/v/20261126000408967",
      "easy": "",
-     "category": "경제",
-     "issue_id": "i3",
+     "category": "",
+     "issue_id": null,
      "hot": false,
      "comment_count": null
     },
@@ -1163,14 +741,23 @@
      "title": "美, 한국·일본 등 관세 15% 상한 유지…中에는 추가 20% 제안",
      "url": "https://v.daum.net/v/20261125225638244",
      "easy": "",
-     "category": "경제",
-     "issue_id": "i3",
+     "category": "",
+     "issue_id": null,
      "hot": false,
      "comment_count": null
     },
     {
-     "title": "네타냐후 부패 혐의 벗나…법원, 핵심 사건 공소 취하 권고(종합)",
-     "url": "https://v.daum.net/v/20261125222911934",
+     "title": "이종석 국정원장 교체 배경에 한중 '휴민트 석방 협상' 있었다",
+     "url": "https://v.daum.net/v/20261125221449697",
+     "easy": "",
+     "category": "",
+     "issue_id": null,
+     "hot": false,
+     "comment_count": null
+    },
+    {
+     "title": "10조원대 증안펀드 확대되나…산은, 금융사 추가 출자 타진",
+     "url": "https://v.daum.net/v/20261125221205654",
      "easy": "",
      "category": "",
      "issue_id": null,
@@ -1202,7 +789,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 9330
+     "comment_count": 9339
     },
     {
      "title": "Welcome Back Home, Zeus — T1",
@@ -1211,7 +798,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 6733
+     "comment_count": 6803
     },
     {
      "title": "와.. 충격의 레전드 등장.. ≪어벤져스: 둠스데이≫ 메인 예고편 나노 분석 2탄 & 떡밥 총정리 — 무비띵크_Movie Think",
@@ -1220,7 +807,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 989
+     "comment_count": 1001
     },
     {
      "title": "랄부 — 랄로",
@@ -1229,7 +816,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 879
+     "comment_count": 917
     },
     {
      "title": "[고딩형사] 1차 예고편 — 잇츠뉴 It'sNEW",
@@ -1238,7 +825,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 791
+     "comment_count": 794
     },
     {
      "title": "카리아나 — PAKA",
@@ -1247,7 +834,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 186
+     "comment_count": 187
     },
     {
      "title": "[듄: 파트 3] 파이널 예고편 — Warner Bros. Korea",
@@ -1265,7 +852,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 333
+     "comment_count": 352
     },
     {
      "title": "멸망전 신청 마감 당일날 터져버린 추맵교팀.. — 튜브김민교",
@@ -1274,7 +861,7 @@
      "category": "",
      "issue_id": null,
      "hot": false,
-     "comment_count": 116
+     "comment_count": 118
     },
     {
      "title": "\"팀 확정했습니다\" 국민 프로듀서 분들이 뽑은 이번 팀은..!｜멸망전 EP.06 — 저라뎃 JUSTLIKETHAT",
@@ -1298,11 +885,6 @@
    "example": "가격 보고 ㄷㄷ"
   },
   {
-   "word": "근황",
-   "meaning": "요즘 사는 모습이나 상황 (인터넷 글 제목에 자주 붙음)",
-   "example": "그 가수 근황"
-  },
-  {
    "word": "레전드",
    "meaning": "두고두고 이야기될 만큼 대단하거나 어이없는 일",
    "example": "오늘 경기는 레전드였다"
@@ -1312,7 +894,7 @@
   {
    "name": "젠슨 황",
    "who": "대만계 미국인 기업가. 엔비디아의 설립자이자 CEO",
-   "why": "가죽 재킷을 벗고 CEO로 복귀해 '더 나은 CEO가 될 것'이라고 말하며 화제예요.",
+   "why": "가죽 재킷을 벗고 더 나은 CEO가 되겠다고 밝히며 주목받았어요.",
    "mentions": 5,
    "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Jensen_Huang_Stanford_2026-04-30_010_%28cropped%29.jpg/330px-Jensen_Huang_Stanford_2026-04-30_010_%28cropped%29.jpg?utm_source=ko.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "wiki": "https://ko.wikipedia.org/wiki/%EC%A0%A0%EC%8A%A8_%ED%99%A9",
@@ -1321,7 +903,7 @@
   {
    "name": "정국",
    "who": "BTS 멤버이자 가수",
-   "why": "시계 브랜드 위블로의 앰버서더로 사진과 영상이 공개되며 화제예요.",
+   "why": "시계 브랜드 앰버서더 사진과 영상이 공개되며 관심을 모았어요.",
    "mentions": 4,
    "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Jung_Kook_of_BTS%2C_February_12%2C_2026_%281%29.png/330px-Jung_Kook_of_BTS%2C_February_12%2C_2026_%281%29.png?utm_source=ko.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "wiki": "https://ko.wikipedia.org/wiki/%EC%A0%95%EA%B5%AD_(%EA%B0%80%EC%88%98)",
@@ -1330,7 +912,7 @@
   {
    "name": "이재명",
    "who": "대한민국의 제21대 대통령",
-   "why": "내신 시험에서 인공지능을 활용해 부정행위를 막는 방안이 보도되며 화제예요.",
+   "why": "내신 시험에서도 AI 부정행주를 막는 방안이 보도되며 화제예요.",
    "mentions": 3,
    "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/President_Lee_Jae_Myung_20260306.jpg/330px-President_Lee_Jae_Myung_20260306.jpg?utm_source=ko.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "wiki": "https://ko.wikipedia.org/wiki/%EC%9D%B4%EC%9E%AC%EB%AA%85",
